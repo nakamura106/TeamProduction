@@ -24,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		return 0;
 	}
 
-	CAMERA camera(0, 0, -50);
+	CAMERA camera(0, 0, -500);
 
 	/*Fbx tori(D3DXVECTOR3(3.0f, 0.0f, 0.0f),
 		D3DXVECTOR3(0.05f, 0.05f, 0.05f));*/
