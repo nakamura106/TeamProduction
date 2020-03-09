@@ -24,21 +24,25 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		return 0;
 	}
 
-	CAMERA camera(0, 0, -500);
+	CAMERA camera(0, 0, -50);
 
 	/*Fbx tori(D3DXVECTOR3(3.0f, 0.0f, 0.0f),
 		D3DXVECTOR3(0.05f, 0.05f, 0.05f));*/
 
 	FbxManagera manager;
 	FBXMeshData player;
+	FBXMeshData bg_box;
+	FBXMeshData nabe;
+	FBXMeshData block;
 
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
 	player = manager.LoadFbxMesh("Res/tori.fbx");
+	bg_box = manager.LoadFbxMesh("Res/worldBox.fbx");
+	nabe = manager.LoadFbxMesh("Res/nabe.fbx");
+	block = manager.LoadFbxMesh("Res/tenkasu.fbx");
 	
-	//‰¼’Ç‰Á
 	
-	//‚±‚±‚Ü‚Å
 
 	while (true)
 	{
@@ -74,12 +78,21 @@ int WINAPI WinMain(HINSTANCE hinstance,
 
 			D3DXMATRIX mat_world;
 			D3DXMatrixIdentity(&mat_world);
-			D3DXMatrixTranslation(&mat_world, 0.0f, 0.0f, 0.0f);
+			D3DXMatrixTranslation(&mat_world, 0.0f, 10.0f, 0.0f);
 
 			// ƒ[ƒ‹ƒhÀ•W‚ðì¬‚·‚é
 			player.fbxinfo.world = mat_world;
 			
+			bg_box.fbxinfo.world = mat_world;
+
+			nabe.fbxinfo.world = mat_world;
+
+			block.fbxinfo.world = mat_world;
+
 			manager.Animation(&player, 1.0f / 60.0f);
+
+
+
 
 			DrawStart();
 
@@ -88,7 +101,10 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			GetD3DDevice()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
 
 			SetLight();
-			manager.DrawFbx(&player);
+			//manager.DrawFbx(&player);
+			manager.DrawFbx(&bg_box);
+			manager.DrawFbx(&nabe);
+			manager.DrawFbx(&block);
 
 			
 			DrawEnd();
@@ -97,6 +113,9 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	}
 
 	manager.ReleaseFbxMesh(&player);
+	manager.ReleaseFbxMesh(&bg_box);
+	manager.ReleaseFbxMesh(&nabe);
+	manager.ReleaseFbxMesh(&block);
 	SoundManager::Instance()->ReleaseTitleSound();
 
 	//ReleaseTexture(NULL);
