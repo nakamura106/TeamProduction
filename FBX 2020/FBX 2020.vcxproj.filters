@@ -72,6 +72,9 @@
     <ClCompile Include="DrawBuffer.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sound\DirectSound.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="DrawBuffer.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

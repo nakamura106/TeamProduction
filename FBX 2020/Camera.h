@@ -44,6 +44,16 @@ public:
 	// カメラの前向きベクトルを出す
 	D3DXVECTOR3 GetCameraForward();
 
+	D3DXVECTOR3 GetCamaraPos()
+	{
+		return m_CameraPos;
+	}
+
+	D3DXVECTOR3 GetEyePos()
+	{
+		return m_EyePos;
+	}
+
 private:
 	/* カメラの移動速度 Walk */
 	const float m_WalkSpeed;
