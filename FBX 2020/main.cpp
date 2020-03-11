@@ -37,10 +37,10 @@ int WINAPI WinMain(HINSTANCE hinstance,
 
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
-	player = manager.LoadFbxMesh("Res/tori.fbx");
-	bg_box = manager.LoadFbxMesh("Res/worldBox.fbx");
-	nabe = manager.LoadFbxMesh("Res/nabe.fbx");
-	block = manager.LoadFbxMesh("Res/tenkasu.fbx");
+	player = manager.LoadFbxMesh("Res/PopBird_Export.fbx");
+	//bg_box = manager.LoadFbxMesh("Res/worldBox.fbx");
+	nabe = manager.LoadFbxMesh("Res/nabemaya.fbx");
+	//block = manager.LoadFbxMesh("Res/tenkasu.fbx");
 	
 	
 
@@ -77,18 +77,26 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			camera.MouseRotate();
 
 			D3DXMATRIX mat_world;
+			D3DXMATRIX mat_nabe;
+
 			D3DXMatrixIdentity(&mat_world);
+			D3DXMatrixIdentity(&mat_nabe);
 			D3DXMatrixTranslation(&mat_world, 0.0f, 10.0f, 0.0f);
+			D3DXMatrixTranslation(&mat_nabe, 0.0f, 0.0f, 0.0f);
+
+			//D3DXMatrixRotationX(&mat_nabe, D3DXToRadian(-90));
+
+
 
 			// ƒ[ƒ‹ƒhÀ•W‚ðì¬‚·‚é
 			player.fbxinfo.world = mat_world;
 			
-			bg_box.fbxinfo.world = mat_world;
+			//bg_box.fbxinfo.world = mat_world;
 
-			nabe.fbxinfo.world = mat_world;
+			nabe.fbxinfo.world = mat_nabe;
 
-			block.fbxinfo.world = mat_world;
-
+			/*block.fbxinfo.world = mat_world;
+*/
 			manager.Animation(&player, 1.0f / 60.0f);
 
 
@@ -96,15 +104,15 @@ int WINAPI WinMain(HINSTANCE hinstance,
 
 			DrawStart();
 
-			//SetRenderMode(ERenderMode::Normal, false);
+			SetRenderMode(ERenderMode::Normal, false);
 
 			GetD3DDevice()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
 
 			SetLight();
-			//manager.DrawFbx(&player);
-			manager.DrawFbx(&bg_box);
+			manager.DrawFbx(&player);
+			//manager.DrawFbx(&bg_box);
 			manager.DrawFbx(&nabe);
-			manager.DrawFbx(&block);
+			//manager.DrawFbx(&block);
 
 			
 			DrawEnd();
@@ -113,9 +121,9 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	}
 
 	manager.ReleaseFbxMesh(&player);
-	manager.ReleaseFbxMesh(&bg_box);
+	//manager.ReleaseFbxMesh(&bg_box);
 	manager.ReleaseFbxMesh(&nabe);
-	manager.ReleaseFbxMesh(&block);
+	//manager.ReleaseFbxMesh(&block);
 	SoundManager::Instance()->ReleaseTitleSound();
 
 	//ReleaseTexture(NULL);

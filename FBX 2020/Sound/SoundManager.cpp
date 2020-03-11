@@ -14,7 +14,7 @@ SoundManager* SoundManager::Instance()
 
 void SoundManager::RegisterTitleSound()
 {
-	m_bgm_file = "Res/wav/TitleBgm.wav";
+	m_bgm_file = "Res/wav/BGM.wav";
 	m_se1_file = "Res/Wav/SelectSE.wav";
 	m_click_se_file = "Res/wav/ClickSE.wav";
 	m_pAudio->Load(m_bgm, m_bgm_file);
@@ -56,7 +56,7 @@ void SoundManager::RegisterEndSound()
 
 void SoundManager::SoundBGM()
 {
-	m_pAudio->Play(m_bgm, -3000, true);
+	m_pAudio->Play(m_bgm, -300, true);
 }
 
 void SoundManager::SoundSelectBGM()

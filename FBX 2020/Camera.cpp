@@ -31,7 +31,7 @@ void CAMERA::Update()
 		D3DXToRadian(60),	// 画角
 		aspect,				// アスペクト比
 		1.1f,				// near
-		20000.0f);			// far
+		200000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
 	//射影座標変換用の行列算出 end
 }
