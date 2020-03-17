@@ -1,6 +1,7 @@
 #include "Collision.h"
 #include <math.h>
 #include <d3dx9.h>
+#include "Vec.h"
 
 //プレイヤーとアイテム
  bool Collision::HitItem(float player_pos_x_, float player_pos_y_, float player_pos_z_, float item_pos_x_, float item_pos_y_, float item_pos_z_, float player_radius, float item_radius)
@@ -159,3 +160,29 @@
 		return false;
 	}
 }
+
+ bool Collision::HitAngle(float player_pos_x, float player_pos_y,float player_pos_z, float maptop_pos_x, float maptop_pos_y,float maptop_pos_z, float mapunder_pos_x, float mapunder_pos_y, float mapunder_pos_z,float flg_angle)
+ {
+	 D3DXVECTOR3 player_vec;
+	 D3DXVECTOR3 map_vec;
+
+	 player_vec.x = player_pos_x - maptop_pos_x;
+	 player_vec.y = player_pos_y - maptop_pos_y;
+	 player_vec.z = player_pos_z - maptop_pos_z;
+
+	 map_vec.x = maptop_pos_x - mapunder_pos_x;
+	 map_vec.y = maptop_pos_y - mapunder_pos_y;
+	 map_vec.z = maptop_pos_z - mapunder_pos_z;
+
+
+	 float angle = acosf((player_vec.x * map_vec.x + player_vec.y * map_vec.y + player_vec.z * map_vec.z) /
+		 (sqrtf(player_vec.x * player_vec.x) * sqrtf(player_vec.y * player_vec.y) * sqrtf(player_vec.z * player_vec.z)));
+
+
+	 if (angle >= flg_angle)
+	 {
+		 return true;
+	 }
+	 else
+		 return false;
+ }
