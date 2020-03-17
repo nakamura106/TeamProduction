@@ -238,7 +238,7 @@ void DrawEnd()
 //	return NULL;
 //}
 // テクスチャーの読み込み
-bool LoadTexture(const char* file_name,TEXTURE_DATA* texture)
+bool LoadTexture(const char* file_name, TEXTURE_DATA* texture)
 {
 	D3DXIMAGE_INFO info;
 
@@ -334,7 +334,7 @@ void SetLight()
 	light.Ambient.r = 0.5f;
 	light.Ambient.g = 0.5f;
 	light.Ambient.b = 0.5f;
-	D3DXVec3Normalize((D3DXVECTOR3*)&light.Direction, &vec_direction);
+	D3DXVec3Normalize((D3DXVECTOR3*)& light.Direction, &vec_direction);
 	light.Range = 200.0f;
 	g_Device->SetLight(0, &light);
 	g_Device->LightEnable(0, true);

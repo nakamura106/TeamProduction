@@ -1,6 +1,6 @@
 #ifndef FBXMANAGER_H_
 #define FBXMANAGER_H_
-#include "FBX.h"
+#include "../Engine/FBX.h"
 
 class FbxManagera
 {
