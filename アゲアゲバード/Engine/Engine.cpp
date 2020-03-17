@@ -27,5 +27,5 @@ bool InitEngine(int width, int height, const char* title_name)
 void EndEngine()
 {
 	ReleaseGraphics();
-	
+
 }

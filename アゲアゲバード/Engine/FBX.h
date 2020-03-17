@@ -112,11 +112,11 @@ public:
 		m_Scale(Scale)
 	{}*/
 
-	Fbx(){}
+	Fbx() {}
 
-	~Fbx(){}
+	~Fbx() {}
 
-	
+
 
 	//FBXèÄîı
 	FBXMeshData LoadFbx(const char* file_name);
@@ -138,7 +138,7 @@ public:
 	int FindBone(FbxInfo* pModel_, const char* pName_);
 
 	void GetBone(FbxInfo* pModel_, MeshData* pMeshData_, FbxMesh* pMesh_);
-	
+
 	void GetKeyFrames(FbxInfo* pModel_, std::string name_, int bone_, FbxNode* pBoneNode_);
 
 	void Play(FBXMeshData* pData_, std::string name_);
@@ -160,8 +160,8 @@ public:
 	void ResetAnimate(FBXMeshData* pData_);
 private:
 
-	
-	
+
+
 
 	D3DXVECTOR3 m_Pos;
 	D3DXVECTOR3 m_Scale;

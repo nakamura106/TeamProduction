@@ -1,16 +1,16 @@
 #include <fbxsdk.h>
 #include <Windows.h>
-#include "Window.h"
-#include "Graphics.h"
+#include "Engine/Window.h"
+#include "Engine/Graphics.h"
 #include <thread>
-#include "Engine.h"
-#include "FBX.h"
-#include "FbxManager.h"
-#include "Input.h"
-#include "Camera.h"
+#include "Engine/Engine.h"
+#include "Engine/FBX.h"
+#include "Manager/FbxManager.h"
+#include "Engine/Input.h"
+#include "Engine/Camera.h"
 
 //âºinclude
-#include"Sound/SoundManager.h"
+#include"Manager/SoundManager.h"
 
 
 int WINAPI WinMain(HINSTANCE hinstance,
@@ -41,8 +41,8 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	//bg_box = manager.LoadFbxMesh("Res/worldBox.fbx");
 	nabe = manager.LoadFbxMesh("Res/nabemaya.fbx");
 	//block = manager.LoadFbxMesh("Res/tenkasu.fbx");
-	
-	
+
+
 
 	while (true)
 	{
@@ -68,8 +68,8 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		{
 			UpdateInput();
 			KeyStateUpdate();
-	
-			
+
+
 
 
 			camera.Update();
@@ -90,7 +90,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 
 			// ÉèÅ[ÉãÉhç¿ïWÇçÏê¨Ç∑ÇÈ
 			player.fbxinfo.world = mat_world;
-			
+
 			//bg_box.fbxinfo.world = mat_world;
 
 			nabe.fbxinfo.world = mat_nabe;
@@ -114,7 +114,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			manager.DrawFbx(&nabe);
 			//manager.DrawFbx(&block);
 
-			
+
 			DrawEnd();
 
 		}

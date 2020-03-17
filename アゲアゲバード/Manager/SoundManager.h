@@ -1,8 +1,8 @@
 #ifndef SOUNDMANAGER_H_
 #define SOUNDMANAGER_H_
 
-#include "AudioPlayer.h"
-#include"../Window.h"
+#include "../Sound/AudioPlayer.h"
+#include"../Engine/Window.h"
 #include <string>
 
 class SoundManager

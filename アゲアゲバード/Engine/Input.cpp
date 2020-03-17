@@ -2,7 +2,7 @@
 #include "Input.h"
 #include <Windows.h>
 #include <dinput.h>
-#include "Vec.h"
+#include "../Utility/Vec.h"
 #include "Window.h"
 //#include "DirectX.h"
 
@@ -105,7 +105,7 @@ bool CreateInputInterface()
 	HRESULT hr = DirectInput8Create(GetModuleHandle(nullptr),
 		DIRECTINPUT_VERSION,
 		IID_IDirectInput8,
-		(void**)&g_InputInterface,
+		(void**)& g_InputInterface,
 		NULL);
 	if (FAILED(hr))
 	{

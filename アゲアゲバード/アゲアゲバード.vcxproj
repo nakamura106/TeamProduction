@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{696EFEB7-E58F-48CF-AE42-BD180DDF6418}</ProjectGuid>
-    <RootNamespace>FBX2020</RootNamespace>
+    <ProjectGuid>{4D100A90-97AC-4202-A177-CA2835856C16}</ProjectGuid>
+    <RootNamespace>アゲアゲバード</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,19 +70,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(FBXSDK_DIR)2019.0\include;$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(FBXSDK_DIR)2019.0\include;$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(FBXSDK_DIR)2019.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(FBXSDK_DIR)2019.0\include;$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(FBXSDK_DIR)2019.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(DXSDK_DIR)Include;$(FBXSDK_DIR)2019.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(FBXSDK_DIR)2019.0\include;$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(FBXSDK_DIR)2019.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -90,14 +90,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>false</ConformanceMode>
+      <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(FBXSDK_DIR)2019.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>K_PLUGIN;K_FBXSDK;K_NODLL;K_DLLINFO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(FBXSDK_DIR)2019.0\lib\vs2015\x86\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libfbxsdk-md.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -105,14 +105,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>false</ConformanceMode>
+      <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(FBXSDK_DIR)2019.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>K_PLUGIN;K_FBXSDK;K_NODLL;K_DLLINFO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(FBXSDK_DIR)2019.0\lib\vs2015\x86\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libfbxsdk-md.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -152,34 +152,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="DrawBuffer.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="FBX.cpp" />
-    <ClCompile Include="FbxManager.cpp" />
-    <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Engine\Camera.cpp" />
+    <ClCompile Include="Engine\DrawBuffer.cpp" />
+    <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\FBX.cpp" />
+    <ClCompile Include="Engine\Graphics.cpp" />
+    <ClCompile Include="Engine\Input.cpp" />
+    <ClCompile Include="Engine\Window.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Manager\FbxManager.cpp" />
+    <ClCompile Include="Manager\SoundManager.cpp" />
     <ClCompile Include="Sound\AudioPlayer.cpp" />
     <ClCompile Include="Sound\DirectSound.cpp" />
-    <ClCompile Include="Sound\SoundManager.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Utility\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="DrawBuffer.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="FBX.h" />
-    <ClInclude Include="FbxManager.h" />
-    <ClInclude Include="Graphics.h" />
-    <ClInclude Include="Input.h" />
+    <ClInclude Include="Engine\Camera.h" />
+    <ClInclude Include="Engine\DrawBuffer.h" />
+    <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\FBX.h" />
+    <ClInclude Include="Engine\Graphics.h" />
+    <ClInclude Include="Engine\Input.h" />
+    <ClInclude Include="Engine\Window.h" />
+    <ClInclude Include="Manager\FbxManager.h" />
+    <ClInclude Include="Manager\SoundManager.h" />
     <ClInclude Include="Sound\AudioPlayer.h" />
     <ClInclude Include="Sound\DirectSound.h" />
-    <ClInclude Include="Sound\SoundManager.h" />
-    <ClInclude Include="Vec.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="Utility\Collision.h" />
+    <ClInclude Include="Utility\Vec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

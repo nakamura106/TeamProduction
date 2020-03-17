@@ -38,7 +38,7 @@ void InitMaterial(MaterialData* pMaterial, int materialNum)
 }
 
 //FBXのマネージャー作成
-FBXMeshData Fbx::LoadFbx(const char *file_name)
+FBXMeshData Fbx::LoadFbx(const char* file_name)
 {
 	FBXMeshData fbxMeshData;
 	ZeroMemory(&fbxMeshData, sizeof(fbxMeshData));
@@ -84,7 +84,7 @@ FBXMeshData Fbx::LoadFbx(const char *file_name)
 	MaterialData* pMaterialData = (MaterialData*)malloc(materialcount * sizeof(MaterialData));
 	ZeroMemory(pMaterialData, materialcount * sizeof(MaterialData));
 
-	
+
 	D3DXMatrixIdentity(&fbxMeshData.fbxinfo.world);
 	fbxMeshData.fbxinfo.meshcount = meshcount;
 	fbxMeshData.fbxinfo.pMesh = pMeshData;
@@ -132,14 +132,14 @@ FBXMeshData Fbx::LoadFbx(const char *file_name)
 
 }
 
-void Fbx::Play(FBXMeshData* pData_, std::string name_)
+void Fbx::Play(FBXMeshData * pData_, std::string name_)
 {
 	if (pData_ == nullptr) return;
 	strcpy_s(pData_->motion, name_.c_str());
 	pData_->frame = 0.0f;
 }
 
-void Fbx::ReleaseFbxMesh(FBXMeshData* pData_)
+void Fbx::ReleaseFbxMesh(FBXMeshData * pData_)
 {
 	if (pData_ == nullptr) return;
 
@@ -147,20 +147,20 @@ void Fbx::ReleaseFbxMesh(FBXMeshData* pData_)
 }
 
 //各情報取得
-bool Fbx::LoadMesh(MeshData* pMeshData_, FbxMesh* pMesh_)
+bool Fbx::LoadMesh(MeshData * pMeshData_, FbxMesh * pMesh_)
 {
 	GetIndeces(pMeshData_, pMesh_);
 
 	GetVertex(pMeshData_, pMesh_);
 	GetUV(pMeshData_, pMesh_);
 	GetColor(pMeshData_, pMesh_);
-    GetNormal(pMeshData_, pMesh_);
+	GetNormal(pMeshData_, pMesh_);
 
 	int vertexNum = pMesh_->GetPolygonVertexCount();
 	UINT size = (UINT)(vertexNum * sizeof(VERTEX_3D));
 	VERTEX_3D* vertex;
 	// バッファをロックしてデータを書き込む
-	pMeshData_->pVB->Lock(0, size, (void**)&vertex, 0);
+	pMeshData_->pVB->Lock(0, size, (void**)& vertex, 0);
 
 	pMeshData_->vertex = (VERTEX_3D*)malloc(size);
 	memcpy(pMeshData_->vertex, vertex, size);
@@ -171,7 +171,7 @@ bool Fbx::LoadMesh(MeshData* pMeshData_, FbxMesh* pMesh_)
 }
 
 //ポリゴン情報
-void Fbx::GetIndeces(MeshData* pMeshData_, FbxMesh* pMesh_)
+void Fbx::GetIndeces(MeshData * pMeshData_, FbxMesh * pMesh_)
 {
 	int polyCount = pMesh_->GetPolygonCount();
 	UINT size = (UINT)((polyCount * 3) * sizeof(UINT16));
@@ -182,7 +182,7 @@ void Fbx::GetIndeces(MeshData* pMeshData_, FbxMesh* pMesh_)
 
 	UINT16* pIndeces;
 	// バッファをロックしてデータを書き込む
-	pMeshData_->pIB->Lock(0, size, (void**)&pIndeces, 0);
+	pMeshData_->pIB->Lock(0, size, (void**)& pIndeces, 0);
 
 	for (int polyIdx = 0; polyIdx < polyCount; polyIdx++)
 	{
@@ -193,8 +193,8 @@ void Fbx::GetIndeces(MeshData* pMeshData_, FbxMesh* pMesh_)
 	pMeshData_->pIB->Unlock();
 }
 //頂点情報
-void Fbx::GetVertex(MeshData* pMeshData_, FbxMesh* pMesh_) {
-	
+void Fbx::GetVertex(MeshData * pMeshData_, FbxMesh * pMesh_) {
+
 	int vertexCount = pMesh_->GetPolygonVertexCount();
 	UINT size = (UINT)(vertexCount * sizeof(VERTEX_3D));
 
@@ -217,7 +217,7 @@ void Fbx::GetVertex(MeshData* pMeshData_, FbxMesh* pMesh_) {
 
 	VERTEX_3D* pVertex;
 	// バッファをロックしてデータを書き込む
-	pMeshData_->pVB->Lock(0, size, (void**)&pVertex, 0);
+	pMeshData_->pVB->Lock(0, size, (void**)& pVertex, 0);
 	int* pIndex = pMesh_->GetPolygonVertices();
 	for (int vIdx = 0; vIdx < vertexCount; vIdx++)
 	{
@@ -233,12 +233,12 @@ void Fbx::GetVertex(MeshData* pMeshData_, FbxMesh* pMesh_) {
 		ZeroMemory(pVertex[vIdx].index, sizeof(pVertex[vIdx].index));
 		ZeroMemory(pVertex[vIdx].weight, sizeof(pVertex[vIdx].weight));
 	}
-	
+
 	pMeshData_->pVB->Unlock();
 
 }
 //法線情報取得
-void Fbx::GetNormal(MeshData* pMeshData_, FbxMesh* pMesh_) {
+void Fbx::GetNormal(MeshData * pMeshData_, FbxMesh * pMesh_) {
 	FbxArray<FbxVector4> normals;
 
 	//法線を取得
@@ -247,7 +247,7 @@ void Fbx::GetNormal(MeshData* pMeshData_, FbxMesh* pMesh_) {
 	UINT size = pMeshData_->vertexCount * sizeof(VERTEX_3D);
 	VERTEX_3D* pVertex;
 	// バッファをロックしてデータを書き込む
-	pMeshData_->pVB->Lock(0, size, (void**)&pVertex, 0);
+	pMeshData_->pVB->Lock(0, size, (void**)& pVertex, 0);
 
 	//法線の数を取得
 	//int normalCount = normals.Size();
@@ -263,20 +263,20 @@ void Fbx::GetNormal(MeshData* pMeshData_, FbxMesh* pMesh_) {
 
 }
 //UV情報取得
-void Fbx::GetUV(MeshData* pMeshData_, FbxMesh* pMesh_) {
-	
+void Fbx::GetUV(MeshData * pMeshData_, FbxMesh * pMesh_) {
+
 	FbxStringList uvsetName;
 	//メッシュに含まれるUVSet名をすべて取得
 	pMesh_->GetUVSetNames(uvsetName);
 
 	FbxArray<FbxVector2> uvSets;
 	pMesh_->GetPolygonVertexUVs(uvsetName.GetStringAt(0), uvSets);
-		
+
 	UINT size = pMeshData_->vertexCount * sizeof(VERTEX_3D);
 
 	VERTEX_3D* pVertex;
 	// バッファをロックしてデータを書き込む
-	pMeshData_->pVB->Lock(0, size, (void**)&pVertex, 0);
+	pMeshData_->pVB->Lock(0, size, (void**)& pVertex, 0);
 	for (int vtxIdx = 0; vtxIdx < uvSets.Size(); vtxIdx++)
 	{
 		FbxVector2& uvSet = uvSets[vtxIdx];
@@ -287,12 +287,12 @@ void Fbx::GetUV(MeshData* pMeshData_, FbxMesh* pMesh_) {
 	pMeshData_->pVB->Unlock();
 }
 //カラー情報取得
-void Fbx::GetColor(MeshData* pMeshData_, FbxMesh* pMesh_)
+void Fbx::GetColor(MeshData * pMeshData_, FbxMesh * pMesh_)
 {
 	int colorElementCount = pMesh_->GetElementVertexColorCount();
 	if (colorElementCount == 0) return;
 
-	FbxLayerElementVertexColor* pColor = pMesh_->GetElementVertexColor(0);
+	FbxLayerElementVertexColor * pColor = pMesh_->GetElementVertexColor(0);
 
 	FbxLayerElement::EMappingMode mapMode = pColor->GetMappingMode();
 	FbxLayerElement::EReferenceMode refMode = pColor->GetReferenceMode();
@@ -304,13 +304,13 @@ void Fbx::GetColor(MeshData* pMeshData_, FbxMesh* pMesh_)
 			UINT size = pMeshData_->vertexCount * sizeof(VERTEX_3D);
 			VERTEX_3D* pVertex;
 			// バッファをロックしてデータを書き込む
-			pMeshData_->pVB->Lock(0, size, (void**)&pVertex, 0);
+			pMeshData_->pVB->Lock(0, size, (void**)& pVertex, 0);
 
 			FbxLayerElementArrayTemplate<FbxColor>& colors = pColor->GetDirectArray();
 			FbxLayerElementArrayTemplate<int>& indeces = pColor->GetIndexArray();
 			for (int i = 0; i < indeces.GetCount(); i++)
 			{
-				FbxColor& color = colors.GetAt(indeces.GetAt(i));
+				const FbxColor& color = colors.GetAt(indeces.GetAt(i));
 				DWORD a = (DWORD)(color.mAlpha * 255.0);
 				DWORD r = (DWORD)(color.mRed * 255.0);
 				DWORD g = (DWORD)(color.mGreen * 255.0);
@@ -323,7 +323,7 @@ void Fbx::GetColor(MeshData* pMeshData_, FbxMesh* pMesh_)
 	}
 }
 //骨情報検索
-int Fbx::FindBone(FbxInfo* pModel_, const char* pName_)
+int Fbx::FindBone(FbxInfo * pModel_, const char* pName_)
 {
 	for (UINT boneIdx = 0; boneIdx < pModel_->bonecount; boneIdx++)
 	{
@@ -335,7 +335,7 @@ int Fbx::FindBone(FbxInfo* pModel_, const char* pName_)
 	return -1;
 }
 //骨情報取得
-void Fbx::GetBone(FbxInfo* pModel_, MeshData* pMeshData_, FbxMesh* pMesh_)
+void Fbx::GetBone(FbxInfo * pModel_, MeshData * pMeshData_, FbxMesh * pMesh_)
 {
 	// スキン情報の有無
 	int skinCount = pMesh_->GetDeformerCount(FbxDeformer::eSkin);
@@ -348,7 +348,7 @@ void Fbx::GetBone(FbxInfo* pModel_, MeshData* pMeshData_, FbxMesh* pMesh_)
 
 	VERTEX_3D* pVertex;
 	// バッファをロックしてデータを書き込む
-	pMeshData_->pVB->Lock(0, size, (void**)&pVertex, 0);
+	pMeshData_->pVB->Lock(0, size, (void**)& pVertex, 0);
 
 	FbxSkin* pSkin = (FbxSkin*)pMesh_->GetDeformer(0, FbxDeformer::eSkin);
 	// ボーン数
@@ -459,7 +459,7 @@ void Fbx::GetBone(FbxInfo* pModel_, MeshData* pMeshData_, FbxMesh* pMesh_)
 	pMeshData_->pVB->Unlock();
 }
 
-void Fbx::GetKeyFrames(FbxInfo* pModel_, std::string name_, int bone_, FbxNode* pBoneNode_)
+void Fbx::GetKeyFrames(FbxInfo * pModel_, std::string name_, int bone_, FbxNode * pBoneNode_)
 {
 	//	メモリ確保
 	Motion* pMotion = &(*pModel_->pMotion)[name_];
@@ -489,8 +489,8 @@ void Fbx::GetKeyFrames(FbxInfo* pModel_, std::string name_, int bone_, FbxNode* 
 }
 
 //テクスチャ情報取得
-void Fbx::GetTextureInfo(MaterialData* pMaterialData_, FbxMesh* pMesh_) {
-	
+void Fbx::GetTextureInfo(MaterialData * pMaterialData_, FbxMesh * pMesh_) {
+
 	InitMaterial(pMaterialData_, 1);
 	FbxLayerElementMaterial* pElementMaterial = pMesh_->GetElementMaterial();
 	if (pElementMaterial)
@@ -561,7 +561,7 @@ void Fbx::GetTextureInfo(MaterialData* pMaterialData_, FbxMesh* pMesh_) {
 }
 #pragma endregion
 
-void Fbx::RenderFbxMesh(FBXMeshData* pData_)
+void Fbx::RenderFbxMesh(FBXMeshData * pData_)
 {
 	if (pData_ == nullptr) return;
 
@@ -569,13 +569,13 @@ void Fbx::RenderFbxMesh(FBXMeshData* pData_)
 
 	DrawModel(&pData_->fbxinfo);
 }
- 
-void Fbx::DrawModel(FbxInfo* pModel)
+
+void Fbx::DrawModel(FbxInfo * pModel)
 {
 	if (pModel == NULL) return;
 	if (pModel->materialcount == 0) return;
 
-	IDirect3DDevice9* pDevice = GetD3DDevice();
+	IDirect3DDevice9 * pDevice = GetD3DDevice();
 	pDevice->SetTransform(D3DTS_WORLD, &pModel->world);
 
 	for (UINT matIdx = 0; matIdx < pModel->materialcount; matIdx++)
@@ -615,7 +615,7 @@ void Fbx::DrawModel(FbxInfo* pModel)
 	}
 }
 
-void Fbx::Skinning(FBXMeshData* pData_)
+void Fbx::Skinning(FBXMeshData * pData_)
 {
 	if (!pData_->fbxinfo.pMotion) return;
 
@@ -648,7 +648,7 @@ void Fbx::Skinning(FBXMeshData* pData_)
 		UINT size = (UINT)(pMeshData->vertexCount * sizeof(VERTEX_3D));
 		VERTEX_3D* pVertex;
 		// バッファをロックしてデータを書き込む
-		pMeshData->pVB->Lock(0, size, (void**)&pVertex, 0);
+		pMeshData->pVB->Lock(0, size, (void**)& pVertex, 0);
 		for (UINT v = 0; v < pMeshData->vertexCount; v++)
 		{
 			//	頂点 * ボーン行列
@@ -687,12 +687,12 @@ void Fbx::Skinning(FBXMeshData* pData_)
 	}
 }
 
-void Fbx::MatrixInterporate(D3DXMATRIX& out_, D3DXMATRIX& A_, D3DXMATRIX B_, float rate_)
+void Fbx::MatrixInterporate(D3DXMATRIX & out_, D3DXMATRIX & A_, D3DXMATRIX B_, float rate_)
 {
 	out_ = A_ * (1.0f - rate_) + B_ * rate_;
 }
 
-void Fbx::ReleaseModel(FbxInfo* pModel)
+void Fbx::ReleaseModel(FbxInfo * pModel)
 {
 	if (pModel == NULL) return;
 
@@ -727,7 +727,7 @@ void Fbx::ReleaseModel(FbxInfo* pModel)
 	ZeroMemory(pModel, sizeof(FbxInfo));
 }
 
-void Fbx::Animate(FBXMeshData* pData_, float sec_)
+void Fbx::Animate(FBXMeshData * pData_, float sec_)
 {
 	if (pData_ == nullptr) return;
 	if (pData_->fbxinfo.pMotion == nullptr) return;
@@ -742,7 +742,7 @@ void Fbx::Animate(FBXMeshData* pData_, float sec_)
 	}
 }
 
-void Fbx::ResetAnimate(FBXMeshData* pData_)
+void Fbx::ResetAnimate(FBXMeshData * pData_)
 {
 	if (pData_ == nullptr) return;
 	pData_->frame = 0;

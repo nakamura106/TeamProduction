@@ -56,7 +56,7 @@ void SoundManager::RegisterEndSound()
 
 void SoundManager::SoundBGM()
 {
-	m_pAudio->Play(m_bgm, -300, true);
+	m_pAudio->Play(m_bgm, -1000, true);
 }
 
 void SoundManager::SoundSelectBGM()
