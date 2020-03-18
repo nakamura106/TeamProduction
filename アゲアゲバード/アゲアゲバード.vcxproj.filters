@@ -69,6 +69,12 @@
     <ClCompile Include="Utility\Collision.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Object\Pot.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\ObjectBase.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Camera.h">
@@ -109,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="Utility\Vec.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Pot.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\ObjectBase.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
