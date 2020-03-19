@@ -159,10 +159,10 @@
     <ClCompile Include="Engine\Graphics.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager\FbxManager.cpp" />
     <ClCompile Include="Manager\SoundManager.cpp" />
+    <ClCompile Include="Object\Item.cpp" />
     <ClCompile Include="Object\ObjectBase.cpp" />
     <ClCompile Include="Object\Pot.cpp" />
     <ClCompile Include="Sound\AudioPlayer.cpp" />
@@ -177,9 +177,9 @@
     <ClInclude Include="Engine\Graphics.h" />
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Window.h" />
-    <ClInclude Include="Item.h" />
     <ClInclude Include="Manager\FbxManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
+    <ClInclude Include="Object\Item.h" />
     <ClInclude Include="Object\ObjectBase.h" />
     <ClInclude Include="Object\Pot.h" />
     <ClInclude Include="Sound\AudioPlayer.h" />

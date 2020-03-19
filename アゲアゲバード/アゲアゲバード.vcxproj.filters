@@ -75,7 +75,7 @@
     <ClCompile Include="Object\ObjectBase.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
+    <ClCompile Include="Object\Item.cpp">
       <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,7 +125,7 @@
     <ClInclude Include="Object\ObjectBase.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
+    <ClInclude Include="Object\Item.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>

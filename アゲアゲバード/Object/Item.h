@@ -1,8 +1,8 @@
 #ifndef ITEM_H_
 #define ITEM_H_
 
-#include "Object/ObjectBase.h"
-#include "Utility/Vec.h"
+#include "../Object/ObjectBase.h"
+#include "../Utility/Vec.h"
 
 enum class ItemID
 {
