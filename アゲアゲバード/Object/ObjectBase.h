@@ -21,6 +21,10 @@ protected:
 	FbxManagera m_manager;
 	FBXMeshData m_object;
 	D3DXMATRIX m_mat_world;
+	D3DXMATRIX m_mat_scall;
+	D3DXMATRIX m_mat_move;
+	D3DXMATRIX m_mat_rot;
+
 };
 
 #endif
