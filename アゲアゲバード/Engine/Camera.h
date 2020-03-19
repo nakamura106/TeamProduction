@@ -7,7 +7,7 @@ class CAMERA
 {
 public:
 	CAMERA(float camera_x, float camera_y, float camera_z) :
-		m_WalkSpeed(1.0f),
+		m_WalkSpeed(0.5f),
 		m_SprintSpeed(6.0f)
 	{
 		m_CameraPos.x = camera_x;
