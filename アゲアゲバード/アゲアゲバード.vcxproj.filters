@@ -75,6 +75,9 @@
     <ClCompile Include="Object\ObjectBase.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Camera.h">
@@ -120,6 +123,9 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Object\ObjectBase.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>

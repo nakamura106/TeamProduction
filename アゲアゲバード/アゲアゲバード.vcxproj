@@ -159,6 +159,7 @@
     <ClCompile Include="Engine\Graphics.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager\FbxManager.cpp" />
     <ClCompile Include="Manager\SoundManager.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Engine\Graphics.h" />
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Window.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Manager\FbxManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
     <ClInclude Include="Object\ObjectBase.h" />
