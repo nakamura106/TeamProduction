@@ -9,6 +9,7 @@
 #include "Engine/Input.h"
 #include "Engine/Camera.h"
 #include"Object/Pot.h"
+#include"Manager/ObjectManager.h"
 
 //‰¼include
 #include"Manager/SoundManager.h"
@@ -35,8 +36,9 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	//FBXMeshData bg_box;
 	//FBXMeshData nabe;
 	//FBXMeshData block;
-	Pot pot;
-
+	
+	ObjectManager::Instance()->CreateObject();
+	
 
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
@@ -100,8 +102,12 @@ int WINAPI WinMain(HINSTANCE hinstance,
 //
 //			/*block.fbxinfo.world = mat_world;
 //*/
-			pot.Update();
+			//ObjectManager::Instance()->Update();
 
+			if (GetKeyDown(SPACE_KEY))
+			{
+				ObjectManager::Instance()->CreateBlock();
+			}
 
 
 			DrawStart();
@@ -116,7 +122,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			manager.DrawFbx(&bg_box);
 			manager.DrawFbx(&nabe);
 			manager.DrawFbx(&block);*/
-			pot.Draw();
+			ObjectManager::Instance()->Draw();
 
 			DrawEnd();
 

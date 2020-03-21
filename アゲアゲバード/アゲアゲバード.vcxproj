@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataBank\DataBank.cpp" />
     <ClCompile Include="Engine\Camera.cpp" />
     <ClCompile Include="Engine\DrawBuffer.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
@@ -161,8 +162,10 @@
     <ClCompile Include="Engine\Window.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager\FbxManager.cpp" />
+    <ClCompile Include="Manager\ObjectManager.cpp" />
     <ClCompile Include="Manager\SoundManager.cpp" />
     <ClCompile Include="Object\Item.cpp" />
+    <ClCompile Include="Object\Block.cpp" />
     <ClCompile Include="Object\ObjectBase.cpp" />
     <ClCompile Include="Object\Pot.cpp" />
     <ClCompile Include="Sound\AudioPlayer.cpp" />
@@ -170,6 +173,7 @@
     <ClCompile Include="Utility\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataBank\DataBank.h" />
     <ClInclude Include="Engine\Camera.h" />
     <ClInclude Include="Engine\DrawBuffer.h" />
     <ClInclude Include="Engine\Engine.h" />
@@ -178,8 +182,10 @@
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Window.h" />
     <ClInclude Include="Manager\FbxManager.h" />
+    <ClInclude Include="Manager\ObjectManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
     <ClInclude Include="Object\Item.h" />
+    <ClInclude Include="Object\Block.h" />
     <ClInclude Include="Object\ObjectBase.h" />
     <ClInclude Include="Object\Pot.h" />
     <ClInclude Include="Sound\AudioPlayer.h" />
