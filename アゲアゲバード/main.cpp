@@ -38,6 +38,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	//FBXMeshData block;
 	
 	ObjectManager::Instance()->CreateObject();
+	
 
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
@@ -103,6 +104,10 @@ int WINAPI WinMain(HINSTANCE hinstance,
 //*/
 			//ObjectManager::Instance()->Update();
 
+			if (GetKeyDown(SPACE_KEY))
+			{
+				ObjectManager::Instance()->CreateBlock();
+			}
 
 
 			DrawStart();

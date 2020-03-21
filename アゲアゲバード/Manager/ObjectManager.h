@@ -10,16 +10,17 @@ public:
 	static ObjectManager* Instance();
 
 	//マネージャーの初期化※コンストラクタ時のみ
-	void Init();
+	void Init() {};
 	//オブジェクト生成
 	void CreateObject();//マップ、プレイヤー(2まで)、アイテム。ブロックは別配列
+	void CreateBlock();
 	void Update();
 	void Draw();
 	void AllDeleteObject();
 
-	ObjectBase* GetPlayerObject();
+	ObjectBase* GetPlayerObject() {};
 
-	ObjectBase* GetCharaObject();
+	ObjectBase* GetCharaObject() {};
 
 protected:
 	ObjectManager();
@@ -27,8 +28,8 @@ protected:
 
 private:
 	static ObjectManager* p_instance;
-	std::vector<ObjectBase*> Object;
-
+	std::vector<ObjectBase*> m_Object;
+	std::vector<ObjectBase*> m_Block;
 };
 
 #endif

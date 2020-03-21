@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include "Input.h"
 #include "Graphics.h"
+#include"../DataBank/DataBank.h"
 
 void CAMERA::Update()
 {
@@ -34,6 +35,7 @@ void CAMERA::Update()
 		200000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
 	//射影座標変換用の行列算出 end
+
 }
 
 void CAMERA::Move()
@@ -77,9 +79,9 @@ void CAMERA::Move()
 		m_CameraPos.z -= left.z * m_Speed;
 	}
 
+	DataBank::Instance()->SetCameraPos(m_EyePos);
 #pragma endregion
-
-}
+	}
 
 D3DXVECTOR3 CAMERA::GetCameraForward()
 {
@@ -90,7 +92,7 @@ void CAMERA::MouseRotate()
 {
 	SetCursorPos(960, 540);
 
-	m_Yaw -= (GetMousePos().X - 960) / 1920 * 50;
+	m_Yaw -= (GetMousePos().X - 960) / 1920 * 50;//ここでカメラ感度変更可能
 	m_Pitch -= (GetMousePos().Y - 540) / 1080 * 20;
 	if (m_Pitch > 90.0f) { m_Pitch = 180.0f - m_Pitch; }
 	if (m_Pitch < -90.0f) { m_Pitch = -180.0f - m_Pitch; }
