@@ -18,12 +18,13 @@ public:
 	~Item() {};
 
 private:
-	void UpdateHit();
+	
 
 	void UpdateSpeed();
 
 	Vec3 m_direction;
-	Vec3 m_speed;
+	float m_speed;
+	float m_provisional_speed;
 	Vec3 m_pos;
 
 	float m_radius;
