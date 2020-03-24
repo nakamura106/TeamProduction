@@ -28,24 +28,14 @@ int WINAPI WinMain(HINSTANCE hinstance,
 
 	CAMERA camera(0, 0, 0);
 
-	/*Fbx tori(D3DXVECTOR3(3.0f, 0.0f, 0.0f),
-		D3DXVECTOR3(0.05f, 0.05f, 0.05f));*/
 
-	//FbxManagera manager;
-	//FBXMeshData player;
-	//FBXMeshData bg_box;
-	//FBXMeshData nabe;
-	//FBXMeshData block;
 	
 	ObjectManager::Instance()->CreateObject();
 	
 
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
-	//player = manager.LoadFbxMesh("Res/PopBird_Export.fbx");
-	////bg_box = manager.LoadFbxMesh("Res/worldBox.fbx");
-	//nabe = manager.LoadFbxMesh("Res/nabemaya.fbx");
-	////block = manager.LoadFbxMesh("Res/tenkasu.fbx");
+	
 
 
 
@@ -81,28 +71,8 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			camera.Move();
 			camera.MouseRotate();
 
-			/*D3DXMATRIX mat_world;
-			D3DXMATRIX mat_nabe;
-
-			D3DXMatrixIdentity(&mat_world);
-			D3DXMatrixIdentity(&mat_nabe);
-			D3DXMatrixTranslation(&mat_world, 0.0f, 10.0f, 0.0f);
-			D3DXMatrixTranslation(&mat_nabe, 0.0f, 0.0f, 0.0f);
-*/
-			//D3DXMatrixRotationX(&mat_nabe, D3DXToRadian(-90));
-
-
-
-//			// ワールド座標を作成する
-//			player.fbxinfo.world = mat_world;
-//
-//			//bg_box.fbxinfo.world = mat_world;
-//
-//			nabe.fbxinfo.world = mat_nabe;
-//
-//			/*block.fbxinfo.world = mat_world;
-//*/
-			//ObjectManager::Instance()->Update();
+		
+			ObjectManager::Instance()->Update();
 
 			if (GetKeyDown(SPACE_KEY))
 			{
@@ -118,10 +88,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			GetD3DDevice()->SetRenderState(D3DRS_LIGHTING, FALSE);	
 
 			SetLight();
-		/*	manager.DrawFbx(&player);
-			manager.DrawFbx(&bg_box);
-			manager.DrawFbx(&nabe);
-			manager.DrawFbx(&block);*/
+		
 			ObjectManager::Instance()->Draw();
 
 			DrawEnd();
@@ -129,13 +96,10 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		}
 	}
 
-	//manager.ReleaseFbxMesh(&player);
-	////manager.ReleaseFbxMesh(&bg_box);
-	//manager.ReleaseFbxMesh(&nabe);
-	////manager.ReleaseFbxMesh(&block);
+	
 	SoundManager::Instance()->ReleaseTitleSound();
 
-	//ReleaseTexture(NULL);
+	
 
 	// エンジン終了
 	EndEngine();
