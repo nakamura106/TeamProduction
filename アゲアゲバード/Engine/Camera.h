@@ -2,6 +2,7 @@
 #define CAMERA_H_
 
 #include <d3dx9.h>
+#include "../Singleton.h"
 
 class CAMERA
 {
@@ -32,7 +33,7 @@ public:
 
 		D3DXMatrixIdentity(&m_MatView);
 	}
-
+	
 	// カメラ座標の更新
 	void Update();
 
@@ -52,6 +53,11 @@ public:
 	D3DXVECTOR3 GetEyePos()
 	{
 		return m_EyePos;
+	}
+
+	float GetYaw()
+	{
+		return m_Yaw;
 	}
 
 private:

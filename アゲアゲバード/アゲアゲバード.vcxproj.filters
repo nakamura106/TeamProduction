@@ -30,6 +30,8 @@
     </Filter>
     <Filter Include="DataBank">
       <UniqueIdentifier>{60ce1951-1c78-427a-b3ab-cb455305fb9f}</UniqueIdentifier>
+    <Filter Include="Player">
+      <UniqueIdentifier>{c54bdb3c-96f4-4144-a120-a29673d7469b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +91,14 @@
     </ClCompile>
     <ClCompile Include="DataBank\DataBank.cpp">
       <Filter>DataBank</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravity.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +158,17 @@
     </ClInclude>
     <ClInclude Include="DataBank\DataBank.h">
       <Filter>DataBank</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Gravity.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ class ObjectBase
 {
 public:
 	ObjectBase();
-	~ObjectBase();
+	virtual ~ObjectBase();
 
 	virtual void Update();
 	virtual void Draw();
@@ -24,6 +24,9 @@ protected:
 	D3DXMATRIX m_mat_scall;
 	D3DXMATRIX m_mat_move;
 	D3DXMATRIX m_mat_rot;
+
+private:
+
 
 };
 
