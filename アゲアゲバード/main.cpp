@@ -9,6 +9,7 @@
 #include "Engine/Input.h"
 #include "Engine/Camera.h"
 #include"Object/Pot.h"
+#include "PlayerManager.h"
 
 //‰¼include
 #include"Manager/SoundManager.h"
@@ -25,7 +26,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		return 0;
 	}
 
-	CAMERA camera(0, 0, 0);
+	//CAMERA camera(0, 0, 0);
 
 	/*Fbx tori(D3DXVECTOR3(3.0f, 0.0f, 0.0f),
 		D3DXVECTOR3(0.05f, 0.05f, 0.05f));*/
@@ -45,7 +46,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	//nabe = manager.LoadFbxMesh("Res/nabemaya.fbx");
 	////block = manager.LoadFbxMesh("Res/tenkasu.fbx");
 
-
+	PlayerManager pmanager;
 
 	while (true)
 	{
@@ -73,11 +74,11 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			KeyStateUpdate();
 
 
+			pmanager.Update();
 
-
-			camera.Update();
-			camera.Move();
-			camera.MouseRotate();
+			/*camera->Update();
+			camera->Move();
+			camera->MouseRotate();*/
 
 			/*D3DXMATRIX mat_world;
 			D3DXMATRIX mat_nabe;
@@ -117,6 +118,8 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			manager.DrawFbx(&nabe);
 			manager.DrawFbx(&block);*/
 			pot.Draw();
+
+			pmanager.Draw();
 
 			DrawEnd();
 

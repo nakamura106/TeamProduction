@@ -1,0 +1,54 @@
+#ifndef PLAYER_H_
+#define PLAYER_H_
+
+#include "Manager/FbxManager.h"
+#include "Engine/Camera.h"
+
+struct PlayerInfo {
+	float pos_x, pos_y, pos_z;
+};
+
+struct MatrixInfo {
+	D3DXMATRIX mat_world;	// ÉèÅ[ÉãÉh
+	D3DXMATRIX mat_scale;	// ägèk
+	D3DXMATRIX mat_rot;		// âÒì]
+	D3DXMATRIX mat_rot_x;	// âÒì]xé≤
+	D3DXMATRIX mat_rot_y;	// âÒì]yé≤
+	D3DXMATRIX mat_rot_z;	// âÒì]zé≤
+	D3DXMATRIX mat_trans;	// à⁄ìÆ
+};
+
+namespace Character
+{
+	class Player {
+	public:
+		Player() {}
+		Player(float pos_x_, float pos_y_, float pos_z_);
+		~Player();
+
+	public:
+		void Update();
+		void Draw();
+
+		void Move();
+
+		PlayerInfo GetPos()
+		{
+			return m_pinfo;
+		}
+
+	private:
+		void FirstPersonPerspective(float pos_x_, float pos_y_, float pos_z_);
+
+	private:
+		FbxManagera m_fbx_manager;
+		FBXMeshData m_fbx_mesh_data;
+
+		PlayerInfo m_pinfo;
+		MatrixInfo m_minfo;
+
+		CAMERA* p_camera;
+		
+	};
+}
+#endif
