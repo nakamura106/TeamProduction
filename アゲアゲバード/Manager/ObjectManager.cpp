@@ -1,6 +1,7 @@
 #include"ObjectManager.h"
 #include"../Object/Pot.h"
 #include"../Object/Block.h"
+#include"../Object/Oil.h"
 
 ObjectManager* ObjectManager::p_instance = 0;
 
@@ -46,6 +47,8 @@ void ObjectManager::AllDeleteObject()
 void ObjectManager::CreateObject()
 {
 	m_Object.push_back(new Pot);
+	m_Object.push_back(new Oil);
+	m_Object.push_back(new FillOil);
 }
 
 void ObjectManager::CreateBlock()

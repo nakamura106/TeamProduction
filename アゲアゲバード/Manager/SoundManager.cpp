@@ -14,8 +14,8 @@ SoundManager* SoundManager::Instance()
 
 void SoundManager::RegisterTitleSound()
 {
-	m_bgm_file = "Res/wav/arabianjewel.wav";
-	m_se1_file = "Res/Wav/SelectSE.wav";
+	m_bgm_file = "Res/wav/digitalworld.wav";
+	m_se1_file = "Res/wav/SelectSE.wav";
 	m_click_se_file = "Res/wav/putting_a_box.wav";
 	m_pAudio->Load(m_bgm, m_bgm_file);
 	//m_pAudio->Load(m_select1_se, m_se1_file);

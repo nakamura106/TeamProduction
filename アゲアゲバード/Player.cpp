@@ -3,7 +3,7 @@
 
 Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 {
-	m_fbx_mesh_data = m_fbx_manager.LoadFbxMesh("Res/FBX/PopBird_Export.fbx");
+	//m_fbx_mesh_data = m_fbx_manager.LoadFbxMesh("Res/FBX/PopBird_Export.fbx");
 
 	m_pinfo.pos_x = pos_x_;
 	m_pinfo.pos_y = pos_y_;

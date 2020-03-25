@@ -168,6 +168,7 @@
     <ClCompile Include="Object\Item.cpp" />
     <ClCompile Include="Object\Block.cpp" />
     <ClCompile Include="Object\ObjectBase.cpp" />
+    <ClCompile Include="Object\Oil.cpp" />
     <ClCompile Include="Object\Pot.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="Object\Item.h" />
     <ClInclude Include="Object\Block.h" />
     <ClInclude Include="Object\ObjectBase.h" />
+    <ClInclude Include="Object\Oil.h" />
     <ClInclude Include="Object\Pot.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />
