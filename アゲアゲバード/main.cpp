@@ -77,6 +77,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 
 			if (GetKeyDown(SPACE_KEY))
 			{
+				SoundManager::Instance()->SoundClickSE();
 				ObjectManager::Instance()->CreateBlock();
 			}
 
