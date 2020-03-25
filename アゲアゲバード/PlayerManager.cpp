@@ -3,7 +3,7 @@
 PlayerManager::PlayerManager()
 {
 	m_p_player = nullptr;
-	Init();
+	//Init();
 }
 
 PlayerManager::~PlayerManager()

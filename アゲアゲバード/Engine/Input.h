@@ -27,7 +27,6 @@ enum KEY_INFO
 	S_KEY,
 	D_KEY,
 	E_KEY,
-	Q_KEY,
 	RETURN_KEY,
 	L_CONTROL,
 	L_SHIFT,
