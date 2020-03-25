@@ -56,11 +56,13 @@ void CAMERA::Move()
 	m_Velocity.x = forward.x * m_Speed;
 	m_Velocity.z = forward.z * m_Speed;
 
+	float y_prev = 0.0f;
+
 #pragma region カメラの移動
 	// 前
 	if (GetKey(W_KEY)) {
 		m_CameraPos.x += forward.x * m_Speed;
-		m_CameraPos.y += forward.y * m_Speed;
+		//m_CameraPos.y += forward.y * m_Speed;
 		m_CameraPos.z += forward.z * m_Speed;
 	}
 	// 後
@@ -77,6 +79,16 @@ void CAMERA::Move()
 	if (GetKey(D_KEY)) {
 		m_CameraPos.x += left.x * m_Speed;
 		m_CameraPos.z -= left.z * m_Speed;
+	}
+	// ジャンプ
+	if (GetKeyDown(E_KEY) && jflag == false)
+	{
+		jflag = true;
+	}
+
+	if (jflag == true)
+	{
+		//m_CameraPos.y += m_CameraUp.y * m_jamp - 9.8f;
 	}
 
 	DataBank::Instance()->SetCameraPos(m_EyePos);

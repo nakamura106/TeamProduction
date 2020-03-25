@@ -5,7 +5,8 @@
 #include "Engine/Camera.h"
 
 struct PlayerInfo {
-	float pos_x, pos_y, pos_z;
+	float pos_x, pos_y, pos_z;		// プレイヤー座標
+	float mass;						// 質量
 };
 
 struct MatrixInfo {
@@ -22,7 +23,6 @@ namespace Character
 {
 	class Player {
 	public:
-		Player() {}
 		Player(float pos_x_, float pos_y_, float pos_z_);
 		~Player();
 
@@ -30,7 +30,7 @@ namespace Character
 		void Update();
 		void Draw();
 
-		void Move();
+		void Move(float mass_);
 
 		PlayerInfo GetPos()
 		{
@@ -47,7 +47,7 @@ namespace Character
 		PlayerInfo m_pinfo;
 		MatrixInfo m_minfo;
 
-		CAMERA* p_camera;
+		CAMERA* p_m_camera;
 		
 	};
 }

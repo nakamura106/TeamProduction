@@ -39,6 +39,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	
 
 	PlayerManager pmanager;
+	pmanager.Init();
 
 	while (true)
 	{

@@ -31,6 +31,9 @@ public:
 
 		m_Speed = m_WalkSpeed;
 
+		m_jamp = 10.0f;
+		jflag = false;
+
 		D3DXMatrixIdentity(&m_MatView);
 	}
 	
@@ -99,6 +102,10 @@ private:
 
 	/* ˆÚ“®‘¬“x */
 	D3DXVECTOR3 m_Velocity;
+
+	/* ƒWƒƒƒ“ƒv—Í */
+	float m_jamp;
+	bool jflag;
 
 };
 

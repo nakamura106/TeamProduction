@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Engine/Input.h"
+#include "Gravity.h"
 
 Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 {
@@ -8,6 +9,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.pos_x = pos_x_;
 	m_pinfo.pos_y = pos_y_;
 	m_pinfo.pos_z = pos_z_;
+	m_pinfo.mass = 100.0f;
 
 	FirstPersonPerspective(m_pinfo.pos_x, m_pinfo.pos_y, m_pinfo.pos_z);
 
@@ -21,13 +23,13 @@ Character::Player::~Player()
 
 void Character::Player::Update()
 {
-	//Move();
+	Move(m_pinfo.mass);
 
-	p_camera->Update();
-	p_camera->Move();
-	p_camera->MouseRotate();
+	p_m_camera->Update();
+	p_m_camera->Move();
+	p_m_camera->MouseRotate();
 
-	D3DXMatrixRotationX(&m_minfo.mat_rot_x, D3DXToRadian(p_camera->GetYaw()));
+	D3DXMatrixRotationX(&m_minfo.mat_rot_x, D3DXToRadian(p_m_camera->GetYaw()));
 	D3DXMatrixTranslation(&m_minfo.mat_world, m_pinfo.pos_x, m_pinfo.pos_y, m_pinfo.pos_z);
 	D3DXMatrixMultiply(&m_minfo.mat_world, &m_minfo.mat_rot_x, &m_minfo.mat_trans);
 
@@ -36,47 +38,12 @@ void Character::Player::Update()
 	m_fbx_manager.Animation(&m_fbx_mesh_data, 1.0f / 60.0f);
 }
 
-void Character::Player::Move()
+void Character::Player::Move(float mass_)
 {
-	m_pinfo.pos_x = p_camera->GetCamaraPos().x;
-	m_pinfo.pos_y = p_camera->GetCamaraPos().y;
-	m_pinfo.pos_z = p_camera->GetCamaraPos().z;
-
-
-	//const float speed = 3.0f;
-
-	//// 前
-	//if (GetKey(W_KEY)) 
-	//{
-	//	m_pinfo.pos_z += speed;
-	//}
-	//// 後
-	//if (GetKey(S_KEY)) 
-	//{
-	//	m_pinfo.pos_z -= speed;
-	//}
-	//// 左
-	//if (GetKey(A_KEY)) 
-	//{
-	//	m_pinfo.pos_x -= speed;
-	//}
-	//// 右
-	//if (GetKey(D_KEY)) 
-	//{
-	//	m_pinfo.pos_x += speed;
-	//}
-
-	//// 今だけ追加してます(上下に行けた方が便利かと思ったので)
-	//// 上
-	//if (GetKey(E_KEY)) 
-	//{
-	//	m_pinfo.pos_y += speed;
-	//}
-	//// 下
-	//if (GetKey(Q_KEY)) 
-	//{
-	//	m_pinfo.pos_y -= speed;
-	//}
+	// プレイヤーの前後左右の移動
+	m_pinfo.pos_x += p_m_camera->GetCamaraPos().x - m_pinfo.pos_x;
+	m_pinfo.pos_y += p_m_camera->GetCamaraPos().y - m_pinfo.pos_y;
+	m_pinfo.pos_z += p_m_camera->GetCamaraPos().z - m_pinfo.pos_z;
 }
 
 void Character::Player::Draw()
@@ -94,5 +61,5 @@ void Character::Player::FirstPersonPerspective(float pos_x_, float pos_y_, float
 	camera_pos_y = pos_y_ + 10.0f;
 	camera_pos_z = pos_z_;
 
-	p_camera = new CAMERA(camera_pos_x, camera_pos_y, camera_pos_z);
+	p_m_camera = new CAMERA(camera_pos_x, camera_pos_y, camera_pos_z);
 }
