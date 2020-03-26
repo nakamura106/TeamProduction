@@ -12,7 +12,7 @@ public:
 	void Update()override;
 
 private:
-	float m_oil_elevation;
+
 };
 
 class FillOil :public ObjectBase

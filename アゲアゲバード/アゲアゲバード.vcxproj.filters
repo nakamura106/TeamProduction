@@ -34,6 +34,9 @@
     <Filter Include="Player">
       <UniqueIdentifier>{c54bdb3c-96f4-4144-a120-a29673d7469b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MeshData">
+      <UniqueIdentifier>{39cf869c-d340-48de-9dc3-d22e7cf89db9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="Object\Oil.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshData\MeshData.cpp">
+      <Filter>MeshData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="Object\Oil.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshData\MeshData.h">
+      <Filter>MeshData</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

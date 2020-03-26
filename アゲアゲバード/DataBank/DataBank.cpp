@@ -27,3 +27,9 @@ void DataBank::SetCameraPos(D3DXVECTOR3 camerapos_)
 {
 	m_Camera_Pos=camerapos_;
 }
+
+void DataBank::SetOilPos(float oilelevation_)
+{
+	m_oilelevation = oilelevation_;
+}
+

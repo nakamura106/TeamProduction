@@ -14,16 +14,16 @@ public:
 	virtual void Update();
 	virtual void Draw();
 
-	//Vec3 GetPos(return m_pos);
+	virtual D3DXVECTOR3 GetPos()const{ return m_pos; };
 
 protected:
-	Vec3 m_pos;
-	FbxManagera m_manager;
+	D3DXVECTOR3 m_pos;
 	FBXMeshData m_object;
 	D3DXMATRIX m_mat_world;
 	D3DXMATRIX m_mat_scall;
 	D3DXMATRIX m_mat_move;
 	D3DXMATRIX m_mat_rot;
+	std::string m_key;
 
 private:
 

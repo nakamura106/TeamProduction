@@ -13,8 +13,12 @@ public:
 
 	void SetCameraPos(D3DXVECTOR3 eyepos_);
 
+	void SetOilPos(float oilelevation_);
+	
 	D3DXVECTOR3 GetCameraPos() { return m_Camera_Pos; }
 
+	float GetOilPos() { return m_oilelevation; }
+	
 protected:
 	DataBank();
 	~DataBank();
@@ -22,8 +26,10 @@ protected:
 private:
 	static DataBank* p_instance;
 
+	float m_oilelevation;
 
 	D3DXVECTOR3 m_Camera_Pos;
+
 };
 
 #endif // !DATABANK_H_

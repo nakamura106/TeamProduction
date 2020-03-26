@@ -2,6 +2,7 @@
 #include"../Object/Pot.h"
 #include"../Object/Block.h"
 #include"../Object/Oil.h"
+#include"../DataBank/DataBank.h"
 
 ObjectManager* ObjectManager::p_instance = 0;
 
@@ -54,6 +55,10 @@ void ObjectManager::CreateObject()
 void ObjectManager::CreateBlock()
 {
 	m_Block.push_back(new Block);
+	/*for (const auto& itr : m_Block)
+	{
+		itr->GetPos().x;
+	}*/
 }
 
 void ObjectManager::Update()
@@ -65,6 +70,10 @@ void ObjectManager::Update()
 	for (int i = 0; i < m_Block.size(); i++)
 	{
 		m_Block[i]->Update();
+		if (DataBank::Instance()->GetOilPos()>=m_Block[i]->GetPos().y)
+		{
+			m_Block.erase(m_Block.begin()+i);
+		}
 	}
 }
 
@@ -74,8 +83,9 @@ void ObjectManager::Draw()
 	{
 		m_Object[i]->Draw();
 	}
+	
 	for (int i = 0; i < m_Block.size(); i++)
-	{
-		m_Block[i]->Draw();
+	{	
+			m_Block[i]->Draw();
 	}
 }

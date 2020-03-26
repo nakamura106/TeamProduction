@@ -4,7 +4,7 @@
 Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 {
 	//m_fbx_mesh_data = m_fbx_manager.LoadFbxMesh("Res/FBX/PopBird_Export.fbx");
-
+	
 	m_pinfo.pos_x = pos_x_;
 	m_pinfo.pos_y = pos_y_;
 	m_pinfo.pos_z = pos_z_;
@@ -16,7 +16,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 Character::Player::~Player()
 {
-	m_fbx_manager.ReleaseFbxMesh(&m_fbx_mesh_data);
+	MyFbxManager::FbxManager::Instance()->AllReleaseMesh(&m_fbx_mesh_data);
 }
 
 void Character::Player::Update()
@@ -33,7 +33,7 @@ void Character::Player::Update()
 
 	m_fbx_mesh_data.fbxinfo.world = m_minfo.mat_world;
 
-	m_fbx_manager.Animation(&m_fbx_mesh_data, 1.0f / 60.0f);
+	MyFbxManager::FbxManager::Instance()->Animation("player", 1.0f / 60.0f);
 }
 
 void Character::Player::Move()
@@ -81,7 +81,7 @@ void Character::Player::Move()
 
 void Character::Player::Draw()
 {
-	m_fbx_manager.DrawFbx(&m_fbx_mesh_data);
+	MyFbxManager::FbxManager::Instance()->DrawFbx("player",m_minfo.mat_world);
 }
 
 

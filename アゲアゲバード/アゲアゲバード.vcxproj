@@ -165,6 +165,7 @@
     <ClCompile Include="Manager\FbxManager.cpp" />
     <ClCompile Include="Manager\ObjectManager.cpp" />
     <ClCompile Include="Manager\SoundManager.cpp" />
+    <ClCompile Include="MeshData\MeshData.cpp" />
     <ClCompile Include="Object\Item.cpp" />
     <ClCompile Include="Object\Block.cpp" />
     <ClCompile Include="Object\ObjectBase.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Manager\FbxManager.h" />
     <ClInclude Include="Manager\ObjectManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
+    <ClInclude Include="MeshData\MeshData.h" />
     <ClInclude Include="Object\Item.h" />
     <ClInclude Include="Object\Block.h" />
     <ClInclude Include="Object\ObjectBase.h" />

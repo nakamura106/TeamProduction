@@ -41,12 +41,12 @@ namespace Character
 		void FirstPersonPerspective(float pos_x_, float pos_y_, float pos_z_);
 
 	private:
-		FbxManagera m_fbx_manager;
+		
 		FBXMeshData m_fbx_mesh_data;
 
 		PlayerInfo m_pinfo;
 		MatrixInfo m_minfo;
-
+		
 		CAMERA* p_camera;
 		
 	};

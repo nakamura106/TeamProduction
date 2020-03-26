@@ -1,15 +1,21 @@
 #include"Block.h"
 #include"../DataBank/DataBank.h"
+#include"../Manager/FbxManager.h"
 
 Block::Block()
 {
-	m_object = m_manager.LoadFbxMesh("Res/FBX/tenkasu.fbx");
+	m_key = "block";
 	D3DXMatrixIdentity(&m_mat_world);
 	//D3DXMatrixScaling(&m_mat_scall, 1.0f, 1.0f, 1.0f);
-	D3DXMatrixTranslation(&m_mat_move, DataBank::Instance()->GetCameraPos().x, DataBank::Instance()->GetCameraPos().y, DataBank::Instance()->GetCameraPos().z);
+	m_pos = DataBank::Instance()->GetCameraPos();
+	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);
 	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_world);
-	m_object.fbxinfo.world = m_mat_world;
 }
+
+
+
+
+
 
 
 
