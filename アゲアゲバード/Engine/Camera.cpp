@@ -56,8 +56,6 @@ void CAMERA::Move()
 	m_Velocity.x = forward.x * m_Speed;
 	m_Velocity.z = forward.z * m_Speed;
 
-	float y_prev = 0.0f;
-
 #pragma region カメラの移動
 	// 前
 	if (GetKey(W_KEY)) {
@@ -82,21 +80,22 @@ void CAMERA::Move()
 	}
 
 	// ジャンプ
-	//if (GetKeyDown(E_KEY) && jflag == false)
-	//{
-	//	jflag = true;
-	//}
-	//if (jflag == true)
-	//{
-	//	grav.AddGravity(m_CameraPos.y, m_jamp);
-	//	m_CameraPos.y = grav.GetPosY();
-	//	/*
-	//		if(ブロックまたは鍋の上面にあたったら)
-	//		{
-	//			jflag = false;
-	//		}
-	//	*/
-	//}
+	if (GetKeyDown(E_KEY) && jflag == false)
+	{
+		jflag = true;
+	}
+	if (jflag == true)
+	{
+		grav.AddGravity(m_CameraPos.y, m_jamp);
+		m_CameraPos.y = grav.GetPosY();
+
+		if (m_CameraPos.y < 10.0f)
+		{
+			jflag = false;
+			m_CameraPos.y = 10.0f;
+			grav.ResetPalam();
+		}
+	}
 
 	DataBank::Instance()->SetCameraPos(m_EyePos);
 #pragma endregion
