@@ -2,7 +2,7 @@
 #define CAMERA_H_
 
 #include <d3dx9.h>
-#include "../Singleton.h"
+#include "../Gravity.h"
 
 class CAMERA
 {
@@ -106,6 +106,7 @@ private:
 	/* ƒWƒƒƒ“ƒv—Í */
 	float m_jamp;
 	bool jflag;
+	Gravity grav;
 
 };
 

@@ -1,45 +1,19 @@
 #include "Gravity.h"
 
-void Gravity()
+Gravity::Gravity()
 {
-	/*
-		m:質量
-		a:加速度
-		F:力
+	pos_y = 0.0f;
+	t = 0.0f;
+	v0 = 0.0f;
+	g = 9.8f;
+}
 
-		m * a = F
+void Gravity::AddGravity(float pos_y_, float v0_)
+{
+	pos_y = pos_y_;
+	v0 = v0_;
 
+	pos_y += v0 * t + ((-g) * t * t) / 2.0f;
 
-
-		g:重力加速度	->9.8
-		W:重量（重力）
-
-		m * g = W
-		
-
-
-		G:万有引力定数	->6.674 * 10^-11
-		M:地球の質量	->5.972 * 10^24
-		r:地球の半径	->6371000
-
-		g = G * M / r^2
-		g = 9.820
-
-
-
-		// 投げ上げの速度と位置
-		t:時間(s秒)
-		v0:初速度		->0.0
-		v:t秒後の速度(求めたい速度)
-		a:加速度		->-g	// 上向きがプラスと考えるのでマイナス
-
-		v = v0 + a * t
-		v = v0 + (-g) * t
-
-		x = v0 * t + 0.5 * a * t^2
-		y = v0 * t - 0.5 * (-g) * t^2
-		
-	*/
-
-
+	t += 0.1f;
 }
