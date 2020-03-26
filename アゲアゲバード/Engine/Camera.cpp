@@ -80,16 +80,23 @@ void CAMERA::Move()
 		m_CameraPos.x += left.x * m_Speed;
 		m_CameraPos.z -= left.z * m_Speed;
 	}
-	// ジャンプ
-	if (GetKeyDown(E_KEY) && jflag == false)
-	{
-		jflag = true;
-	}
 
-	if (jflag == true)
-	{
-		//m_CameraPos.y += m_CameraUp.y * m_jamp - 9.8f;
-	}
+	// ジャンプ
+	//if (GetKeyDown(E_KEY) && jflag == false)
+	//{
+	//	jflag = true;
+	//}
+	//if (jflag == true)
+	//{
+	//	grav.AddGravity(m_CameraPos.y, m_jamp);
+	//	m_CameraPos.y = grav.GetPosY();
+	//	/*
+	//		if(ブロックまたは鍋の上面にあたったら)
+	//		{
+	//			jflag = false;
+	//		}
+	//	*/
+	//}
 
 	DataBank::Instance()->SetCameraPos(m_EyePos);
 #pragma endregion
