@@ -2,7 +2,7 @@
 #define CAMERA_H_
 
 #include <d3dx9.h>
-#include "../Singleton.h"
+#include "../Gravity.h"
 
 class CAMERA
 {
@@ -30,6 +30,9 @@ public:
 		m_Roll = 0.0f;
 
 		m_Speed = m_WalkSpeed;
+
+		m_jamp = 3.0f;
+		jflag = false;
 
 		D3DXMatrixIdentity(&m_MatView);
 	}
@@ -99,6 +102,11 @@ private:
 
 	/* ˆÚ“®‘¬“x */
 	D3DXVECTOR3 m_Velocity;
+
+	/* ƒWƒƒƒ“ƒv—Í */
+	float m_jamp;
+	bool jflag;
+	Gravity grav;
 
 };
 

@@ -60,7 +60,7 @@ void CAMERA::Move()
 	// ‘O
 	if (GetKey(W_KEY)) {
 		m_CameraPos.x += forward.x * m_Speed;
-		m_CameraPos.y += forward.y * m_Speed;
+		//m_CameraPos.y += forward.y * m_Speed;
 		m_CameraPos.z += forward.z * m_Speed;
 	}
 	// Œã
@@ -77,6 +77,24 @@ void CAMERA::Move()
 	if (GetKey(D_KEY)) {
 		m_CameraPos.x += left.x * m_Speed;
 		m_CameraPos.z -= left.z * m_Speed;
+	}
+
+	// ƒWƒƒƒ“ƒv
+	if (GetKeyDown(E_KEY) && jflag == false)
+	{
+		jflag = true;
+	}
+	if (jflag == true)
+	{
+		grav.AddGravity(m_CameraPos.y, m_jamp);
+		m_CameraPos.y = grav.GetPosY();
+
+		if (m_CameraPos.y < 10.0f)
+		{
+			jflag = false;
+			m_CameraPos.y = 10.0f;
+			grav.ResetPalam();
+		}
 	}
 
 	DataBank::Instance()->SetCameraPos(m_EyePos);
