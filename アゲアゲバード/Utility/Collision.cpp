@@ -3,6 +3,7 @@
 #include <d3dx9.h>
 #include "Vec.h"
 
+//使わない
 //bool Collision::UpdateHit(HitObject tareget, HitObject tareget2)
 //{
 //	if ((tareget == HitObject::Player && tareget == HitObject::Block)||(tareget == HitObject::Block && tareget == HitObject::Player))
@@ -76,6 +77,20 @@ bool Collision::HitItemBox(float block_pos_x_, float block_pos_y_, float block_p
 }
 
 #pragma region ブロックとプレイヤー
+//立方体と球の判定
+bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_)
+{
+	if (player_pos_x_ + player_radius_ >= block_pos_x_ - (block_width_ / 2) && player_pos_x_ - player_radius_ <= block_pos_x_ + (block_width_ / 2)
+		&& player_pos_y_ + player_radius_ >= block_pos_y_ - (block_width_ / 2) && player_pos_y_ - player_radius_ <= block_pos_y_ + (block_width_ / 2)
+		&& player_pos_z_ + player_radius_ >= block_pos_z_ - (block_width_ / 2) && player_pos_z_ - player_radius_ <= block_pos_z_ + (block_width_ / 2))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+#pragma region 使わない
 //bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_,
 //	float block_height, float block_wight_, float block_depth_, float player_radius_)
 //{
@@ -96,18 +111,7 @@ bool Collision::HitItemBox(float block_pos_x_, float block_pos_y_, float block_p
 //	}
 //}
 
-//立方体と球の判定
-bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_)
-{
-	if (player_pos_x_ + player_radius_ >= block_pos_x_ - (block_width_ / 2) && player_pos_x_ - player_radius_ <= block_pos_x_ + (block_width_ / 2)
-		&& player_pos_y_ + player_radius_ >= block_pos_y_ - (block_width_ / 2) && player_pos_y_ - player_radius_ <= block_pos_y_ + (block_width_ / 2)
-		&& player_pos_z_ + player_radius_ >= block_pos_z_ - (block_width_ / 2) && player_pos_z_ - player_radius_ <= block_pos_z_ + (block_width_ / 2))
-	{
-		return true;
-	}
 
-	return false;
-}
 
 //立方体と球のY軸判定
 //bool Collision::HitBoxTopUnder(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_)
@@ -145,6 +149,8 @@ bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z
 //	}
 //	return false;
 //}
+#pragma endregion
+
 #pragma endregion
 
 //円と内接円のあたり判定

@@ -10,6 +10,8 @@ enum class ItemID
 {
 	Bomb,
 	SpeedDown,
+	Blindness,
+	MaxItem
 };
 
 class Item :public ObjectBase
@@ -23,12 +25,14 @@ public:
 
 	//bool UpdateHitItem();
 
+
+
 private:
 	
 	Vec3 m_direction;
 	float m_speed;
 	float m_provisional_speed;
-	Vec3 m_pos;
+	
 
 	float m_radius;
 

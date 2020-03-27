@@ -16,7 +16,7 @@ enum class HitObject :int
 class Collision
 {
 public:
-	bool UpdateHit(HitObject tareget, HitObject tareget2);
+	//bool UpdateHit(HitObject tareget, HitObject tareget2);
 
 	/*プレイヤーとアイテム(球と球)
 		第一、二、三引数：プレイヤー座標
@@ -27,7 +27,7 @@ public:
 	bool HitItemPlayer(float player_pos_x_, float player_pos_y_, float player_pos_z_, float item_pos_x_, float item_pos_y_, float item_pos_z_, float player_radius, float item_radius);
 
 
-	/*ブロックとプレイヤー(球と立方体)
+	/*ブロックとアイテム(球と立方体)
 		第一、二、三引数：ブロックの座標
 		第四、五、六引数：アイテムの座標
 		第七引数　　　　：ブロックの幅
@@ -71,6 +71,7 @@ public:
 		第五引数　　　　：ブロックの奥行き
 	*/
 	bool HitBox1(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth);
+	
 	//各立方体の面とのあたり判定(触らなくてよい)
 	bool HitBox2(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth, float x, float y, float z);
 
