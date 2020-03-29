@@ -55,10 +55,7 @@ void ObjectManager::CreateObject()
 void ObjectManager::CreateBlock()
 {
 	m_Block.push_back(new Block);
-	/*for (const auto& itr : m_Block)
-	{
-		itr->GetPos().x;
-	}*/
+	
 }
 
 void ObjectManager::Update()

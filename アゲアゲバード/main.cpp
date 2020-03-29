@@ -11,10 +11,10 @@
 #include"Object/Pot.h"
 #include"Manager/ObjectManager.h"
 #include "PlayerManager.h"
-
-//‰¼include
 #include"Manager/SoundManager.h"
 
+
+#include"DataBank/DataBank.h"
 
 int WINAPI WinMain(HINSTANCE hinstance,
 	HINSTANCE hPrevInstance,
@@ -27,17 +27,12 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		return 0;
 	}
 
-	//CAMERA camera(0, 0, 0);
-
-
 	
 	ObjectManager::Instance()->CreateObject();
 	
-
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
 	
-
 	PlayerManager pmanager;
 	pmanager.Init();
 
@@ -66,14 +61,16 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			UpdateInput();
 			KeyStateUpdate();
 
-
 			pmanager.Update();
 
-			/*camera->Update();
-			camera->Move();
-			camera->MouseRotate();*/
+		/*	for (const auto& itr:DataBank::Instance()->GetBlockPos())
+			{
+				if (itr.x >= 10 || itr.y >= 10 || itr.z >= 10)
+				{
 
-		
+				}
+			}*/
+			
 			ObjectManager::Instance()->Update();
 
 			if (GetKeyDown(SPACE_KEY))
@@ -81,7 +78,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 				SoundManager::Instance()->SoundClickSE();
 				ObjectManager::Instance()->CreateBlock();
 			}
-
 
 			DrawStart();
 
@@ -100,11 +96,8 @@ int WINAPI WinMain(HINSTANCE hinstance,
 
 		}
 	}
-
 	
 	SoundManager::Instance()->ReleaseTitleSound();
-
-	
 
 	// ƒGƒ“ƒWƒ“I—¹
 	EndEngine();

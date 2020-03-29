@@ -2,6 +2,8 @@
 #define DATABANK_H_
 
 #include <d3dx9.h>
+#include<vector>
+#include"../Object/ObjectBase.h"
 
 //èÓïÒï€ë∂ÉNÉâÉX
 class DataBank
@@ -14,8 +16,12 @@ public:
 	void SetCameraPos(D3DXVECTOR3 eyepos_);
 
 	void SetOilPos(float oilelevation_);
+
+	void SetBlockPos(D3DXVECTOR3 blockpos_);
 	
 	D3DXVECTOR3 GetCameraPos() { return m_Camera_Pos; }
+
+	auto GetBlockPos() { return m_blockpos; }
 
 	float GetOilPos() { return m_oilelevation; }
 	
@@ -29,6 +35,8 @@ private:
 	float m_oilelevation;
 
 	D3DXVECTOR3 m_Camera_Pos;
+
+	std::vector<D3DXVECTOR3> m_blockpos;
 
 };
 

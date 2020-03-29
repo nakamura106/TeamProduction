@@ -33,3 +33,8 @@ void DataBank::SetOilPos(float oilelevation_)
 	m_oilelevation = oilelevation_;
 }
 
+void DataBank::SetBlockPos(D3DXVECTOR3 blockpos_)
+{
+	m_blockpos.push_back(blockpos_);
+}
+
