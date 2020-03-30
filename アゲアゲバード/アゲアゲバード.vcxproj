@@ -175,6 +175,9 @@
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Sound\AudioPlayer.cpp" />
     <ClCompile Include="Sound\DirectSound.cpp" />
+    <ClCompile Include="UI\GameUI.cpp" />
+    <ClCompile Include="UI\ResultUI.cpp" />
+    <ClCompile Include="UI\TitleUI.cpp" />
     <ClCompile Include="Utility\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +204,9 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sound\AudioPlayer.h" />
     <ClInclude Include="Sound\DirectSound.h" />
+    <ClInclude Include="UI\GameUI.h" />
+    <ClInclude Include="UI\ResultUI.h" />
+    <ClInclude Include="UI\TitleUI.h" />
     <ClInclude Include="Utility\Collision.h" />
     <ClInclude Include="Utility\Vec.h" />
   </ItemGroup>
