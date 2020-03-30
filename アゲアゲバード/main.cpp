@@ -10,11 +10,9 @@
 #include "Engine/Camera.h"
 #include"Object/Pot.h"
 #include"Manager/ObjectManager.h"
-#include "PlayerManager.h"
 #include"Manager/SoundManager.h"
-
-
 #include"DataBank/DataBank.h"
+
 
 int WINAPI WinMain(HINSTANCE hinstance,
 	HINSTANCE hPrevInstance,
@@ -33,8 +31,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
 	
-	PlayerManager pmanager;
-	pmanager.Init();
 
 	while (true)
 	{
@@ -60,8 +56,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		{
 			UpdateInput();
 			KeyStateUpdate();
-
-			pmanager.Update();
 
 		/*	for (const auto& itr:DataBank::Instance()->GetBlockPos())
 			{
@@ -89,8 +83,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			SetLight();
 		
 			ObjectManager::Instance()->Draw();
-
-			pmanager.Draw();
 
 			DrawEnd();
 
