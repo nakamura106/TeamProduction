@@ -90,6 +90,20 @@ bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z
 	return false;
 }
 
+//ブロックの上にいるかどうか
+bool Collision::HitBoxTop(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_)
+{
+	if (player_pos_x_ + player_radius_ >= block_pos_x_ - (block_width_ / 2) && player_pos_x_ - player_radius_ <= block_pos_x_ + (block_width_ / 2)
+		&& player_pos_y_ + player_radius_ >= block_pos_y_ - (block_width_ / 2) && player_pos_y_ - player_radius_ <= block_pos_y_ + (block_width_ / 2)
+		&& player_pos_z_ + player_radius_ >= block_pos_z_ - (block_width_ / 2) && player_pos_z_ - player_radius_ <= block_pos_z_ + (block_width_ / 2)
+		&& player_pos_y_ > block_pos_y_)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 #pragma region 使わない
 //bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_,
 //	float block_height, float block_wight_, float block_depth_, float player_radius_)
@@ -153,6 +167,7 @@ bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z
 
 #pragma endregion
 
+#pragma region プレイヤーとマップのあたり判定
 //円と内接円のあたり判定
 bool Collision::HitMap(float player_circle_pos_x_, float player_circle_pos_z_, float map_circle_pos_x_, float map_circle_pos_z_, float player_circle_radius_, float map_circle_radius_)
 {
@@ -173,32 +188,61 @@ bool Collision::HitMap(float player_circle_pos_x_, float player_circle_pos_z_, f
 		false;
 }
 
+//プレイヤーと天井
+bool Collision::HitAngle(float player_pos_x, float player_pos_y, float player_pos_z, float maptop_pos_x, float maptop_pos_y, float maptop_pos_z, float mapunder_pos_x, float mapunder_pos_y, float mapunder_pos_z, float flg_angle)
+{
+	D3DXVECTOR3 player_vec;
+	D3DXVECTOR3 map_vec;
 
-bool Collision::HitBox1(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth_)
+	player_vec.x = player_pos_x - maptop_pos_x;
+	player_vec.y = player_pos_y - maptop_pos_y;
+	player_vec.z = player_pos_z - maptop_pos_z;
+
+	map_vec.x = maptop_pos_x - mapunder_pos_x;
+	map_vec.y = maptop_pos_y - mapunder_pos_y;
+	map_vec.z = maptop_pos_z - mapunder_pos_z;
+
+
+	float angle = acosf((player_vec.x * map_vec.x + player_vec.y * map_vec.y + player_vec.z * map_vec.z) /
+		(sqrtf(player_vec.x * player_vec.x) * sqrtf(player_vec.y * player_vec.y) * sqrtf(player_vec.z * player_vec.z)));
+
+	angle = angle + 180 / 3.1415f;
+
+	if (angle >= flg_angle)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+#pragma endregion
+
+//プレイヤーの視界のあたり判定
+bool Collision::HitVisualBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth_)
 {
 	//前面
-	if (HitBox2(block_pos_x_, block_pos_y_, block_pos_z_, 0.0f, block_depth_, 0.0f, 0.0f, 1.0f) == true)
+	if (HitVisualBox2(block_pos_x_, block_pos_y_, block_pos_z_, 0.0f, block_depth_, 0.0f, 0.0f, 1.0f) == true)
 	{
 		return true;
 	}
 	//後面
-	if (HitBox2(block_pos_x_, block_pos_y_, block_pos_z_, 0.0f, -block_depth_, 0.0f, 0.0f, -1.0f) == true)
+	if (HitVisualBox2(block_pos_x_, block_pos_y_, block_pos_z_, 0.0f, -block_depth_, 0.0f, 0.0f, -1.0f) == true)
 	{
 		return true;
 	}
 	//左面
-	if (HitBox2(block_pos_x_, block_pos_y_, block_pos_z_, -block_width_, 0.0f, -1.0f, 0.0f, 0.0f) == true)
+	if (HitVisualBox2(block_pos_x_, block_pos_y_, block_pos_z_, -block_width_, 0.0f, -1.0f, 0.0f, 0.0f) == true)
 	{
 		return true;
 	}
 	//右面
-	if (HitBox2(block_pos_x_, block_pos_y_, block_pos_z_, block_width_, 0.0f, 1.0f, 0.0f, 0.0f) == true)
+	if (HitVisualBox2(block_pos_x_, block_pos_y_, block_pos_z_, block_width_, 0.0f, 1.0f, 0.0f, 0.0f) == true)
 	{
 		return true;
 	}
 }
 
-bool Collision::HitBox2(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth, float x, float y, float z)
+bool Collision::HitVisualBox2(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth, float x, float y, float z)
 {
 	//立方体の面の中点
 	D3DXVECTOR3 P(block_pos_x_ + block_width_ / 2, block_pos_y_, block_pos_z_ + block_depth / 2);
@@ -233,29 +277,3 @@ bool Collision::HitBox2(float block_pos_x_, float block_pos_y_, float block_pos_
 }
 
 
-//プレイヤーと天井
-bool Collision::HitAngle(float player_pos_x, float player_pos_y, float player_pos_z, float maptop_pos_x, float maptop_pos_y, float maptop_pos_z, float mapunder_pos_x, float mapunder_pos_y, float mapunder_pos_z, float flg_angle)
-{
-	D3DXVECTOR3 player_vec;
-	D3DXVECTOR3 map_vec;
-
-	player_vec.x = player_pos_x - maptop_pos_x;
-	player_vec.y = player_pos_y - maptop_pos_y;
-	player_vec.z = player_pos_z - maptop_pos_z;
-
-	map_vec.x = maptop_pos_x - mapunder_pos_x;
-	map_vec.y = maptop_pos_y - mapunder_pos_y;
-	map_vec.z = maptop_pos_z - mapunder_pos_z;
-
-
-	float angle = acosf((player_vec.x * map_vec.x + player_vec.y * map_vec.y + player_vec.z * map_vec.z) /
-		(sqrtf(player_vec.x * player_vec.x) * sqrtf(player_vec.y * player_vec.y) * sqrtf(player_vec.z * player_vec.z)));
-
-
-	if (angle >= flg_angle)
-	{
-		return true;
-	}
-	else
-		return false;
-}

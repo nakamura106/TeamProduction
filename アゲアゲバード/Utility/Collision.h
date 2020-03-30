@@ -44,7 +44,9 @@ public:
 	*/
 	bool HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_wight_, float player_radius_);
 
-
+	//ブロックの上にいるかどうか
+	bool HitBoxTop(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_);
+	
 #pragma region ブロックとプレイヤーのそれぞれの軸のあたり判定(触らなくてよい) 
 	//立方体と球のY軸判定
 	//bool HitBoxTopUnder(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_wight_, float player_radius_);
@@ -70,10 +72,10 @@ public:
 		第四引数　　　　：ブロックの幅
 		第五引数　　　　：ブロックの奥行き
 	*/
-	bool HitBox1(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth);
+	bool HitVisualBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth);
 	
 	//各立方体の面とのあたり判定(触らなくてよい)
-	bool HitBox2(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth, float x, float y, float z);
+	bool HitVisualBox2(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth, float x, float y, float z);
 
 
 	/*プレイヤーと天井のあたり判定(角度であたり判定)

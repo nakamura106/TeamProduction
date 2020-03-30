@@ -40,6 +40,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{09efdfa1-6290-41e8-b50a-7ca5e6e22b15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{6b60699a-38c6-4a6d-8ba2-e2d98276a89c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -116,6 +119,18 @@
     </ClCompile>
     <ClCompile Include="Manager\SceneManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\GameUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\TitleUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\ResultUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Scene\BaseScene.cpp">
       <Filter>Scene</Filter>
@@ -202,6 +217,21 @@
     </ClInclude>
     <ClInclude Include="Scene\BaseScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Oil.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshData\MeshData.h">
+      <Filter>MeshData</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\GameUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\TitleUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ResultUI.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
