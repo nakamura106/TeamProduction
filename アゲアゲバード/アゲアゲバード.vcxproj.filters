@@ -37,6 +37,9 @@
     <Filter Include="MeshData">
       <UniqueIdentifier>{39cf869c-d340-48de-9dc3-d22e7cf89db9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{09efdfa1-6290-41e8-b50a-7ca5e6e22b15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,17 +99,26 @@
     <ClCompile Include="DataBank\DataBank.cpp">
       <Filter>DataBank</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravity.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
     <ClCompile Include="Object\Oil.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="MeshData\MeshData.cpp">
       <Filter>MeshData</Filter>
     </ClCompile>
-    <ClCompile Include="Player\Player.cpp">
-      <Filter>Player</Filter>
+    <ClCompile Include="Manager\SceneManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Gravity.cpp">
-      <Filter>Utility</Filter>
+    <ClCompile Include="Scene\BaseScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,20 +179,29 @@
     <ClInclude Include="DataBank\DataBank.h">
       <Filter>DataBank</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Gravity.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
     <ClInclude Include="Object\Oil.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="MeshData\MeshData.h">
       <Filter>MeshData</Filter>
     </ClInclude>
-    <ClInclude Include="Player\Player.h">
-      <Filter>Player</Filter>
+    <ClInclude Include="Manager\SceneManager.h">
+      <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Singleton.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\Gravity.h">
-      <Filter>Utility</Filter>
+    <ClInclude Include="Scene\BaseScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
