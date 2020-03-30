@@ -57,45 +57,45 @@ void CAMERA::Move()
 	m_Velocity.z = forward.z * m_Speed;
 
 #pragma region カメラの移動
-	// 前
-	if (GetKey(W_KEY)) {
-		m_CameraPos.x += forward.x * m_Speed;
-		//m_CameraPos.y += forward.y * m_Speed;
-		m_CameraPos.z += forward.z * m_Speed;
-	}
-	// 後
-	if (GetKey(S_KEY)) {
-		m_CameraPos.x -= forward.x * m_Speed;
-		m_CameraPos.z -= forward.z * m_Speed;
-	}
-	// 左
-	if (GetKey(A_KEY)) {
-		m_CameraPos.x -= left.x * m_Speed;
-		m_CameraPos.z += left.z * m_Speed;
-	}
-	// 右
-	if (GetKey(D_KEY)) {
-		m_CameraPos.x += left.x * m_Speed;
-		m_CameraPos.z -= left.z * m_Speed;
-	}
+	//// 前
+	//if (GetKey(W_KEY)) {
+	//	m_CameraPos.x += forward.x * m_Speed;
+	//	//m_CameraPos.y += forward.y * m_Speed;
+	//	m_CameraPos.z += forward.z * m_Speed;
+	//}
+	//// 後
+	//if (GetKey(S_KEY)) {
+	//	m_CameraPos.x -= forward.x * m_Speed;
+	//	m_CameraPos.z -= forward.z * m_Speed;
+	//}
+	//// 左
+	//if (GetKey(A_KEY)) {
+	//	m_CameraPos.x -= left.x * m_Speed;
+	//	m_CameraPos.z += left.z * m_Speed;
+	//}
+	//// 右
+	//if (GetKey(D_KEY)) {
+	//	m_CameraPos.x += left.x * m_Speed;
+	//	m_CameraPos.z -= left.z * m_Speed;
+	//}
 
-	// ジャンプ
-	if (GetKeyDown(E_KEY) && jflag == false)
-	{
-		jflag = true;
-	}
-	if (jflag == true)
-	{
-		grav.AddGravity(m_CameraPos.y, m_jamp);
-		m_CameraPos.y = grav.GetPosY();
+	//// ジャンプ
+	//if (GetKeyDown(E_KEY) && jflag == false)
+	//{
+	//	jflag = true;
+	//}
+	//if (jflag == true)
+	//{
+	//	grav.AddGravity(m_CameraPos.y, m_jamp);
+	//	m_CameraPos.y = grav.GetPosY();
 
-		if (m_CameraPos.y < 10.0f)
-		{
-			jflag = false;
-			m_CameraPos.y = 10.0f;
-			grav.ResetPalam();
-		}
-	}
+	//	if (m_CameraPos.y < 10.0f)
+	//	{
+	//		jflag = false;
+	//		m_CameraPos.y = 10.0f;
+	//		grav.ResetPalam();
+	//	}
+	//}
 
 	DataBank::Instance()->SetCameraPos(m_EyePos);
 #pragma endregion

@@ -10,7 +10,6 @@
 #include "Engine/Camera.h"
 #include"Object/Pot.h"
 #include"Manager/ObjectManager.h"
-#include "PlayerManager.h"
 
 //‰¼include
 #include"Manager/SoundManager.h"
@@ -27,9 +26,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		return 0;
 	}
 
-	//CAMERA camera(0, 0, 0);
-
-
 	
 	ObjectManager::Instance()->CreateObject();
 	
@@ -37,9 +33,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
 	
-
-	PlayerManager pmanager;
-	pmanager.Init();
 
 	while (true)
 	{
@@ -66,13 +59,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			UpdateInput();
 			KeyStateUpdate();
 
-
-			pmanager.Update();
-
-			/*camera->Update();
-			camera->Move();
-			camera->MouseRotate();*/
-
 		
 			ObjectManager::Instance()->Update();
 
@@ -93,8 +79,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			SetLight();
 		
 			ObjectManager::Instance()->Draw();
-
-			pmanager.Draw();
 
 			DrawEnd();
 

@@ -96,12 +96,6 @@
     <ClCompile Include="DataBank\DataBank.cpp">
       <Filter>DataBank</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerManager.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="Gravity.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
@@ -110,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="MeshData\MeshData.cpp">
       <Filter>MeshData</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,12 +167,6 @@
     <ClInclude Include="DataBank\DataBank.h">
       <Filter>DataBank</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerManager.h">
-      <Filter>Player</Filter>
-    </ClInclude>
     <ClInclude Include="Gravity.h">
       <Filter>Utility</Filter>
     </ClInclude>
@@ -187,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="MeshData\MeshData.h">
       <Filter>MeshData</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
