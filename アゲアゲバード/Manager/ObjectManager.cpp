@@ -2,6 +2,7 @@
 #include"../Object/Pot.h"
 #include"../Object/Block.h"
 #include"../Object/Oil.h"
+#include "../Player/Player.h"
 #include"../DataBank/DataBank.h"
 
 ObjectManager* ObjectManager::p_instance = 0;
@@ -50,6 +51,7 @@ void ObjectManager::CreateObject()
 	m_Object.push_back(new Pot);
 	m_Object.push_back(new Oil);
 	m_Object.push_back(new FillOil);
+	m_Object.push_back(new Character::Player(0.0f, 0.0f, 0.0f));
 }
 
 void ObjectManager::CreateBlock()

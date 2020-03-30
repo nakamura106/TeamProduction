@@ -1,8 +1,9 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-#include "Manager/FbxManager.h"
-#include "Engine/Camera.h"
+#include "../Manager/FbxManager.h"
+#include "../Engine/Camera.h"
+#include "../Object/ObjectBase.h"
 
 struct PlayerInfo {
 	float pos_x, pos_y, pos_z;		// プレイヤー座標
@@ -21,7 +22,7 @@ struct MatrixInfo {
 
 namespace Character
 {
-	class Player {
+	class Player: public ObjectBase{
 	public:
 		Player(float pos_x_, float pos_y_, float pos_z_);
 		~Player();
@@ -41,7 +42,7 @@ namespace Character
 		void FirstPersonPerspective(float pos_x_, float pos_y_, float pos_z_);
 
 	private:
-		
+
 		FBXMeshData m_fbx_mesh_data;
 
 		PlayerInfo m_pinfo;
@@ -49,7 +50,7 @@ namespace Character
 
 
 		CAMERA* p_m_camera;
-	
+
 	};
 }
 #endif

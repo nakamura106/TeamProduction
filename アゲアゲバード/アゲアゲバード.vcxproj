@@ -160,7 +160,6 @@
     <ClCompile Include="Engine\Graphics.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
-    <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager\FbxManager.cpp" />
     <ClCompile Include="Manager\ObjectManager.cpp" />
@@ -171,14 +170,14 @@
     <ClCompile Include="Object\ObjectBase.cpp" />
     <ClCompile Include="Object\Oil.cpp" />
     <ClCompile Include="Object\Pot.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Sound\AudioPlayer.cpp" />
     <ClCompile Include="Sound\DirectSound.cpp" />
     <ClCompile Include="UI\GameUI.cpp" />
     <ClCompile Include="UI\ResultUI.cpp" />
     <ClCompile Include="UI\TitleUI.cpp" />
     <ClCompile Include="Utility\Collision.cpp" />
+    <ClCompile Include="Utility\Gravity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBank\DataBank.h" />
@@ -189,7 +188,6 @@
     <ClInclude Include="Engine\Graphics.h" />
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Window.h" />
-    <ClInclude Include="Gravity.h" />
     <ClInclude Include="Manager\FbxManager.h" />
     <ClInclude Include="Manager\ObjectManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
@@ -199,15 +197,15 @@
     <ClInclude Include="Object\ObjectBase.h" />
     <ClInclude Include="Object\Oil.h" />
     <ClInclude Include="Object\Pot.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerManager.h" />
-    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Player\Player.h" />
     <ClInclude Include="Sound\AudioPlayer.h" />
     <ClInclude Include="Sound\DirectSound.h" />
     <ClInclude Include="UI\GameUI.h" />
     <ClInclude Include="UI\ResultUI.h" />
     <ClInclude Include="UI\TitleUI.h" />
     <ClInclude Include="Utility\Collision.h" />
+    <ClInclude Include="Utility\Gravity.h" />
+    <ClInclude Include="Utility\Singleton.h" />
     <ClInclude Include="Utility\Vec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
