@@ -166,6 +166,7 @@
     <ClCompile Include="Manager\ObjectManager.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Manager\SoundManager.cpp" />
+    <ClCompile Include="Manager\UIManager.cpp" />
     <ClCompile Include="MeshData\MeshData.cpp" />
     <ClCompile Include="Object\Item.cpp" />
     <ClCompile Include="Object\Block.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="UI\GameUI.cpp" />
     <ClCompile Include="UI\ResultUI.cpp" />
     <ClCompile Include="UI\TitleUI.cpp" />
+    <ClCompile Include="UI\UIBase.cpp" />
     <ClCompile Include="Utility\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +198,7 @@
     <ClInclude Include="Manager\ObjectManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
+    <ClInclude Include="Manager\UIManager.h" />
     <ClInclude Include="MeshData\MeshData.h" />
     <ClInclude Include="Object\Item.h" />
     <ClInclude Include="Object\Block.h" />
@@ -211,6 +214,7 @@
     <ClInclude Include="UI\GameUI.h" />
     <ClInclude Include="UI\ResultUI.h" />
     <ClInclude Include="UI\TitleUI.h" />
+    <ClInclude Include="UI\UIBase.h" />
     <ClInclude Include="Utility\Collision.h" />
     <ClInclude Include="Utility\Vec.h" />
   </ItemGroup>

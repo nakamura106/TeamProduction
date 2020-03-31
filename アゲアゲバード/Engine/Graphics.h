@@ -92,7 +92,7 @@ void DrawEnd();
 
 bool LoadTexture(const char* file_name, TEXTURE_DATA* texture);
 
-void DrawBgTexture(TEXTURE_DATA*);
+void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos);
 
 void ReleaseTexture(TEXTURE_DATA*);
 

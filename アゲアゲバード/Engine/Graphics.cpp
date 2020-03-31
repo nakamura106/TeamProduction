@@ -277,6 +277,27 @@ bool LoadTexture(const char* file_name, TEXTURE_DATA* texture)
 	return true;
 }
 
+void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos)
+{
+	CUSTOM_VERTEX bg[4] =
+	{
+		// 左上頂点
+		{ pos.x, pos.y, 0.0f, 1.0f, 0.0f, 0.0f },//右から2番目と1番目が座標
+		// 右上頂点
+		{ pos.x + texture->Width, pos.y, 0.0f, 1.0f, 1.0f, 0.0f },
+		// 右下頂点
+		{ pos.x + texture->Width, pos.y + texture->Height, 0.0f, 1.0f, 1.0f, 1.0f },
+		// 左下頂点
+		{ pos.x, texture->Height, pos.y, 1.0f, 0.0f, 1.0f },
+	};
+
+	g_Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_TEX1);
+
+	g_Device->SetTexture(0, texture->Texture);
+
+	g_Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, bg, sizeof(CUSTOM_VERTEX));
+}
+
 //bool LoadTexture(const char* pFileName, TEXTURE_DATA* pOut)
 //{
 //	if (pOut == NULL) return false;
