@@ -7,26 +7,30 @@ public:
 	BaseScene();
 	~BaseScene();
 
-	void Update();
-	void Draw();
-
-	SceneId GetCurrentSceneId();
-	SceneStep GetCurrentSceneStep();
-
-private:
+protected:
 	enum class SceneId
 	{
 		Title,
 		Help,
 		Game,
 		End,
-	}CurrentSceneID;
+	}m_CurrentSceneID;
+
 	enum class SceneStep
 	{
 		InitStep,
 		MainStep,
 		EndStep,
-	}CurrentSceneStep;
+	}m_CurrentSceneStep;
+
+public:
+	virtual void InitScene() {};
+	virtual void MainScene() {};
+	virtual void EndScene() {};
+
+	virtual SceneId Init();
+	virtual SceneId Update();
+	virtual void Draw();
 
 };
 

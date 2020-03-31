@@ -129,10 +129,19 @@
     <ClCompile Include="UI\ResultUI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="Player\Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\BaseScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\TitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\HelpScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\EndScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -232,6 +241,18 @@
     </ClInclude>
     <ClInclude Include="UI\ResultUI.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\HelpScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\EndScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

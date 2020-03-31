@@ -175,6 +175,10 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
+    <ClCompile Include="Scene\EndScene.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\HelpScene.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Sound\AudioPlayer.cpp" />
     <ClCompile Include="Sound\DirectSound.cpp" />
     <ClCompile Include="UI\GameUI.cpp" />
@@ -205,6 +209,10 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Scene\BaseScene.h" />
+    <ClInclude Include="Scene\EndScene.h" />
+    <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="Scene\HelpScene.h" />
+    <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sound\AudioPlayer.h" />
     <ClInclude Include="Sound\DirectSound.h" />
