@@ -11,6 +11,7 @@
 #include"Object/Pot.h"
 #include"Manager/ObjectManager.h"
 #include"Manager/SoundManager.h"
+#include"Manager/UIManager.h"
 #include"DataBank/DataBank.h"
 
 
@@ -28,6 +29,10 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	
 	ObjectManager::Instance()->CreateObject();
 	
+	UIManager::Instance()->CreateUI();
+
+	UIManager::Instance()->LoadTex();
+
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM();
 	
@@ -83,6 +88,8 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			SetLight();
 		
 			ObjectManager::Instance()->Draw();
+
+			UIManager::Instance()->Draw();
 
 			DrawEnd();
 

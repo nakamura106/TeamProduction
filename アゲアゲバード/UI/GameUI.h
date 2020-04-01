@@ -10,7 +10,6 @@ class GameUI:public UIBase
 public:
 	GameUI();
 
-	GameUI(){}
 	~GameUI() {}
 
 	virtual void LoadTex()override;
