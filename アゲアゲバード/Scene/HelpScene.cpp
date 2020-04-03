@@ -1,7 +1,10 @@
 #include "HelpScene.h"
+#include"../Manager/SoundManager.h"
 
 HelpScene::HelpScene()
 {
+	m_CurrentSceneID = SceneId::Help;
+	m_CurrentSceneStep = SceneStep::InitStep;
 }
 
 HelpScene::~HelpScene()
@@ -10,13 +13,12 @@ HelpScene::~HelpScene()
 
 BaseScene::SceneId HelpScene::Init()
 {
+
+	m_CurrentSceneID = SceneId::Help;
+	m_CurrentSceneStep = SceneStep::InitStep;
 	return SceneId();
 }
 
-BaseScene::SceneId HelpScene::Update()
-{
-	return SceneId();
-}
 
 void HelpScene::Draw()
 {
@@ -32,4 +34,6 @@ void HelpScene::MainScene()
 
 void HelpScene::EndScene()
 {
+	SoundManager::Instance()->ReleaseTitleSound();
+
 }

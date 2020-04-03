@@ -159,6 +159,7 @@
     <ClCompile Include="Engine\FBX.cpp" />
     <ClCompile Include="Engine\Graphics.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
+    <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="main.cpp" />
@@ -175,7 +176,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
-    <ClCompile Include="Scene\EndScene.cpp" />
+    <ClCompile Include="Scene\GameEndScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\HelpScene.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Engine\FBX.h" />
     <ClInclude Include="Engine\Graphics.h" />
     <ClInclude Include="Engine\Input.h" />
+    <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Window.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="Manager\FbxManager.h" />
@@ -209,7 +211,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Scene\BaseScene.h" />
-    <ClInclude Include="Scene\EndScene.h" />
+    <ClInclude Include="Scene\GameEndScene.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\HelpScene.h" />
     <ClInclude Include="Scene\TitleScene.h" />

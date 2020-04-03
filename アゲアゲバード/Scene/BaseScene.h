@@ -6,22 +6,24 @@ class BaseScene
 public:
 	BaseScene();
 	~BaseScene();
-
-protected:
 	enum class SceneId
 	{
 		Title,
 		Help,
 		Game,
 		End,
-	}m_CurrentSceneID;
-
+		Max
+	};
 	enum class SceneStep
 	{
 		InitStep,
 		MainStep,
 		EndStep,
-	}m_CurrentSceneStep;
+	};
+protected:
+	SceneId m_CurrentSceneID;
+
+	SceneStep m_CurrentSceneStep;
 
 public:
 	virtual void InitScene() {};

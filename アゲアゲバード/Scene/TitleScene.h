@@ -10,7 +10,6 @@ public:
 	~TitleScene();
 
 	SceneId Init()override;
-	SceneId Update()override;
 	void Draw()override;
 
 	void InitScene();

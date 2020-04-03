@@ -141,8 +141,11 @@
     <ClCompile Include="Scene\HelpScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\EndScene.cpp">
+    <ClCompile Include="Scene\GameEndScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Texture.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,8 +254,11 @@
     <ClInclude Include="Scene\HelpScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\EndScene.h">
+    <ClInclude Include="Scene\GameEndScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Texture.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

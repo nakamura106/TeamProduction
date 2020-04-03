@@ -1,8 +1,16 @@
 #include "TitleScene.h"
 #include"../Manager/SoundManager.h"
+#include"../Engine/Graphics.h"
+#include"../Engine/Texture.h"
 
 TitleScene::TitleScene()
 {
+	m_CurrentSceneID = SceneId::Title;
+	m_CurrentSceneStep = SceneStep::InitStep;
+	SoundManager::Instance()->RegisterTitleSound();
+	LoadTexture("Res/Tex/GameSelect.png", TEXTURE_CATEGORY_TITLE, TitleCategoryTextureList::TitleBgTex);
+	LoadTexture("Res/Tex/HelpSelect.png", TEXTURE_CATEGORY_TITLE, TitleCategoryTextureList::HelpSelectTex);
+
 }
 
 TitleScene::~TitleScene()
@@ -11,30 +19,16 @@ TitleScene::~TitleScene()
 
 BaseScene::SceneId TitleScene::Init()
 {
+
+	m_CurrentSceneID = SceneId::Title;
+	m_CurrentSceneStep = SceneStep::InitStep;
 	return SceneId();
 }
 
-BaseScene::SceneId TitleScene::Update()
-{
-	switch (m_CurrentSceneStep)
-	{
-	case SceneStep::InitStep:
-		InitScene();
-		break;
-	case SceneStep::MainStep:
-		MainScene();
-		break;
-	case SceneStep::EndStep:
-		EndScene();
-		break;
-	default:
-		break;
-	}
-	return SceneId::Title;
-}
 
 void TitleScene::Draw()
 {
+	
 }
 
 void TitleScene::InitScene()
