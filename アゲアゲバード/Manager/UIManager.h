@@ -15,6 +15,7 @@ public:
 	void LoadTex();
 	void Draw();
 	void UpDate();
+	void Release();
 
 protected:
 	UIManager();

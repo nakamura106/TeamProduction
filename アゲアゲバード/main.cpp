@@ -72,6 +72,8 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			
 			ObjectManager::Instance()->Update();
 
+			UIManager::Instance()->UpDate();
+
 			if (GetKeyDown(SPACE_KEY))
 			{
 				SoundManager::Instance()->SoundClickSE();
@@ -98,6 +100,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	
 	SoundManager::Instance()->ReleaseTitleSound();
 
+	UIManager::Instance()->Release();
 	// ƒGƒ“ƒWƒ“I—¹
 	EndEngine();
 }

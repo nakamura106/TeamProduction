@@ -11,6 +11,7 @@ public:
 	virtual void LoadTex() = 0;
 	virtual void Draw() = 0;
 	virtual void UpDate() = 0;
+	virtual void Release() = 0;
 
 protected:
 	

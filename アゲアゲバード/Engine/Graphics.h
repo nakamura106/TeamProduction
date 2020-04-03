@@ -18,14 +18,13 @@
 // 解放処理用のマクロを定義
 #define SAFE_RELEASE(x) { if(x) { (x)->Release(); (x) = NULL; } }
 
-typedef struct
+struct TEXTURE_DATA
 {
 	LPDIRECT3DTEXTURE9 Texture;
 	float Width;
 	float Height;
-}TEXTURE_DATA;
+};
 
-extern TEXTURE_DATA Player;
 
 
 

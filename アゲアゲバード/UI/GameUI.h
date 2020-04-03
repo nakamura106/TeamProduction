@@ -17,6 +17,8 @@ public:
 	virtual void Draw()override;
 
 	virtual void UpDate()override;
+
+	virtual void Release()override;
 private:
 	D3DXVECTOR2 tex_pos;
 	D3DXVECTOR2 player_pos;

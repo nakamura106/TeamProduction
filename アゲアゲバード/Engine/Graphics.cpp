@@ -282,13 +282,13 @@ void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos)
 	CUSTOM_VERTEX bg[4] =
 	{
 		// 左上頂点
-		{ pos.x, pos.y, 0.0f, 1.0f, 0.0f, 0.0f },//右から2番目と1番目が座標
+		{ pos.x, pos.y, 0.0f, 1.0f, 0.0f, 0.0f },
 		// 右上頂点
 		{ pos.x + texture->Width, pos.y, 0.0f, 1.0f, 1.0f, 0.0f },
 		// 右下頂点
 		{ pos.x + texture->Width, pos.y + texture->Height, 0.0f, 1.0f, 1.0f, 1.0f },
 		// 左下頂点
-		{ pos.x, texture->Height, pos.y, 1.0f, 0.0f, 1.0f },
+		{ pos.x, pos.y + texture->Height, 0.0f, 1.0f, 0.0f, 1.0f },
 	};
 
 	g_Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_TEX1);

@@ -22,7 +22,7 @@ struct MatrixInfo {
 
 namespace Character
 {
-	class Player: public ObjectBase{
+	class Player : public ObjectBase {
 	public:
 		Player(float pos_x_, float pos_y_, float pos_z_);
 		~Player();
