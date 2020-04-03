@@ -34,7 +34,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	UIManager::Instance()->LoadTex();
 
 	SoundManager::Instance()->RegisterTitleSound();
-	SoundManager::Instance()->SoundBGM();
+	SoundManager::Instance()->SoundBGM(-1000);
 	
 
 	while (true)
