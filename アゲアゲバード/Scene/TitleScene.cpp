@@ -1,7 +1,6 @@
 #include "TitleScene.h"
 #include"../Manager/SoundManager.h"
 #include"../Engine/Graphics.h"
-#include"../Engine/Texture.h"
 
 TitleScene::TitleScene()
 {

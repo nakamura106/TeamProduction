@@ -18,15 +18,15 @@
 // 解放処理用のマクロを定義
 #define SAFE_RELEASE(x) { if(x) { (x)->Release(); (x) = NULL; } }
 
-
-
-
-struct Texture
+struct TEXTURE_DATA
 {
-	LPDIRECT3DTEXTURE9 TextureData;	//!< テクスチャデータ
-	int Width;						//!< 横幅
-	int Height;						//!< 縦幅
+	LPDIRECT3DTEXTURE9 Texture;
+	float Width;
+	float Height;
 };
+
+
+
 
 struct Size
 {
@@ -77,8 +77,6 @@ bool InitGraphics();
 
 void ReleaseGraphics();
 
-bool CreateTexture(const char* file_name, Texture* texture_data);
-
 bool CreateGraphicsInterface();
 
 bool CreateGraphicsDevice(D3DPRESENT_PARAMETERS* present_param);
@@ -89,6 +87,13 @@ void DrawStart();
 
 void DrawEnd();
 
+//bool LoadTexture(const char*, TEXTURE_DATA*);
+
+bool LoadTexture(const char* file_name, TEXTURE_DATA* texture);
+
+void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos);
+
+void ReleaseTexture(TEXTURE_DATA*);
 
 const LPDIRECT3DDEVICE9 GetD3DDevice(void);
 

@@ -29,7 +29,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	ObjectManager::Instance()->CreateObject();
 	
 	SoundManager::Instance()->RegisterTitleSound();
-	SoundManager::Instance()->SoundBGM();
+	SoundManager::Instance()->SoundBGM(-1000);
 	
 
 	while (true)
