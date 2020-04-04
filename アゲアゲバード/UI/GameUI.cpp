@@ -3,10 +3,10 @@
 GameUI::GameUI()
 {
 	tex_pos.x = 1800.0f;
-	tex_pos.y = 0.0f;
+	tex_pos.y = 400.0f;
 
 	player_pos.x = 1800.0f;
-	player_pos.y = 0.0f;
+	player_pos.y = 900.0f;
 
 }
 
@@ -24,17 +24,29 @@ void GameUI::Draw()
 
 void GameUI::UpDate()
 {
-	player_pos.y++;
-	tex_pos.y++;
-	if (player_pos.y == 500.0f)
+	/*if (player_pos.y += 80.0f)
 	{
-		player_pos.y = 500.0f;
+		player_pos.y-=10.0f;
+	}
+	
+	if (player_pos.y >= 0.0f)
+	{
+		player_pos.y = 0.0f;
+	}*/
+}
+
+void GameUI::ReleaseUITexture(TEXTURE_DATA* texture)
+{
+	if (texture->Texture != NULL)
+	{
+		texture->Texture->Release();
+		texture->Texture = NULL;
 	}
 }
 
-void GameUI::Release()
+void GameUI::ReleaseTex()
 {
-	ReleaseTexture(&m_position);
-	ReleaseTexture(&m_player_pos);
+	ReleaseUITexture(&m_position);
+	ReleaseUITexture(&m_player_pos);
 
 }

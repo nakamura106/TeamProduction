@@ -59,6 +59,6 @@ void UIManager::Release()
 {
 	for (int i = 0; i < m_UI.size(); i++)
 	{
-		m_UI[i]->Release();
+		m_UI[i]->ReleaseTex();
 	}
 }
