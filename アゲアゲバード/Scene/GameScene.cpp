@@ -1,38 +1,61 @@
 #include "GameScene.h"
+#include"../Manager/ObjectManager.h"
+#include"../Manager/SoundManager.h"
+#include"../Manager/UIManager.h"
+#include"../Engine/Input.h"
+#include"../DataBank/DataBank.h"
+#include"../Manager/SceneManager.h"
 
 GameScene::GameScene()
 {
-
-	m_CurrentSceneID = SceneId::Game;
-	m_CurrentSceneStep = SceneStep::InitStep;
+	
+	Init();
 }
 
 GameScene::~GameScene()
 {
 }
 
-BaseScene::SceneId GameScene::Init()
+void GameScene::Init()
 {
-
-	m_CurrentSceneID = SceneId::Game;
-	m_CurrentSceneStep = SceneStep::InitStep;
-	return SceneId();
+	
+	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 }
 
 
 
 void GameScene::Draw()
 {
+	ObjectManager::Instance()->Draw();
+
 }
 
 void GameScene::InitScene()
 {
+	ObjectManager::Instance()->CreateObject();
+	SoundManager::Instance()->RegisterGameMainSound();
+	SoundManager::Instance()->SoundBGM(-1000);
+	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
 }
 
 void GameScene::MainScene()
 {
+	ObjectManager::Instance()->Update();
+	if (GetKeyDown(SPACE_KEY))
+	{
+		SoundManager::Instance()->SoundClickSE();
+		ObjectManager::Instance()->CreateBlock();
+	}
+	if (GetKeyDown(D_KEY))
+	{
+		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+	}
 }
 
 void GameScene::EndScene()
 {
-}
+	SoundManager::Instance()->ReleaseBattleSound();
+
+	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
+	SceneManager::Instance()->SetSceneId(BaseScene::SceneId::End);
+	}

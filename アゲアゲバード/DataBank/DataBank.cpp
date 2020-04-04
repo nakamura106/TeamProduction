@@ -38,3 +38,13 @@ void DataBank::SetBlockPos(D3DXVECTOR3 blockpos_)
 	m_blockpos.push_back(blockpos_);
 }
 
+void DataBank::SetSceneStep(BaseScene::SceneStep scenestep_)
+{
+	m_scene_step = scenestep_;
+}
+
+void DataBank::SetSceneId(BaseScene::SceneId sceneid_)
+{
+	m_scene_id = sceneid_;
+}
+

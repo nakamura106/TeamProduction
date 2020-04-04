@@ -9,7 +9,7 @@ public:
 	HelpScene();
 	~HelpScene();
 
-	SceneId Init()override;
+	void Init()override;
 	void Draw()override;
 
 	void InitScene();

@@ -33,7 +33,9 @@ void SoundManager::RegisterGameMainSound()
 
 void SoundManager::RegisterEndSound()
 {
+	m_bgm_file = "Res/wav/TitleBgm.wav";
 
+	m_pAudio->Load(m_bgm, m_bgm_file);
 }
 
 
@@ -119,9 +121,6 @@ void SoundManager::ReleaseTitleSound()
 void SoundManager::ReleaseSelectSound()
 {
 	m_pAudio->Release(m_bgm);
-	m_pAudio->Release(m_select1_se);
-	m_pAudio->Release(m_select2_se);
-	m_pAudio->Release(m_select3_se);
 }
 
 void SoundManager::ReleaseBattleSound()

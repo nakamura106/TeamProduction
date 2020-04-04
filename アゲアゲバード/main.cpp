@@ -13,6 +13,7 @@
 #include"Manager/SoundManager.h"
 #include"Manager/UIManager.h"
 #include"DataBank/DataBank.h"
+#include"Manager/SceneManager.h"
 
 
 int WINAPI WinMain(HINSTANCE hinstance,
@@ -27,14 +28,12 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	}
 
 	
-	ObjectManager::Instance()->CreateObject();
-	
-	UIManager::Instance()->CreateUI();
 
-	UIManager::Instance()->LoadTex();
+	//UIManager::Instance()->CreateUI();
 
-	SoundManager::Instance()->RegisterTitleSound();
-	SoundManager::Instance()->SoundBGM(-1000);
+	//UIManager::Instance()->LoadTex();
+
+	SceneManager::Instance()->Init();
 	
 
 	while (true)
@@ -59,9 +58,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		}
 		else
 		{
-			UpdateInput();
-			KeyStateUpdate();
-
+			
 		/*	for (const auto& itr:DataBank::Instance()->GetBlockPos())
 			{
 				if (itr.x >= 10 || itr.y >= 10 || itr.z >= 10)
@@ -70,37 +67,22 @@ int WINAPI WinMain(HINSTANCE hinstance,
 				}
 			}*/
 			
-			ObjectManager::Instance()->Update();
+			
+			//UIManager::Instance()->UpDate();
 
-			UIManager::Instance()->UpDate();
+			
+			SceneManager::Instance()->Update();
+			
+			
+			//UIManager::Instance()->Draw();
 
-			if (GetKeyDown(SPACE_KEY))
-			{
-				SoundManager::Instance()->SoundClickSE();
-				ObjectManager::Instance()->CreateBlock();
-			}
-
-			DrawStart();
-
-			SetRenderMode(ERenderMode::Normal, false);
-
-			GetD3DDevice()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
-			GetD3DDevice()->SetRenderState(D3DRS_LIGHTING, FALSE);	
-
-			SetLight();
-		
-			ObjectManager::Instance()->Draw();
-
-			UIManager::Instance()->Draw();
-
-			DrawEnd();
 
 		}
 	}
 	
-	SoundManager::Instance()->ReleaseTitleSound();
+	//SoundManager::Instance()->ReleaseTitleSound();
 
-	UIManager::Instance()->Release();
+	//UIManager::Instance()->Release();
 	// ƒGƒ“ƒWƒ“I—¹
 	EndEngine();
 }

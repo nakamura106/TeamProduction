@@ -1,10 +1,13 @@
 #include"BaseScene.h"
 #include"../Engine/Input.h"
+#include"../DataBank/DataBank.h"
+#include"../Manager/SceneManager.h"
 
 BaseScene::BaseScene()
 {
 	m_CurrentSceneID = SceneId::Title;
 	m_CurrentSceneStep = SceneStep::InitStep;
+	DataBank::Instance()->SetSceneStep(m_CurrentSceneStep);
 }
 
 BaseScene::~BaseScene()
@@ -12,15 +15,14 @@ BaseScene::~BaseScene()
 
 }
 
-BaseScene::SceneId BaseScene::Init()
+void BaseScene::Init()
 {
-	return SceneId();
+	
 }
 
-BaseScene::SceneId BaseScene::Update()
+void BaseScene::Update()
 {
-	UpdateInput();
-	switch (m_CurrentSceneStep)
+	switch (SceneManager::Instance()->GetSceneStep())
 	{
 	case SceneStep::InitStep:
 		InitScene();
@@ -36,7 +38,7 @@ BaseScene::SceneId BaseScene::Update()
 	}
 	Draw();
 
-	return m_CurrentSceneID;
+	
 }
 
 void BaseScene::Draw()

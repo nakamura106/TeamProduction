@@ -1,22 +1,21 @@
 #include "HelpScene.h"
 #include"../Manager/SoundManager.h"
+#include"../DataBank/DataBank.h"
 
 HelpScene::HelpScene()
 {
-	m_CurrentSceneID = SceneId::Help;
-	m_CurrentSceneStep = SceneStep::InitStep;
+	
+	Init();
 }
 
 HelpScene::~HelpScene()
 {
 }
 
-BaseScene::SceneId HelpScene::Init()
+void HelpScene::Init()
 {
 
-	m_CurrentSceneID = SceneId::Help;
-	m_CurrentSceneStep = SceneStep::InitStep;
-	return SceneId();
+
 }
 
 

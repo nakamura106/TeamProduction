@@ -4,6 +4,7 @@
 #include <d3dx9.h>
 #include<vector>
 #include"../Object/ObjectBase.h"
+#include"../Scene/BaseScene.h"
 
 //èÓïÒï€ë∂ÉNÉâÉX
 class DataBank
@@ -18,12 +19,20 @@ public:
 	void SetOilPos(float oilelevation_);
 
 	void SetBlockPos(D3DXVECTOR3 blockpos_);
+
+	void SetSceneStep(BaseScene::SceneStep scenestep_);
+
+	void SetSceneId(BaseScene::SceneId sceneid_);
 	
 	D3DXVECTOR3 GetCameraPos() { return m_Camera_Pos; }
 
 	auto GetBlockPos() { return m_blockpos; }
 
 	float GetOilPos() { return m_oilelevation; }
+
+	BaseScene::SceneStep GetSceneStep() {	return m_scene_step;}
+
+	BaseScene::SceneId GetSceneId() { return m_scene_id; }
 	
 protected:
 	DataBank();
@@ -37,6 +46,10 @@ private:
 	D3DXVECTOR3 m_Camera_Pos;
 
 	std::vector<D3DXVECTOR3> m_blockpos;
+
+	BaseScene::SceneStep m_scene_step;
+
+	BaseScene::SceneId m_scene_id;
 
 };
 
