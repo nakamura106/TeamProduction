@@ -17,9 +17,11 @@ void SoundManager::RegisterTitleSound()
 	m_bgm_file = "Res/wav/TitleBgm.wav";
 	m_se1_file = "Res/wav/SelectSE.wav";
 	m_click_se_file = "Res/wav/ClickSE.wav";
+	m_cancel_file = "Res/wav/CancelSE.wav";
 	m_pAudio->Load(m_bgm, m_bgm_file);
 	m_pAudio->Load(m_select1_se, m_se1_file);
 	m_pAudio->Load(m_click_se, m_click_se_file);
+	m_pAudio->Load(m_cancel_se, m_cancel_file);
 }
 
 void SoundManager::RegisterGameMainSound()

@@ -81,9 +81,18 @@ void TitleScene::EndScene()
 	ReleaseTexture(&m_title);
 	ReleaseTexture(&m_help);
 	
-	SoundManager::Instance()->ReleaseTitleSound();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
-	SceneManager::Instance()->SetSceneId(BaseScene::SceneId::Game);
+	if (m_select_flag == 0)
+	{
+
+		SoundManager::Instance()->ReleaseTitleSound();
+		SceneManager::Instance()->SetSceneId(BaseScene::SceneId::Game);
+	}
+	if (m_select_flag == 1)
+	{
+
+		SceneManager::Instance()->SetSceneId(BaseScene::SceneId::Help);
+	}
 }
 
 

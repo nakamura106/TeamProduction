@@ -47,7 +47,7 @@ void GameScene::MainScene()
 		SoundManager::Instance()->SoundClickSE();
 		ObjectManager::Instance()->CreateBlock();
 	}
-	if (GetKeyDown(D_KEY))
+	if (GetKeyDown(F_KEY))
 	{
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
 	}
