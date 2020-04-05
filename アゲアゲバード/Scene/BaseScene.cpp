@@ -36,12 +36,12 @@ void BaseScene::Update()
 	default:
 		break;
 	}
-	Draw();
+
 
 	
 }
 
 void BaseScene::Draw()
 {
-
+	Draw();
 }

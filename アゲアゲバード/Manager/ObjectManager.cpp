@@ -26,24 +26,26 @@ ObjectManager::~ObjectManager()
 {
 	for (int i = 0; m_Object.size(); i++)
 	{
-		delete m_Object[i];
+		if (m_Object[i] != nullptr)
+		{
+			delete m_Object[i];
+			m_Object[i] = nullptr;
+		}
 	}
 	for (int i = 0; m_Block.size(); i++)
 	{
-		delete m_Block[i];
+		if (m_Block[i] != nullptr)
+		{
+			delete m_Block[i];
+			m_Block[i] = nullptr;
+		}
 	}
 }
 
 void ObjectManager::AllDeleteObject()
 {
-	for (int i = 0; m_Object.size(); i++)
-	{
-		delete m_Object[i];
-	}
-	for (int i = 0; m_Block.size(); i++)
-	{
-		delete m_Block[i];
-	}
+	std::vector<ObjectBase*>().swap(m_Object);
+	std::vector<ObjectBase*>().swap(m_Block);
 }
 
 void ObjectManager::CreateObject()
@@ -57,7 +59,6 @@ void ObjectManager::CreateObject()
 void ObjectManager::CreateBlock()
 {
 	m_Block.push_back(new Block);
-	
 }
 
 void ObjectManager::Update()

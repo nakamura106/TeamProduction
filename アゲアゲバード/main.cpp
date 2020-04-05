@@ -73,7 +73,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 			
 			SceneManager::Instance()->Update();
 			
-			
+			SceneManager::Instance()->Draw();
 			//UIManager::Instance()->Draw();
 
 

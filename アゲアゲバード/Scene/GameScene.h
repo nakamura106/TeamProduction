@@ -2,6 +2,7 @@
 #define GAMESCENE_H_
 
 #include"BaseScene.h"
+#include"../Engine/FBX.h"
 
 class GameScene :public BaseScene
 {
@@ -15,6 +16,9 @@ public:
 	void InitScene();
 	void MainScene();
 	void EndScene();
+
+private:
+	Fbx m_fbx;
 };
 
 #endif

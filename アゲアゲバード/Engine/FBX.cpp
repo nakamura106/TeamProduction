@@ -694,7 +694,7 @@ void Fbx::MatrixInterporate(D3DXMATRIX & out_, D3DXMATRIX & A_, D3DXMATRIX B_, f
 
 void Fbx::ReleaseModel(FbxInfo * pModel)
 {
-	if (pModel == NULL) return;
+	if (pModel == nullptr) return;
 
 	for (UINT i = 0; i < pModel->meshcount; i++)
 	{

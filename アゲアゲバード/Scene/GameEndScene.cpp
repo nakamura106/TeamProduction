@@ -24,7 +24,19 @@ void GameEndScene::Init()
 
 void GameEndScene::Draw()
 {
+	static bool flagnakamoto = true;
+	if (!flagnakamoto)
+	{
+		m_end_bg_pos.x = 0;
+		m_end_bg_pos.y = 0;
+		LoadTexture("Res/Tex/END.png", &m_end);
+		SoundManager::Instance()->RegisterEndSound();
+		SoundManager::Instance()->SoundBGM(-1000);
+		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
+		flagnakamoto = true;
+	}
 	DrawUITexture(&m_end, m_end_bg_pos);
+	
 }
 
 void GameEndScene::InitScene()

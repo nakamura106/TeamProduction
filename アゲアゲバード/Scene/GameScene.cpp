@@ -5,6 +5,7 @@
 #include"../Engine/Input.h"
 #include"../DataBank/DataBank.h"
 #include"../Manager/SceneManager.h"
+#include"../Engine/FBX.h"
 
 GameScene::GameScene()
 {
@@ -55,7 +56,8 @@ void GameScene::MainScene()
 void GameScene::EndScene()
 {
 	SoundManager::Instance()->ReleaseBattleSound();
-
+	ObjectManager::Instance()->AllDeleteObject();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 	SceneManager::Instance()->SetSceneId(BaseScene::SceneId::End);
-	}
+
+}

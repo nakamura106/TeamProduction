@@ -53,21 +53,25 @@ void SceneManager::Update()
 		default:
 			break;
 	}
-		Draw();
+		
 }
 
 void SceneManager::Draw()
 {
-	DrawStart();
 	
-	SetRenderMode(ERenderMode::Normal, false);
-
-	GetD3DDevice()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
-	GetD3DDevice()->SetRenderState(D3DRS_LIGHTING, FALSE);
-
-	SetLight();
-
 	
+	if (m_current_scene_step == BaseScene::SceneStep::MainStep)
+	{
+		DrawStart();
+
+		SetRenderMode(ERenderMode::Normal, false);
+
+		GetD3DDevice()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
+		GetD3DDevice()->SetRenderState(D3DRS_LIGHTING, FALSE);
+
+		SetLight();
+
+
 		switch (m_current_scene_id)
 		{
 		case BaseScene::SceneId::Title:
@@ -85,8 +89,9 @@ void SceneManager::Draw()
 		default:
 			break;
 		}
-	
-	DrawEnd();
+
+		DrawEnd();
+	}
 }
 
 void SceneManager::RegisterScene()

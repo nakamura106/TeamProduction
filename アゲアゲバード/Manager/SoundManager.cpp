@@ -25,7 +25,7 @@ void SoundManager::RegisterTitleSound()
 void SoundManager::RegisterGameMainSound()
 {
 	m_bgm_file = "Res/wav/GameBgm.wav";
-	m_click_se = "Res/wav/putting_a_box.wav";
+	m_click_se_file = "Res/wav/putting_a_box.wav";
 	m_pAudio->Load(m_bgm, m_bgm_file);
 	m_pAudio->Load(m_click_se, m_click_se_file);
 	
@@ -33,7 +33,7 @@ void SoundManager::RegisterGameMainSound()
 
 void SoundManager::RegisterEndSound()
 {
-	m_bgm_file = "Res/wav/TitleBgm.wav";
+	m_bgm_file = "Res/wav/TitleBgm2.wav";
 
 	m_pAudio->Load(m_bgm, m_bgm_file);
 }
