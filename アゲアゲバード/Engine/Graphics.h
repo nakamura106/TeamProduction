@@ -87,6 +87,10 @@ void DrawStart();
 
 void DrawEnd();
 
+void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos);
+
+void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos, float sprite_width, float sprite_height, float tu, float tv);
+
 //bool LoadTexture(const char*, TEXTURE_DATA*);
 
 bool LoadTexture(const char* file_name, TEXTURE_DATA* texture);

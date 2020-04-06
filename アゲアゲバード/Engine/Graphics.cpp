@@ -298,6 +298,28 @@ void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos)
 	g_Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, bg, sizeof(CUSTOM_VERTEX));
 }
 
+//UV用
+void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos, float sprite_width, float sprite_height, float tu, float tv)
+{
+	float Ttu = sprite_width / texture->Width;
+	float Ttv = sprite_height / texture->Height;
+
+	CUSTOM_VERTEX effect[4] =
+	{
+		{ pos.x, pos.y, 0.0f, 1.0f, tu, tv },
+		{ pos.x + sprite_width, pos.y, 0.0f, 1.0f, tu + Ttu , tv },
+		{ pos.x + sprite_width, pos.y + sprite_height, 0.0f, 1.0f, tu + Ttu, tv + Ttv},
+		{ pos.x, pos.y + sprite_height, 0.0f, 1.0f, tu, tv + Ttv },
+	};
+
+	// 頂点構造の指定
+	g_Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_TEX1);
+
+	g_Device->SetTexture(0, texture->Texture);
+
+	g_Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, effect, sizeof(CUSTOM_VERTEX));
+
+}
 //bool LoadTexture(const char* pFileName, TEXTURE_DATA* pOut)
 //{
 //	if (pOut == NULL) return false;
