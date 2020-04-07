@@ -38,3 +38,7 @@ void DataBank::SetBlockPos(D3DXVECTOR3 blockpos_)
 	m_blockpos.push_back(blockpos_);
 }
 
+void DataBank::SetPlayerPos(D3DXVECTOR3 player_pos_)
+{
+	m_player_pos = player_pos_;
+}

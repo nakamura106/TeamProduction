@@ -18,12 +18,19 @@ public:
 	void SetOilPos(float oilelevation_);
 
 	void SetBlockPos(D3DXVECTOR3 blockpos_);
+
+	void SetPlayerPos(D3DXVECTOR3 player_pos_);
 	
 	D3DXVECTOR3 GetCameraPos() { return m_Camera_Pos; }
 
 	auto GetBlockPos() { return m_blockpos; }
 
 	float GetOilPos() { return m_oilelevation; }
+
+	D3DXVECTOR3 GetPlayerPos(D3DXVECTOR3 player_pos_)
+	{
+		return m_player_pos;
+	}
 	
 protected:
 	DataBank();
@@ -35,6 +42,8 @@ private:
 	float m_oilelevation;
 
 	D3DXVECTOR3 m_Camera_Pos;
+	
+	D3DXVECTOR3 m_player_pos;
 
 	std::vector<D3DXVECTOR3> m_blockpos;
 

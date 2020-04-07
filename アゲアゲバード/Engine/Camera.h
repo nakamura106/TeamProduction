@@ -7,13 +7,13 @@
 class CAMERA
 {
 public:
-	CAMERA(float camera_x, float camera_y, float camera_z) :
+	CAMERA(D3DXVECTOR3 pos_) :
 		m_WalkSpeed(0.5f),
 		m_SprintSpeed(6.0f)
 	{
-		m_CameraPos.x = camera_x;
-		m_CameraPos.y = camera_y;
-		m_CameraPos.z = camera_z;
+		m_CameraPos.x = pos_.x;
+		m_CameraPos.y = pos_.y + 10;	// 今だけ(FirstPerson用)
+		m_CameraPos.z = pos_.z;
 
 		m_EyePos.x = 0.0f;
 		m_EyePos.y = 5.0f;
@@ -31,8 +31,8 @@ public:
 
 		m_Speed = m_WalkSpeed;
 
-		m_jamp = 3.0f;
-		jflag = false;
+		m_jamp_power = 3.0f;
+		m_jflag = false;
 
 		D3DXMatrixIdentity(&m_MatView);
 	}
@@ -45,8 +45,7 @@ public:
 
 	void MouseRotate();
 
-	// カメラの前向きベクトルを出す
-	D3DXVECTOR3 GetCameraForward();
+	//void FirstPersonPerspective(D3DXVECTOR3 player_pos_);
 
 	D3DXVECTOR3 GetCamaraPos()
 	{
@@ -103,11 +102,14 @@ private:
 	/* 移動速度 */
 	D3DXVECTOR3 m_Velocity;
 
-	/* ジャンプ力 */
-	float m_jamp;
-	bool jflag;
-	Gravity grav;
 
+	/* ジャンプ力 */
+	float m_jamp_power;
+	/* ジャンプフラグ */
+	bool m_jflag;
+	/* 重力 */
+	Gravity m_grav;
+	
 };
 
 #endif
