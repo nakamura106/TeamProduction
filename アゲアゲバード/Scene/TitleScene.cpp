@@ -49,7 +49,7 @@ void TitleScene::InitScene()
 
 void TitleScene::MainScene()
 {
-	if(GetKeyDown(DOWN_KEY))
+	if(GetKeyDown(DOWN_KEY)||IsButtonDown(DownButton))
 	{
 		SoundManager::Instance()->SoundSelectSE();
 		m_select_flag = 1;
@@ -58,7 +58,7 @@ void TitleScene::MainScene()
 	{
 		SoundManager::Instance()->ResetSelectFlag();
 	}
-	if (GetKeyDown(UP_KEY))
+	if (GetKeyDown(UP_KEY)|| IsButtonDown(UpButton))
 	{
 		SoundManager::Instance()->SoundSelectSE();
 
@@ -68,7 +68,7 @@ void TitleScene::MainScene()
 	{
 		SoundManager::Instance()->ResetSelectFlag();
 	}
-	if (GetKeyDown(RETURN_KEY))
+	if (GetKeyDown(RETURN_KEY)|| IsButtonDown(BButton))
 	{
 		SoundManager::Instance()->SoundClickSE();
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);

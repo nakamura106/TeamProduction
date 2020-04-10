@@ -4,6 +4,7 @@ HWND hWnd;
 HWND GetWindowHandle() { return hWnd; }
 
 
+
 LRESULT CALLBACK WindowProc(HWND window_handle, UINT message_id, WPARAM wparam, LPARAM lparam)
 {
 	switch (message_id)
