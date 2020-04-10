@@ -34,6 +34,28 @@ enum KEY_INFO
 	MAX_KEY_INFO,
 };
 
+enum ButtonKind
+{
+	AButton,
+	BButton,
+	XButton,
+	YButton,
+	UpButton,
+	DownButton,
+	LeftButton,
+	RightButton,
+	ButtonKindMax,
+};
+
+enum ButtonState
+{
+	ButtonStateNone,
+	ButtonStateDown,
+	ButtonStatePush,
+	ButtonStateUp,
+	ButtonStateMax,
+};
+
 /**
 * @brief Input機能の初期化関数@n
 * デバイスの入力取得に必要な初期化を行います
@@ -121,5 +143,8 @@ bool OnMouseUp(MouseButton button_type);
 /** @brief マウスの座標取得関数 */
 Vec2 GetMousePos();
 
+bool IsButtonPush(ButtonKind button);
+bool IsButtonUp(ButtonKind button);
+bool IsButtonDown(ButtonKind button);
 
 #endif
