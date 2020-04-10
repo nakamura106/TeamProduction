@@ -23,7 +23,25 @@ DataBank::~DataBank()
 
 }
 
+void DataBank::SetEyePos(D3DXVECTOR3 eyepos_)
+{
+	m_Eye_Pos = eyepos_;
+}
 
+void DataBank::SetCameraPos(D3DXVECTOR3 camerapos_)
+{
+	m_Camera_Pos = camerapos_;
+}
+// 移動前のカメラの位置
+void DataBank::SetBeforeCameraPos(D3DXVECTOR3 camera_pos_)
+{
+	m_before_camera_pos = camera_pos_;
+}
+// 移動後のカメラの位置
+void DataBank::SetAfterCameraPos(D3DXVECTOR3 camera_pos_)
+{
+	m_after_camera_pos = camera_pos_;
+}
 
 void DataBank::SetOilPos(float oilelevation_)
 {

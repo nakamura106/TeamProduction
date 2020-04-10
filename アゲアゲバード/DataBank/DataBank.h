@@ -14,7 +14,13 @@ public:
 
 	void ResetData() {}
 
+	void SetEyePos(D3DXVECTOR3 eyepos_);
 
+	void SetCameraPos(D3DXVECTOR3 camerapos_);
+	// 移動前のカメラの位置
+	void SetBeforeCameraPos(D3DXVECTOR3 camera_pos_);
+	// 移動後のカメラの位置
+	void SetAfterCameraPos(D3DXVECTOR3 camera_pos_);
 
 	void SetOilPos(float oilelevation_);
 
@@ -26,6 +32,9 @@ public:
 
 	void SetPlayerPos(D3DXVECTOR3 player_pos_);
 
+	D3DXVECTOR3 GetCameraPos() {
+		return m_Camera_Pos;
+	}
 	// 移動前のカメラの位置を取得
 	D3DXVECTOR3 GetBeforeCameraPos() {
 		return m_before_camera_pos;
@@ -58,6 +67,7 @@ private:
 
 	float m_oilelevation;
 
+	D3DXVECTOR3 m_Camera_Pos;
 	D3DXVECTOR3 m_before_camera_pos;
 	D3DXVECTOR3 m_after_camera_pos;
 	
