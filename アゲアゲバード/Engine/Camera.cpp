@@ -100,6 +100,8 @@ void CAMERA::Move()
 			m_grav.ResetPalam();
 		}
 	}
+	DataBank::Instance()->SetCameraPos(m_CameraPos);
+	DataBank::Instance()->SetEyePos(m_EyePos);
 #pragma endregion
 }
 
