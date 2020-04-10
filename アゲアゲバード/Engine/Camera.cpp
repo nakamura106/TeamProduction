@@ -7,7 +7,7 @@ void CAMERA::Update()
 {
 	// 移動前の位置を保存
 	DataBank* db = DataBank::Instance();
-	db->SetCameraPos(m_CameraPos);
+	db->SetBeforeCameraPos(m_CameraPos);
 
 	//ビュー座標変換用の行列算出 start
 	D3DXVECTOR3 camera_pos(m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);	// カメラ位置
@@ -38,8 +38,14 @@ void CAMERA::Update()
 		1.1f,				// near
 		200000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
-	//射影座標変換用の行列算出 end
+	//射影座標変換用の行列算出 endMove();
 
+	Move();
+	MouseRotate();
+
+	// 移動後の位置を保存
+	// 関数名変更する
+	db->SetAfterCameraPos(m_CameraPos);
 }
 
 void CAMERA::Move()

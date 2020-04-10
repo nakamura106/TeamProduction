@@ -28,8 +28,6 @@ void Character::Player::Update()
 {
 	DataBank* p_db = DataBank::Instance();
 
-	m_p_camera->Move();
-	m_p_camera->MouseRotate();
 	m_p_camera->Update();
 
 	Move();
@@ -61,11 +59,11 @@ void Character::Player::Update()
 void Character::Player::Move()
 {
 	DataBank* p_db = DataBank::Instance();
-
-	// 現在のカメラの位置を取得
-	D3DXVECTOR3 after_cam = m_p_camera->GetCamaraPos();
+	
 	// 過去のカメラの位置を取得
-	D3DXVECTOR3 befor_cam = p_db->GetCameraPos();
+	D3DXVECTOR3 befor_cam = p_db->GetBeforeCameraPos();
+	// 現在のカメラの位置を取得
+	D3DXVECTOR3 after_cam = p_db->GetAfterCameraPos();
 	// カメラが動いた距離 = 現在のカメラの位置 - 過去のカメラの位置
 	D3DXVECTOR3 amount_of_movement = after_cam - befor_cam;
 	// プレイヤーにカメラの移動量を足す
