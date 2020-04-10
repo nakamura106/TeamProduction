@@ -97,7 +97,8 @@ void CAMERA::Move()
 		}
 	}
 
-	DataBank::Instance()->SetCameraPos(m_EyePos);
+	DataBank::Instance()->SetCameraPos(m_CameraPos);
+	DataBank::Instance()->SetEyePos(m_EyePos);
 #pragma endregion
 	}
 

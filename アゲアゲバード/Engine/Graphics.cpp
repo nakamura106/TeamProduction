@@ -6,6 +6,8 @@
 
 static LPDIRECT3D9 g_Interface;
 static LPDIRECT3DDEVICE9 g_Device;
+static LPD3DXFONT g_FontList[FontSize::FontSizeMax];
+
 
 struct LoadedTextureInfo
 {
@@ -353,6 +355,78 @@ void ReleaseTexture(TEXTURE_DATA* pTextureData)
 			}
 		}
 	}
+}
+
+//•¶Žš•`‰æ
+void DrawFont(float pos_x, float pos_y, const char* text, FontSize font_type, FontColor color)
+{
+	RECT rect =
+	{
+		(long)pos_x,
+		(long)pos_y,
+		(long)pos_x + 400,
+		(long)pos_y + 200,
+	};
+
+	int r, g, b;
+	r = g = b = 255;
+
+	if (color == FontColor::Black)
+	{
+		r = g = b = 0;
+	}
+	else if (color == FontColor::Red)
+	{
+		r = 255;
+		g = b = 0;
+	}
+	else if (color == FontColor::Yellow)
+	{
+		r = 255;
+		g = 225;
+		b = 0;
+	}
+
+	g_FontList[font_type]->DrawTextA(
+		NULL,
+		text,
+		-1,
+		&rect,
+		DT_LEFT,
+		D3DCOLOR_XRGB(r, g, b)
+	);
+}
+
+
+bool CreateFontDevice()
+{
+	int size_list[] =
+	{
+		SMALL_FONT_SIZE,
+		REGULAR_FONT_SIZE,
+		LARGE_FONT_SIZE
+	};
+
+	for (int i = 0; i < FontSize::FontSizeMax; i++)
+	{
+		if (FAILED(D3DXCreateFont(g_Device,
+			size_list[i],
+			size_list[i] / 2,
+			FW_REGULAR,
+			NULL,
+			FALSE,
+			DEFAULT_CHARSET,
+			OUT_DEFAULT_PRECIS,
+			PROOF_QUALITY,
+			FIXED_PITCH | FF_SCRIPT,
+			TEXT("‚l‚r@‚oƒSƒVƒbƒN"),
+			&g_FontList[i])))
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 const LPDIRECT3DDEVICE9 GetD3DDevice(void)

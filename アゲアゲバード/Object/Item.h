@@ -21,7 +21,7 @@ public:
 	~Item() {};
 
 
-	void UpdateItemSpeed();
+	void Update();
 
 	//bool UpdateHitItem();
 

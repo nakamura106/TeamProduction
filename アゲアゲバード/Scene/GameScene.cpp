@@ -38,6 +38,7 @@ void GameScene::InitScene()
 	SoundManager::Instance()->SoundBGM(-1000);
     UIManager::Instance()->CreateUI();
 	UIManager::Instance()->LoadTex();
+	UIManager::Instance()->LoadFile();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
 }
 

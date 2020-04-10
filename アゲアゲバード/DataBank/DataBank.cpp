@@ -25,7 +25,12 @@ DataBank::~DataBank()
 
 void DataBank::SetCameraPos(D3DXVECTOR3 camerapos_)
 {
-	m_Camera_Pos=camerapos_;
+	m_Camera_Pos = camerapos_;
+}
+
+void DataBank::SetEyePos(D3DXVECTOR3 eyepos_)
+{
+	m_Eye_Pos = eyepos_;
 }
 
 void DataBank::SetOilPos(float oilelevation_)

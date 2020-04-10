@@ -14,7 +14,9 @@ public:
 
 	void ResetData() {}
 
-	void SetCameraPos(D3DXVECTOR3 eyepos_);
+	void SetCameraPos(D3DXVECTOR3 camerapos_);
+
+	void SetEyePos(D3DXVECTOR3 eyepos_);
 
 	void SetOilPos(float oilelevation_);
 
@@ -25,6 +27,8 @@ public:
 	void SetSceneId(BaseScene::SceneId sceneid_);
 	
 	D3DXVECTOR3 GetCameraPos() { return m_Camera_Pos; }
+
+	D3DXVECTOR3 GetEyePos() { return m_Eye_Pos; }
 
 	auto GetBlockPos() { return m_blockpos; }
 
@@ -44,6 +48,8 @@ private:
 	float m_oilelevation;
 
 	D3DXVECTOR3 m_Camera_Pos;
+
+	D3DXVECTOR3 m_Eye_Pos;
 
 	std::vector<D3DXVECTOR3> m_blockpos;
 

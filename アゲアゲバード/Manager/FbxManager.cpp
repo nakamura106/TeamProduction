@@ -23,7 +23,8 @@ MyFbxManager::FbxManager::FbxManager()
 	LoadFbxMesh("block", "Res/FBX/tenkasu.fbx");
 	LoadFbxMesh("oil", "Res/FBX/FloorOil.fbx");
 	LoadFbxMesh("filloil", "Res/FBX/FillOil.fbx");
-	
+	LoadFbxMesh("item", "Res/FBX/BallMaya.fbx");
+
 }
 
 MyFbxManager::FbxManager::~FbxManager()
