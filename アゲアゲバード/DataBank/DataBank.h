@@ -20,9 +20,7 @@ public:
 
 	void SetBlockPos(D3DXVECTOR3 blockpos_);
 
-	void SetSceneStep(BaseScene::SceneStep scenestep_);
 
-	void SetSceneId(BaseScene::SceneId sceneid_);
 	
 	D3DXVECTOR3 GetCameraPos() { return m_Camera_Pos; }
 
@@ -30,9 +28,7 @@ public:
 
 	float GetOilPos() { return m_oilelevation; }
 
-	BaseScene::SceneStep GetSceneStep() {	return m_scene_step;}
 
-	BaseScene::SceneId GetSceneId() { return m_scene_id; }
 	
 protected:
 	DataBank();
@@ -44,6 +40,8 @@ private:
 	float m_oilelevation;
 
 	D3DXVECTOR3 m_Camera_Pos;
+	
+	D3DXVECTOR3 m_player_pos;
 
 	std::vector<D3DXVECTOR3> m_blockpos;
 
