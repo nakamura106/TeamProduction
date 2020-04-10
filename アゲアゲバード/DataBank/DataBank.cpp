@@ -23,15 +23,7 @@ DataBank::~DataBank()
 
 }
 
-void DataBank::SetCameraPos(D3DXVECTOR3 camerapos_)
-{
-	m_Camera_Pos = camerapos_;
-}
 
-void DataBank::SetEyePos(D3DXVECTOR3 eyepos_)
-{
-	m_Eye_Pos = eyepos_;
-}
 
 void DataBank::SetOilPos(float oilelevation_)
 {
@@ -43,3 +35,19 @@ void DataBank::SetBlockPos(D3DXVECTOR3 blockpos_)
 	m_blockpos.push_back(blockpos_);
 }
 
+void DataBank::SetSceneStep(BaseScene::SceneStep scenestep_)
+{
+	m_scene_step = scenestep_;
+}
+
+void DataBank::SetSceneId(BaseScene::SceneId sceneid_)
+{
+	m_scene_id = sceneid_;
+}
+
+void DataBank::SetPlayerPos(D3DXVECTOR3 player_pos_)
+{
+	m_player_pos = player_pos_;
+}
+
+// プレイヤーの半径の値を取得する関数を作る
