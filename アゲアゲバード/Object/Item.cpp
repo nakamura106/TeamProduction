@@ -11,14 +11,17 @@ Item::Item()
 	m_direction.Y = DataBank::Instance()->GetEyePos().y;
 	m_direction.Z = DataBank::Instance()->GetEyePos().z;
 
-	m_speed = 5.0f;
+	
+	m_direction.X = m_direction.X / sqrtf((m_direction.X * m_direction.X) + (m_direction.Y * m_direction.Y) + (m_direction.Z * m_direction.Z));
+	m_direction.Y = m_direction.Y / sqrtf((m_direction.X * m_direction.X) + (m_direction.Y * m_direction.Y) + (m_direction.Z * m_direction.Z));
+	m_direction.Z = m_direction.Z / sqrtf((m_direction.X * m_direction.X) + (m_direction.Y * m_direction.Y) + (m_direction.Z * m_direction.Z));
 
 	m_key = "item";
 	D3DXMatrixIdentity(&m_mat_world);
-	D3DXMatrixScaling(&m_mat_scall, 0.0f, 0.0f, 0.0f);
+	//D3DXMatrixScaling(&m_mat_scall, 0.0f, 0.0f, 0.0f);
 	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);//“ª‚Éİ’è
-	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scall);
-	m_object.fbxinfo.world = m_mat_world;
+	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_world);
+	//m_object.fbxinfo.world = m_mat_world;
 
 }
 
@@ -26,17 +29,20 @@ Item::Item()
 void Item::Update()
 {
 	
-	m_direction.X = m_direction.X / sqrtf((m_direction.X * m_direction.X) + (m_direction.Y * m_direction.Y) + (m_direction.Z * m_direction.Z));
-	m_direction.Y = m_direction.Y / sqrtf((m_direction.X * m_direction.X) + (m_direction.Y * m_direction.Y) + (m_direction.Z * m_direction.Z));
-	m_direction.Z = m_direction.Z / sqrtf((m_direction.X * m_direction.X) + (m_direction.Y * m_direction.Y) + (m_direction.Z * m_direction.Z));
+	
 
-
-	if (GetKeyDown(UP_KEY))
+	if (GetKeyDown(T_KEY))
 	{
-		m_pos.x += m_direction.X * m_speed;
-		m_pos.y += m_direction.Y * m_speed - 9.8f;
-		m_pos.z += m_direction.Z * m_speed;
+		m_pos = DataBank::Instance()->GetCameraPos();
+		D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);//“ª‚Éİ’è
+		D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_world);
 	}
+
+	/*m_pos.x += m_direction.X * m_speed;
+	m_pos.y += m_direction.Y * m_speed - 9.8f;
+	m_pos.z += m_direction.Z * m_speed;*/
+
+	
 	//Å‰‚¾‚¯d—Í€2
 	/*m_pos.X += m_direction.X * m_speed.X;
 	m_pos.Y += m_direction.Y * m_speed.Y - 9.8f/2;

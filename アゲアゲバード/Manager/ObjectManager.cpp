@@ -43,12 +43,22 @@ ObjectManager::~ObjectManager()
 			m_Block[i] = nullptr;
 		}
 	}
+	for (int i = 0; m_Item.size(); i++)
+	{
+		if (m_Item[i] != nullptr)
+		{
+			delete m_Item[i];
+			m_Item[i] = nullptr;
+		}
+	}
 }
 
 void ObjectManager::AllDeleteObject()
 {
 	std::vector<ObjectBase*>().swap(m_Object);
 	std::vector<ObjectBase*>().swap(m_Block);
+	std::vector<ObjectBase*>().swap(m_Item);
+
 }
 
 void ObjectManager::CreateObject()
@@ -57,13 +67,18 @@ void ObjectManager::CreateObject()
 	m_Object.push_back(new Oil);
 	m_Object.push_back(new FillOil);
 	m_Object.push_back(new Character::Player(0.0f, 0.0f, 0.0f));
-	m_Object.push_back(new Item);
+	
 
 }
 
 void ObjectManager::CreateBlock()
 {
 	m_Block.push_back(new Block);
+}
+
+void ObjectManager::CreateItem()
+{
+	m_Item.push_back(new Item);
 }
 
 void ObjectManager::Update()
@@ -80,6 +95,10 @@ void ObjectManager::Update()
 			m_Block.erase(m_Block.begin()+i);
 		}
 	}
+	for (int i = 0; i < m_Item.size(); i++)
+	{
+		m_Item[i]->Update();
+	}
 }
 
 void ObjectManager::Draw()
@@ -92,5 +111,10 @@ void ObjectManager::Draw()
 	for (int i = 0; i < m_Block.size(); i++)
 	{	
 			m_Block[i]->Draw();
+	}
+
+	for (int i = 0; i < m_Item.size(); i++)
+	{
+		m_Item[i]->Draw();
 	}
 }
