@@ -18,6 +18,11 @@
 // 解放処理用のマクロを定義
 #define SAFE_RELEASE(x) { if(x) { (x)->Release(); (x) = NULL; } }
 
+
+#define SMALL_FONT_SIZE (16)	//!< フォントサイズ(小)
+#define REGULAR_FONT_SIZE (60)	//!< フォントサイズ(中)
+#define LARGE_FONT_SIZE (80)	//!< フォントサイズ(大)
+
 struct TEXTURE_DATA
 {
 	LPDIRECT3DTEXTURE9 Texture;
@@ -71,6 +76,22 @@ enum ERenderMode
 	Multiple,	// 乗算
 };
 
+enum FontColor
+{
+	Black,
+	White,
+	Red,
+	Yellow,
+};
+
+enum FontSize
+{
+	Small,
+	Regular,
+	Large,
+	FontSizeMax,
+};
+
 void SetRenderMode(ERenderMode mode_, bool enableAlpa_);
 
 bool InitGraphics();
@@ -98,6 +119,10 @@ bool LoadTexture(const char* file_name, TEXTURE_DATA* texture);
 void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos);
 
 void ReleaseTexture(TEXTURE_DATA*);
+
+void DrawFont(float pos_x, float pos_y, const char* text, FontSize font_type, FontColor color);
+
+bool CreateFontDevice();
 
 const LPDIRECT3DDEVICE9 GetD3DDevice(void);
 

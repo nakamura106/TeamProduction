@@ -13,6 +13,7 @@ public:
 	void Init() {};
 	void CreateUI();
 	void LoadTex();
+	void LoadFile();
 	void Draw();
 	void UpDate();
 	void Release();

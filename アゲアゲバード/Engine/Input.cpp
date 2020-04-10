@@ -82,6 +82,7 @@ int g_KeyInfo[] = {
 	DIK_D,
 	DIK_F,
 	DIK_E,
+	DIK_T,
 	DIK_RETURN,
 	DIK_LCONTROL,
 	DIK_LSHIFT,
