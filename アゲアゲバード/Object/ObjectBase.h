@@ -19,11 +19,16 @@ public:
 protected:
 	D3DXVECTOR3 m_pos;
 	FBXMeshData m_object;
-	D3DXMATRIX m_mat_world;
-	D3DXMATRIX m_mat_scall;
-	D3DXMATRIX m_mat_move;
-	D3DXMATRIX m_mat_rot;
+	D3DXMATRIX m_mat_world;		// ƒ[ƒ‹ƒh
+	D3DXMATRIX m_mat_scall;		// Šgk		Œëš scall¨scaleH
+	D3DXMATRIX m_mat_move;		// trans‚Æ“¯‚¶ˆÚ“®H
+	D3DXMATRIX m_mat_rot;		// ‰ñ“]
+	D3DXMATRIX m_mat_rot_x;		// ‰ñ“]x²
+	D3DXMATRIX m_mat_rot_y;		// ‰ñ“]y²
+	D3DXMATRIX m_mat_rot_z;		// ‰ñ“]z²
 	std::string m_key;
+	
+	D3DXMATRIX m_mat_trans;	// ˆÚ“®
 
 private:
 

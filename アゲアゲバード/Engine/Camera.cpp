@@ -89,6 +89,15 @@ void CAMERA::Move()
 		m_CameraPos.z -= left.z * m_Speed;
 	}
 
+	// ‘–‚é
+	if (GetKey(L_SHIFT) == true)
+	{
+		m_Speed = m_SprintSpeed;
+	}
+	else {
+		m_Speed = m_WalkSpeed;
+	}
+
 	// ƒWƒƒƒ“ƒv
 	if (GetKeyDown(E_KEY) && m_jflag == false)
 	{

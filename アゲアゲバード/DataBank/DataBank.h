@@ -14,32 +14,37 @@ public:
 
 	void ResetData() {}
 
+	// カメラの注視点を保存する
 	void SetEyePos(D3DXVECTOR3 eyepos_);
-
+	// カメラの位置を保存する
 	void SetCameraPos(D3DXVECTOR3 camerapos_);
-	// 移動前のカメラの位置
+	// 移動前のカメラの位置を保存する
 	void SetBeforeCameraPos(D3DXVECTOR3 camera_pos_);
-	// 移動後のカメラの位置
+	// 移動後のカメラの位置を保存する
 	void SetAfterCameraPos(D3DXVECTOR3 camera_pos_);
 
 	void SetOilPos(float oilelevation_);
 
 	void SetBlockPos(D3DXVECTOR3 blockpos_);
 
+	// プレイヤーの位置を保存する
+	void SetPlayerPos(D3DXVECTOR3 player_pos_);
+	// プレイヤーの半径を保存する
+	void SetPlayerRadius(float player_radius_);
+
 	void SetSceneStep(BaseScene::SceneStep scenestep_);
 
 	void SetSceneId(BaseScene::SceneId sceneid_);
 
-	void SetPlayerPos(D3DXVECTOR3 player_pos_);
-
+	// カメラの位置を取得する
 	D3DXVECTOR3 GetCameraPos() {
 		return m_Camera_Pos;
 	}
-	// 移動前のカメラの位置を取得
+	// 移動前のカメラの位置を取得する
 	D3DXVECTOR3 GetBeforeCameraPos() {
 		return m_before_camera_pos;
 	}
-	// 移動後のカメラの位置を取得
+	// 移動後のカメラの位置を取得する
 	D3DXVECTOR3 GetAfterCameraPos() {
 		return m_after_camera_pos;
 	}
@@ -50,13 +55,18 @@ public:
 
 	float GetOilPos() { return m_oilelevation; }
 
-	BaseScene::SceneStep GetSceneStep() { return m_scene_step; }
-
-	BaseScene::SceneId GetSceneId() { return m_scene_id; }
-
+	// プレイヤーの位置を取得する
 	D3DXVECTOR3 GetPlayerPos(D3DXVECTOR3 player_pos_) {
 		return m_player_pos;
 	}
+	// プレイヤーの半径を取得する
+	float GetPlayerRadius(float player_radius_) {
+		return m_player_radius;
+	}
+
+	BaseScene::SceneStep GetSceneStep() { return m_scene_step; }
+
+	BaseScene::SceneId GetSceneId() { return m_scene_id; }
 	
 protected:
 	DataBank();
@@ -72,6 +82,7 @@ private:
 	D3DXVECTOR3 m_after_camera_pos;
 	
 	D3DXVECTOR3 m_player_pos;
+	float m_player_radius;
 
 	D3DXVECTOR3 m_Eye_Pos;
 

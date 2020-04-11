@@ -14,10 +14,12 @@ enum class PlayerStatus {
 };
 
 struct PlayerInfo {
-	D3DXVECTOR3 pos;			// プレイヤー座標
+	PlayerStatus state;			// 状態
+
+	//D3DXVECTOR3 pos;			// プレイヤーの座標
 	D3DXVECTOR3 eye;			// プレイヤーの向いている方向
 
-	PlayerStatus state;			// 状態
+	float throw_power;			// 投げる力
 
 	//float mass;				// 質量
 };
@@ -43,21 +45,15 @@ namespace Character
 		void Update();
 		void Draw();
 
-		void Move();
-
-		PlayerInfo GetPos()
-		{
-			return m_pinfo;
-		}
-
 	private:
+		void Move();
 
 	private:
 
 		FBXMeshData m_fbx_mesh_data;
 
 		PlayerInfo m_pinfo;
-		MatrixInfo m_minfo;
+		//MatrixInfo m_minfo;
 
 		CAMERA* m_p_camera;
 	};
