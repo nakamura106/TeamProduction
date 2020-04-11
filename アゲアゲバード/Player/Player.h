@@ -5,9 +5,23 @@
 #include "../Engine/Camera.h"
 #include "../Object/ObjectBase.h"
 
+enum class PlayerStatus {
+	WAIT,		// 待機
+	WALK,		// 歩く
+	SPRINT,		// 疾走
+	JAMP,		// ジャンプ
+	THROW,		// 投げる
+};
+
 struct PlayerInfo {
-	float pos_x, pos_y, pos_z;		// プレイヤー座標
-	float mass;						// 質量
+	PlayerStatus state;			// 状態
+
+	//D3DXVECTOR3 pos;			// プレイヤーの座標
+	D3DXVECTOR3 eye;			// プレイヤーの向いている方向
+
+	float throw_power;			// 投げる力
+
+	//float mass;				// 質量
 };
 
 struct MatrixInfo {
@@ -31,26 +45,17 @@ namespace Character
 		void Update();
 		void Draw();
 
-		void Move(float mass_);
-
-		PlayerInfo GetPos()
-		{
-			return m_pinfo;
-		}
-
 	private:
-		void FirstPersonPerspective(float pos_x_, float pos_y_, float pos_z_);
+		void Move();
 
 	private:
 
 		FBXMeshData m_fbx_mesh_data;
 
 		PlayerInfo m_pinfo;
-		MatrixInfo m_minfo;
+		//MatrixInfo m_minfo;
 
-
-		CAMERA* p_m_camera;
-
+		CAMERA* m_p_camera;
 	};
 }
 #endif

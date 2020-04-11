@@ -14,6 +14,7 @@ public:
 	//オブジェクト生成
 	void CreateObject();//マップ、プレイヤー(2まで)、アイテム。ブロックは別配列
 	void CreateBlock();
+	void CreateItem();
 	void Update();
 	void Draw();
 	void AllDeleteObject();
@@ -32,6 +33,8 @@ private:
 	static ObjectManager* p_instance;
 	std::vector<ObjectBase*> m_Object;
 	std::vector<ObjectBase*> m_Block;
+	std::vector<ObjectBase*> m_Item;
+
 };
 
 #endif

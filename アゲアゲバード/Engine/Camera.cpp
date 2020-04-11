@@ -5,10 +5,14 @@
 
 void CAMERA::Update()
 {
+	// 移動前の位置を保存
+	DataBank* db = DataBank::Instance();
+	db->SetBeforeCameraPos(m_CameraPos);
+
 	//ビュー座標変換用の行列算出 start
-	D3DXVECTOR3 camera_pos(m_CameraPos.x, m_CameraPos.y, m_CameraPos.z); // カメラ位置
-	D3DXVECTOR3 eye_pos(m_EyePos.x, m_EyePos.y, m_EyePos.z);// 注視点
-	D3DXVECTOR3 up_vector(m_CameraUp.x, m_CameraUp.y, m_CameraUp.z);	// カメラの向き;
+	D3DXVECTOR3 camera_pos(m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);	// カメラ位置
+	D3DXVECTOR3 eye_pos(m_EyePos.x, m_EyePos.y, m_EyePos.z);				// 注視点
+	D3DXVECTOR3 up_vector(m_CameraUp.x, m_CameraUp.y, m_CameraUp.z);		// カメラの向き;
 
 	D3DXMatrixLookAtLH(&m_MatView,
 		&camera_pos,				// カメラ座標
@@ -34,8 +38,14 @@ void CAMERA::Update()
 		1.1f,				// near
 		200000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
-	//射影座標変換用の行列算出 end
+	//射影座標変換用の行列算出 endMove();
 
+	Move();
+	MouseRotate();
+
+	// 移動後の位置を保存
+	// 関数名変更する
+	db->SetAfterCameraPos(m_CameraPos);
 }
 
 void CAMERA::Move()
@@ -79,31 +89,35 @@ void CAMERA::Move()
 		m_CameraPos.z -= left.z * m_Speed;
 	}
 
-	// ジャンプ
-	if (GetKeyDown(E_KEY) && jflag == false)
+	// 走る
+	if (GetKey(L_SHIFT) == true)
 	{
-		jflag = true;
+		m_Speed = m_SprintSpeed;
 	}
-	if (jflag == true)
+	else {
+		m_Speed = m_WalkSpeed;
+	}
+
+	// ジャンプ
+	if (GetKeyDown(E_KEY) && m_jflag == false)
 	{
-		grav.AddGravity(m_CameraPos.y, m_jamp);
-		m_CameraPos.y = grav.GetPosY();
+		m_jflag = true;
+	}
+	if (m_jflag == true)
+	{
+		m_grav.AddGravity(m_CameraPos.y, m_jamp_power);
+		m_CameraPos.y = m_grav.GetPosY();
 
 		if (m_CameraPos.y < 10.0f)
 		{
-			jflag = false;
+			m_jflag = false;
 			m_CameraPos.y = 10.0f;
-			grav.ResetPalam();
+			m_grav.ResetPalam();
 		}
 	}
-
-	DataBank::Instance()->SetCameraPos(m_EyePos);
+	DataBank::Instance()->SetCameraPos(m_CameraPos);
+	DataBank::Instance()->SetEyePos(m_EyePos);
 #pragma endregion
-	}
-
-D3DXVECTOR3 CAMERA::GetCameraForward()
-{
-	return D3DXVECTOR3();
 }
 
 void CAMERA::MouseRotate()

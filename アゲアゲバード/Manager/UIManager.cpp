@@ -39,6 +39,15 @@ void UIManager::LoadTex()
 	
 }
 
+void UIManager::LoadFile()
+{
+	for (int i = 0; i < m_UI.size(); i++)
+	{
+		m_UI[i]->LoadFile();
+	}
+
+}
+
 void UIManager::Draw()
 {
 	for (int i = 0; i < m_UI.size(); i++)

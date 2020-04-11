@@ -16,6 +16,9 @@ public:
 
 	virtual void LoadTex()override;
 
+	virtual void LoadFile()override;
+
+
 	virtual void Draw()override;
 
 	virtual void UpDate()override;
@@ -26,6 +29,10 @@ public:
 
 	void ReleaseUITexture(TEXTURE_DATA* texture);
 private:
+	const char *m_filename;
+
+	FILE* m_ta;
+
 	int timercounter;
 	int time;
 

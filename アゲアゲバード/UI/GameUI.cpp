@@ -1,4 +1,6 @@
 #include "GameUI.h"
+#include <iostream>
+#include <fstream>
 
 GameUI::GameUI()
 {
@@ -44,6 +46,27 @@ void GameUI::LoadTex()
 	{
 		LoadTexture("Res/Tex/プレイヤー位置.png", &m_timer[i]);
 	}*/
+}
+
+void GameUI::LoadFile()
+{
+	//m_filename = "Res/Tex/text.txt";
+
+	/*std::ifstream ifs(m_filename, std::ios::in);
+	if (!ifs) {
+		std::cerr << "ファイルオープンに失敗" << std::endl;
+		std::exit(1);
+	}
+	std::string buf;
+	std::getline(ifs, buf);
+	ifs >> buf;
+	if (!ifs) {
+		std::cerr << "読み込みに失敗" << std::endl;
+		std::exit(1);
+	}*/
+	//std::cout << m_filename << "に書き込みました。" << std::endl;
+
+	//std::cout << buf << std::endl;
 }
 
 void GameUI::Draw()

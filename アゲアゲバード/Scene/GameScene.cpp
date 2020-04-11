@@ -34,15 +34,22 @@ void GameScene::Draw()
 void GameScene::InitScene()
 {
 	ObjectManager::Instance()->CreateObject();
+	ObjectManager::Instance()->CreateItem();
 	SoundManager::Instance()->RegisterGameMainSound();
 	SoundManager::Instance()->SoundBGM(-1000);
     UIManager::Instance()->CreateUI();
 	UIManager::Instance()->LoadTex();
+	UIManager::Instance()->LoadFile();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
 }
 
 void GameScene::MainScene()
 {
+	/*if (GetKeyDown(T_KEY))
+	{
+		ObjectManager::Instance()->CreateItem();
+	}*/
+
 	ObjectManager::Instance()->Update();
 	UIManager::Instance()->UpDate();
 	if (GetKeyDown(SPACE_KEY))
