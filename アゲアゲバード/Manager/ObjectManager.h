@@ -15,15 +15,16 @@ public:
 	void CreateObject();//マップ、プレイヤー(2まで)、アイテム。ブロックは別配列
 	void CreateBlock();
 	void CreateItem();
+	void CreatePlayer();	// K新しく追加した
 	void Update();
 	void Draw();
 	void AllDeleteObject();
 	
 
 
-	ObjectBase* GetPlayerObject() {};
+	//ObjectBase* GetPlayerObject() {};
 
-	ObjectBase* GetCharaObject() {};
+	//ObjectBase* GetCharaObject() {};
 
 protected:
 	ObjectManager();
@@ -34,6 +35,7 @@ private:
 	std::vector<ObjectBase*> m_Object;
 	std::vector<ObjectBase*> m_Block;
 	std::vector<ObjectBase*> m_Item;
+	std::vector<ObjectBase*> m_player;	// K新しく追加した
 
 };
 

@@ -35,6 +35,7 @@ void GameScene::InitScene()
 {
 	ObjectManager::Instance()->CreateObject();
 	ObjectManager::Instance()->CreateItem();
+	ObjectManager::Instance()->CreatePlayer();	// KV‚µ‚­’Ç‰Á‚µ‚½
 	SoundManager::Instance()->RegisterGameMainSound();
 	SoundManager::Instance()->SoundBGM(-1000);
     UIManager::Instance()->CreateUI();
