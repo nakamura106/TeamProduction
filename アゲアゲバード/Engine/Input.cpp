@@ -190,7 +190,6 @@ BOOL CALLBACK DeviceFindCallBack(LPCDIDEVICEINSTANCE lpddi, LPVOID pvRef)
 	return DIENUM_CONTINUE;
 }
 
-
 bool InitInput()
 {
 	if (CreateInputInterface() == false)
@@ -225,8 +224,6 @@ bool InitInput()
 
 	return true;
 }
-
-
 
 void EndInput()
 {

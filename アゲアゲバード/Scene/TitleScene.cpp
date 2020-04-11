@@ -72,7 +72,6 @@ void TitleScene::MainScene()
 	{
 		SoundManager::Instance()->SoundClickSE();
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
-		
 	}
 }
 
