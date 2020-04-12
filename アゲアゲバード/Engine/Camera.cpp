@@ -124,12 +124,12 @@ void CAMERA::MouseRotate()
 {
 	SetCursorPos(960, 540);
 
-	m_Yaw -= (GetMousePos().X - 960) / 1920 * 50;//ここでカメラ感度変更可能
+	m_Yaw += (GetMousePos().X - 960) / 1920 * 50;//ここでカメラ感度変更可能
 	m_Pitch -= (GetMousePos().Y - 540) / 1080 * 20;
 	if (m_Pitch > 90.0f) { m_Pitch = 180.0f - m_Pitch; }
 	if (m_Pitch < -90.0f) { m_Pitch = -180.0f - m_Pitch; }
 
-	m_EyePos.x = m_CameraPos.x + cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
 	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));
-	m_EyePos.z = m_CameraPos.z + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	m_EyePos.z = m_CameraPos.z + cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
 }

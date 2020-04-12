@@ -23,6 +23,10 @@ public:
 	// ˆÚ“®Œã‚ÌƒJƒƒ‰‚ÌˆÊ’u‚ğ•Û‘¶‚·‚é
 	void SetAfterCameraPos(D3DXVECTOR3 camera_pos_);
 
+	void SetMapCenterPos(D3DXVECTOR3 map_centerpos_);
+
+	void SetMapRadius(float map_radius_);
+
 	void SetOilPos(float oilelevation_);
 
 	void SetBlockPos(D3DXVECTOR3 blockpos_);
@@ -49,7 +53,7 @@ public:
 		return m_after_camera_pos;
 	}
 
-	D3DXVECTOR3 GetEyePos() { return m_Eye_Pos; }
+	D3DXVECTOR3 GetEyePos() { return m_eye_pos; }
 
 	auto GetBlockPos() { return m_blockpos; }
 
@@ -84,7 +88,11 @@ private:
 	D3DXVECTOR3 m_player_pos;
 	float m_player_radius;
 
-	D3DXVECTOR3 m_Eye_Pos;
+	D3DXVECTOR3 m_eye_pos;
+
+	D3DXVECTOR3 m_map_centerpos;
+
+	float m_map_radius;
 
 	std::vector<D3DXVECTOR3> m_blockpos;
 

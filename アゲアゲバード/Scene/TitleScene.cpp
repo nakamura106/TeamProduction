@@ -79,7 +79,7 @@ void TitleScene::EndScene()
 {
 	ReleaseTexture(&m_title);
 	ReleaseTexture(&m_help);
-	
+	SetCursorPos(960, 540);
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 	if (m_select_flag == 0)
 	{
