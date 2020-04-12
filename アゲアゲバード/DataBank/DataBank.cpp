@@ -25,7 +25,7 @@ DataBank::~DataBank()
 
 void DataBank::SetEyePos(D3DXVECTOR3 eyepos_)
 {
-	m_Eye_Pos = eyepos_;
+	m_eye_pos = eyepos_;
 }
 
 void DataBank::SetCameraPos(D3DXVECTOR3 camerapos_)
@@ -41,6 +41,16 @@ void DataBank::SetBeforeCameraPos(D3DXVECTOR3 camera_pos_)
 void DataBank::SetAfterCameraPos(D3DXVECTOR3 camera_pos_)
 {
 	m_after_camera_pos = camera_pos_;
+}
+
+void DataBank::SetMapCenterPos(D3DXVECTOR3 map_centerpos_)
+{
+	m_map_centerpos = map_centerpos_;
+}
+
+void DataBank::SetMapRadius(float map_radius_)
+{
+	m_map_radius = map_radius_;
 }
 
 void DataBank::SetOilPos(float oilelevation_)
