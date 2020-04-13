@@ -21,7 +21,7 @@ public:
 	~Item() {};
 
 
-	void Update();
+	void Update()override;
 
 	//bool UpdateHitItem();
 
@@ -29,7 +29,7 @@ public:
 
 private:
 	
-	Vec3 m_direction;
+	D3DXVECTOR3 m_direction;
 	float m_speed;
 	float m_provisional_speed;
 	

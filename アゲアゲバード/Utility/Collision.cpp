@@ -44,11 +44,11 @@
 //}
 
 //プレイヤーとアイテム
-bool Collision::HitItemPlayer(float player_pos_x_, float player_pos_y_, float player_pos_z_, float item_pos_x_, float item_pos_y_, float item_pos_z_, float player_radius, float item_radius)
+bool Collision::HitItemPlayer(D3DXVECTOR3 player_pos_, D3DXVECTOR3 item_pos_, float player_radius, float item_radius)
 {
-	float x = player_pos_x_ - item_pos_x_;
-	float y = player_pos_y_ - item_pos_y_;
-	float z = player_pos_z_ - item_pos_z_;
+	float x = player_pos_.x - item_pos_.x;
+	float y = player_pos_.y - item_pos_.y;
+	float z = player_pos_.z - item_pos_.z;
 
 	float c = sqrtf(x * x + y * y + z * z);
 
@@ -64,11 +64,11 @@ bool Collision::HitItemPlayer(float player_pos_x_, float player_pos_y_, float pl
 }
 
 //立方体と球の判定
-bool Collision::HitItemBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float item_pos_x_, float item_pos_y_, float item_pos_z_, float block_width_, float item_radius_)
+bool Collision::HitItemBox(D3DXVECTOR3 block_pos_, D3DXVECTOR3 item_pos_, float block_width_, float item_radius_)
 {
-	if (item_pos_x_ + item_radius_ >= block_pos_x_ - (block_width_ / 2) && item_pos_x_ - item_radius_ <= block_pos_x_ + (block_width_ / 2)
-		&& item_pos_y_ + item_radius_ >= block_pos_y_ - (block_width_ / 2) && item_pos_y_ - item_radius_ <= block_pos_y_ + (block_width_ / 2)
-		&& item_pos_z_ + item_radius_ >= block_pos_z_ - (block_width_ / 2) && item_pos_z_ - item_radius_ <= block_pos_z_ + (block_width_ / 2))
+	if (item_pos_.x + item_radius_ >= block_pos_.x - (block_width_ / 2) && item_pos_.x - item_radius_ <= block_pos_.x + (block_width_ / 2)
+		&& item_pos_.y + item_radius_ >= block_pos_.y - (block_width_ / 2) && item_pos_.y - item_radius_ <= block_pos_.y + (block_width_ / 2)
+		&& item_pos_.z + item_radius_ >= block_pos_.z - (block_width_ / 2) && item_pos_.z - item_radius_ <= block_pos_.z + (block_width_ / 2))
 	{
 		return true;
 	}
@@ -78,11 +78,11 @@ bool Collision::HitItemBox(float block_pos_x_, float block_pos_y_, float block_p
 
 #pragma region ブロックとプレイヤー
 //立方体と球の判定
-bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_)
+bool Collision::HitBox(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
 {
-	if (player_pos_x_ + player_radius_ >= block_pos_x_ - (block_width_ / 2) && player_pos_x_ - player_radius_ <= block_pos_x_ + (block_width_ / 2)
-		&& player_pos_y_ + player_radius_ >= block_pos_y_ - (block_width_ / 2) && player_pos_y_ - player_radius_ <= block_pos_y_ + (block_width_ / 2)
-		&& player_pos_z_ + player_radius_ >= block_pos_z_ - (block_width_ / 2) && player_pos_z_ - player_radius_ <= block_pos_z_ + (block_width_ / 2))
+	if (player_pos_.x + player_radius_ >= block_pos_.x - (block_width_ / 2) && player_pos_.x - player_radius_ <= block_pos_.x + (block_width_ / 2)
+		&& player_pos_.y + player_radius_ >= block_pos_.y - (block_width_ / 2) && player_pos_.y - player_radius_ <= block_pos_.y + (block_width_ / 2)
+		&& player_pos_.z + player_radius_ >= block_pos_.z - (block_width_ / 2) && player_pos_.z - player_radius_ <= block_pos_.z + (block_width_ / 2))
 	{
 		return true;
 	}
@@ -91,12 +91,12 @@ bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z
 }
 
 //ブロックの上にいるかどうか
-bool Collision::HitBoxTop(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_)
+bool Collision::HitBoxTop(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
 {
-	if (player_pos_x_ + player_radius_ >= block_pos_x_ - (block_width_ / 2) && player_pos_x_ - player_radius_ <= block_pos_x_ + (block_width_ / 2)
-		&& player_pos_y_ + player_radius_ >= block_pos_y_ - (block_width_ / 2) && player_pos_y_ - player_radius_ <= block_pos_y_ + (block_width_ / 2)
-		&& player_pos_z_ + player_radius_ >= block_pos_z_ - (block_width_ / 2) && player_pos_z_ - player_radius_ <= block_pos_z_ + (block_width_ / 2)
-		&& player_pos_y_ > block_pos_y_)
+	if (player_pos_.x + player_radius_ >= block_pos_.x - (block_width_ / 2) && player_pos_.x - player_radius_ <= block_pos_.x + (block_width_ / 2)
+		&& player_pos_.y + player_radius_ >= block_pos_.y - (block_width_ / 2) && player_pos_.y - player_radius_ <= block_pos_.y + (block_width_ / 2)
+		&& player_pos_.z + player_radius_ >= block_pos_.z - (block_width_ / 2) && player_pos_.z - player_radius_ <= block_pos_.z + (block_width_ / 2)
+		&& player_pos_.y > block_pos_.y)													 
 	{
 		return true;
 	}
@@ -218,34 +218,35 @@ bool Collision::HitAngle(float player_pos_x, float player_pos_y, float player_po
 #pragma endregion
 
 //プレイヤーの視界のあたり判定
-bool Collision::HitVisualBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth_)
+bool Collision::HitVisualBox(D3DXVECTOR3 block_pos_, float block_width_, float block_depth_)
 {
 	//前面
-	if (HitVisualBox2(block_pos_x_, block_pos_y_, block_pos_z_, 0.0f, block_depth_, 0.0f, 0.0f, 1.0f) == true)
+	if (HitVisualBox2(block_pos_, 0.0f, block_depth_, 0.0f, 0.0f, 1.0f) == true)
 	{
 		return true;
 	}
 	//後面
-	if (HitVisualBox2(block_pos_x_, block_pos_y_, block_pos_z_, 0.0f, -block_depth_, 0.0f, 0.0f, -1.0f) == true)
+	if (HitVisualBox2(block_pos_, 0.0f, -block_depth_, 0.0f, 0.0f, -1.0f) == true)
 	{
 		return true;
 	}
 	//左面
-	if (HitVisualBox2(block_pos_x_, block_pos_y_, block_pos_z_, -block_width_, 0.0f, -1.0f, 0.0f, 0.0f) == true)
+	if (HitVisualBox2(block_pos_, -block_width_, 0.0f, -1.0f, 0.0f, 0.0f) == true)
 	{
 		return true;
 	}
 	//右面
-	if (HitVisualBox2(block_pos_x_, block_pos_y_, block_pos_z_, block_width_, 0.0f, 1.0f, 0.0f, 0.0f) == true)
+	if (HitVisualBox2(block_pos_, block_width_, 0.0f, 1.0f, 0.0f, 0.0f) == true)
 	{
 		return true;
 	}
 }
 
-bool Collision::HitVisualBox2(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_depth, float x, float y, float z)
+//立方体の面とのあたり判定(触らない)
+bool Collision::HitVisualBox2(D3DXVECTOR3 block_pos_, float block_width_, float block_depth, float x, float y, float z)
 {
 	//立方体の面の中点
-	D3DXVECTOR3 P(block_pos_x_ + block_width_ / 2, block_pos_y_, block_pos_z_ + block_depth / 2);
+	D3DXVECTOR3 P(block_pos_.x + block_width_ / 2, block_pos_.y, block_pos_.z + block_depth / 2);
 
 	//法線ベクトル
 	D3DXVECTOR3 N(x, y, z);
