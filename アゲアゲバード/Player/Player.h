@@ -18,6 +18,7 @@ struct PlayerInfo {
 
 	D3DXVECTOR3 eye;			// ƒvƒŒƒCƒ„[‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü
 
+	float radius;
 	//float throw_power;		// “Š‚°‚é—Í
 };
 
@@ -29,10 +30,11 @@ namespace Character
 		~Player() {}
 
 	public:
-		void Update();
+		void Update()override;
 
 	private:
 		void Move();
+		//void CollisionDetection();
 
 	private:
 		PlayerInfo m_pinfo;

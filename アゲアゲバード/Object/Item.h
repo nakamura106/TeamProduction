@@ -38,7 +38,7 @@ private:
 
 	bool m_hit;
 
-	CAMERA* p_camera;
+	//CAMERA* p_camera;
 	Collision* collision;
 };
 

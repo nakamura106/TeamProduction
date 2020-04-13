@@ -2,6 +2,7 @@
 #include <math.h>
 #include <d3dx9.h>
 #include "Vec.h"
+#include "../DataBank/DataBank.h"
 
 //égÇÌÇ»Ç¢
 //bool Collision::UpdateHit(HitObject tareget, HitObject tareget2)
@@ -257,10 +258,15 @@ bool Collision::HitVisualBox2(float block_pos_x_, float block_pos_y_, float bloc
 	N.y = N.y / lenght;
 	N.z = N.z / lenght;
 
+	DataBank* p_db = DataBank::Instance();
+	D3DXVECTOR3 camera_pos = p_db->GetCameraPos();
+
 	//ÉJÉÅÉâPos
-	D3DXVECTOR3 PA(P.x - p_camera->GetCamaraPos().x, P.y - p_camera->GetCamaraPos().x, P.z - p_camera->GetCamaraPos().z);
+	//D3DXVECTOR3 PA(P.x - p_camera->GetCamaraPos().x, P.y - p_camera->GetCamaraPos().x, P.z - p_camera->GetCamaraPos().z);
+	D3DXVECTOR3 PA(P.x - camera_pos.x, P.y - camera_pos.y, P.z - camera_pos.z);
 	//íçéãì_Pos
-	D3DXVECTOR3 PB(P.x - p_camera->GetEyePos().x, P.y - p_camera->GetEyePos().y, P.z - p_camera->GetEyePos().z);
+	//D3DXVECTOR3 PB(P.x - p_camera->GetEyePos().x, P.y - p_camera->GetEyePos().y, P.z - p_camera->GetEyePos().z);
+	D3DXVECTOR3 PB(P.x - camera_pos.x, P.y - camera_pos.y, P.z - camera_pos.z);
 
 	//ì‡êœÇãÅÇﬂÇÈ
 	float dot_PA = (PA.x * N.x) + (PA.y * N.y) + (PA.z * N.z);
