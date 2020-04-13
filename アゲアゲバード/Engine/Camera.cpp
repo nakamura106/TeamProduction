@@ -43,7 +43,6 @@ void CAMERA::Update()
 	MouseRotate();
 
 	// 移動後の位置を保存
-	// 関数名変更する
 	db->SetAfterCameraPos(m_CameraPos);
 }
 
@@ -62,8 +61,8 @@ void CAMERA::Move()
 	D3DXVECTOR3 left;
 	left = D3DXVECTOR3(forward.z, forward.y, forward.x);
 
-	m_Velocity.x = forward.x * m_Speed;
-	m_Velocity.z = forward.z * m_Speed;
+	/*m_Velocity.x = forward.x * m_Speed;
+	m_Velocity.z = forward.z * m_Speed;*/
 
 #pragma region カメラの移動
 	// 前
@@ -89,31 +88,42 @@ void CAMERA::Move()
 	}
 
 	// 走る
-	if (GetKey(L_SHIFT) == true)
-	{
+	if (GetKey(L_SHIFT)) {
 		m_Speed = m_SprintSpeed;
 	}
 	else {
 		m_Speed = m_WalkSpeed;
 	}
 
-	// ジャンプ
-	if (GetKeyDown(E_KEY) && m_jflag == false)
-	{
-		m_jflag = true;
-	}
-	if (m_jflag == true)
-	{
-		m_grav.AddGravity(m_CameraPos.y, m_jamp_power);
-		m_CameraPos.y = m_grav.GetPosY();
 
-		if (m_CameraPos.y < 10.0f)
-		{
-			m_jflag = false;
-			m_CameraPos.y = 10.0f;
-			m_grav.ResetPalam();
-		}
+	// デバッグ用
+	// 上
+	if (GetKey(E_KEY)) {
+		m_CameraPos.y += m_CameraUp.y * m_Speed;
 	}
+	// 下
+	if (GetKey(Q_KEY)) {
+		m_CameraPos.y -= m_CameraUp.y * m_Speed;
+	}
+
+	//// ジャンプ
+	//if (GetKeyDown(E_KEY) && m_jflag == false)
+	//{
+	//	m_jflag = true;
+	//}
+	//if (m_jflag == true)
+	//{
+	//	m_grav.AddGravity(m_CameraPos.y, m_jamp_power);
+	//	m_CameraPos.y = m_grav.GetPosY();
+
+	//	if (m_CameraPos.y < 10.0f)
+	//	{
+	//		m_jflag = false;
+	//		m_CameraPos.y = 10.0f;
+	//		m_grav.ResetPalam();
+	//	}
+	//}
+
 	DataBank::Instance()->SetCameraPos(m_CameraPos);
 	DataBank::Instance()->SetEyePos(m_EyePos);
 #pragma endregion
