@@ -13,7 +13,6 @@ void CAMERA::Update()
 	D3DXVECTOR3 camera_pos(m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);	// カメラ位置
 	D3DXVECTOR3 eye_pos(m_EyePos.x, m_EyePos.y, m_EyePos.z);				// 注視点
 	D3DXVECTOR3 up_vector(m_CameraUp.x, m_CameraUp.y, m_CameraUp.z);		// カメラの向き;
-
 	D3DXMatrixLookAtLH(&m_MatView,
 		&camera_pos,				// カメラ座標
 		&eye_pos,					// 注視点座標
