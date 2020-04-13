@@ -189,18 +189,18 @@ bool Collision::HitMap(float player_circle_pos_x_, float player_circle_pos_z_, f
 }
 
 //プレイヤーと天井
-bool Collision::HitAngle(float player_pos_x, float player_pos_y, float player_pos_z, float maptop_pos_x, float maptop_pos_y, float maptop_pos_z, float mapunder_pos_x, float mapunder_pos_y, float mapunder_pos_z, float flg_angle)
+bool Collision::HitAngle(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, D3DXVECTOR3 mapunder_pos_, float flg_angle)
 {
 	D3DXVECTOR3 player_vec;
 	D3DXVECTOR3 map_vec;
 
-	player_vec.x = player_pos_x - maptop_pos_x;
-	player_vec.y = player_pos_y - maptop_pos_y;
-	player_vec.z = player_pos_z - maptop_pos_z;
+	player_vec.x = player_pos_.x - maptop_pos_.x;
+	player_vec.y = player_pos_.y - maptop_pos_.y;
+	player_vec.z = player_pos_.z - maptop_pos_.z;
 
-	map_vec.x = maptop_pos_x - mapunder_pos_x;
-	map_vec.y = maptop_pos_y - mapunder_pos_y;
-	map_vec.z = maptop_pos_z - mapunder_pos_z;
+	map_vec.x = maptop_pos_.x - mapunder_pos_.x;
+	map_vec.y = maptop_pos_.y - mapunder_pos_.y;
+	map_vec.z = maptop_pos_.z - mapunder_pos_.z;
 
 
 	float angle = acosf((player_vec.x * map_vec.x + player_vec.y * map_vec.y + player_vec.z * map_vec.z) /
