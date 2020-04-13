@@ -86,7 +86,7 @@ public:
 	*/
 	bool HitAngle(float player_pos_x, float player_pos_y, float player_pos_z, float maptop_pos_x, float maptop_pos_y, float maptop_pos_z, float mapunder_pos_x, float mapunder_pos_y, float mapunder_pos_z, float flg_angle);
 private:
-	CAMERA* p_camera;
+	//CAMERA* p_camera;
 
 
 };

@@ -91,7 +91,7 @@ void ObjectManager::CreateItem()
 // ヘッダーにプレイヤーも別とのことで分けました
 void ObjectManager::CreatePlayer()
 {
-	m_player.push_back(new Character::Player(0.0f, 0.0f, 0.0f));
+	m_player.push_back(new Character::Player(50.0f, 10.0f, 0.0f));
 }
 
 void ObjectManager::Update()

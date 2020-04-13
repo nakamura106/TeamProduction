@@ -48,6 +48,7 @@ void GameScene::MainScene()
 {
 	if (GetKeyDown(T_KEY))
 	{
+
 		ObjectManager::Instance()->CreateItem();
 	}
 

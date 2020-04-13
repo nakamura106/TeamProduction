@@ -12,7 +12,7 @@ public:
 		m_SprintSpeed(6.0f)
 	{
 		m_CameraPos.x = pos_.x;
-		m_CameraPos.y = pos_.y + 10;	// 今だけ(FirstPerson用)
+		m_CameraPos.y = pos_.y + 0.5;	// 今だけ(FirstPerson用)
 		m_CameraPos.z = pos_.z;
 
 		m_EyePos.x = 0.0f;
@@ -45,22 +45,24 @@ public:
 
 	void MouseRotate();
 
-	//void FirstPersonPerspective(D3DXVECTOR3 player_pos_);
-
-	D3DXVECTOR3 GetCamaraPos()
-	{
+	D3DXVECTOR3 GetCamaraPos() {
 		return m_CameraPos;
 	}
 
-	D3DXVECTOR3 GetEyePos()
-	{
+	D3DXVECTOR3 GetEyePos() {
 		return m_EyePos;
 	}
 
-	float GetYaw()
-	{
+	float GetYaw() {
 		return m_Yaw;
 	}
+	float GetPitch() {
+		return m_Pitch;
+	}
+	float GetRoll() {
+		return m_Roll;
+	}
+
 
 private:
 	/* カメラの移動速度 Walk */
