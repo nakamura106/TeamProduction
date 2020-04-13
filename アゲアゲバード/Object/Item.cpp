@@ -16,13 +16,13 @@ Item::Item()
 	m_direction.y = m_direction.y / sqrtf((m_direction.x * m_direction.x) + (m_direction.y * m_direction.y) + (m_direction.z * m_direction.z));
 	m_direction.z = m_direction.z / sqrtf((m_direction.x * m_direction.x) + (m_direction.y * m_direction.y) + (m_direction.z * m_direction.z));
 
-	m_speed = 0.01f;
+	m_speed = 0.1f;
 
 	m_key = "item";
 	D3DXMatrixIdentity(&m_mat_world);
-	D3DXMatrixScaling(&m_mat_scall, 1.0f, 1.0f, 1.0f);
+	D3DXMatrixScaling(&m_mat_scale, 1.0f, 1.0f, 1.0f);
 	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);//ì™Ç…ê›íË
-	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scall);
+	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);
 	//m_object.fbxinfo.world = m_mat_world;
 
 }
@@ -37,7 +37,8 @@ void Item::Update()
 
 
 	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);//ì™Ç…ê›íË
-	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scall);
+	D3DXMatrixMultiply(&m_mat_world, &m_mat_move,&m_mat_scale);
+	//D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);
 	
 	//ç≈èâÇæÇØèdóÕÅÄ2
 	/*m_pos.X += m_direction.X * m_speed.X;

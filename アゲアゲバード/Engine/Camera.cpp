@@ -45,6 +45,9 @@ void CAMERA::Update()
 	// ˆÚ“®Œã‚ÌˆÊ’u‚ð•Û‘¶
 	// ŠÖ”–¼•ÏX‚·‚é
 	db->SetAfterCameraPos(m_CameraPos);
+
+	DataBank::Instance()->SetEyePos(m_EyePos);
+	
 }
 
 void CAMERA::Move()
@@ -115,7 +118,6 @@ void CAMERA::Move()
 		}
 	}
 	DataBank::Instance()->SetCameraPos(m_CameraPos);
-	DataBank::Instance()->SetEyePos(m_EyePos);
 #pragma endregion
 }
 

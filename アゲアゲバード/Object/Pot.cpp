@@ -11,7 +11,7 @@ Pot::Pot()
 	DataBank::Instance()->SetMapCenterPos(m_map_centerpos);
 	m_key = "pot";
 	D3DXMatrixIdentity(&m_mat_world);
-	D3DXMatrixScaling(&m_mat_scall, 30.0f, 30.0f, 30.0f);
+	D3DXMatrixScaling(&m_mat_scale, 30.0f, 30.0f, 30.0f);
 	D3DXMatrixTranslation(&m_mat_move,0.0f,0.0f,0.0f);
-	D3DXMatrixMultiply(&m_mat_world, &m_mat_scall,  & m_mat_move);	
+	D3DXMatrixMultiply(&m_mat_world, &m_mat_scale,  & m_mat_move);	
 }

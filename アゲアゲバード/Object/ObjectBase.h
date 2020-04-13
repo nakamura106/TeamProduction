@@ -20,7 +20,7 @@ protected:
 	D3DXVECTOR3 m_pos;
 	FBXMeshData m_object;
 	D3DXMATRIX m_mat_world;		// ワールド
-	D3DXMATRIX m_mat_scall;		// 拡縮		誤字 scall→scale？
+	D3DXMATRIX m_mat_scale;		// 拡縮		誤字 scall→scale？
 	D3DXMATRIX m_mat_move;		// 移動
 	D3DXMATRIX m_mat_rot;		// 回転
 	D3DXMATRIX m_mat_rot_x;		// 回転x軸

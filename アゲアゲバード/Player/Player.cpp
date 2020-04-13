@@ -17,14 +17,14 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 	// ‚©‚¯‡‚í‚¹(Šgk~‰ñ“]~ˆÚ“®)
 	D3DXMatrixIdentity(&m_mat_world);
-	D3DXMatrixIdentity(&m_mat_scall);
+	D3DXMatrixIdentity(&m_mat_scale);
 	//D3DXMatrixIdentity(&m_mat_rot);
 	D3DXMatrixIdentity(&m_mat_rot_x);
 	D3DXMatrixIdentity(&m_mat_move);
-	D3DXMatrixScaling(&m_mat_scall, 10.0f, 10.0f, 10.0f);						// Šgk‚»‚Ì‚Ü‚Ü
+	D3DXMatrixScaling(&m_mat_scale, 10.0f, 10.0f, 10.0f);						// Šgk‚»‚Ì‚Ü‚Ü
 	D3DXMatrixRotationX(&m_mat_rot_x, D3DXToRadian(m_p_camera->GetYaw()));
 	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);
-	m_mat_world = m_mat_scall * m_mat_rot_x * m_mat_move;
+	m_mat_world = m_mat_scale * m_mat_rot_x * m_mat_move;
 }
 
 void Character::Player::Update()
