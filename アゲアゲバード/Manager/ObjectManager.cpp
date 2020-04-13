@@ -22,7 +22,7 @@ ObjectManager* ObjectManager::Instance()
 
 ObjectManager::ObjectManager()
 {
-
+	
 }
 
 ObjectManager::~ObjectManager()
@@ -68,7 +68,6 @@ void ObjectManager::AllDeleteObject()
 	std::vector<ObjectBase*>().swap(m_Block);
 	std::vector<ObjectBase*>().swap(m_Item);
 	std::vector<ObjectBase*>().swap(m_player);	// KêVÇµÇ≠í«â¡ÇµÇΩ
-
 }
 
 void ObjectManager::CreateObject()

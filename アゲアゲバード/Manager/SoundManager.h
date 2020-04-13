@@ -15,7 +15,7 @@ public:
 	void RegisterGameMainSound();	// ゲームメイン
 	void RegisterEndSound();		// ゲームエンド
 
-	// 鳴らす関数
+	// 鳴らす関数※音ごとに関数が必要
 	void SoundBGM(int volume_);
 	void SoundSelectBGM();
 	void SoundSelectSE();
@@ -24,6 +24,7 @@ public:
 	void SoundCancelSE();
 	void SoundClickSE();
 
+	//音が鳴り終わったらフラグを元に戻す関数
 	void ResetSelectFlag();
 
 	// 解放関数
@@ -38,13 +39,14 @@ protected:
 private:
 	static SoundManager* p_instance;
 
-	bool m_select1_flag;	// selectSEをループさせないためのフラグ
+	// selectSEをループさせないためのフラグ
+	bool m_select1_flag;	
 	bool m_select2_flag;
 	bool m_select3_flag;
 	bool m_cancel_flag;
 
 
-	// 使用する際の変数名　※初期化必須
+	// 使用する際の変数名(音ごとに必要)　※初期化必須
 	std::string m_bgm;
 	std::string m_select1_se;
 	std::string m_select2_se;
@@ -52,7 +54,7 @@ private:
 	std::string m_cancel_se;
 	std::string m_click_se;
 
-	// flie読み込み用変数
+	// flie読み込み用変数(音ごとに必要)
 	std::string m_bgm_file;
 	std::string m_se1_file;
 	std::string m_se2_file;

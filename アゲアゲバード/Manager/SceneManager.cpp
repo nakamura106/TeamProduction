@@ -22,7 +22,6 @@ SceneManager* SceneManager::Instance()
 
 void SceneManager::Init()
 {
-
 	m_Scene.push_back(new TitleScene);
 	m_Scene.push_back(new HelpScene);
 	m_Scene.push_back(new GameScene);
@@ -34,8 +33,6 @@ void SceneManager::Update()
 	UpdateInput();
 	KeyStateUpdate();
 
-
-	
 		switch (m_current_scene_id)
 		{
 		case BaseScene::SceneId::Title:
@@ -53,13 +50,10 @@ void SceneManager::Update()
 		default:
 			break;
 	}
-		
 }
 
 void SceneManager::Draw()
 {
-	
-	
 	if (m_current_scene_step == BaseScene::SceneStep::MainStep)
 	{
 		DrawStart();
@@ -70,7 +64,6 @@ void SceneManager::Draw()
 		GetD3DDevice()->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 		SetLight();
-
 
 		switch (m_current_scene_id)
 		{
@@ -89,7 +82,6 @@ void SceneManager::Draw()
 		default:
 			break;
 		}
-
 		DrawEnd();
 	}
 }
@@ -114,4 +106,9 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
+	for (int i=0;m_Scene.size();i++)
+	{
+		delete m_Scene[i];
+		m_Scene[i] = nullptr;
+	}
 }

@@ -1,11 +1,14 @@
 #include "Pot.h"
+#include "../DataBank/DataBank.h"
 
 Pot::Pot()
 {
 	m_map_radius = 870.0f;
+	DataBank::Instance()->SetMapRadius(m_map_radius);
 	m_map_centerpos.x = 0;
-	m_map_centerpos.y = 0;
+	m_map_centerpos.y = 1500;
 	m_map_centerpos.z = 0;
+	DataBank::Instance()->SetMapCenterPos(m_map_centerpos);
 	m_key = "pot";
 	D3DXMatrixIdentity(&m_mat_world);
 	D3DXMatrixScaling(&m_mat_scall, 30.0f, 30.0f, 30.0f);
