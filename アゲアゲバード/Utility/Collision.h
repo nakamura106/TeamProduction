@@ -84,7 +84,7 @@ public:
 		第七、八、九引数：マップの底辺の中心座標
 		第十引数　　　　：限界角度
 	*/
-	bool HitAngle(float player_pos_x, float player_pos_y, float player_pos_z, float maptop_pos_x, float maptop_pos_y, float maptop_pos_z, float mapunder_pos_x, float mapunder_pos_y, float mapunder_pos_z, float flg_angle);
+	bool HitAngle(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, D3DXVECTOR3 mapunder_pos_, float flg_angle);
 private:
 	//CAMERA* p_camera;
 

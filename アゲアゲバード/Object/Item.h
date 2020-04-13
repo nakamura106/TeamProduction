@@ -33,6 +33,7 @@ private:
 	float m_speed;
 	float m_provisional_speed;
 	
+	D3DXVECTOR3 vec;
 
 	float m_radius;
 
