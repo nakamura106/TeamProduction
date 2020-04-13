@@ -51,7 +51,6 @@ ObjectManager::~ObjectManager()
 			m_Item[i] = nullptr;
 		}
 	}
-	// K新しく追加した
 	for (int i = 0; i < m_player.size(); i++)
 	{
 		if (m_player[i] != nullptr)
@@ -67,7 +66,7 @@ void ObjectManager::AllDeleteObject()
 	std::vector<ObjectBase*>().swap(m_Object);
 	std::vector<ObjectBase*>().swap(m_Block);
 	std::vector<ObjectBase*>().swap(m_Item);
-	std::vector<ObjectBase*>().swap(m_player);	// K新しく追加した
+	std::vector<ObjectBase*>().swap(m_player);
 }
 
 void ObjectManager::CreateObject()
@@ -87,8 +86,6 @@ void ObjectManager::CreateItem()
 	m_Item.push_back(new Item);
 }
 
-// K新しく追加した
-// ヘッダーにプレイヤーも別とのことで分けました
 void ObjectManager::CreatePlayer()
 {
 	m_player.push_back(new Character::Player(50.0f, 10.0f, 0.0f));
@@ -112,7 +109,6 @@ void ObjectManager::Update()
 	{
 		m_Item[i]->Update();
 	}
-	// K新しく追加した
 	for (int i = 0; i < m_player.size(); i++)
 	{
 		m_player[i]->Update();
@@ -135,7 +131,6 @@ void ObjectManager::Draw()
 	{
 		m_Item[i]->Draw();
 	}
-	// K新しく追加した
 	for (int i = 0; i < m_player.size(); i++)
 	{
 		m_player[i]->Draw();

@@ -34,7 +34,7 @@ namespace Character
 
 	private:
 		void Move();
-		//void CollisionDetection();
+		void CollisionDetection();
 
 	private:
 		PlayerInfo m_pinfo;
