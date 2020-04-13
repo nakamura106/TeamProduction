@@ -13,6 +13,8 @@ public:
 	static DataBank* Instance();
 
 	void ResetData() {}
+	
+#pragma region Set
 
 	// カメラの注視点を保存する
 	void SetEyePos(D3DXVECTOR3 eyepos_);
@@ -40,6 +42,14 @@ public:
 
 	void SetSceneId(BaseScene::SceneId sceneid_);
 
+#pragma endregion
+
+#pragma region Get
+
+	// カメラの注視点を取得する
+	D3DXVECTOR3 GetEyePos() {
+		return m_eye_pos; 
+	}
 	// カメラの位置を取得する
 	D3DXVECTOR3 GetCameraPos() {
 		return m_Camera_Pos;
@@ -53,7 +63,14 @@ public:
 		return m_after_camera_pos;
 	}
 
-	D3DXVECTOR3 GetEyePos() { return m_eye_pos; }
+	// マップの中心の座標を取得する
+	D3DXVECTOR3 GetMapCenterPos() {
+		return m_map_centerpos;
+	}
+	// マップの
+	float GetMapRadius() {
+		return m_map_radius;
+	}
 
 	auto GetBlockPos() { return m_blockpos; }
 
@@ -72,6 +89,8 @@ public:
 
 	BaseScene::SceneId GetSceneId() { return m_scene_id; }
 	
+#pragma endregion
+
 protected:
 	DataBank();
 	~DataBank();
@@ -81,18 +100,16 @@ private:
 
 	float m_oilelevation;
 
+	D3DXVECTOR3 m_eye_pos;
 	D3DXVECTOR3 m_Camera_Pos;
 	D3DXVECTOR3 m_before_camera_pos;
 	D3DXVECTOR3 m_after_camera_pos;
 	
+	D3DXVECTOR3 m_map_centerpos;
+	float m_map_radius;
+
 	D3DXVECTOR3 m_player_pos;
 	float m_player_radius;
-
-	D3DXVECTOR3 m_eye_pos;
-
-	D3DXVECTOR3 m_map_centerpos;
-
-	float m_map_radius;
 
 	std::vector<D3DXVECTOR3> m_blockpos;
 

@@ -35,7 +35,7 @@ private:
 	std::vector<ObjectBase*> m_Object;
 	std::vector<ObjectBase*> m_Block;
 	std::vector<ObjectBase*> m_Item;
-	std::vector<ObjectBase*> m_player;	// KêVÇµÇ≠í«â¡ÇµÇΩ
+	std::vector<ObjectBase*> m_player;
 
 };
 
