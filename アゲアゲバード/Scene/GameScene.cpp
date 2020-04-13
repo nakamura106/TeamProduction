@@ -46,7 +46,7 @@ void GameScene::InitScene()
 
 void GameScene::MainScene()
 {
-	if (GetKeyDown(T_KEY))
+	if (GetKeyDown(T_KEY) || IsButtonDown(RightBButton))
 	{
 
 		ObjectManager::Instance()->CreateItem();
@@ -54,12 +54,12 @@ void GameScene::MainScene()
 
 	ObjectManager::Instance()->Update();
 	UIManager::Instance()->UpDate();
-	if (GetKeyDown(SPACE_KEY))
+	if (GetKeyDown(SPACE_KEY) || IsButtonDown(LeftBButton))
 	{
 		SoundManager::Instance()->SoundClickSE();
 		ObjectManager::Instance()->CreateBlock();
 	}
-	if (GetKeyDown(F_KEY))
+	if (GetKeyDown(F_KEY) )
 	{
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
 	}

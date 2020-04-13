@@ -45,6 +45,8 @@ public:
 
 	void MouseRotate();
 
+	void StickRotate();
+
 	D3DXVECTOR3 GetCamaraPos() {
 		return m_CameraPos;
 	}

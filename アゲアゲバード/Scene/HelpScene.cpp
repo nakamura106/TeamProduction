@@ -52,7 +52,7 @@ void HelpScene::InitScene()
 
 void HelpScene::MainScene()
 {
-	if (GetKeyDown(LEFT_KEY))
+	if (GetKeyDown(LEFT_KEY) || IsButtonDown(LeftButton) || IsButtonDown(L_LeftStick))
 	{
 		if (m_help_flag == 0)
 		{
@@ -65,7 +65,7 @@ void HelpScene::MainScene()
 			m_help_flag--;
 		}
 	}
-	else if (GetKeyDown(RIGHT_KEY))
+	else if (GetKeyDown(RIGHT_KEY) || IsButtonDown(RightButton) || IsButtonDown(L_RightStick))
 	{
 		if (m_help_flag == 2)
 		{

@@ -41,6 +41,7 @@ void CAMERA::Update()
 
 	Move();
 	MouseRotate();
+	StickRotate();
 
 	// 移動後の位置を保存
 	db->SetAfterCameraPos(m_CameraPos);
@@ -69,29 +70,29 @@ void CAMERA::Move()
 
 #pragma region カメラの移動
 	// 前
-	if (GetKey(W_KEY)) {
+	if (GetKey(W_KEY) || IsButtonPush(L_UpStick)) {
 		m_CameraPos.x += forward.x * m_Speed;
 		//m_CameraPos.y += forward.y * m_Speed;
 		m_CameraPos.z += forward.z * m_Speed;
 	}
 	// 後
-	if (GetKey(S_KEY)) {
+	if (GetKey(S_KEY) || IsButtonPush(L_DownStick)) {
 		m_CameraPos.x -= forward.x * m_Speed;
 		m_CameraPos.z -= forward.z * m_Speed;
 	}
 	// 左
-	if (GetKey(A_KEY)) {
+	if (GetKey(A_KEY) || IsButtonPush(L_LeftStick)) {
 		m_CameraPos.x -= left.x * m_Speed;
 		m_CameraPos.z += left.z * m_Speed;
 	}
 	// 右
-	if (GetKey(D_KEY)) {
+	if (GetKey(D_KEY) || IsButtonPush(L_RightStick)) {
 		m_CameraPos.x += left.x * m_Speed;
 		m_CameraPos.z -= left.z * m_Speed;
 	}
 
 	// 走る
-	if (GetKey(L_SHIFT)) {
+	if (GetKey(L_SHIFT) || IsButtonPush(AButton)) {
 		m_Speed = m_SprintSpeed;
 	}
 	else {
@@ -101,11 +102,11 @@ void CAMERA::Move()
 
 	// デバッグ用
 	// 上
-	if (GetKey(E_KEY)) {
+	if (GetKey(E_KEY)||IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
 		m_CameraPos.y += m_CameraUp.y * m_Speed;
 	}
 	// 下
-	if (GetKey(Q_KEY)) {
+	if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
 		m_CameraPos.y -= m_CameraUp.y * m_Speed;
 	}
 
@@ -139,6 +140,30 @@ void CAMERA::MouseRotate()
 	m_Pitch -= (GetMousePos().Y - 540) / 1080 * 20;
 	if (m_Pitch > 90.0f) { m_Pitch = 180.0f - m_Pitch; }
 	if (m_Pitch < -90.0f) { m_Pitch = -180.0f - m_Pitch; }
+
+	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));
+	m_EyePos.z = m_CameraPos.z + cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+}
+
+void CAMERA::StickRotate()
+{
+	if (IsButtonPush(R_LeftStick))
+	{
+		m_Yaw -= 2.0f;
+	}
+	if (IsButtonPush(R_RightStick))
+	{
+		m_Yaw += 2.0f;
+	}
+	if (IsButtonPush(R_UpStick))
+	{
+		m_Pitch += 2.0f;
+	}
+	if (IsButtonPush(R_DownStick))
+	{
+		m_Pitch -= 2.0f;
+	}
 
 	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
 	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));

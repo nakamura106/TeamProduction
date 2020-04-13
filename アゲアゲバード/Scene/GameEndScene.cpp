@@ -51,7 +51,7 @@ void GameEndScene::InitScene()
 
 void GameEndScene::MainScene()
 {
-	if (GetKeyDown(RETURN_KEY))
+	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
 	}

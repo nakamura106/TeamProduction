@@ -538,24 +538,50 @@ void UpdateGamePad()
 
 	bool is_push[ButtonKind::ButtonKindMax] = { false };
 
+	//左アナログスティック※500のとこでデッドゾーン調整
 	if (pad_data.lX < -500)
 	{
-		is_push[ButtonKind::LeftButton] = true;
+		is_push[ButtonKind::L_LeftStick] = true;
 	}
 	else if (pad_data.lX > 500)
 	{
-		is_push[ButtonKind::RightButton] = true;
+		is_push[ButtonKind::L_RightStick] = true;
 	}
 
 	if (pad_data.lY < -500)
 	{
-		is_push[ButtonKind::UpButton] = true;
+		is_push[ButtonKind::L_UpStick] = true;
 	}
 	else if (pad_data.lY > 500)
 	{
-		is_push[ButtonKind::DownButton] = true;
+		is_push[ButtonKind::L_DownStick] = true;
+	}
+	if (pad_data.lZ > 50000)
+	{
+		is_push[ButtonKind::LeftTButton] = true;
+	}
+	else if (pad_data.lZ < 500)
+	{
+		is_push[ButtonKind::RightTButton] = true;
 	}
 
+	if (pad_data.lRx < 10000)
+	{
+		is_push[ButtonKind::R_LeftStick] = true;
+	}
+	else if (pad_data.lRx > 40000)
+	{
+		is_push[ButtonKind::R_RightStick] = true;
+	}
+
+	if (pad_data.lRy < 10000)
+	{
+		is_push[ButtonKind::R_UpStick] = true;
+	}
+	else if (pad_data.lRy > 40000)
+	{
+		is_push[ButtonKind::R_DownStick] = true;
+	}
 	// 十字キー
 	if (pad_data.rgdwPOV[0] != 0xFFFFFFFF)
 	{
@@ -584,7 +610,7 @@ void UpdateGamePad()
 		}
 	}
 
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 6; ++i)
 	{
 		if (pad_data.rgbButtons[i] == 0x80)
 		{
