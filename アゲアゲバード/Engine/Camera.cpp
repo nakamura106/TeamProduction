@@ -35,7 +35,7 @@ void CAMERA::Update()
 		D3DXToRadian(60),	// 画角
 		aspect,				// アスペクト比
 		1.1f,				// near
-		200000.0f);			// far
+		20000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
 	//射影座標変換用の行列算出 endMove();
 
@@ -46,7 +46,10 @@ void CAMERA::Update()
 	// 移動後の位置を保存
 	db->SetAfterCameraPos(m_CameraPos);
 
-	DataBank::Instance()->SetEyePos(m_EyePos);
+	m_Forward = m_EyePos - m_CameraPos;
+	D3DXVec3Normalize(&m_Forward, &m_Forward);
+	DataBank::Instance()->SetForward(m_Forward);
+	DataBank::Instance()->SetEyePos(eye_pos);
 	
 }
 
@@ -138,8 +141,8 @@ void CAMERA::MouseRotate()
 
 	m_Yaw += (GetMousePos().X - 960) / 1920 * 50;//ここでカメラ感度変更可能
 	m_Pitch -= (GetMousePos().Y - 540) / 1080 * 20;
-	if (m_Pitch > 90.0f) { m_Pitch = 180.0f - m_Pitch; }
-	if (m_Pitch < -90.0f) { m_Pitch = -180.0f - m_Pitch; }
+	if (m_Pitch > 88.0f) { m_Pitch = 178.0f - m_Pitch; }
+	if (m_Pitch < -88.0f) { m_Pitch = -178.0f - m_Pitch; }
 
 	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
 	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));
@@ -164,7 +167,8 @@ void CAMERA::StickRotate()
 	{
 		m_Pitch -= 2.0f;
 	}
-
+	if (m_Pitch > 88.0f) { m_Pitch = 178.0f - m_Pitch; }
+	if (m_Pitch < -88.0f) { m_Pitch = -178.0f - m_Pitch; }
 	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
 	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));
 	m_EyePos.z = m_CameraPos.z + cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));

@@ -53,6 +53,11 @@ void DataBank::SetMapRadius(float map_radius_)
 	m_map_radius = map_radius_;
 }
 
+void DataBank::SetMapTop(float map_top_)
+{
+	m_map_top = map_top_;
+}
+
 void DataBank::SetOilPos(float oilelevation_)
 {
 	m_oilelevation = oilelevation_;
@@ -81,4 +86,9 @@ void DataBank::SetSceneStep(BaseScene::SceneStep scenestep_)
 void DataBank::SetSceneId(BaseScene::SceneId sceneid_)
 {
 	m_scene_id = sceneid_;
+}
+
+void DataBank::SetForward(D3DXVECTOR3 forward_)
+{
+	m_Forward = forward_;
 }

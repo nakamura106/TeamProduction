@@ -27,6 +27,8 @@ public:
 
 	void SetMapRadius(float map_radius_);
 
+	void SetMapTop(float map_top_);
+
 	void SetOilPos(float oilelevation_);
 
 	void SetBlockPos(D3DXVECTOR3 blockpos_);
@@ -39,6 +41,8 @@ public:
 	void SetSceneStep(BaseScene::SceneStep scenestep_);
 
 	void SetSceneId(BaseScene::SceneId sceneid_);
+
+	void SetForward(D3DXVECTOR3 forward_);
 
 	// ƒJƒƒ‰‚ÌˆÊ’u‚ğæ“¾‚·‚é
 	D3DXVECTOR3 GetCameraPos() {
@@ -68,10 +72,20 @@ public:
 		return m_player_radius;
 	}
 
+	float GetMapRadius() { return m_map_radius; }
+
+	float GetMapTop() { return m_map_top; }
+
+	D3DXVECTOR3 GetMapCenterPos() { return m_map_centerpos; }
+
+	D3DXVECTOR3 GetForward() { return m_Forward; }
+
 	BaseScene::SceneStep GetSceneStep() { return m_scene_step; }
 
 	BaseScene::SceneId GetSceneId() { return m_scene_id; }
 	
+
+
 protected:
 	DataBank();
 	~DataBank();
@@ -92,7 +106,11 @@ private:
 
 	D3DXVECTOR3 m_map_centerpos;
 
+	D3DXVECTOR3 m_Forward;
+
 	float m_map_radius;
+
+	float m_map_top;
 
 	std::vector<D3DXVECTOR3> m_blockpos;
 

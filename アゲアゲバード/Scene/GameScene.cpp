@@ -48,7 +48,7 @@ void GameScene::MainScene()
 {
 	if (GetKeyDown(T_KEY) || IsButtonDown(RightBButton))
 	{
-
+		SoundManager::Instance()->SoundThrow();
 		ObjectManager::Instance()->CreateItem();
 	}
 

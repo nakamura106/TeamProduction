@@ -14,6 +14,7 @@
 #include"Manager/UIManager.h"
 #include"DataBank/DataBank.h"
 #include"Manager/SceneManager.h"
+#include"Utility/Collision.h"
 
 
 int WINAPI WinMain(HINSTANCE hinstance,
@@ -34,7 +35,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	//UIManager::Instance()->LoadTex();
 
 	SceneManager::Instance()->Init();
-	
 
 	while (true)
 	{
@@ -59,13 +59,13 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		else
 		{
 			
-		/*	for (const auto& itr:DataBank::Instance()->GetBlockPos())
+			for (const auto& itr:DataBank::Instance()->GetBlockPos())
 			{
 				if (itr.x >= 10 || itr.y >= 10 || itr.z >= 10)
 				{
-
+					
 				}
-			}*/
+			}
 			
 			
 			//UIManager::Instance()->UpDate();

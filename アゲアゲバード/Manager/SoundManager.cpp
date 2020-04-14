@@ -28,8 +28,10 @@ void SoundManager::RegisterGameMainSound()
 {
 	m_bgm_file = "Res/wav/GameBgm.wav";
 	m_click_se_file = "Res/wav/putting_a_box.wav";
+	m_throw_se_file = "Res/wav/throw.wav";
 	m_pAudio->Load(m_bgm, m_bgm_file);
 	m_pAudio->Load(m_click_se, m_click_se_file);
+	m_pAudio->Load(m_throw_se, m_throw_se_file);
 	
 }
 
@@ -102,6 +104,11 @@ void SoundManager::SoundCancelSE()
 void SoundManager::SoundClickSE()
 {
 	m_pAudio->Play(m_click_se, 0, false);
+}
+
+void SoundManager::SoundThrow()
+{
+	m_pAudio->Play(m_throw_se,0,false);
 }
 
 

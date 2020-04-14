@@ -82,6 +82,8 @@ private:
 	/* カメラの上向きのベクトル */
 	D3DXVECTOR3 m_CameraUp;
 
+	D3DXVECTOR3 m_Forward;
+
 	/* カメラのビュー情報を保存する変数 */
 	D3DXMATRIX m_MatView;
 
