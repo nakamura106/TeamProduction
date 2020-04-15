@@ -88,7 +88,7 @@ void ObjectManager::CreateItem()
 
 void ObjectManager::CreatePlayer()
 {
-	m_player.push_back(new Character::Player(50.0f, 10.0f, 0.0f));
+	m_player.push_back(new Character::Player(0.0f, 10.0f, -100.0f));
 }
 
 void ObjectManager::Update()
@@ -108,6 +108,10 @@ void ObjectManager::Update()
 	for (int i = 0; i < m_Item.size(); i++)
 	{
 		m_Item[i]->Update();
+		if (DataBank::Instance()->GetOilPos() >= m_Item[i]->GetPos().y)
+		{
+			m_Item.erase(m_Item.begin() + i);
+		}
 	}
 	for (int i = 0; i < m_player.size(); i++)
 	{

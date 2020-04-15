@@ -46,10 +46,7 @@ void CAMERA::Update()
 	// ˆÚ“®Œã‚ÌˆÊ’u‚ð•Û‘¶
 	db->SetAfterCameraPos(m_CameraPos);
 
-	m_Forward = m_EyePos - m_CameraPos;
-	D3DXVec3Normalize(&m_Forward, &m_Forward);
-	DataBank::Instance()->SetForward(m_Forward);
-	DataBank::Instance()->SetEyePos(eye_pos);
+
 	
 }
 
@@ -144,9 +141,10 @@ void CAMERA::MouseRotate()
 	if (m_Pitch > 88.0f) { m_Pitch = 178.0f - m_Pitch; }
 	if (m_Pitch < -88.0f) { m_Pitch = -178.0f - m_Pitch; }
 
-	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
-	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));
-	m_EyePos.z = m_CameraPos.z + cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	m_EyePos.x = sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	m_EyePos.y = sinf(D3DXToRadian(m_Pitch));
+	m_EyePos.z = cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	DataBank::Instance()->SetEyePos(m_EyePos);
 }
 
 void CAMERA::StickRotate()
