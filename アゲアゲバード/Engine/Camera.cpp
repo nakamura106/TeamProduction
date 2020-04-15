@@ -46,6 +46,11 @@ void CAMERA::Update()
 	// ˆÚ“®Œã‚ÌˆÊ’u‚ð•Û‘¶
 	db->SetAfterCameraPos(m_CameraPos);
 
+	m_Forward = m_EyePos - m_CameraPos;
+	D3DXVec3Normalize(&m_Forward, &m_Forward);
+	DataBank::Instance()->SetForward(m_Forward);
+	DataBank::Instance()->SetEyePos(eye_pos);
+
 
 	
 }
