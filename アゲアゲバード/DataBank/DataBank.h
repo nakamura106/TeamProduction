@@ -20,10 +20,6 @@ public:
 	void SetEyePos(D3DXVECTOR3 eyepos_);
 	// カメラの位置を保存する
 	void SetCameraPos(D3DXVECTOR3 camerapos_);
-	// 移動前のカメラの位置を保存する
-	void SetBeforeCameraPos(D3DXVECTOR3 camera_pos_);
-	// 移動後のカメラの位置を保存する
-	void SetAfterCameraPos(D3DXVECTOR3 camera_pos_);
 
 	void SetMapCenterPos(D3DXVECTOR3 map_centerpos_);
 
@@ -33,8 +29,10 @@ public:
 
 	void SetBlockPos(D3DXVECTOR3 blockpos_);
 
-	// プレイヤーの位置を保存する
-	void SetPlayerPos(D3DXVECTOR3 player_pos_);
+	// 移動前のプレイヤーの位置を保存する
+	void SetBeforePlayerPos(D3DXVECTOR3 player_pos_);
+	// 移動後のプレイヤーの位置を保存する
+	void SetAfterPlayerPos(D3DXVECTOR3 player_pos_);
 	// プレイヤーの半径を保存する
 	void SetPlayerRadius(float player_radius_);
 
@@ -54,14 +52,6 @@ public:
 	D3DXVECTOR3 GetCameraPos() {
 		return m_Camera_Pos;
 	}
-	// 移動前のカメラの位置を取得する
-	D3DXVECTOR3 GetBeforeCameraPos() {
-		return m_before_camera_pos;
-	}
-	// 移動後のカメラの位置を取得する
-	D3DXVECTOR3 GetAfterCameraPos() {
-		return m_after_camera_pos;
-	}
 
 	// マップの中心の座標を取得する
 	D3DXVECTOR3 GetMapCenterPos() {
@@ -76,9 +66,13 @@ public:
 
 	float GetOilPos() { return m_oilelevation; }
 
-	// プレイヤーの位置を取得する
-	D3DXVECTOR3 GetPlayerPos(D3DXVECTOR3 player_pos_) {
-		return m_player_pos;
+	// 移動前のプレイヤーの位置を取得する
+	D3DXVECTOR3 GetBeforePlayerPos() {
+		return m_before_player_pos;
+	}
+	// 移動後のプレイヤーの位置を取得する
+	D3DXVECTOR3 GetAfterPlayerPos() {
+		return m_after_player_pos;
 	}
 	// プレイヤーの半径を取得する
 	float GetPlayerRadius(float player_radius_) {
@@ -102,13 +96,12 @@ private:
 
 	D3DXVECTOR3 m_eye_pos;
 	D3DXVECTOR3 m_Camera_Pos;
-	D3DXVECTOR3 m_before_camera_pos;
-	D3DXVECTOR3 m_after_camera_pos;
 	
 	D3DXVECTOR3 m_map_centerpos;
 	float m_map_radius;
 
-	D3DXVECTOR3 m_player_pos;
+	D3DXVECTOR3 m_before_player_pos;
+	D3DXVECTOR3 m_after_player_pos;
 	float m_player_radius;
 
 	std::vector<D3DXVECTOR3> m_blockpos;

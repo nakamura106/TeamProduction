@@ -32,16 +32,6 @@ void DataBank::SetCameraPos(D3DXVECTOR3 camerapos_)
 {
 	m_Camera_Pos = camerapos_;
 }
-// 移動前のカメラの位置
-void DataBank::SetBeforeCameraPos(D3DXVECTOR3 camera_pos_)
-{
-	m_before_camera_pos = camera_pos_;
-}
-// 移動後のカメラの位置
-void DataBank::SetAfterCameraPos(D3DXVECTOR3 camera_pos_)
-{
-	m_after_camera_pos = camera_pos_;
-}
 
 void DataBank::SetMapCenterPos(D3DXVECTOR3 map_centerpos_)
 {
@@ -63,9 +53,14 @@ void DataBank::SetBlockPos(D3DXVECTOR3 blockpos_)
 	m_blockpos.push_back(blockpos_);
 }
 
-void DataBank::SetPlayerPos(D3DXVECTOR3 player_pos_)
+void DataBank::SetBeforePlayerPos(D3DXVECTOR3 player_pos_)
 {
-	m_player_pos = player_pos_;
+	m_before_player_pos = player_pos_;
+}
+
+void DataBank::SetAfterPlayerPos(D3DXVECTOR3 player_pos_)
+{
+	m_after_player_pos = player_pos_;
 }
 
 void DataBank::SetPlayerRadius(float player_radius_)

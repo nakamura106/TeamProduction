@@ -12,12 +12,12 @@ public:
 		m_SprintSpeed(6.0f)
 	{
 		m_CameraPos.x = pos_.x;
-		m_CameraPos.y = pos_.y + 0.5;	// 今だけ(FirstPerson用)
+		m_CameraPos.y = pos_.y;//+ 0.5;	// 今だけ(FirstPerson用)
 		m_CameraPos.z = pos_.z;
 
 		m_EyePos.x = 0.0f;
 		m_EyePos.y = 5.0f;
-		m_EyePos.z = -.0f;
+		m_EyePos.z = 0.0f;
 
 		m_CameraUp.x = 0.0f;
 		m_CameraUp.y = 1.0f;
@@ -30,9 +30,6 @@ public:
 		m_Roll = 0.0f;
 
 		m_Speed = m_WalkSpeed;
-
-		m_jamp_power = 3.0f;
-		m_jflag = false;
 
 		D3DXMatrixIdentity(&m_MatView);
 	}
@@ -53,6 +50,10 @@ public:
 
 	D3DXVECTOR3 GetEyePos() {
 		return m_EyePos;
+	}
+
+	D3DXVECTOR3 GetCameraUp() {
+		return m_CameraUp;
 	}
 
 	float GetYaw() {
@@ -104,16 +105,7 @@ private:
 	float m_Speed;
 
 	/* 移動速度 */
-	D3DXVECTOR3 m_Velocity;
-
-
-	/* ジャンプ力 */
-	float m_jamp_power;
-	/* ジャンプフラグ */
-	bool m_jflag;
-	/* 重力 */
-	Gravity m_grav;
-	
+	//D3DXVECTOR3 m_Velocity;
 };
 
 #endif
