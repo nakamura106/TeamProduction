@@ -88,12 +88,8 @@ public:
 	float GetPlayerRadius(float player_radius_) {
 		return m_player_radius;
 	}
-
-	float GetMapRadius() { return m_map_radius; }
-
+	
 	float GetMapTop() { return m_map_top; }
-
-	D3DXVECTOR3 GetMapCenterPos() { return m_map_centerpos; }
 
 	D3DXVECTOR3 GetForward() { return m_Forward; }
 
@@ -125,7 +121,6 @@ private:
 
 	float m_map_top;
 
-	float m_map_radius;
 
 	D3DXVECTOR3 m_player_pos;
 	float m_player_radius;
