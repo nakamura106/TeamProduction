@@ -44,18 +44,21 @@ public:
 	*/
 	bool HitBox(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
 
+	bool HitBox2(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
+
+
 	//ブロックの上にいるかどうか
 	bool HitBoxTop(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
 	
 #pragma region ブロックとプレイヤーのそれぞれの軸のあたり判定(触らなくてよい) 
 	//立方体と球のY軸判定
-	//bool HitBoxTopUnder(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_wight_, float player_radius_);
+	bool HitBoxTopUnder(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_wight_, float player_radius_);
 
 	//立方体と球のX軸判定
-	//bool HitBoxRightLeft(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_wight_, float player_radius_);
+	bool HitBoxRightLeft(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_wight_, float player_radius_);
 
 	//立方体と球のZ軸判定
-	//bool HitBoxInnerBack(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_wight_, float player_radius_);
+	bool HitBoxInnerBack(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_wight_, float player_radius_);
 #pragma endregion
 
 	/*プレイヤーとマップ(円と内接円のあたり判定)
