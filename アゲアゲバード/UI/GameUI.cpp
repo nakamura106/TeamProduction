@@ -151,11 +151,11 @@ void GameUI::UpDateTimer()
 void GameUI::UpDatePlayerPos()
 {
 	//ƒvƒŒƒCƒ„[‚Ìoldpos‚Æpos‚ð”äŠr‚µ‚Ä+‚È‚ç+
-	if (DataBank::Instance()->GetBeforeCameraPos().y < DataBank::Instance()->GetAfterCameraPos().y)
+	if (DataBank::Instance()->GetBeforePlayerPos().y < DataBank::Instance()->GetAfterPlayerPos().y)
 	{
 		player_pos.y -=1.0f;
 	}
-	else if (DataBank::Instance()->GetBeforeCameraPos().y > DataBank::Instance()->GetAfterCameraPos().y)
+	else if (DataBank::Instance()->GetBeforePlayerPos().y > DataBank::Instance()->GetAfterPlayerPos().y)
 	{
 		player_pos.y += 1.0f;
 	}
