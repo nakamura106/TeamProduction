@@ -43,8 +43,6 @@ void CAMERA::Update()
 	D3DXVec3Normalize(&m_Forward, &m_Forward);
 	DataBank::Instance()->SetForward(m_Forward);
 	DataBank::Instance()->SetEyePos(eye_pos);
-
-
 }
 
 void CAMERA::Move()
