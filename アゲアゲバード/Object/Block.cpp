@@ -4,6 +4,7 @@
 
 Block::Block()
 {
+	
 	m_key = "block";
 	D3DXMatrixIdentity(&m_mat_world);
 	D3DXMatrixScaling(&m_mat_scale, 1.0f, 1.0f, 1.0f);
