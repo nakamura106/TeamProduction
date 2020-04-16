@@ -88,7 +88,9 @@ void ObjectManager::CreateItem()
 
 void ObjectManager::CreatePlayer()
 {
-	m_player.push_back(new Character::Player(0.0f, 10.0f, -100.0f));
+
+
+
 }
 
 void ObjectManager::Update()

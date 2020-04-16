@@ -5,10 +5,6 @@
 
 void CAMERA::Update()
 {
-	// 移動前の位置を保存
-	DataBank* db = DataBank::Instance();
-	db->SetBeforeCameraPos(m_CameraPos);
-
 	//ビュー座標変換用の行列算出 start
 	D3DXVECTOR3 camera_pos(m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);	// カメラ位置
 	D3DXVECTOR3 eye_pos(m_EyePos.x, m_EyePos.y, m_EyePos.z);				// 注視点
@@ -43,95 +39,94 @@ void CAMERA::Update()
 	MouseRotate();
 	StickRotate();
 
-	// 移動後の位置を保存
-	db->SetAfterCameraPos(m_CameraPos);
-
-	//m_Forward = m_EyePos - m_CameraPos;
-	//D3DXVec3Normalize(&m_Forward, &m_Forward);
-	//DataBank::Instance()->SetForward(m_Forward);
-	//DataBank::Instance()->SetEyePos(eye_pos);
 
 
-	
+
 }
 
 void CAMERA::Move()
 {
-	// カメラの前向きベクトルを出す
-	D3DXVECTOR3 forward;
-	forward = m_EyePos - m_CameraPos;
+//	// カメラの前向きベクトルを出す
+//	D3DXVECTOR3 forward;
+//	forward = m_EyePos - m_CameraPos;
+//
+//	// ベクトルの正規化
+//	D3DXVec3Normalize(&forward, &forward);
+//
+//	// カメラの左向きのベクトル
+//	// 前向きのベクトルに直角なベクトルを算出する
+//	D3DXVECTOR3 left;
+//	left = D3DXVECTOR3(forward.z, forward.y, forward.x);
+//
+//#pragma region カメラの移動
+//	// 前
+//	if (GetKey(W_KEY) || IsButtonPush(L_UpStick)) {
+//		m_CameraPos.x += forward.x * m_Speed;
+//		m_CameraPos.z += forward.z * m_Speed;
+//	}
+//	// 後
+//	if (GetKey(S_KEY) || IsButtonPush(L_DownStick)) {
+//		m_CameraPos.x -= forward.x * m_Speed;
+//		m_CameraPos.z -= forward.z * m_Speed;
+//	}
+//	// 左
+//	if (GetKey(A_KEY) || IsButtonPush(L_LeftStick)) {
+//		m_CameraPos.x -= left.x * m_Speed;
+//		m_CameraPos.z += left.z * m_Speed;
+//	}
+//	// 右
+//	if (GetKey(D_KEY) || IsButtonPush(L_RightStick)) {
+//		m_CameraPos.x += left.x * m_Speed;
+//		m_CameraPos.z -= left.z * m_Speed;
+//	}
+//
+//	// 走る
+//	if (GetKey(L_SHIFT) || IsButtonPush(AButton)) {
+//		m_Speed = m_SprintSpeed;
+//	}
+//	else {
+//		m_Speed = m_WalkSpeed;
+//	}
+//
+//
+//	// デバッグ用
+//	// 上
+//	if (GetKey(E_KEY)||IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
+//		m_CameraPos.y += m_CameraUp.y * m_Speed;
+//	}
+//	// 下
+//	if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
+//		m_CameraPos.y -= m_CameraUp.y * m_Speed;
+//	}
+//
+//	//// ジャンプ
+//	//if (GetKeyDown(E_KEY) && m_jflag == false)
+//	//{
+//	//	m_jflag = true;
+//	//}
+//	//if (m_jflag == true)
+//	//{
+//	//	m_grav.AddGravity(m_CameraPos.y, m_jamp_power);
+//	//	m_CameraPos.y = m_grav.GetPosY();
+//
+//	//	if (m_CameraPos.y < 10.0f)
+//	//	{
+//	//		m_jflag = false;
+//	//		m_CameraPos.y = 10.0f;
+//	//		m_grav.ResetPalam();
+//	//	}
+//	//}
 
-	// ベクトルの正規化
-	D3DXVec3Normalize(&forward, &forward);
-	//forward.y = 0.0f;
+	DataBank* p_db = DataBank::Instance();
 
-	// カメラの左向きのベクトル
-	// 前向きのベクトルに直角なベクトルを算出する
-	D3DXVECTOR3 left;
-	left = D3DXVECTOR3(forward.z, forward.y, forward.x);
-
-	/*m_Velocity.x = forward.x * m_Speed;
-	m_Velocity.z = forward.z * m_Speed;*/
-
-#pragma region カメラの移動
-	// 前
-	if (GetKey(W_KEY) || IsButtonPush(L_UpStick)) {
-		m_CameraPos.x += forward.x * m_Speed;
-		//m_CameraPos.y += forward.y * m_Speed;
-		m_CameraPos.z += forward.z * m_Speed;
-	}
-	// 後
-	if (GetKey(S_KEY) || IsButtonPush(L_DownStick)) {
-		m_CameraPos.x -= forward.x * m_Speed;
-		m_CameraPos.z -= forward.z * m_Speed;
-	}
-	// 左
-	if (GetKey(A_KEY) || IsButtonPush(L_LeftStick)) {
-		m_CameraPos.x -= left.x * m_Speed;
-		m_CameraPos.z += left.z * m_Speed;
-	}
-	// 右
-	if (GetKey(D_KEY) || IsButtonPush(L_RightStick)) {
-		m_CameraPos.x += left.x * m_Speed;
-		m_CameraPos.z -= left.z * m_Speed;
-	}
-
-	// 走る
-	if (GetKey(L_SHIFT) || IsButtonPush(AButton)) {
-		m_Speed = m_SprintSpeed;
-	}
-	else {
-		m_Speed = m_WalkSpeed;
-	}
-
-
-	// デバッグ用
-	// 上
-	if (GetKey(E_KEY)||IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
-		m_CameraPos.y += m_CameraUp.y * m_Speed;
-	}
-	// 下
-	if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
-		m_CameraPos.y -= m_CameraUp.y * m_Speed;
-	}
-
-	//// ジャンプ
-	//if (GetKeyDown(E_KEY) && m_jflag == false)
-	//{
-	//	m_jflag = true;
-	//}
-	//if (m_jflag == true)
-	//{
-	//	m_grav.AddGravity(m_CameraPos.y, m_jamp_power);
-	//	m_CameraPos.y = m_grav.GetPosY();
-
-	//	if (m_CameraPos.y < 10.0f)
-	//	{
-	//		m_jflag = false;
-	//		m_CameraPos.y = 10.0f;
-	//		m_grav.ResetPalam();
-	//	}
-	//}
+	// 過去のプレイヤーの位置を取得(移動前)
+	D3DXVECTOR3 befor_player = p_db->GetBeforePlayerPos();
+	// 現在のプレイヤーの位置を取得(移動後)
+	D3DXVECTOR3 after_player = p_db->GetAfterPlayerPos();
+	// プレイヤーが動いた距離 = 現在のプレイヤーの位置 - 過去のプレイヤーの位置
+	D3DXVECTOR3 amount_of_movement = after_player - befor_player;
+	// カメラにプレイヤーの移動量を足す
+	m_CameraPos += amount_of_movement;
 
 	DataBank::Instance()->SetCameraPos(m_CameraPos);
 #pragma endregion

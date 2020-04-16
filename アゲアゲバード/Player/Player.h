@@ -14,12 +14,20 @@ enum class PlayerStatus {
 };
 
 struct PlayerInfo {
-	PlayerStatus state;			// 状態
+	PlayerStatus state;				// 状態
 
-	D3DXVECTOR3 eye;			// プレイヤーの向いている方向
+	D3DXVECTOR3 eye;				// プレイヤーの向いている方向
+	D3DXVECTOR3 upvec;				// プレイヤーの上向きのベクトル
+	D3DXVECTOR3 amount_of_movement;	// 移動量
 
-	float radius;
-	//float throw_power;		// 投げる力
+	float walk_speed;				// 歩いているときのスピード
+	float sprint_speed;				// 走っているときのスピード
+	float speed;					// 移動用のスピード
+
+	float radius;					// 半径
+
+	float jamp_power;				// ジャンプ力
+	//float throw_power;			// 投げる力
 };
 
 namespace Character
@@ -42,6 +50,10 @@ namespace Character
 		CAMERA* m_p_camera;
 
 		Collision* m_p_collision;
+
+		Gravity m_grav;		// 重力
+
+		bool m_jflag;		// ジャンプフラグ
 	};
 }
 #endif

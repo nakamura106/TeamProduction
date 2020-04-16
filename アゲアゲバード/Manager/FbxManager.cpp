@@ -24,7 +24,7 @@ MyFbxManager::FbxManager::FbxManager()
 	LoadFbxMesh("oil", "Res/FBX/FloorOil.fbx");
 	LoadFbxMesh("filloil", "Res/FBX/FillOil.fbx");
 	LoadFbxMesh("item", "Res/FBX/BallMaya.fbx");
-	//LoadFbxMesh("player", "Res/FBX/PopBird_Export.fbx");	// KêVÇµÇ≠í«â¡ÇµÇΩ
+	LoadFbxMesh("player", "Res/FBX/PopBird_Export.fbx");	// KêVÇµÇ≠í«â¡ÇµÇΩ
 }
 
 MyFbxManager::FbxManager::~FbxManager()
