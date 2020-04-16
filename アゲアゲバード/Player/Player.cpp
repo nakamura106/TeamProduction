@@ -5,6 +5,8 @@
 
 Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 {
+	m_pinfo.state = PlayerStatus::WAIT;
+
 	m_pos.x = pos_x_;
 	m_pos.y = pos_y_;
 	m_pos.z = pos_z_;
@@ -13,7 +15,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.sprint_speed = 1.0f;
 	m_pinfo.speed = m_pinfo.walk_speed;
 
-	m_pinfo.radius = 1.0f;	// 分からん
+	m_pinfo.radius = 50.0f;	// 分からん
 
 	m_pinfo.jamp_power = 3.0f;
 
@@ -39,9 +41,9 @@ void Character::Player::Update()
 {
 	Move();
 
-	m_p_camera->Update();
+	CollisionDetection();
 
-	//CollisionDetection();
+	m_p_camera->Update();
 
 	// かけ合わせ(拡縮×回転×移動)
 	D3DXMatrixScaling(&m_mat_scale, 5.0f, 5.0f, 5.0f);
@@ -127,8 +129,6 @@ void Character::Player::Move()
 	//		m_grav.ResetPalam();
 	//	}
 	//}
-
-	p_db->SetAfterPlayerPos(m_pos);
 }
 
 void Character::Player::CollisionDetection()
@@ -157,14 +157,13 @@ void Character::Player::CollisionDetection()
 		map_radius			// 第六引数		：マップの半径
 	) == true)
 	{
-		m_pos -= amount_of_movement;
+		m_pos = befor_player;
 	}
 	// 天井とプレイヤーの当たり判定
 	D3DXVECTOR3 top;
 	D3DXVECTOR3 bottom;
-	//top = p_db->GetMapTopPos();
-	top.x = 0.0f, top.y = 100.0f, top.z = 0.0f;
-	bottom.x = 0.0f, bottom.y = 0.0f, bottom.z = 0.0f;
+	top = p_db->GetMapTop();
+	bottom = p_db->GetMapBottom();
 	if (m_p_collision->HitAngle(
 		m_pos,					// 第一引数：プレイヤーの座標
 		top,					// 第二引数：マップの頂上の中心座標
@@ -172,7 +171,7 @@ void Character::Player::CollisionDetection()
 		30.0f	// 今だけ		// 第四引数：限界角度
 	) == true)
 	{
-		
+		m_pos = befor_player;
 	}
 
 #pragma endregion
@@ -192,12 +191,12 @@ void Character::Player::CollisionDetection()
 	//	item_radius					// 第八引数　　　　：アイテムの半径
 	//) == true)
 	//{
-
+	//	
 	//}
 
 #pragma endregion
 
-	#pragma region ブロックとプレイヤーの当たり判定
+#pragma region ブロックとプレイヤーの当たり判定
 
 	// ブロックの幅は今だけ
 	// 側面
@@ -210,7 +209,7 @@ void Character::Player::CollisionDetection()
 			m_pinfo.radius	// 第四引数：プレイヤーの半径
 		) == true)
 		{
-			
+			m_pos = befor_player;
 		}
 	}
 	// 上部にいるかどうか
@@ -223,7 +222,7 @@ void Character::Player::CollisionDetection()
 			m_pinfo.radius
 		) == true)
 		{
-			
+			m_pos = befor_player;
 		}
 	}
 	// プレイヤーの視線とブロック
@@ -240,4 +239,30 @@ void Character::Player::CollisionDetection()
 	}
 
 #pragma endregion
+
+	p_db->SetAfterPlayerPos(m_pos);
+}
+
+void Character::Player::Draw()
+{
+	if (m_pinfo.state == PlayerStatus::WAIT)
+	{
+		m_key = "player_wait";
+		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
+	}
+	if (m_pinfo.state == PlayerStatus::WALK)
+	{
+		m_key = "player_walk";
+		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
+	}
+	if (m_pinfo.state == PlayerStatus::JAMP)
+	{
+		m_key = "player_jamp";
+		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
+	}
+	if (m_pinfo.state == PlayerStatus::THROW)
+	{
+		m_key = "player_shrow";
+		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
+	}
 }

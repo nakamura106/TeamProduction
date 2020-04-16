@@ -25,7 +25,10 @@ public:
 
 	void SetMapRadius(float map_radius_);
 
-	void SetMapTop(float map_top_);
+	// マップ(ポット)の頂上の中心座標を保存する
+	void SetMapTop(D3DXVECTOR3 map_top_);
+	// マップ(ポット)の底辺の中心座標を保存する
+	void SetMapBottom(D3DXVECTOR3 map_bottom_);
 
 	void SetOilPos(float oilelevation_);
 
@@ -61,7 +64,7 @@ public:
 	D3DXVECTOR3 GetMapCenterPos() {
 		return m_map_centerpos;
 	}
-	// マップの
+	// マップの半径
 	float GetMapRadius() {
 		return m_map_radius;
 	}
@@ -83,7 +86,10 @@ public:
 		return m_player_radius;
 	}
 	
-	float GetMapTop() { return m_map_top; }
+	D3DXVECTOR3 GetMapTop() { return m_map_top; }
+	D3DXVECTOR3 GetMapBottom() {
+		return m_map_bottom;
+	}
 
 	D3DXVECTOR3 GetForward() { return m_Forward; }
 
@@ -111,7 +117,8 @@ private:
 
 	float m_map_radius;
 
-	float m_map_top;
+	D3DXVECTOR3 m_map_top;
+	D3DXVECTOR3 m_map_bottom;
 
 	D3DXVECTOR3 m_before_player_pos;
 	D3DXVECTOR3 m_after_player_pos;

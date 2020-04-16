@@ -43,9 +43,14 @@ void DataBank::SetMapRadius(float map_radius_)
 	m_map_radius = map_radius_;
 }
 
-void DataBank::SetMapTop(float map_top_)
+void DataBank::SetMapTop(D3DXVECTOR3 map_top_)
 {
 	m_map_top = map_top_;
+}
+
+void DataBank::SetMapBottom(D3DXVECTOR3 map_bottom_)
+{
+	m_map_bottom = map_bottom_;
 }
 
 void DataBank::SetOilPos(float oilelevation_)
