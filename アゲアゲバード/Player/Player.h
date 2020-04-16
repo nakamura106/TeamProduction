@@ -8,7 +8,7 @@
 enum class PlayerStatus {
 	WAIT,		// 待機
 	WALK,		// 歩く
-	SPRINT,		// 疾走
+	//SPRINT,	// 疾走
 	JAMP,		// ジャンプ
 	THROW,		// 投げる
 };
@@ -24,10 +24,12 @@ struct PlayerInfo {
 	float sprint_speed;				// 走っているときのスピード
 	float speed;					// 移動用のスピード
 
-	float radius;					// 半径
+	float radius;					// 半径(プレイヤーの当たり判定をとるための)
 
 	float jamp_power;				// ジャンプ力
 	//float throw_power;			// 投げる力
+
+	D3DXVECTOR2 item;
 };
 
 namespace Character
@@ -39,6 +41,7 @@ namespace Character
 
 	public:
 		void Update()override;
+		void Draw()override;
 
 	private:
 		void Move();

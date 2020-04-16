@@ -3,10 +3,16 @@
 
 Pot::Pot()
 {
-	m_map_radius = 300.0f;
+	m_map_radius = 100.0f;
 	DataBank::Instance()->SetMapRadius(m_map_radius);
-	m_map_top = 1000.0f;
+	m_map_top.x = 0.0f;
+	m_map_top.y = 1000.0f;
+	m_map_top.z = 0.0f;
 	DataBank::Instance()->SetMapTop(m_map_top);
+	m_map_bottom.x = 0.0f;
+	m_map_bottom.y = 0.0f;
+	m_map_bottom.z = 0.0f;
+	DataBank::Instance()->SetMapBottom(m_map_bottom);
 	m_map_centerpos.x = 0;
 	m_map_centerpos.y = 500.0f;
 	m_map_centerpos.z = 0;

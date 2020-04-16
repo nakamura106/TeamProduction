@@ -180,7 +180,7 @@ bool Collision::HitMap(float player_circle_pos_x_, float player_circle_pos_z_, f
 
 	float c = sqrtf(x * x + z * z);
 
-	float sub_radius = player_circle_radius_ - map_circle_radius_;
+	float sub_radius = map_circle_radius_ - player_circle_radius_;
 
 	if (c >= sub_radius)
 	{
