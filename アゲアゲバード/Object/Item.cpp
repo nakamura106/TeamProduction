@@ -7,20 +7,13 @@ Item::Item()
 {
 	m_pos = DataBank::Instance()->GetCameraPos();
 
-	m_direction.x = DataBank::Instance()->GetEyePos().x;
-	m_direction.y = DataBank::Instance()->GetEyePos().y;
-	m_direction.z = DataBank::Instance()->GetEyePos().z;
+	m_direction.x = DataBank::Instance()->GetForward().x;
+	m_direction.y = DataBank::Instance()->GetForward().y;
+	m_direction.z = DataBank::Instance()->GetForward().z;
 
-	vec.x = m_direction.x - m_pos.x;
-	vec.y = m_direction.y - m_pos.y;
-	vec.z = m_direction.z - m_pos.z;
+	m_speed = 1.0f;
 
-	
-	m_direction.x = m_direction.x / sqrtf((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z));
-	m_direction.y = m_direction.y / sqrtf((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z));
-	m_direction.z = m_direction.z / sqrtf((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z));
-
-	m_speed = 0.1f;
+	m_gravity = 0.0f;
 
 	m_key = "item";
 	D3DXMatrixIdentity(&m_mat_world);
@@ -36,21 +29,15 @@ void Item::Update()
 {
 	
 	m_pos.x += m_direction.x * m_speed;
-	m_pos.y += m_direction.y * m_speed ;
+	m_pos.y += m_direction.y * m_speed;
 	m_pos.z += m_direction.z * m_speed;
 
-	/*m_direction.x = DataBank::Instance()->GetEyePos().x;
-	m_direction.y = DataBank::Instance()->GetEyePos().y;
-	m_direction.z = DataBank::Instance()->GetEyePos().z;
-
-
-	m_direction.x = m_direction.x / sqrtf((m_direction.x * m_direction.x) + (m_direction.y * m_direction.y) + (m_direction.z * m_direction.z));
-	m_direction.y = m_direction.y / sqrtf((m_direction.x * m_direction.x) + (m_direction.y * m_direction.y) + (m_direction.z * m_direction.z));
-	m_direction.z = m_direction.z / sqrtf((m_direction.x * m_direction.x) + (m_direction.y * m_direction.y) + (m_direction.z * m_direction.z));*/
+	m_pos.y -= m_gravity;
+	m_gravity += 0.01f;
 
 	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);//ì™Ç…ê›íË
 	D3DXMatrixMultiply(&m_mat_world, &m_mat_move,&m_mat_scale);
-	//D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);
+
 	
 	//ç≈èâÇæÇØèdóÕÅÄ2
 	/*m_pos.X += m_direction.X * m_speed.X;

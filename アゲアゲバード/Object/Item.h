@@ -37,6 +37,9 @@ private:
 
 	float m_radius;
 
+	float m_gravity;
+
+
 	bool m_hit;
 
 	//CAMERA* p_camera;

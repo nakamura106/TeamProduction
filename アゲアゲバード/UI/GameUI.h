@@ -25,6 +25,9 @@ public:
 
 	void UpDateTimer();
 
+	void UpDatePlayerPos();
+
+
 	virtual void ReleaseTex()override;
 
 	void ReleaseUITexture(TEXTURE_DATA* texture);
@@ -47,6 +50,14 @@ private:
 
 	float m_tenm_tu;
 	float m_tenm_tv;
+
+
+	char m_timefont[20];      //文字
+	int timecounter;		//1秒数える
+	int m_ones;	//1の単位
+	int m_tens;	//10の単位
+	int m_onem;	//1分の単位
+	int m_tenm;	//10分の単位
 
 
 	D3DXVECTOR2 tex_pos;

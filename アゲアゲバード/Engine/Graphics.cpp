@@ -39,6 +39,10 @@ bool InitGraphics()
 	{
 		return false;
 	}
+	if (CreateFontDevice() == false)
+	{
+		return false;
+	}
 
 	return true;
 }

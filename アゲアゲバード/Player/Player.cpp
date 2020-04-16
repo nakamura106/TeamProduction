@@ -8,75 +8,139 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pos.x = pos_x_;
 	m_pos.y = pos_y_;
 	m_pos.z = pos_z_;
+
+	m_pinfo.walk_speed = 0.5f;
+	m_pinfo.sprint_speed = 1.0f;
+	m_pinfo.speed = m_pinfo.walk_speed;
+
 	m_pinfo.radius = 1.0f;	// 分からん
+
+	m_pinfo.jamp_power = 3.0f;
 
 	m_p_camera = new CAMERA(m_pos);
 
-	m_pinfo.eye = -m_p_camera->GetEyePos();
+	m_pinfo.eye = m_p_camera->GetEyePos();
+	m_pinfo.upvec = m_p_camera->GetCameraUp();
 	
 	m_key = "player";
 
 	// かけ合わせ(拡縮×回転×移動)
 	D3DXMatrixIdentity(&m_mat_world);
 	D3DXMatrixIdentity(&m_mat_scale);
-	//D3DXMatrixIdentity(&m_mat_rot);
-	D3DXMatrixIdentity(&m_mat_rot);
-	D3DXMatrixIdentity(&m_mat_rot_x);
 	D3DXMatrixIdentity(&m_mat_rot_y);
-	D3DXMatrixIdentity(&m_mat_rot_z);
 	D3DXMatrixIdentity(&m_mat_move);
-	D3DXMatrixScaling(&m_mat_scale, 10.0f, 10.0f, 10.0f);						// 拡縮そのまま
-	D3DXMatrixRotationX(&m_mat_rot_x, D3DXToRadian(m_p_camera->GetYaw()));
-	D3DXMatrixRotationY(&m_mat_rot_y, D3DXToRadian(m_p_camera->GetPitch()));
-	D3DXMatrixRotationZ(&m_mat_rot_z, D3DXToRadian(m_p_camera->GetRoll()));
-	D3DXMatrixMultiply(&m_mat_rot, &m_mat_rot, &m_mat_rot_x);
-	D3DXMatrixMultiply(&m_mat_rot, &m_mat_rot, &m_mat_rot_y);
-	D3DXMatrixMultiply(&m_mat_rot, &m_mat_rot, &m_mat_rot_z);
+	D3DXMatrixScaling(&m_mat_scale, 5.0f, 5.0f, 5.0f);
+	D3DXMatrixRotationY(&m_mat_rot_y, D3DXToRadian(m_p_camera->GetYaw()));
 	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);
-	m_mat_world = m_mat_scale * m_mat_rot_x * m_mat_move;
+	m_mat_world = m_mat_scale * m_mat_rot_y * m_mat_move;
 }
 
 void Character::Player::Update()
 {
-	DataBank* p_db = DataBank::Instance();
+	Move();
 
 	m_p_camera->Update();
-
-	//Move();
 
 	//CollisionDetection();
 
 	// かけ合わせ(拡縮×回転×移動)
 	D3DXMatrixScaling(&m_mat_scale, 5.0f, 5.0f, 5.0f);
-	/*D3DXMatrixRotationX(&m_mat_rot_x, D3DXToRadian(m_p_camera->GetYaw()));
-	D3DXMatrixRotationY(&m_mat_rot_y, D3DXToRadian(m_p_camera->GetPitch()));
-	D3DXMatrixRotationZ(&m_mat_rot_z, D3DXToRadian(m_p_camera->GetRoll()));
-	D3DXMatrixMultiply(&m_mat_rot, &m_mat_rot, &m_mat_rot_x);
-	D3DXMatrixMultiply(&m_mat_rot, &m_mat_rot, &m_mat_rot_y);
-	D3DXMatrixMultiply(&m_mat_rot, &m_mat_rot, &m_mat_rot_z);*/
+	D3DXMatrixRotationY(&m_mat_rot_y, D3DXToRadian(m_p_camera->GetYaw()));
 	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);
-	m_mat_world = m_mat_scale/* * m_mat_rot*/ * m_mat_move;
-
-	p_db->SetPlayerPos(m_pos);
+	m_mat_world = m_mat_scale * m_mat_rot_y * m_mat_move;
 }
 
 void Character::Player::Move()
 {
 	DataBank* p_db = DataBank::Instance();
+	p_db->SetBeforePlayerPos(m_pos);
 	
-	// 過去のカメラの位置を取得(移動前)
-	D3DXVECTOR3 befor_cam = p_db->GetBeforeCameraPos();
-	// 現在のカメラの位置を取得(移動後)
-	D3DXVECTOR3 after_cam = p_db->GetAfterCameraPos();
-	// カメラが動いた距離 = 現在のカメラの位置 - 過去のカメラの位置
-	D3DXVECTOR3 amount_of_movement = after_cam - befor_cam;
-	// プレイヤーにカメラの移動量を足す
-	m_pos += amount_of_movement;
+	m_pinfo.eye = m_p_camera->GetEyePos();
+
+	// プレイヤーの前向きベクトルを出す
+	D3DXVECTOR3 forward;
+	forward = m_pinfo.eye - m_pos;
+
+	// ベクトルの正規化
+	D3DXVec3Normalize(&forward, &forward);
+
+	// プレイヤーの左向きのベクトル
+	// 前向きのベクトルに直角なベクトルを算出する
+	D3DXVECTOR3 left;
+	left = D3DXVECTOR3(forward.z, forward.y, forward.x);
+
+#pragma region プレイヤーの移動
+	// 前
+	if (GetKey(W_KEY) || IsButtonPush(L_UpStick)) {
+		m_pos.x += forward.x * m_pinfo.speed;
+		m_pos.z += forward.z * m_pinfo.speed;
+	}
+	// 後
+	if (GetKey(S_KEY) || IsButtonPush(L_DownStick)) {
+		m_pos.x -= forward.x * m_pinfo.speed;
+		m_pos.z -= forward.z * m_pinfo.speed;
+	}
+	// 左
+	if (GetKey(A_KEY) || IsButtonPush(L_LeftStick)) {
+		m_pos.x -= left.x * m_pinfo.speed;
+		m_pos.z += left.z * m_pinfo.speed;
+	}
+	// 右
+	if (GetKey(D_KEY) || IsButtonPush(L_RightStick)) {
+		m_pos.x += left.x * m_pinfo.speed;
+		m_pos.z -= left.z * m_pinfo.speed;
+	}
+
+	// 走る
+	if (GetKey(L_SHIFT) || IsButtonPush(AButton)) {
+		m_pinfo.speed = m_pinfo.sprint_speed;
+	}
+	else {
+		m_pinfo.speed = m_pinfo.walk_speed;
+	}
+
+
+	// デバッグ用
+	// 上
+	if (GetKey(E_KEY) || IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
+		m_pos.y += m_pinfo.upvec.y * m_pinfo.speed;
+	}
+	// 下
+	if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
+		m_pos.y -= m_pinfo.upvec.y * m_pinfo.speed;
+	}
+
+	//// ジャンプ
+	//if (GetKeyDown(E_KEY) && m_jflag == false)
+	//{
+	//	m_jflag = true;
+	//}
+	//if (m_jflag == true)
+	//{
+	//	m_grav.AddGravity(m_pos.y, m_pinfo.jamp_power);
+	//	m_pos.y = m_grav.GetPosY();
+
+	//	if (m_pos.y < 0.0f)
+	//	{
+	//		m_jflag = false;
+	//		m_pos.y = 0.0f;
+	//		m_grav.ResetPalam();
+	//	}
+	//}
+
+	p_db->SetAfterPlayerPos(m_pos);
 }
 
 void Character::Player::CollisionDetection()
 {
 	DataBank* p_db = DataBank::Instance();
+
+	// 過去のプレイヤーの位置を取得(移動前)
+	D3DXVECTOR3 befor_player = p_db->GetBeforePlayerPos();
+	// 現在のプレイヤーの位置を取得(移動後)
+	D3DXVECTOR3 after_player = p_db->GetAfterPlayerPos();
+	// プレイヤーが動いた距離 = 現在のプレイヤーの位置 - 過去のプレイヤーの位置
+	D3DXVECTOR3 amount_of_movement = after_player - befor_player;
 
 #pragma region マップとプレイヤーの当たり判定
 
@@ -93,26 +157,23 @@ void Character::Player::CollisionDetection()
 		map_radius			// 第六引数		：マップの半径
 	) == true)
 	{
-
+		m_pos -= amount_of_movement;
 	}
-	//// 天井とプレイヤーの当たり判定
-	//D3DXVECTOR3 top;
-	//D3DXVECTOR3 bottom;
-	//top.x = p_db.GetMapTopPos().x;
-	//top.y = p_db.GetMapTopPos().y;
-	//top.z = p_db.GetMapTopPos().z;
-	//bottom.x = p_db.GetMapBottomPos().x;
-	//bottom.y = p_db.GetMapBottomPos().y;
-	//bottom.z = p_db.GetMapBottomPos().z;
-	//if (m_p_collision->HitAngle(
-	//	m_pos.x, m_pos.y, m_pos.z,		// 第一、二、三引数：プレイヤーの座標
-	//	top.x, top.y, top.z,			// 第四、五、六引数：マップの頂上の中心座標
-	//	bottom.x, bottom.y, bottom.z,	// 第七、八、九引数：マップの底辺の中心座標
-	//	30.0f	// 今だけ				// 第十引数　　　　：限界角度
-	//) == true)
-	//{
-	//	
-	//}
+	// 天井とプレイヤーの当たり判定
+	D3DXVECTOR3 top;
+	D3DXVECTOR3 bottom;
+	//top = p_db->GetMapTopPos();
+	top.x = 0.0f, top.y = 100.0f, top.z = 0.0f;
+	bottom.x = 0.0f, bottom.y = 0.0f, bottom.z = 0.0f;
+	if (m_p_collision->HitAngle(
+		m_pos,					// 第一引数：プレイヤーの座標
+		top,					// 第二引数：マップの頂上の中心座標
+		bottom,					// 第三引数：マップの底辺の中心座標
+		30.0f	// 今だけ		// 第四引数：限界角度
+	) == true)
+	{
+		
+	}
 
 #pragma endregion
 
@@ -149,7 +210,7 @@ void Character::Player::CollisionDetection()
 			m_pinfo.radius	// 第四引数：プレイヤーの半径
 		) == true)
 		{
-
+			
 		}
 	}
 	// 上部にいるかどうか
@@ -162,7 +223,7 @@ void Character::Player::CollisionDetection()
 			m_pinfo.radius
 		) == true)
 		{
-
+			
 		}
 	}
 	// プレイヤーの視線とブロック
@@ -174,7 +235,7 @@ void Character::Player::CollisionDetection()
 			10.0f				// 第三引数：ブロックの奥行き
 			) == true)
 		{
-
+			
 		}
 	}
 

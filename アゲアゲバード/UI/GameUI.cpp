@@ -35,6 +35,11 @@ GameUI::GameUI()
 	m_tenm_tv = 0.0f;
 
 	timercounter = 0;
+
+	m_ones = 0;
+	m_tens = 0;
+	m_onem = 0;
+	m_tenm = 0;
 }
 
 void GameUI::LoadTex()
@@ -42,10 +47,6 @@ void GameUI::LoadTex()
 	LoadTexture("Res/Tex/現在位置.png", &m_position);
 	LoadTexture("Res/Tex/プレイヤー位置.png", &m_player_pos);
 	LoadTexture("Res/Tex/timer.png", &m_timer);
-	/*for (int i = 0; i < 10; i++)
-	{
-		LoadTexture("Res/Tex/プレイヤー位置.png", &m_timer[i]);
-	}*/
 }
 
 void GameUI::LoadFile()
@@ -73,59 +74,95 @@ void GameUI::Draw()
 {
 	DrawUITexture(&m_position, tex_pos);
 	DrawUITexture(&m_player_pos, player_pos);
-	DrawUVTexture(&m_timer, one_s_timer_pos, 50.0f, 100.0f, m_ones_tu, m_ones_tv);
+	/*DrawUVTexture(&m_timer, one_s_timer_pos, 50.0f, 100.0f, m_ones_tu, m_ones_tv);
 	DrawUVTexture(&m_timer, ten_s_timer_pos, 50.0f, 100.0f, m_tens_tu, m_tens_tv);
 	DrawUVTexture(&m_timer, one_m_timer_pos, 50.0f, 100.0f, m_onem_tu, m_onem_tv);
-	DrawUVTexture(&m_timer, ten_m_timer_pos, 50.0f, 100.0f, m_tenm_tu, m_tenm_tv);
+	DrawUVTexture(&m_timer, ten_m_timer_pos, 50.0f, 100.0f, m_tenm_tu, m_tenm_tv);*/
+
+	DrawFont(1000, 0, m_timefont, FontSize::Regular, FontColor::Red);
 }
 
 void GameUI::UpDate()
 {
 	UpDateTimer();
-	//プレイヤーのoldposとposを比較して+なら+
-	//if (player_pos.y += 80.0f)
-	//{
-	//	player_pos.y-=10.0f;
-	//}
-	//
-	//if (player_pos.y >= 0.0f)
-	//{
-	//	player_pos.y = 0.0f;
-	//}
+	UpDatePlayerPos();
 }
+
+//void GameUI::UpDateTimer()
+//{
+//	timercounter++;
+//	//1秒
+//	if (timercounter == 60)
+//	{
+//		m_ones_tu += 0.1f;
+//		timercounter = 0;
+//	}
+//	//10秒
+//	if (m_ones_tu >= 1.0f)
+//	{
+//		m_ones_tu = 0;
+//		m_tens_tu += 0.1f;
+//	}
+//	//1分
+//	if (m_tens_tu >= 0.6f)
+//	{
+//		m_tens_tu = 0;
+//		m_onem_tu += 0.1f;
+//	}
+//	//10分
+//	if (m_onem_tu >= 1.0f)
+//	{
+//		m_onem_tu = 0;
+//		m_tenm_tu += 0.1f;
+//	}
+//
+//	
+//}
 
 void GameUI::UpDateTimer()
 {
+
 	timercounter++;
-	//1秒
+
 	if (timercounter == 60)
 	{
-		m_ones_tu += 0.1f;
+		m_ones++;
 		timercounter = 0;
 	}
-	//10秒
-	if (m_ones_tu >= 1.0f)
+	if (m_ones == 10)
 	{
-		m_ones_tu = 0;
-		m_tens_tu += 0.1f;
+		m_tens++;
+		m_ones = 0;
 	}
-	//1分
-	if (m_tens_tu >= 0.6f)
+	if (m_tens == 7)
 	{
-		m_tens_tu = 0;
-		m_onem_tu += 0.1f;
+		m_onem++;
+		m_tens = 0;
 	}
-	//10分
-	if (m_onem_tu >= 1.0f)
+	if (m_onem == 10)
 	{
-		m_onem_tu = 0;
-		m_tenm_tu += 0.1f;
+		m_tenm++;
+		m_onem = 0;
 	}
 
-	/*if (m_tenm_tu == 1.0f)
-	{
+	sprintf_s(m_timefont, "%d%d:%d%d", m_tenm, m_onem, m_tens, m_ones);
+}
 
-	}*/
+void GameUI::UpDatePlayerPos()
+{
+	//プレイヤーのoldposとposを比較して+なら+
+	if (DataBank::Instance()->GetBeforeCameraPos().y < DataBank::Instance()->GetAfterCameraPos().y)
+	{
+		player_pos.y -=1.0f;
+	}
+	else if (DataBank::Instance()->GetBeforeCameraPos().y > DataBank::Instance()->GetAfterCameraPos().y)
+	{
+		player_pos.y += 1.0f;
+	}
+	else
+	{
+		player_pos.y += 0.0f;
+	}
 }
 
 void GameUI::ReleaseUITexture(TEXTURE_DATA* texture)
