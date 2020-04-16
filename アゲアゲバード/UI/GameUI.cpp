@@ -134,7 +134,7 @@ void GameUI::UpDateTimer()
 		m_tens++;
 		m_ones = 0;
 	}
-	if (m_tens == 7)
+	if (m_tens == 6)
 	{
 		m_onem++;
 		m_tens = 0;
@@ -153,11 +153,11 @@ void GameUI::UpDatePlayerPos()
 	//ƒvƒŒƒCƒ„[‚Ìoldpos‚Æpos‚ð”äŠr‚µ‚Ä+‚È‚ç+
 	if (DataBank::Instance()->GetBeforePlayerPos().y < DataBank::Instance()->GetAfterPlayerPos().y)
 	{
-		player_pos.y -=1.0f;
+		player_pos.y -= 2.4f;
 	}
 	else if (DataBank::Instance()->GetBeforePlayerPos().y > DataBank::Instance()->GetAfterPlayerPos().y)
 	{
-		player_pos.y += 1.0f;
+		player_pos.y += 2.4f;
 	}
 	else
 	{

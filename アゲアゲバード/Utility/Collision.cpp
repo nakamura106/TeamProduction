@@ -106,64 +106,65 @@ bool Collision::HitBoxTop(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float
 }
 
 #pragma region 使わない
-//bool Collision::HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_,
-//	float block_height, float block_wight_, float block_depth_, float player_radius_)
-//{
-//	//球と立方体の上下判定
-//	if (HitBox(block_pos_x_, block_pos_y_, block_pos_z_, player_pos_x_, player_pos_y_, player_pos_z_, block_height, block_wight_, block_depth_, player_radius_) == true)
-//	{
-//		return true;
-//	}
-//	//球と立方体の左右判定
-//	if (HitBoxRightLeft(block_pos_x_, block_pos_y_, block_pos_z_, player_pos_x_, player_pos_y_, player_pos_z_, block_height, block_wight_, block_depth_, player_radius_) == true)
-//	{
-//		return true;
-//	}
-//	//球と立方体の前後判定
-//	if (HitBoxInnerBack(block_pos_x_, block_pos_y_, block_pos_z_, player_pos_x_, player_pos_y_, player_pos_z_, block_height, block_wight_, block_depth_, player_radius_) == true)
-//	{
-//		return true;
-//	}
-//}
+bool Collision::HitBox2(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
+{
+	//球と立方体の上下判定
+	if (HitBoxTopUnder(block_pos_, player_pos_, block_width_, player_radius_) == true)
+	{
+		return true;
+	}
+	//球と立方体の左右判定
+	if (HitBoxRightLeft(block_pos_, player_pos_, block_width_, player_radius_) == true)
+	{
+		return true;
+	}
+	//球と立方体の前後判定
+	if (HitBoxInnerBack(block_pos_, player_pos_, block_width_, player_radius_) == true)
+	{
+		return true;
+	}
+
+	return false;
+}
 
 
 
 //立方体と球のY軸判定
-//bool Collision::HitBoxTopUnder(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_)
-//{
-//	if (player_pos_x_ >= block_pos_x_ - (block_width_ / 2) && player_pos_x_ <= block_pos_x_ + (block_width_ / 2)
-//		&& player_pos_y_ + player_radius_ >= block_pos_y_ - (block_width_ / 2) && player_pos_y_ - player_radius_ <= block_pos_y_ + (block_width_ / 2)
-//		&& player_pos_z_ >= block_pos_z_ + (block_width_ / 2) && player_pos_z_ <= block_pos_z_ - (block_width_ / 2))
-//	{
-//		return true;
-//	}
-//
-//	return false;
-//}
+bool Collision::HitBoxTopUnder(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
+{
+	if (player_pos_.x >= block_pos_.x - (block_width_ / 2) && player_pos_.x <= block_pos_.x + (block_width_ / 2)
+		&& player_pos_.y + player_radius_ >= block_pos_.y - (block_width_ / 2) && player_pos_.y - player_radius_ <= block_pos_.y + (block_width_ / 2)
+		&& player_pos_.z >= block_pos_.z + (block_width_ / 2) && player_pos_.z <= block_pos_.z - (block_width_ / 2))
+	{
+		return true;
+	}
+
+	return false;
+}
 
 //立方体と球のX軸判定
-//bool Collision::HitBoxRightLeft(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_, float block_width_, float player_radius_)
-//{
-//	if (player_pos_x_ + player_radius_ >= block_pos_x_ - (block_width_ / 2) && player_pos_x_ - player_radius_ <= block_pos_x_ + (block_width_ / 2)
-//		&& player_pos_y_ >= block_pos_y_ - (block_width_ / 2) && player_pos_y_ <= block_pos_y_ + (block_width_ / 2)
-//		&& player_pos_z_ >= block_pos_z_ + (block_width_ / 2) && player_pos_z_ <= block_pos_z_ - (block_width_ / 2))
-//	{
-//		return true;
-//	}
-//	return false;
-//}
+bool Collision::HitBoxRightLeft(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
+{
+	if (player_pos_.x + player_radius_ >= block_pos_.x - (block_width_ / 2) && player_pos_.x - player_radius_ <= block_pos_.x + (block_width_ / 2)
+		&& player_pos_.y >= block_pos_.y - (block_width_ / 2) && player_pos_.y <= block_pos_.y + (block_width_ / 2)
+		&& player_pos_.z >= block_pos_.z + (block_width_ / 2) && player_pos_.z <= block_pos_.z - (block_width_ / 2))
+	{
+		return true;
+	}
+	return false;
+}
 
 //立方体と球のZ軸判定
-//bool Collision::HitBoxInnerBack(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_,  float block_width_, float player_radius_)
-//{
-//	if (player_pos_x_ >= block_pos_x_ - (block_width_ / 2) && player_pos_x_ <= block_pos_x_ + (block_width_ / 2)
-//		&& player_pos_y_ >= block_pos_y_ - (block_width_ / 2) && player_pos_y_ <= block_pos_y_ + (block_width_ / 2)
-//		&& player_pos_z_ + player_radius_ >= block_pos_z_ - (block_width_ / 2) && player_pos_z_ - player_radius_ <= block_pos_z_ + (block_width_ / 2))
-//	{
-//		return true;
-//	}
-//	return false;
-//}
+bool Collision::HitBoxInnerBack(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_,  float block_width_, float player_radius_)
+{
+	if (player_pos_.x >= block_pos_.x - (block_width_ / 2) && player_pos_.x <= block_pos_.x + (block_width_ / 2)
+		&& player_pos_.y >= block_pos_.y- (block_width_ / 2) && player_pos_.y <= block_pos_.y + (block_width_ / 2)
+		&& player_pos_.z + player_radius_ >= block_pos_.z - (block_width_ / 2) && player_pos_.z - player_radius_ <= block_pos_.z + (block_width_ / 2))
+	{
+		return true;
+	}
+	return false;
+}
 #pragma endregion
 
 #pragma endregion
