@@ -111,8 +111,10 @@ private:
 
 	float m_map_radius;
 
+	float m_map_top;
 
-
+	D3DXVECTOR3 m_before_player_pos;
+	D3DXVECTOR3 m_after_player_pos;
 	float m_player_radius;
 
 	std::vector<D3DXVECTOR3> m_blockpos;

@@ -88,9 +88,7 @@ void ObjectManager::CreateItem()
 
 void ObjectManager::CreatePlayer()
 {
-
-
-
+	m_player.push_back(new Character::Player(0.0f, 0.0f, 0.0f));
 }
 
 void ObjectManager::Update()
@@ -130,7 +128,7 @@ void ObjectManager::Draw()
 	
 	for (int i = 0; i < m_Block.size(); i++)
 	{	
-			m_Block[i]->Draw();
+		m_Block[i]->Draw();
 	}
 
 	for (int i = 0; i < m_Item.size(); i++)

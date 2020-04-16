@@ -39,9 +39,10 @@ void CAMERA::Update()
 	MouseRotate();
 	StickRotate();
 
-
-
-
+	//m_Forward = m_EyePos - m_CameraPos;
+	//D3DXVec3Normalize(&m_Forward, &m_Forward);
+	//DataBank::Instance()->SetForward(m_Forward);
+	//DataBank::Instance()->SetEyePos(eye_pos);
 }
 
 void CAMERA::Move()
