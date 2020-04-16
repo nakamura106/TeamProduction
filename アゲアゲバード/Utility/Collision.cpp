@@ -97,7 +97,7 @@ bool Collision::HitBoxTop(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float
 	if (player_pos_.x + player_radius_ >= block_pos_.x - (block_width_ / 2) && player_pos_.x - player_radius_ <= block_pos_.x + (block_width_ / 2)
 		&& player_pos_.y + player_radius_ >= block_pos_.y - (block_width_ / 2) && player_pos_.y - player_radius_ <= block_pos_.y + (block_width_ / 2)
 		&& player_pos_.z + player_radius_ >= block_pos_.z - (block_width_ / 2) && player_pos_.z - player_radius_ <= block_pos_.z + (block_width_ / 2)
-		&& player_pos_.y > block_pos_.y)													 
+		&& player_pos_.y > block_pos_.y + (block_width_ / 2))
 	{
 		return true;
 	}
