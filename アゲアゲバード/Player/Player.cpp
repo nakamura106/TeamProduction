@@ -15,7 +15,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.sprint_speed = 1.0f;
 	m_pinfo.speed = m_pinfo.walk_speed;
 
-	m_pinfo.radius = 50.0f;	// 分からん
+	m_pinfo.radius = 1.0f;	// 分からん
 
 	m_pinfo.jamp_power = 3.0f;
 
@@ -107,28 +107,28 @@ void Character::Player::Move()
 	if (GetKey(E_KEY) || IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
 		m_pos.y += m_pinfo.upvec.y * m_pinfo.speed;
 	}
-	// 下
-	if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
-		m_pos.y -= m_pinfo.upvec.y * m_pinfo.speed;
+	//// 下
+	//if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
+	//	m_pos.y -= m_pinfo.upvec.y * m_pinfo.speed;
+	//}
+
+	// ジャンプ
+	if (GetKeyDown(Q_KEY) && m_jflag == false)
+	{
+		m_jflag = true;
 	}
+	if (m_jflag == true)
+	{
+		m_grav.AddGravity(m_pos.y, m_pinfo.jamp_power);
+		m_pos.y = m_grav.GetPosY();
 
-	//// ジャンプ
-	//if (GetKeyDown(E_KEY) && m_jflag == false)
-	//{
-	//	m_jflag = true;
-	//}
-	//if (m_jflag == true)
-	//{
-	//	m_grav.AddGravity(m_pos.y, m_pinfo.jamp_power);
-	//	m_pos.y = m_grav.GetPosY();
-
-	//	if (m_pos.y < 0.0f)
-	//	{
-	//		m_jflag = false;
-	//		m_pos.y = 0.0f;
-	//		m_grav.ResetPalam();
-	//	}
-	//}
+		if (m_pos.y < 0.0f)
+		{
+			m_jflag = false;
+			m_pos.y = 0.0f;
+			m_grav.ResetPalam();
+		}
+	}
 }
 
 void Character::Player::CollisionDetection()
@@ -202,10 +202,10 @@ void Character::Player::CollisionDetection()
 	// 側面
 	for (const auto& itr : p_db->GetBlockPos())
 	{
-		if (m_p_collision->HitBox(
+		if (m_p_collision->HitBox2(
 			itr,			// 第一引数：ブロックの座標
 			m_pos,			// 第二引数：プレイヤー座標
-			10.0f,			// 第三引数：ブロックの幅
+			5.0f,			// 第三引数：ブロックの幅
 			m_pinfo.radius	// 第四引数：プレイヤーの半径
 		) == true)
 		{
@@ -218,25 +218,25 @@ void Character::Player::CollisionDetection()
 		if (m_p_collision->HitBoxTop(
 			itr,
 			m_pos,
-			10.0f,
+			5.0f,
 			m_pinfo.radius
 		) == true)
 		{
-			m_pos = befor_player;
+			m_jflag = false;
 		}
 	}
-	// プレイヤーの視線とブロック
-	for (const auto& itr : p_db->GetBlockPos())
-	{
-		if (m_p_collision->HitVisualBox(
-			itr,				// 第一引数：ブロックの座標
-			10.0f,				// 第二引数：ブロックの幅
-			10.0f				// 第三引数：ブロックの奥行き
-			) == true)
-		{
-			
-		}
-	}
+	//// プレイヤーの視線とブロック
+	//for (const auto& itr : p_db->GetBlockPos())
+	//{
+	//	if (m_p_collision->HitVisualBox(
+	//		itr,				// 第一引数：ブロックの座標
+	//		10.0f,				// 第二引数：ブロックの幅
+	//		10.0f				// 第三引数：ブロックの奥行き
+	//		) == true)
+	//	{
+	//		
+	//	}
+	//}
 
 #pragma endregion
 
