@@ -46,6 +46,7 @@ namespace Character
 	private:
 		void Move();
 		void CollisionDetection();
+		void Animation();
 
 	private:
 		PlayerInfo m_pinfo;
@@ -57,6 +58,7 @@ namespace Character
 		Gravity m_grav;		// 重力
 
 		bool m_jflag;		// ジャンプフラグ
+		bool m_stand_flag;	// 立っているか判別するフラグ
 	};
 }
 #endif

@@ -15,7 +15,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.sprint_speed = 1.0f;
 	m_pinfo.speed = m_pinfo.walk_speed;
 
-	m_pinfo.radius = 1.0f;	// 分からん
+	m_pinfo.radius = 5.0f;	// 分からん
 
 	m_pinfo.jamp_power = 3.0f;
 
@@ -23,6 +23,9 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 	m_pinfo.eye = m_p_camera->GetEyePos();
 	m_pinfo.upvec = m_p_camera->GetCameraUp();
+
+	m_jflag = false;
+	m_stand_flag = false;
 	
 	m_key = "player";
 
@@ -44,6 +47,8 @@ void Character::Player::Update()
 	CollisionDetection();
 
 	m_p_camera->Update();
+
+	//Animation();
 
 	// かけ合わせ(拡縮×回転×移動)
 	D3DXMatrixScaling(&m_mat_scale, 5.0f, 5.0f, 5.0f);
@@ -76,21 +81,29 @@ void Character::Player::Move()
 	if (GetKey(W_KEY) || IsButtonPush(L_UpStick)) {
 		m_pos.x += forward.x * m_pinfo.speed;
 		m_pos.z += forward.z * m_pinfo.speed;
+
+		m_pinfo.state = PlayerStatus::WALK;
 	}
 	// 後
 	if (GetKey(S_KEY) || IsButtonPush(L_DownStick)) {
 		m_pos.x -= forward.x * m_pinfo.speed;
 		m_pos.z -= forward.z * m_pinfo.speed;
+
+		m_pinfo.state = PlayerStatus::WALK;
 	}
 	// 左
 	if (GetKey(A_KEY) || IsButtonPush(L_LeftStick)) {
 		m_pos.x -= left.x * m_pinfo.speed;
 		m_pos.z += left.z * m_pinfo.speed;
+
+		m_pinfo.state = PlayerStatus::WALK;
 	}
 	// 右
 	if (GetKey(D_KEY) || IsButtonPush(L_RightStick)) {
 		m_pos.x += left.x * m_pinfo.speed;
 		m_pos.z -= left.z * m_pinfo.speed;
+
+		m_pinfo.state = PlayerStatus::WALK;
 	}
 
 	// 走る
@@ -113,21 +126,36 @@ void Character::Player::Move()
 	//}
 
 	// ジャンプ
-	if (GetKeyDown(Q_KEY) && m_jflag == false)
+	if (GetKeyDown(Q_KEY) && m_stand_flag == true && m_jflag == false)
 	{
+		m_stand_flag = false;
 		m_jflag = true;
+
+		m_pinfo.state = PlayerStatus::JAMP;
 	}
 	if (m_jflag == true)
 	{
-		m_grav.AddGravity(m_pos.y, m_pinfo.jamp_power);
+		m_grav.ThrowingUp(m_pos.y, m_pinfo.jamp_power);
 		m_pos.y = m_grav.GetPosY();
 
+		// 地面につくまで
 		if (m_pos.y < 0.0f)
 		{
+			m_stand_flag = true;
 			m_jflag = false;
 			m_pos.y = 0.0f;
 			m_grav.ResetPalam();
+
+			m_pinfo.state = PlayerStatus::WAIT;
 		}
+	}
+
+	// 何かの上に乗るまで落ちる
+	if (m_stand_flag == false && m_jflag == false)
+	{
+		// 自由落下
+		m_grav.FreeFall(m_pos.y);
+		m_pos.y = m_grav.GetPosY();
 	}
 }
 
@@ -173,6 +201,17 @@ void Character::Player::CollisionDetection()
 	{
 		m_pos = befor_player;
 	}
+	// 地面とプレイヤーの当たり判定
+	/*
+		//ポットの内側にいるとき
+		ポットの底辺の値より下回っているとき
+	*/
+	if (m_pos.y <= bottom.y)
+	{
+		m_stand_flag = true;
+		m_pos = befor_player;
+	}
+
 
 #pragma endregion
 
@@ -199,7 +238,7 @@ void Character::Player::CollisionDetection()
 #pragma region ブロックとプレイヤーの当たり判定
 
 	// ブロックの幅は今だけ
-	// 側面
+	// 上面と側面
 	for (const auto& itr : p_db->GetBlockPos())
 	{
 		if (m_p_collision->HitBox2(
@@ -210,28 +249,30 @@ void Character::Player::CollisionDetection()
 		) == true)
 		{
 			m_pos = befor_player;
+			if (m_pos.y > itr.y + 2.5f)
+			{
+				m_stand_flag = true;
+				m_jflag = false;
+				m_grav.ResetPalam();
+			}
 		}
-	}
-	// 上部にいるかどうか
-	for (const auto& itr : p_db->GetBlockPos())
-	{
-		if (m_p_collision->HitBoxTop(
-			itr,
-			m_pos,
-			5.0f,
-			m_pinfo.radius
-		) == true)
-		{
-			m_jflag = false;
-		}
+		//else {
+		//	// 何かの上に乗るまで落ちる
+		//	if (m_stand_flag == false)
+		//	{
+		//		// 自由落下
+		//		m_grav.FreeFall(m_pos.y);
+		//		m_pos.y = m_grav.GetPosY();
+		//	}
+		//}
 	}
 	//// プレイヤーの視線とブロック
 	//for (const auto& itr : p_db->GetBlockPos())
 	//{
 	//	if (m_p_collision->HitVisualBox(
 	//		itr,				// 第一引数：ブロックの座標
-	//		10.0f,				// 第二引数：ブロックの幅
-	//		10.0f				// 第三引数：ブロックの奥行き
+	//		5.0f,				// 第二引数：ブロックの幅
+	//		5.0f				// 第三引数：ブロックの奥行き
 	//		) == true)
 	//	{
 	//		
@@ -243,7 +284,7 @@ void Character::Player::CollisionDetection()
 	p_db->SetAfterPlayerPos(m_pos);
 }
 
-void Character::Player::Draw()
+void Character::Player::Animation()
 {
 	if (m_pinfo.state == PlayerStatus::WAIT)
 	{
@@ -262,7 +303,34 @@ void Character::Player::Draw()
 	}
 	if (m_pinfo.state == PlayerStatus::THROW)
 	{
-		m_key = "player_shrow";
+		m_key = "player_throw";
 		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
 	}
+}
+
+void Character::Player::Draw()
+{
+	m_key = "player";
+	MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
+
+	/*if (m_pinfo.state == PlayerStatus::WAIT)
+	{
+		m_key = "player_wait";
+		MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
+	}
+	if (m_pinfo.state == PlayerStatus::WALK)
+	{
+		m_key = "player_walk";
+		MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
+	}
+	if (m_pinfo.state == PlayerStatus::JAMP)
+	{
+		m_key = "player_jamp";
+		MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
+	}
+	if (m_pinfo.state == PlayerStatus::THROW)
+	{
+		m_key = "player_throw";
+		MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
+	}*/
 }
