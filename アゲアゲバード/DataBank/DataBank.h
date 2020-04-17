@@ -34,6 +34,11 @@ public:
 
 	void SetBlockPos(D3DXVECTOR3 blockpos_);
 
+	// アイテムの位置を保存する
+	void SetItemPos(D3DXVECTOR3 item_pos_);
+	// アイテムの半径を保存する
+	void SetItemRadius(float item_radius_);
+
 	// 移動前のプレイヤーの位置を保存する
 	void SetBeforePlayerPos(D3DXVECTOR3 player_pos_);
 	// 移動後のプレイヤーの位置を保存する
@@ -72,6 +77,15 @@ public:
 	auto GetBlockPos() { return m_blockpos; }
 
 	float GetOilPos() { return m_oilelevation; }
+
+	// アイテムの位置を取得する
+	D3DXVECTOR3 GetItemPos() {
+		return m_item_pos;
+	}
+	// アイテムの半径を取得する
+	float GetItemRadius() {
+		return m_item_radius;
+	}
 
 	// 移動前のプレイヤーの位置を取得する
 	D3DXVECTOR3 GetBeforePlayerPos() {
@@ -119,6 +133,9 @@ private:
 
 	D3DXVECTOR3 m_map_top;
 	D3DXVECTOR3 m_map_bottom;
+
+	D3DXVECTOR3 m_item_pos;
+	float m_item_radius;
 
 	D3DXVECTOR3 m_before_player_pos;
 	D3DXVECTOR3 m_after_player_pos;
