@@ -23,7 +23,7 @@ public:
 
 	void Update()override;
 
-	//bool UpdateHitItem();
+	bool UpdateHitItem();
 
 
 
@@ -34,6 +34,8 @@ private:
 	float m_provisional_speed;
 	
 	D3DXVECTOR3 vec;
+
+
 
 	float m_radius;
 
