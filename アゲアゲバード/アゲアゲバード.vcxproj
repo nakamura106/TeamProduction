@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CSV\CSV.cpp" />
     <ClCompile Include="DataBank\DataBank.cpp" />
     <ClCompile Include="Engine\Camera.cpp" />
     <ClCompile Include="Engine\DrawBuffer.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Utility\Gravity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CSV\CSV.h" />
     <ClInclude Include="DataBank\DataBank.h" />
     <ClInclude Include="Engine\Camera.h" />
     <ClInclude Include="Engine\DrawBuffer.h" />

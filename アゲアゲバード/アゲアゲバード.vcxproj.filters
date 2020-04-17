@@ -43,6 +43,9 @@
     <Filter Include="UI">
       <UniqueIdentifier>{6b60699a-38c6-4a6d-8ba2-e2d98276a89c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CSV">
+      <UniqueIdentifier>{8a7fb0ee-03af-42ca-9c83-7cbb7289ef6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -146,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="Scene\GameEndScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSV\CSV.cpp">
+      <Filter>CSV</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="Scene\GameEndScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CSV\CSV.h">
+      <Filter>CSV</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
