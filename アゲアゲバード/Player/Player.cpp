@@ -5,6 +5,7 @@
 
 Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 {
+	m_key = "player";	// アニメーション追加後は"player_wait"になる
 	m_pinfo.state = PlayerStatus::WAIT;
 
 	m_pos.x = pos_x_;
@@ -17,17 +18,18 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 	m_pinfo.radius = 5.0f;	// 分からん
 
-	m_pinfo.jamp_power = 3.0f;
+	m_pinfo.jamp_power = 2.0f;
 
 	m_p_camera = new CAMERA(m_pos);
 
 	m_pinfo.eye = m_p_camera->GetEyePos();
 	m_pinfo.upvec = m_p_camera->GetCameraUp();
 
+	m_item_effect_time = 0.0f;
+
 	m_jflag = false;
 	m_stand_flag = false;
-	
-	m_key = "player";
+	m_item_hit_flag = false;
 
 	// かけ合わせ(拡縮×回転×移動)
 	D3DXMatrixIdentity(&m_mat_world);
@@ -114,17 +116,6 @@ void Character::Player::Move()
 		m_pinfo.speed = m_pinfo.walk_speed;
 	}
 
-
-	// デバッグ用
-	// 上
-	if (GetKey(E_KEY) || IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
-		m_pos.y += m_pinfo.upvec.y * m_pinfo.speed;
-	}
-	//// 下
-	//if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
-	//	m_pos.y -= m_pinfo.upvec.y * m_pinfo.speed;
-	//}
-
 	// ジャンプ
 	if (GetKeyDown(Q_KEY) && m_stand_flag == true && m_jflag == false)
 	{
@@ -149,6 +140,18 @@ void Character::Player::Move()
 			m_pinfo.state = PlayerStatus::WAIT;
 		}
 	}
+
+	//// デバッグ用
+	//// 上
+	//if (GetKey(E_KEY) || IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
+	//	m_pos.y += m_pinfo.upvec.y * m_pinfo.speed;
+	//}
+	//// 下
+	//if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
+	//	m_pos.y -= m_pinfo.upvec.y * m_pinfo.speed;
+	//}
+
+#pragma endregion 
 
 	// 何かの上に乗るまで落ちる
 	if (m_stand_flag == false && m_jflag == false)
@@ -217,21 +220,30 @@ void Character::Player::CollisionDetection()
 
 #pragma region アイテムとプレイヤーの当たり判定
 
-	//D3DXVECTOR3 item;
-	//float item_radius;
-	//item.x = p_db.GetItemPos().x;
-	//item.y = p_db.GetItemPos().y;
-	//item.z = p_db.GetItemPos().z;
-	//item_radius = p_db.GetItemRadius();
-	//if (m_p_collision->HitItemPlayer(
-	//	m_pos.x, m_pos.y, m_pos.z,	// 第一、二、三引数：プレイヤー座標
-	//	item.x, item.y, item.z,		// 第四、五、六引数：アイテム座標
-	//	m_pinfo.radius,				// 第七引数　　　　：プレイヤーの半径
-	//	item_radius					// 第八引数　　　　：アイテムの半径
-	//) == true)
-	//{
-	//	
-	//}
+	D3DXVECTOR3 item;
+	float item_radius;
+	item = p_db->GetItemPos();
+	item_radius = p_db->GetItemRadius();
+	if (m_p_collision->HitItemPlayer(
+		m_pos,				// 第一引数：プレイヤー座標
+		item,				// 第二引数：アイテム座標
+		m_pinfo.radius,		// 第三引数：プレイヤーの半径
+		item_radius			// 第四引数：アイテムの半径
+	) == true)
+	{
+		m_item_hit_flag = true;
+	}
+	if (m_item_hit_flag == true)
+	{
+		// スピード遅くする
+		m_pinfo.speed = 0.2f;
+		m_item_effect_time++;
+		if (m_item_effect_time >= 5.0f)
+		{
+			m_pinfo.speed = m_pinfo.walk_speed;
+			m_item_hit_flag = false;
+		}
+	}
 
 #pragma endregion
 
@@ -249,22 +261,18 @@ void Character::Player::CollisionDetection()
 		) == true)
 		{
 			m_pos = befor_player;
-			if (m_pos.y > itr.y + 2.5f)
+			if (m_pos.y > itr.y + 2.5f &&
+				itr.x - 2.5f < m_pos.x && m_pos.x < itr.x + 2.5f &&
+				itr.z - 2.5f < m_pos.z && m_pos.z < itr.z + 2.5f)
 			{
 				m_stand_flag = true;
 				m_jflag = false;
 				m_grav.ResetPalam();
 			}
+			else {
+				m_stand_flag = false;
+			}
 		}
-		//else {
-		//	// 何かの上に乗るまで落ちる
-		//	if (m_stand_flag == false)
-		//	{
-		//		// 自由落下
-		//		m_grav.FreeFall(m_pos.y);
-		//		m_pos.y = m_grav.GetPosY();
-		//	}
-		//}
 	}
 	//// プレイヤーの視線とブロック
 	//for (const auto& itr : p_db->GetBlockPos())
@@ -286,51 +294,42 @@ void Character::Player::CollisionDetection()
 
 void Character::Player::Animation()
 {
-	if (m_pinfo.state == PlayerStatus::WAIT)
+	switch (m_pinfo.state)
 	{
+	case PlayerStatus::WAIT:
 		m_key = "player_wait";
-		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
-	}
-	if (m_pinfo.state == PlayerStatus::WALK)
-	{
+		break;
+	case PlayerStatus::WALK:
 		m_key = "player_walk";
-		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
-	}
-	if (m_pinfo.state == PlayerStatus::JAMP)
-	{
+		break;
+	case PlayerStatus::JAMP:
 		m_key = "player_jamp";
-		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
-	}
-	if (m_pinfo.state == PlayerStatus::THROW)
-	{
+		break;
+	case PlayerStatus::THROW:
 		m_key = "player_throw";
-		MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
+		break;
 	}
+	MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
 }
 
 void Character::Player::Draw()
 {
 	m_key = "player";
-	MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
 
-	/*if (m_pinfo.state == PlayerStatus::WAIT)
+	/*switch (m_pinfo.state)
 	{
+	case PlayerStatus::WAIT:
 		m_key = "player_wait";
-		MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
-	}
-	if (m_pinfo.state == PlayerStatus::WALK)
-	{
+		break;
+	case PlayerStatus::WALK:
 		m_key = "player_walk";
-		MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
-	}
-	if (m_pinfo.state == PlayerStatus::JAMP)
-	{
+		break;
+	case PlayerStatus::JAMP:
 		m_key = "player_jamp";
-		MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
-	}
-	if (m_pinfo.state == PlayerStatus::THROW)
-	{
+		break;
+	case PlayerStatus::THROW:
 		m_key = "player_throw";
-		MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
+		break;
 	}*/
+	MyFbxManager::FbxManager::Instance()->DrawFbx(m_key, m_mat_world);
 }
