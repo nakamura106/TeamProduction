@@ -7,7 +7,7 @@ Block::Block()
 	m_key = "block";
 	D3DXMatrixIdentity(&m_mat_world);
 	D3DXMatrixScaling(&m_mat_scale, 1.0f, 1.0f, 1.0f);
-	m_pos = DataBank::Instance()->GetCameraPos()+ DataBank::Instance()->GetForward()*5.0f;	
+	m_pos = DataBank::Instance()->GetCameraPos()+ DataBank::Instance()->GetForward()*7.0f;	
 	m_pos /= 2.0f;
 	m_pos.x = roundf(m_pos.x);
 	m_pos.y = roundf(m_pos.y);
