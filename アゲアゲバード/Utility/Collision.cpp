@@ -210,7 +210,7 @@ bool Collision::HitAngle(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, D3DXV
 
 	angle = angle + 180 / 3.1415f;
 
-	if (angle >= flg_angle)
+	if (angle >= flg_angle && player_pos_.y >= 85.0f)
 	{
 		return true;
 	}
