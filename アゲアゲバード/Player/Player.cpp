@@ -16,7 +16,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.sprint_speed = 1.0f;
 	m_pinfo.speed = m_pinfo.walk_speed;
 
-	m_pinfo.radius = 5.0f;	// 分からん
+	m_pinfo.radius = 2.0f;	// 分からん
 
 	m_pinfo.jamp_power = 2.0f;
 
@@ -117,7 +117,7 @@ void Character::Player::Move()
 	}
 
 	// ジャンプ
-	if (GetKeyDown(Q_KEY) && m_stand_flag == true && m_jflag == false)
+	if (GetKeyDown(Q_KEY) && m_jflag == false)
 	{
 		m_stand_flag = false;
 		m_jflag = true;
@@ -130,7 +130,7 @@ void Character::Player::Move()
 		m_pos.y = m_grav.GetPosY();
 
 		// 地面につくまで
-		if (m_pos.y < 0.0f)
+		if (m_pos.y <= 0.0f)
 		{
 			m_stand_flag = true;
 			m_jflag = false;
@@ -140,7 +140,10 @@ void Character::Player::Move()
 			m_pinfo.state = PlayerStatus::WAIT;
 		}
 	}
-
+	if (m_pos.y <= 0.0f && m_grav.GetPosY() <= 0.0f)
+	{
+		m_stand_flag = true;
+	}
 	//// デバッグ用
 	//// 上
 	//if (GetKey(E_KEY) || IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
@@ -154,7 +157,7 @@ void Character::Player::Move()
 #pragma endregion 
 
 	// 何かの上に乗るまで落ちる
-	if (m_stand_flag == false && m_jflag == false)
+	if (m_stand_flag == false && m_jflag == false && m_grav.GetPosY() >= 0.0f)
 	{
 		// 自由落下
 		m_grav.FreeFall(m_pos.y);
@@ -253,27 +256,36 @@ void Character::Player::CollisionDetection()
 	// 上面と側面
 	for (const auto& itr : p_db->GetBlockPos())
 	{
-		if (m_p_collision->HitBox2(
+		if (m_p_collision->HitBox(
 			itr,			// 第一引数：ブロックの座標
 			m_pos,			// 第二引数：プレイヤー座標
-			5.0f,			// 第三引数：ブロックの幅
+			2.0f,			// 第三引数：ブロックの幅
 			m_pinfo.radius	// 第四引数：プレイヤーの半径
 		) == true)
 		{
 			m_pos = befor_player;
-			if (m_pos.y > itr.y + 2.5f &&
-				itr.x - 2.5f < m_pos.x && m_pos.x < itr.x + 2.5f &&
-				itr.z - 2.5f < m_pos.z && m_pos.z < itr.z + 2.5f)
+			if (m_pos.y > itr.y + 2.5f)
 			{
 				m_stand_flag = true;
 				m_jflag = false;
 				m_grav.ResetPalam();
 			}
-			else {
-				m_stand_flag = false;
-			}
 		}
+		else
+		{
+			m_stand_flag = false;
+		}
+		//if (m_p_collision->HitBoxTop(
+		//	itr,			// 第一引数：ブロックの座標
+		//	m_pos,			// 第二引数：プレイヤー座標
+		//	2.0f,			// 第三引数：ブロックの幅
+		//	m_pinfo.radius	// 第四引数：プレイヤーの半径
+		//) == false)
+		//{
+		//	m_stand_flag = false;
+		//}
 	}
+
 	//// プレイヤーの視線とブロック
 	//for (const auto& itr : p_db->GetBlockPos())
 	//{

@@ -13,7 +13,7 @@ void Gravity::ResetPalam()
 {
 	pos_y = 0.0f;
 	t = 0.0f;
-	flame = 0.01666667;
+	flame = 0.01300000;
 	v0 = 0.0f;
 }
 
