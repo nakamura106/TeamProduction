@@ -30,6 +30,7 @@ enum KEY_INFO
 	E_KEY,
 	Q_KEY,
 	T_KEY,
+	Y_KEY,
 	RETURN_KEY,
 	L_CONTROL,
 	L_SHIFT,

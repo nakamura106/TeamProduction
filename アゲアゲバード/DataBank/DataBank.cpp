@@ -63,6 +63,16 @@ void DataBank::SetBlockPos(D3DXVECTOR3 blockpos_)
 	m_blockpos.push_back(blockpos_);
 }
 
+void DataBank::SetItemPos(D3DXVECTOR3 item_pos_)
+{
+	m_item_pos = item_pos_;
+}
+
+void DataBank::SetItemRadius(float item_radius_)
+{
+	m_item_radius = item_radius_;
+}
+
 void DataBank::SetBeforePlayerPos(D3DXVECTOR3 player_pos_)
 {
 	m_before_player_pos = player_pos_;

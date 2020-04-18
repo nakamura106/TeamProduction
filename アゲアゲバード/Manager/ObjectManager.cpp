@@ -75,7 +75,7 @@ void ObjectManager::CreateObject()
 	m_Object.push_back(new Oil);
 	m_Object.push_back(new FillOil);
 }
-
+ 
 void ObjectManager::CreateBlock()
 {
 	m_Block.push_back(new Block);

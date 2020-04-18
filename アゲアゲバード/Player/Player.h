@@ -49,16 +49,19 @@ namespace Character
 		void Animation();
 
 	private:
-		PlayerInfo m_pinfo;
+		PlayerInfo m_pinfo;			// プレイヤー情報
 
-		CAMERA* m_p_camera;
+		CAMERA* m_p_camera;			// カメラ
 
-		Collision* m_p_collision;
+		Collision* m_p_collision;	// 当たり判定
 
-		Gravity m_grav;		// 重力
+		Gravity m_grav;				// 重力
 
-		bool m_jflag;		// ジャンプフラグ
-		bool m_stand_flag;	// 立っているか判別するフラグ
+		float m_item_effect_time;	// アイテムの効果量をはかる
+
+		bool m_jflag;				// ジャンプした時のフラグ
+		bool m_stand_flag;			// 立っている時のフラグ
+		bool m_item_hit_flag;		// アイテムに当たった時のフラグ
 	};
 }
 #endif
