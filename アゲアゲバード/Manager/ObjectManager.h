@@ -13,7 +13,7 @@ public:
 	void Init() {};
 	//オブジェクト生成
 	void CreateObject();//マップ、プレイヤー(2まで)、アイテム。ブロックは別配列
-	void CreateBlock();
+	bool CreateBlock();
 	void CreateItem();
 	void CreatePlayer();	// K新しく追加した
 	void Update();

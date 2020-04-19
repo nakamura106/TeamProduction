@@ -8,7 +8,7 @@ class Block :public ObjectBase
 {
 public:
 	Block();
-	~Block() {};
+	~Block();
 
 	
 };

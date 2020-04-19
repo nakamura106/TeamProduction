@@ -76,9 +76,22 @@ void ObjectManager::CreateObject()
 	m_Object.push_back(new FillOil);
 }
  
-void ObjectManager::CreateBlock()
+bool ObjectManager::CreateBlock()
 {
-	m_Block.push_back(new Block);
+	if (m_Block.size()==0)
+	{
+		m_Block.push_back(new Block);
+		return true;
+	}
+	for (const auto& itr : DataBank::Instance()->GetBlockPos())
+	{
+		if (itr != DataBank::Instance()->BlockInstallation(DataBank::Instance()->GetCameraPos() + DataBank::Instance()->GetForward() * 7.0f))
+		{
+			m_Block.push_back(new Block);
+			return true;
+		}
+	}
+	return false;
 }
 
 void ObjectManager::CreateItem()
@@ -103,6 +116,7 @@ void ObjectManager::Update()
 		if (DataBank::Instance()->GetOilPos()>=m_Block[i]->GetPos().y)
 		{
 			m_Block.erase(m_Block.begin()+i);
+			DataBank::Instance()->DeleteBlockPos(i);
 		}
 	}
 	for (int i = 0; i < m_Item.size(); i++)

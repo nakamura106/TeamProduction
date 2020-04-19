@@ -13,6 +13,8 @@ public:
 	static DataBank* Instance();
 
 	void ResetData() {}
+
+	void DeleteBlockPos(int num);
 	
 #pragma region Set
 
@@ -51,6 +53,8 @@ public:
 	void SetSceneId(BaseScene::SceneId sceneid_);
 
 	void SetForward(D3DXVECTOR3 forward_);
+
+	D3DXVECTOR3 BlockInstallation(D3DXVECTOR3 pos_);
 
 #pragma endregion
 

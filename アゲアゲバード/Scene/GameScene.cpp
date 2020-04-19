@@ -56,8 +56,10 @@ void GameScene::MainScene()
 	UIManager::Instance()->UpDate();
 	if (GetKeyDown(SPACE_KEY) || IsButtonDown(LeftBButton))
 	{
-		SoundManager::Instance()->SoundClickSE();
-		ObjectManager::Instance()->CreateBlock();
+		if (ObjectManager::Instance()->CreateBlock() == true)
+		{
+			SoundManager::Instance()->SoundClickSE();
+		}
 	}
 	if (GetKeyDown(F_KEY) )
 	{

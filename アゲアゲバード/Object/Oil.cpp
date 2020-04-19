@@ -6,7 +6,7 @@ Oil::Oil()
 {
 	
 	m_key = "oil";
-	m_pos.y = -1.0f;
+	m_pos.y = -10.0f;
 	D3DXMatrixIdentity(&m_mat_world);
 	D3DXMatrixScaling(&m_mat_scale, 1.0f, 1.0f, 1.0f);
 	D3DXMatrixTranslation(&m_mat_move, 0.0f, m_pos.y, 0.0f);
@@ -16,7 +16,7 @@ Oil::Oil()
 
 void Oil::Update()
 {
-	//m_pos.y += 0.01f;
+	m_pos.y += 0.005f;
 	D3DXMatrixTranslation(&m_mat_move, 0.0f, m_pos.y, 0.0f);
 	//D3DXMatrixMultiply(&m_mat_world, &m_mat_world,&m_mat_move);
 	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);

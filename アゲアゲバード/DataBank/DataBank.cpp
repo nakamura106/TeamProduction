@@ -12,6 +12,11 @@ DataBank* DataBank::Instance()
 	return p_instance;
 }
 
+void DataBank::DeleteBlockPos(int num)
+{
+	m_blockpos.erase(m_blockpos.begin() + num);
+}
+
 DataBank::DataBank()
 {
 	
@@ -101,4 +106,16 @@ void DataBank::SetSceneId(BaseScene::SceneId sceneid_)
 void DataBank::SetForward(D3DXVECTOR3 forward_)
 {
 	m_Forward = forward_;
+}
+
+D3DXVECTOR3 DataBank::BlockInstallation(D3DXVECTOR3 pos_)
+{
+	D3DXVECTOR3 blockpos;
+	blockpos = pos_;
+	blockpos /= 2.0f;
+	blockpos.x = roundf(blockpos.x);
+	blockpos.y = roundf(blockpos.y);
+	blockpos.z = roundf(blockpos.z);
+	blockpos *= 2.0f;
+	return blockpos;
 }

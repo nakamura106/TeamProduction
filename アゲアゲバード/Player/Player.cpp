@@ -109,7 +109,7 @@ void Character::Player::Move()
 	}
 
 	// ‘–‚é
-	if (GetKey(L_SHIFT) || IsButtonPush(AButton)) {
+	if (GetKey(L_SHIFT) ||IsButtonPush(XButton)) {
 		m_pinfo.speed = m_pinfo.sprint_speed;
 	}
 	else {
@@ -117,7 +117,7 @@ void Character::Player::Move()
 	}
 
 	// ƒWƒƒƒ“ƒv
-	if (GetKeyDown(Q_KEY) && m_jflag == false)
+	if (GetKeyDown(Q_KEY) || IsButtonDown(AButton) && m_jflag == false)
 	{
 		m_stand_flag = false;
 		m_jflag = true;

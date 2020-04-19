@@ -28,12 +28,6 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		return 0;
 	}
 
-	
-
-	//UIManager::Instance()->CreateUI();
-
-	//UIManager::Instance()->LoadTex();
-
 	SceneManager::Instance()->Init();
 
 	while (true)
@@ -59,30 +53,13 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		else
 		{
 			
-			for (const auto& itr:DataBank::Instance()->GetBlockPos())
-			{
-				if (itr.x >= 10 || itr.y >= 10 || itr.z >= 10)
-				{
-					
-				}
-			}
-			
-			
-			//UIManager::Instance()->UpDate();
-
-			
 			SceneManager::Instance()->Update();
 			
 			SceneManager::Instance()->Draw();
-			//UIManager::Instance()->Draw();
-
-
+			
 		}
 	}
 	
-	//SoundManager::Instance()->ReleaseTitleSound();
-
-	//UIManager::Instance()->Release();
 	// ƒGƒ“ƒWƒ“I—¹
 	EndEngine();
 }
