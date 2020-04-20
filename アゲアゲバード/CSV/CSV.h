@@ -8,7 +8,8 @@ struct PlayerData {
 	float pos_z;		// ç¿ïWz
 };
 
-void LoadFile();
+//void LoadFile();	// Cóp
+int LoadFile();		// C++óp
 
 void OutPutFile();
 
