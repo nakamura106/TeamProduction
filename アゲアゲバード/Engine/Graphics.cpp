@@ -459,5 +459,5 @@ void SetLight()
 	light.Range = 200.0f;
 	g_Device->SetLight(0, &light);
 	g_Device->LightEnable(0, true);
-	g_Device->SetRenderState(D3DRS_LIGHTING, true);
+	g_Device->SetRenderState(D3DRS_LIGHTING,false);
 }

@@ -78,10 +78,12 @@ void ObjectManager::CreateObject()
  
 bool ObjectManager::CreateBlock()
 {
+
+	D3DXVECTOR3 eyepos;
+	eyepos = DataBank::Instance()->BlockInstallation(DataBank::Instance()->GetCameraPos() + DataBank::Instance()->GetForward() * 4.0f);
+
 	for (const auto& itr : DataBank::Instance()->GetBlockPos())
 	{
-		D3DXVECTOR3 eyepos;
-		eyepos = DataBank::Instance()->BlockInstallation(DataBank::Instance()->GetCameraPos() + DataBank::Instance()->GetForward() * 4.0f);
 		if (itr == eyepos)
 		{
 			return false;
