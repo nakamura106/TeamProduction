@@ -11,41 +11,24 @@
 #include <sstream>
 
 #pragma region Cでの読み込み
-//void LoadFile()
+//int LoadFile(const char* p_file_name_)
 //{
 //	// C言語のファイル入力のための準備
 //	// FILE型構造体
-//	FILE* fp = NULL;
-//	PlayerData* list[256];
+//	FILE* fp;
+//	char str[256];
 //
-//	int size = sizeof(PlayerData*);
-//	memset(list, 0, sizeof(PlayerData*) * 256);
-//
-//	// 読み込みモードでファイルを開く
-//	// 失敗するとNULLを返す
-//	fopen_s(&fp, "PlayerData", "r");
-//	// ファイルを開くのに失敗したときの処理
+//	// ファイル読み込み
+//	fopen_s(&fp, "Res/ReadFile/test.txt", "r");
+//	// ファイルの読み込みに失敗したとき
 //	if (fp == NULL)
 //	{
-//		return;
+//		return -1;
 //	}
-//
-//	PlayerData pd;
-//	int count = 0;
-//
-//	// 読み込み開始
-//	while (fscanf_s(fp, "%[^,],%d,%d,%d\n",
-//		&pd.name, 32,
-//		&pd.pos_x,
-//		&pd.pos_y,
-//		&pd.pos_z
-//	) != EOF)
+//	
+//	while ()
 //	{
-//		// 取得データを保存
-//		PlayerData* p_pd = (PlayerData*)malloc(sizeof(PlayerData));
-//		*p_pd = pd;
-//		list[count] = p_pd;
-//		count++;
+//
 //	}
 //
 //	// CSVファイルクローズ
@@ -54,7 +37,7 @@
 #pragma endregion
 
 #pragma region C++での読み込み
-int LoadFile()
+int LoadFile(const char* p_file_name_)
 {
 #pragma region char型の利用
 	/*
@@ -93,32 +76,24 @@ int LoadFile()
 		1行の長さを最初に指定する必要はない
 	*/
 
-	std::ifstream ifs("test.txt");
-	std::string tmp;
-	std::string str;
-	int num;
-	int sum = 0;
+	//std::ifstream ifs(p_file_name_);
+	//std::string str;
 
-	// ファイルを開くときに失敗したとき
-	if (ifs.fail())
-	{
-		std::cerr << "Failed to open file." << std::endl;
-		return -1;
-	}
+	//// ファイルを開くときに失敗したとき
+	//if (ifs.fail())
+	//{
+	//	std::cerr << "Failed to open file." << std::endl;
+	//	return -1;
+	//}
 
-	// getline()で1行ずつ読み込む
-	while (std::getline(ifs, tmp))
-	{
-		std::cout << tmp << std::endl;	// そのまま出力
-		std::stringstream ss;
-		ss << tmp;
-		ss >> str >> num;	// str == "name:"; num == number;
-		sum += num;			// 値をsumに加算
-	}
-	std::cout << "\nsum: " << sum << std::endl;
+	//// getline()で1行ずつ読み込む
+	//while (getline(ifs, str))
+	//{
+	//	std::cout << str << std::endl;
+	//}
 
-	// closeは使わなくても勝手に閉じてくれる
-	ifs.close();
+	//// closeは使わなくても勝手に閉じてくれる
+	//ifs.close();
 
 	return 0;
 
