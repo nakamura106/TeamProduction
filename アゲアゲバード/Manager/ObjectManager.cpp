@@ -78,20 +78,17 @@ void ObjectManager::CreateObject()
  
 bool ObjectManager::CreateBlock()
 {
-	if (m_Block.size()==0)
-	{
-		m_Block.push_back(new Block);
-		return true;
-	}
 	for (const auto& itr : DataBank::Instance()->GetBlockPos())
 	{
-		if (itr != DataBank::Instance()->BlockInstallation(DataBank::Instance()->GetCameraPos() + DataBank::Instance()->GetForward() * 7.0f))
+		D3DXVECTOR3 eyepos;
+		eyepos = DataBank::Instance()->BlockInstallation(DataBank::Instance()->GetCameraPos() + DataBank::Instance()->GetForward() * 4.0f);
+		if (itr == eyepos)
 		{
-			m_Block.push_back(new Block);
-			return true;
+			return false;
 		}
 	}
-	return false;
+	m_Block.push_back(new Block);
+	return true;
 }
 
 void ObjectManager::CreateItem()
