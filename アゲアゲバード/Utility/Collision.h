@@ -44,9 +44,11 @@ public:
 	*/
 	bool HitBox(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
 
+	bool HitBoxSurface(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
+
 	bool HitBox2(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
 
-
+	bool HitBoxVec(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
 	//ÉuÉçÉbÉNÇÃè„Ç…Ç¢ÇÈÇ©Ç«Ç§Ç©
 	bool HitBoxTop(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
 	

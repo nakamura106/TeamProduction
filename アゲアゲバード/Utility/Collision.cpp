@@ -4,46 +4,6 @@
 #include "Vec.h"
 #include "../DataBank/DataBank.h"
 
-//使わない
-//bool Collision::UpdateHit(HitObject tareget, HitObject tareget2)
-//{
-//	if ((tareget == HitObject::Player && tareget == HitObject::Block)||(tareget == HitObject::Block && tareget == HitObject::Player))
-//	{
-//		if (HitBox(float block_pos_x_, float block_pos_y_, float block_pos_z_, float player_pos_x_, float player_pos_y_, float player_pos_z_,
-//			float block_wight_, float player_radius_) == true)
-//		{
-//			return true;
-//		}
-//	}
-//	if ((tareget == HitObject::Player && tareget == HitObject::Item) || (tareget == HitObject::Item && tareget == HitObject::Player))
-//	{
-//		if (HitItem(float player_pos_x_, float player_pos_y_, float player_pos_z_, float item_pos_x_, float item_pos_y_, float item_pos_z_, float player_radius, float item_radius) == true)
-//		{
-//			return true;
-//		}
-//	}
-//	if ((tareget == HitObject::Player && tareget == HitObject::Map) || (tareget == HitObject::Map && tareget == HitObject::Player))
-//	{
-//		if (HitMap(float player_circle_pos_x_, float player_circle_pos_z_, float map_circle_pos_x_, float map_circle_pos_z_, float player_circle_radius_, float map_circle_radius_) == true)
-//		{
-//			return true;
-//		}
-//		else if (HitAngle(float player_pos_x, float player_pos_y, float player_pos_z, float maptop_pos_x, float maptop_pos_y, float maptop_pos_z, float mapunder_pos_x, float mapunder_pos_y, float mapunder_pos_z, float flg_angle) == true)
-//		{
-//			return true;
-//		}
-//	}
-//
-//	if (tareget == HitObject::PlayerEye && tareget == HitObject::Block)
-//	{
-//		if (HitBox1(float block_pos_x_, float block_pos_y_, float block_pos_z_, float block_width_, float block_height_, float block_depth_) == true)
-//		{
-//			return true;
-//		}
-//	}
-//	
-//}
-
 //プレイヤーとアイテム
 bool Collision::HitItemPlayer(D3DXVECTOR3 player_pos_, D3DXVECTOR3 item_pos_, float player_radius, float item_radius)
 {
@@ -81,9 +41,11 @@ bool Collision::HitItemBox(D3DXVECTOR3 block_pos_, D3DXVECTOR3 item_pos_, float 
 //立方体と球の判定
 bool Collision::HitBox(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
 {
-	if (player_pos_.x + player_radius_ >= block_pos_.x - (block_width_ / 2) && player_pos_.x - player_radius_ <= block_pos_.x + (block_width_ / 2)
-		&& player_pos_.y + player_radius_ >= block_pos_.y - (block_width_ / 2) && player_pos_.y - player_radius_ <= block_pos_.y + (block_width_ / 2)
-		&& player_pos_.z + player_radius_ >= block_pos_.z - (block_width_ / 2) && player_pos_.z - player_radius_ <= block_pos_.z + (block_width_ / 2))
+	if (HitBoxSurface(block_pos_, player_pos_, block_width_, player_radius_) == true)
+	{
+		return true;
+	}
+	else if (HitBoxVec(block_pos_, player_pos_, block_width_, player_radius_) == true)
 	{
 		return true;
 	}
@@ -103,6 +65,33 @@ bool Collision::HitBoxTop(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float
 	}
 
 	return false;
+}
+
+bool Collision::HitBoxSurface(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
+{
+	if (player_pos_.x + player_radius_ >= block_pos_.x - (block_width_ / 2) && player_pos_.x - player_radius_ <= block_pos_.x + (block_width_ / 2)
+		&& player_pos_.y + player_radius_ >= block_pos_.y - (block_width_ / 2) && player_pos_.y - player_radius_ <= block_pos_.y + (block_width_ / 2)
+		&& player_pos_.z + player_radius_ >= block_pos_.z - (block_width_ / 2) && player_pos_.z - player_radius_ <= block_pos_.z + (block_width_ / 2))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool Collision::HitBoxVec(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
+{
+
+	float a = (block_pos_.x + block_width_) - player_pos_.x;
+	float b = (block_pos_.y + block_width_) - player_pos_.y;
+	float c = sqrtf(a * a + b * b);
+
+	if (c <= player_radius_)
+	{
+		return true;
+	}
+	return false;
+
 }
 
 #pragma region 使わない

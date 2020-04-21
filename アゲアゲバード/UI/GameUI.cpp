@@ -5,10 +5,10 @@
 GameUI::GameUI()
 {
 	tex_pos.x = 1800.0f;
-	tex_pos.y = 400.0f;
+	tex_pos.y = 0.0f;
 
-	player_pos.x = 1800.0f;
-	player_pos.y = 900.0f;
+	player_pos.x = 1805.0f;
+	player_pos.y = 700.0f;
 
 	one_s_timer_pos.x = 950.0f;
 	one_s_timer_pos.y = 50.0f;
@@ -44,8 +44,8 @@ GameUI::GameUI()
 
 void GameUI::LoadTex()
 {
-	LoadTexture("Res/Tex/現在位置.png", &m_position);
-	LoadTexture("Res/Tex/プレイヤー位置.png", &m_player_pos);
+	LoadTexture("Res/Tex/UI位置情報_空ゲージ.png", &m_position);
+	LoadTexture("Res/Tex/UI位置情報_現在位置B.png", &m_player_pos);
 	LoadTexture("Res/Tex/timer.png", &m_timer);
 }
 
@@ -150,18 +150,39 @@ void GameUI::UpDateTimer()
 
 void GameUI::UpDatePlayerPos()
 {
-	//プレイヤーのoldposとposを比較して+なら+
-	if (DataBank::Instance()->GetBeforePlayerPos().y < DataBank::Instance()->GetAfterPlayerPos().y)
+	if (DataBank::Instance()->GetAfterPlayerPos().y >= 25.0f&& DataBank::Instance()->GetAfterPlayerPos().y < 50.0f)
 	{
-		player_pos.y -= 2.4f;
+		player_pos.y = 525.0f;
 	}
-	else if (DataBank::Instance()->GetBeforePlayerPos().y > DataBank::Instance()->GetAfterPlayerPos().y)
+	else if (DataBank::Instance()->GetAfterPlayerPos().y >= 50.0f && DataBank::Instance()->GetAfterPlayerPos().y < 75.0f)
 	{
-		player_pos.y += 2.4f;
+		player_pos.y = 350.0f;
 	}
-	else
+	else if (DataBank::Instance()->GetAfterPlayerPos().y >= 75.0f && DataBank::Instance()->GetAfterPlayerPos().y < 100.0f)
 	{
-		player_pos.y += 0.0f;
+		player_pos.y = 175.0f;
+	}
+	else if (DataBank::Instance()->GetAfterPlayerPos().y >= 100.0f)
+	{
+		player_pos.y = 0.0f;
+	}
+	////プレイヤーのoldposとposを比較して+なら+
+	//if (DataBank::Instance()->GetBeforePlayerPos().y < DataBank::Instance()->GetAfterPlayerPos().y)
+	//{
+	//	player_pos.y -= 1.0f;
+	//}
+	//else if (DataBank::Instance()->GetBeforePlayerPos().y > DataBank::Instance()->GetAfterPlayerPos().y)
+	//{
+	//	player_pos.y += 1.4f;
+	//}
+	//else
+	//{
+	//	player_pos.y += 0.0f;
+	//}
+
+	if (player_pos.y >= 700.0f)
+	{
+		player_pos.y = 700.0f;
 	}
 }
 

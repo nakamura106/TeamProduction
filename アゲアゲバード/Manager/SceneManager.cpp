@@ -58,7 +58,7 @@ void SceneManager::Draw()
 	{
 		DrawStart();
 
-		SetRenderMode(ERenderMode::Normal, false);
+		SetRenderMode(ERenderMode::Normal, true);
 
 		GetD3DDevice()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
 		
