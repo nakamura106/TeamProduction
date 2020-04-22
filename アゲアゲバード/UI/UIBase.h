@@ -8,6 +8,7 @@ public:
 	UIBase() {}
 	~UIBase() {}
 
+	virtual void Init() = 0;
 	virtual void LoadTex() = 0;
 	virtual void LoadFile() = 0;
 	virtual void Draw() = 0;

@@ -18,6 +18,7 @@ public:
 
 	virtual void LoadFile()override;
 
+	void Init();
 
 	virtual void Draw()override;
 

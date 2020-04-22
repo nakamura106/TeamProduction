@@ -70,6 +70,14 @@ void GameUI::LoadFile()
 	//std::cout << buf << std::endl;
 }
 
+void GameUI::Init()
+{
+	m_onem = 0;
+	m_ones = 0;
+	m_tenm = 0;
+	m_tens = 0;
+}
+
 void GameUI::Draw()
 {
 	DrawUITexture(&m_position, tex_pos);

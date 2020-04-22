@@ -10,7 +10,7 @@ class UIManager
 public:
 	static UIManager* Instance();
 
-	void Init() {};
+	void Init();
 	void CreateUI();
 	void LoadTex();
 	void LoadFile();

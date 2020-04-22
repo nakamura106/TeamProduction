@@ -25,6 +25,16 @@ UIManager::~UIManager()
 }
 
 
+void UIManager::Init()
+{
+	
+		for (int i = 0; i < m_UI.size(); i++)
+		{
+			m_UI[i]->Init();
+		}
+	
+}
+
 void UIManager::CreateUI()
 {
 	m_UI.push_back(new GameUI);
@@ -70,4 +80,5 @@ void UIManager::Release()
 	{
 		m_UI[i]->ReleaseTex();
 	}
+	
 }

@@ -116,6 +116,10 @@ bool SetUpViewPort(D3DPRESENT_PARAMETERS* present_param)
 
 void ReleaseGraphics()
 {
+	for (int i = 0; i < FontSize::FontSizeMax; i++)
+	{
+		g_FontList[i]->Release();
+	}
 	g_Device->Release();
 	g_Interface->Release();
 }

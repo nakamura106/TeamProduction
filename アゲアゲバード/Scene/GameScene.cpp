@@ -19,7 +19,7 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {
-	
+
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 }
 
@@ -41,6 +41,8 @@ void GameScene::InitScene()
     UIManager::Instance()->CreateUI();
 	UIManager::Instance()->LoadTex();
 	UIManager::Instance()->LoadFile();
+
+	UIManager::Instance()->Init();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
 }
 
