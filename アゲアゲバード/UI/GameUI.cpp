@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-GameUI::GameUI()
+void GameUI::Init()
 {
 	tex_pos.x = 1800.0f;
 	tex_pos.y = 0.0f;
@@ -70,13 +70,13 @@ void GameUI::LoadFile()
 	//std::cout << buf << std::endl;
 }
 
-void GameUI::Init()
-{
-	m_onem = 0;
-	m_ones = 0;
-	m_tenm = 0;
-	m_tens = 0;
-}
+//void GameUI::Init()
+//{
+//	m_onem = 0;
+//	m_ones = 0;
+//	m_tenm = 0;
+//	m_tens = 0;
+//}
 
 void GameUI::Draw()
 {

@@ -19,7 +19,7 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {
-
+	UIManager::Instance()->Init();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 }
 

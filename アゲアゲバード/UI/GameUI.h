@@ -10,15 +10,16 @@
 class GameUI:public UIBase
 {
 public:
-	GameUI();
-
+	GameUI(){}
 	~GameUI() {}
+
+	virtual void Init()override;
 
 	virtual void LoadTex()override;
 
 	virtual void LoadFile()override;
 
-	void Init();
+	
 
 	virtual void Draw()override;
 
