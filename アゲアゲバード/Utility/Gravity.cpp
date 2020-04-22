@@ -17,6 +17,7 @@ void Gravity::ResetPalam()
 	v0 = 0.0f;
 }
 
+// 
 void Gravity::FreeFall(float pos_y_)
 {
 	pos_y = pos_y_;
@@ -26,6 +27,7 @@ void Gravity::FreeFall(float pos_y_)
 	t += flame;
 }
 
+// ƒWƒƒƒ“ƒv‚Åg‚Á‚Ä‚é‚â‚Â(“Š‚°ã‚°)
 void Gravity::ThrowingUp(float pos_y_, float v0_)
 {
 	pos_y = pos_y_;
