@@ -45,10 +45,10 @@ bool Collision::HitBox(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float bl
 	{
 		return true;
 	}
-	else if (HitBoxVec(block_pos_, player_pos_, block_width_, player_radius_) == true)
+	/*else if (HitBoxVec(block_pos_, player_pos_, block_width_, player_radius_) == true)
 	{
 		return true;
-	}
+	}*/
 
 	return false;
 }

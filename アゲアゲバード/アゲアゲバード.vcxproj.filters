@@ -46,6 +46,9 @@
     <Filter Include="CSV">
       <UniqueIdentifier>{8a7fb0ee-03af-42ca-9c83-7cbb7289ef6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Production">
+      <UniqueIdentifier>{8de30828-c1ac-490a-8a99-e129ecf94482}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -152,6 +155,12 @@
     </ClCompile>
     <ClCompile Include="CSV\CSV.cpp">
       <Filter>CSV</Filter>
+    </ClCompile>
+    <ClCompile Include="Production\ProductionBase.cpp">
+      <Filter>Production</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\ProductionManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="CSV\CSV.h">
       <Filter>CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="Production\ProductionBase.h">
+      <Filter>Production</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\ProductionManager.h">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
