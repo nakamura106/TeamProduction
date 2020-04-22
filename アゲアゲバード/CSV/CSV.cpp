@@ -1,40 +1,25 @@
 #include "CSV.h"
-//#include <stdlib.h>
-//#include <memory>
-
-//#include <fstream>
-//#include <iostream>
-//#include <string>
-
 #include <iostream>
 #include <fstream>
-#include <sstream>
+#include <string>
 
-#pragma region Cでの読み込み
-//int LoadFile(const char* p_file_name_)
-//{
-//	// C言語のファイル入力のための準備
-//	// FILE型構造体
-//	FILE* fp;
-//	char str[256];
-//
-//	// ファイル読み込み
-//	fopen_s(&fp, "Res/ReadFile/test.txt", "r");
-//	// ファイルの読み込みに失敗したとき
-//	if (fp == NULL)
-//	{
-//		return -1;
-//	}
-//	
-//	while ()
-//	{
-//
-//	}
-//
-//	// CSVファイルクローズ
-//	fclose(fp);
-//}
-#pragma endregion
+int CreateFile()
+{
+	const char* fileName = "test.txt";
+
+	std::ofstream ofs(fileName);
+	if (!ofs)
+	{
+		std::cout << "ファイルが開けませんでした。" << std::endl;
+		std::cin.get();
+		return 0;
+	}
+
+	ofs << "player,座標,0.0,0.0,0.0\n" << std::endl;
+	//ofs << "enemy1,座標 0.0,0.0,0.0\n" << std::endl;
+
+	std::cin.get();
+}
 
 #pragma region C++での読み込み
 int LoadFile(const char* p_file_name_)
@@ -76,24 +61,25 @@ int LoadFile(const char* p_file_name_)
 		1行の長さを最初に指定する必要はない
 	*/
 
-	//std::ifstream ifs(p_file_name_);
-	//std::string str;
+	std::ifstream ifs(p_file_name_, std::ios_base::in);
+	std::string str;
 
-	//// ファイルを開くときに失敗したとき
-	//if (ifs.fail())
-	//{
-	//	std::cerr << "Failed to open file." << std::endl;
-	//	return -1;
-	//}
+	// ファイルを開くときに失敗したとき
+	if (ifs.fail())
+	{
+		std::cerr << "Failed to open file." << std::endl;
+		return -1;
+	}
 
-	//// getline()で1行ずつ読み込む
-	//while (getline(ifs, str))
-	//{
-	//	std::cout << str << std::endl;
-	//}
+	// getline()で1行ずつ読み込む
+	while (getline(ifs, str))
+	{
+		ifs >> str;
+		std::cout << str << std::endl;
+	}
 
-	//// closeは使わなくても勝手に閉じてくれる
-	//ifs.close();
+	// closeは使わなくても勝手に閉じてくれる
+	ifs.close();
 
 	return 0;
 

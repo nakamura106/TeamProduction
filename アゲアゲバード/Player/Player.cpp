@@ -117,7 +117,7 @@ void Character::Player::Move()
 	}
 
 	// ジャンプ
-	if (GetKeyDown(Q_KEY) || IsButtonDown(AButton) && m_jflag == false)
+	if (GetKeyDown(E_KEY) || IsButtonDown(AButton) && m_jflag == false)
 	{
 		m_stand_flag = false;
 		m_jflag = true;
@@ -143,6 +143,7 @@ void Character::Player::Move()
 	if (m_pos.y <= 0.0f && m_grav.GetPosY() <= 0.0f)
 	{
 		m_stand_flag = true;
+		m_grav.ResetPalam();
 	}
 	//// デバッグ用
 	//// 上
@@ -217,7 +218,6 @@ void Character::Player::CollisionDetection()
 		m_stand_flag = true;
 		m_pos = befor_player;
 	}
-
 
 #pragma endregion
 
