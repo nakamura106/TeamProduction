@@ -33,6 +33,7 @@ void GameScene::Draw()
 
 void GameScene::InitScene()
 {
+	DataBank::Instance()->SetClearflag(false);
 	ObjectManager::Instance()->CreateObject();
 	//ObjectManager::Instance()->CreateItem();
 	ObjectManager::Instance()->CreatePlayer();
@@ -63,14 +64,22 @@ void GameScene::MainScene()
 			SoundManager::Instance()->SoundClickSE();
 		}
 	}
-	if (GetKeyDown(F_KEY) )
+	if (DataBank::Instance()->GetAfterPlayerPos().y<=DataBank::Instance()->GetOilPos() )
 	{
+		DataBank::Instance()->SetClearflag(false);
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
 	}
+	if (DataBank::Instance()->GetAfterPlayerPos().y >= DataBank::Instance()->GetMapTop().y)
+	{
+		DataBank::Instance()->SetClearflag(true);
+		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+	}
+	
 }
 
 void GameScene::EndScene()
 {
+
 	SoundManager::Instance()->ReleaseBattleSound();
 	ObjectManager::Instance()->AllDeleteObject();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);

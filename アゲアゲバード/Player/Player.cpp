@@ -145,15 +145,15 @@ void Character::Player::Move()
 		m_stand_flag = true;
 		m_grav.ResetPalam();
 	}
-	//// デバッグ用
-	//// 上
-	//if (GetKey(E_KEY) || IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
-	//	m_pos.y += m_pinfo.upvec.y * m_pinfo.speed;
-	//}
-	//// 下
-	//if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
-	//	m_pos.y -= m_pinfo.upvec.y * m_pinfo.speed;
-	//}
+	// デバッグ用
+	// 上
+	if (GetKey(E_KEY) || IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
+		m_pos.y += m_pinfo.upvec.y * m_pinfo.speed;
+	}
+	// 下
+	if (GetKey(Q_KEY) || IsButtonPush(DownButton) || IsButtonPush(LeftTButton)) {
+		m_pos.y -= m_pinfo.upvec.y * m_pinfo.speed;
+	}
 
 #pragma endregion 
 

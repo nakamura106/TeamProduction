@@ -56,6 +56,8 @@ public:
 
 	D3DXVECTOR3 BlockInstallation(D3DXVECTOR3 pos_);
 
+	void SetClearflag(bool clearflag_);
+
 #pragma endregion
 
 #pragma region Get
@@ -115,6 +117,8 @@ public:
 
 	BaseScene::SceneId GetSceneId() { return m_scene_id; }
 
+	bool GetClearflag() { return m_clearflag; }
+
 #pragma endregion
 
 protected:
@@ -123,6 +127,8 @@ protected:
 
 private:
 	static DataBank* p_instance;
+
+	bool m_clearflag;
 
 	float m_oilelevation;
 
