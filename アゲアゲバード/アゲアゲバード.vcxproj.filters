@@ -162,6 +162,12 @@
     <ClCompile Include="Manager\ProductionManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
+    <ClCompile Include="Production\StartProduction.cpp">
+      <Filter>Production</Filter>
+    </ClCompile>
+    <ClCompile Include="Production\EndProduction.cpp">
+      <Filter>Production</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Camera.h">
@@ -286,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="Manager\ProductionManager.h">
       <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Production\StartProduction.h">
+      <Filter>Production</Filter>
+    </ClInclude>
+    <ClInclude Include="Production\EndProduction.h">
+      <Filter>Production</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
