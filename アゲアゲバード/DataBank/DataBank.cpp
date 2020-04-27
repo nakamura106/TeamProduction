@@ -62,6 +62,11 @@ void DataBank::SetMapRadius(float map_radius_)
 	m_map_radius = map_radius_;
 }
 
+void DataBank::SetBlockStock(int stock_)
+{
+	m_blockstock = stock_;
+}
+
 void DataBank::SetMapTop(D3DXVECTOR3 map_top_)
 {
 	m_map_top = map_top_;

@@ -88,12 +88,15 @@ void GameUI::Draw()
 	DrawUVTexture(&m_timer, ten_m_timer_pos, 50.0f, 100.0f, m_tenm_tu, m_tenm_tv);*/
 
 	DrawFont(1000, 0, m_timefont, FontSize::Regular, FontColor::Red);
+
+	DrawFont(10, 0, m_stockfont, FontSize::Regular, FontColor::Black);
 }
 
 void GameUI::UpDate()
 {
 	UpDateTimer();
 	UpDatePlayerPos();
+	ConversionBlockStock();
 }
 
 //void GameUI::UpDateTimer()
@@ -192,6 +195,13 @@ void GameUI::UpDatePlayerPos()
 	{
 		player_pos.y = 700.0f;
 	}
+}
+
+void GameUI::ConversionBlockStock()
+{
+	
+	sprintf_s(m_stockfont, "%d", DataBank::Instance()->GetBlockStock());
+
 }
 
 void GameUI::ReleaseUITexture(TEXTURE_DATA* texture)

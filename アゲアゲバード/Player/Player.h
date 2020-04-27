@@ -47,6 +47,8 @@ namespace Character
 		void Move();
 		void CollisionDetection();
 		void Animation();
+		void SetBlock();
+		void ThrowingItems();
 
 	private:
 		PlayerInfo m_pinfo;			// プレイヤー情報
@@ -56,6 +58,8 @@ namespace Character
 		Collision* m_p_collision;	// 当たり判定
 
 		Gravity m_grav;				// 重力
+
+		int m_blockstock;			//ブロックの所持数
 
 		float m_item_effect_time;	// アイテムの効果量をはかる
 

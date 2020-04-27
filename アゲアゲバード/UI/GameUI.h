@@ -29,6 +29,8 @@ public:
 
 	void UpDatePlayerPos();
 
+	void ConversionBlockStock();
+
 
 	virtual void ReleaseTex()override;
 
@@ -55,6 +57,7 @@ private:
 
 
 	char m_timefont[20];      //•¶š
+	char m_stockfont[20];
 	int timecounter;		//1•b”‚¦‚é
 	int m_ones;	//1‚Ì’PˆÊ
 	int m_tens;	//10‚Ì’PˆÊ

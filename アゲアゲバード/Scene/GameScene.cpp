@@ -35,7 +35,6 @@ void GameScene::InitScene()
 {
 	DataBank::Instance()->SetClearflag(false);
 	ObjectManager::Instance()->CreateObject();
-	//ObjectManager::Instance()->CreateItem();
 	ObjectManager::Instance()->CreatePlayer();
 	SoundManager::Instance()->RegisterGameMainSound();
 	SoundManager::Instance()->SoundBGM(-1000);
@@ -49,21 +48,10 @@ void GameScene::InitScene()
 
 void GameScene::MainScene()
 {
-	if (GetKeyDown(T_KEY) || IsButtonDown(RightBButton))
-	{
-		SoundManager::Instance()->SoundThrow();
-		ObjectManager::Instance()->CreateItem();
-	}
 
 	ObjectManager::Instance()->Update();
 	UIManager::Instance()->UpDate();
-	if (GetKeyDown(SPACE_KEY) || IsButtonDown(LeftBButton))
-	{
-		if (ObjectManager::Instance()->CreateBlock() == true)
-		{
-			SoundManager::Instance()->SoundClickSE();
-		}
-	}
+	
 	if (DataBank::Instance()->GetAfterPlayerPos().y<=DataBank::Instance()->GetOilPos() )
 	{
 		DataBank::Instance()->SetClearflag(false);

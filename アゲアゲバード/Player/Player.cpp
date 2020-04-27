@@ -2,6 +2,8 @@
 #include "../Engine/Input.h"
 #include "../Utility/Gravity.h"
 #include "../DataBank/DataBank.h"
+#include"../Manager/SoundManager.h"
+#include"../Manager/ObjectManager.h"
 
 Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 {
@@ -19,6 +21,10 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.radius = 2.0f;	// •ª‚©‚ç‚ñ
 
 	m_pinfo.jamp_power = 2.0f;
+
+	m_blockstock = 20;
+
+	DataBank::Instance()->SetBlockStock(m_blockstock);
 
 	m_p_camera = new CAMERA(m_pos);
 
@@ -49,6 +55,10 @@ void Character::Player::Update()
 	CollisionDetection();
 
 	m_p_camera->Update();
+
+	SetBlock();
+
+	ThrowingItems();
 
 	//Animation();
 
@@ -322,6 +332,31 @@ void Character::Player::Animation()
 		break;
 	}
 	MyFbxManager::FbxManager::Instance()->Animation(m_key, 1.0f / 60.0f);
+}
+
+void Character::Player::SetBlock()
+{
+	if (m_blockstock > 0)
+	{
+		if (GetKeyDown(SPACE_KEY) || IsButtonDown(LeftBButton))
+		{
+			if (ObjectManager::Instance()->CreateBlock() == true)
+			{
+				SoundManager::Instance()->SoundClickSE();
+				m_blockstock--;
+				DataBank::Instance()->SetBlockStock(m_blockstock);
+			}
+		}
+	}
+}
+
+void Character::Player::ThrowingItems()
+{
+	if (GetKeyDown(T_KEY) || IsButtonDown(RightBButton))
+	{
+		SoundManager::Instance()->SoundThrow();
+		ObjectManager::Instance()->CreateItem();
+	}
 }
 
 void Character::Player::Draw()
