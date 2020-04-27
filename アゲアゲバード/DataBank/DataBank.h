@@ -15,6 +15,8 @@ public:
 	void ResetData() {}
 
 	void DeleteBlockPos(int num);
+
+	void DeleteGameData();
 	
 #pragma region Set
 

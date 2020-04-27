@@ -74,6 +74,11 @@ void GameScene::MainScene()
 		DataBank::Instance()->SetClearflag(true);
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
 	}
+	if (GetKeyDown(F_KEY))
+	{
+		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+
+	}
 	
 }
 
@@ -84,5 +89,5 @@ void GameScene::EndScene()
 	ObjectManager::Instance()->AllDeleteObject();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 	SceneManager::Instance()->SetSceneId(BaseScene::SceneId::End);
-
+	DataBank::Instance()->DeleteGameData();
 }

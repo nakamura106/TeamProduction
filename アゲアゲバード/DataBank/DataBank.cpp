@@ -15,6 +15,20 @@ DataBank* DataBank::Instance()
 void DataBank::DeleteBlockPos(int num)
 {
 	m_blockpos.erase(m_blockpos.begin() + num);
+	
+}
+
+void DataBank::DeleteGameData()
+{
+	m_oilelevation = 0;
+	m_item_pos.x=0;
+	m_item_pos.y = 0;
+	m_item_pos.z = 0;
+	m_before_player_pos.x = 0;
+	m_before_player_pos.y = 0;
+	m_before_player_pos.z = 0;
+	std::vector<D3DXVECTOR3>().swap(m_blockpos);
+
 }
 
 DataBank::DataBank()
