@@ -2,6 +2,18 @@
 
 void StartProduction::Init()
 {
+	m_t_three_pos.x = 900.0f;
+	m_t_three_pos.y = 450.0f;
+
+	m_t_two_pos.x = 900.0f;
+	m_t_two_pos.y = 450.0f;
+
+	m_t_one_pos.x = 900.0f;
+	m_t_one_pos.y = 450.0f;
+
+	m_start_pos.x = 800.0f;
+	m_start_pos.y = 500.0f;
+
 	m_counttimer = 0;
 
 	m_one_draw = false;
@@ -63,6 +75,11 @@ void StartProduction::UpDate()
 	{
 		m_one_draw = false;
 		m_startflg = true;
+	}
+	if (m_counttimer == 300)
+	{
+		m_startflg = false;
+		m_counttimer = 301;
 	}
 }
 

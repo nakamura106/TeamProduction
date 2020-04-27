@@ -206,6 +206,25 @@ bool Collision::HitAngle(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, D3DXV
 	else
 		return false;
 }
+
+bool Collision::HitOil(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, float player_radius_, float oil_radius_)
+{
+	float x = player_pos_.x - maptop_pos_.x;
+	float z = player_pos_.z - maptop_pos_.z;
+
+	float c = sqrtf((x * x) + (z * z));
+
+	float radius = player_radius_ + oil_radius_;
+
+	if (c <= radius)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 #pragma endregion
 
 //ƒvƒŒƒCƒ„[‚ÌŽ‹ŠE‚Ì‚ ‚½‚è”»’è
