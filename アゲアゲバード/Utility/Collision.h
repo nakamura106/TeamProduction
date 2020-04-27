@@ -2,21 +2,9 @@
 #ifndef COLLISION_H_
 #define COLLISION_H_
 
-//enum class HitObject :int
-//{
-//	Player,
-//	Block,
-//	Item,
-//	Map,
-//	MapUp,
-//	PlayerEye,
-//	MaxObject
-//};
-
 class Collision
 {
 public:
-	//bool UpdateHit(HitObject tareget, HitObject tareget2);
 
 	/*プレイヤーとアイテム(球と球)
 		第一、二、三引数：プレイヤー座標
@@ -71,7 +59,15 @@ public:
 	*/
 	bool HitMap(float player_circle_pos_x_, float player_circle_pos_z_, float map_circle_pos_x_, float map_circle_pos_z_, float player_circle_radius_, float map_circle_radius_);
 
+	/*プレイヤーと天井のあたり判定(角度であたり判定)
+		第一、二、三引数：プレイヤーの座標
+		第四、五、六引数：マップの頂上の中心座標
+		第七、八、九引数：マップの底辺の中心座標
+		第十引数　　　　：限界角度
+	*/
+	bool HitAngle(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, D3DXVECTOR3 mapunder_pos_, float flg_angle);
 
+	bool HitOil(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, float player_radius_, float oil_radius_);
 	/*プレイヤーの視線とブロック(線分と立方体のあたり判定)
 		第一、二、三引数：ブロックの座標
 		第四引数　　　　：ブロックの幅
@@ -83,13 +79,7 @@ public:
 	bool HitVisualBox2(D3DXVECTOR3 block_pos_, float block_width_, float block_depth, float x, float y, float z);
 
 
-	/*プレイヤーと天井のあたり判定(角度であたり判定)
-		第一、二、三引数：プレイヤーの座標
-		第四、五、六引数：マップの頂上の中心座標
-		第七、八、九引数：マップの底辺の中心座標
-		第十引数　　　　：限界角度
-	*/
-	bool HitAngle(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, D3DXVECTOR3 mapunder_pos_, float flg_angle);
+	
 private:
 	//CAMERA* p_camera;
 
