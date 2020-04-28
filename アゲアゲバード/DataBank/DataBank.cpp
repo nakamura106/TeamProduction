@@ -139,6 +139,11 @@ D3DXVECTOR3 DataBank::BlockInstallation(D3DXVECTOR3 pos_)
 	return blockpos;
 }
 
+void DataBank::SetStartflag(bool startflag_)
+{
+	m_startflag = startflag_;
+}
+
 void DataBank::SetClearflag(bool clearflag_)
 {
 	m_clearflag = clearflag_;

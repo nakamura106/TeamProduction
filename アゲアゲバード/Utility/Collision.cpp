@@ -159,7 +159,7 @@ bool Collision::HitBoxInnerBack(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_,
 #pragma endregion
 
 #pragma region プレイヤーとマップのあたり判定
-//円と内接円のあたり判定
+//プレイヤーと壁のあたり判定(円と内接円)
 bool Collision::HitMap(float player_circle_pos_x_, float player_circle_pos_z_, float map_circle_pos_x_, float map_circle_pos_z_, float player_circle_radius_, float map_circle_radius_)
 {
 	//全体を上から見てプレイヤーと壁は円であるから
@@ -207,6 +207,7 @@ bool Collision::HitAngle(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, D3DXV
 		return false;
 }
 
+//プレイヤーと注がれる油
 bool Collision::HitOil(D3DXVECTOR3 player_pos_, D3DXVECTOR3 maptop_pos_, float player_radius_, float oil_radius_)
 {
 	float x = player_pos_.x - maptop_pos_.x;

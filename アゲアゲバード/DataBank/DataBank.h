@@ -60,6 +60,8 @@ public:
 
 	D3DXVECTOR3 BlockInstallation(D3DXVECTOR3 pos_);
 
+	void SetStartflag(bool startflg);
+
 	void SetClearflag(bool clearflag_);
 
 #pragma endregion
@@ -123,6 +125,8 @@ public:
 
 	BaseScene::SceneId GetSceneId() { return m_scene_id; }
 
+	bool GetStartflag() { return m_startflag; }
+
 	bool GetClearflag() { return m_clearflag; }
 
 #pragma endregion
@@ -133,6 +137,8 @@ protected:
 
 private:
 	static DataBank* p_instance;
+
+	bool m_startflag;
 
 	bool m_clearflag;
 

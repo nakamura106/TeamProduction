@@ -59,6 +59,8 @@ namespace Character
 
 		Gravity m_grav;				// 重力
 
+		D3DXVECTOR3 m_camera_pos;
+
 		int m_blockstock;			//ブロックの所持数
 
 		float m_item_effect_time;	// アイテムの効果量をはかる

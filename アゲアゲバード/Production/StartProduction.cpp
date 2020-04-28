@@ -1,4 +1,5 @@
 #include "StartProduction.h"
+#include "../DataBank/DataBank.h"
 
 void StartProduction::Init()
 {
@@ -81,6 +82,7 @@ void StartProduction::UpDate()
 		m_startflg = false;
 		m_counttimer = 301;
 	}
+	DataBank::Instance()->SetStartflag(m_startflg);
 }
 
 void StartProduction::ReleaseTex()
