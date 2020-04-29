@@ -56,10 +56,13 @@ void GameScene::InitScene()
 
 void GameScene::MainScene()
 {
-
+	if (DataBank::Instance()->GetStartflag() == true)
+	{
+		UIManager::Instance()->UpDate();
+		ProductionManager::Instance()->UpDate();
+	}
 	ObjectManager::Instance()->Update();
-	UIManager::Instance()->UpDate();
-	ProductionManager::Instance()->UpDate();
+	
 	if (DataBank::Instance()->GetAfterPlayerPos().y<=DataBank::Instance()->GetOilPos() )
 	{
 		DataBank::Instance()->SetClearflag(false);

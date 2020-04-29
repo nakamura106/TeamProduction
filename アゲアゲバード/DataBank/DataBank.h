@@ -60,6 +60,8 @@ public:
 
 	D3DXVECTOR3 BlockInstallation(D3DXVECTOR3 pos_);
 
+	void SetUIStartflag(bool uistartflg);
+
 	void SetStartflag(bool startflg);
 
 	void SetClearflag(bool clearflag_);
@@ -125,6 +127,8 @@ public:
 
 	BaseScene::SceneId GetSceneId() { return m_scene_id; }
 
+	bool GetUIStartflag() { return m_uistartflag; }
+
 	bool GetStartflag() { return m_startflag; }
 
 	bool GetClearflag() { return m_clearflag; }
@@ -137,6 +141,8 @@ protected:
 
 private:
 	static DataBank* p_instance;
+
+	bool m_uistartflag;
 
 	bool m_startflag;
 

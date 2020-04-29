@@ -38,7 +38,7 @@ private:
 	bool m_two_draw;
 	bool m_three_draw;
 
-	bool m_startflg;
+	bool m_uistartflag;
 };
 
 #endif

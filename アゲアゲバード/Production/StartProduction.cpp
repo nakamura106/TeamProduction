@@ -21,7 +21,7 @@ void StartProduction::Init()
 	m_two_draw = false;
 	m_three_draw = false;
 
-	m_startflg = false;
+	m_uistartflag = false;
 
 }
 
@@ -49,7 +49,7 @@ void StartProduction::Draw()
 	{
 		DrawUITexture(&m_t_one, m_t_one_pos);
 	}
-	else if (m_startflg == true)
+	else if (m_counttimer >= 240 && m_counttimer <= 300)
 	{
 		DrawUITexture(&m_start, m_start_pos);
 	}
@@ -57,7 +57,9 @@ void StartProduction::Draw()
 
 void StartProduction::UpDate()
 {
+	
 	m_counttimer++;
+	
 	if (m_counttimer == 60)
 	{
 		m_three_draw = true;
@@ -75,14 +77,12 @@ void StartProduction::UpDate()
 	if (m_counttimer == 240)
 	{
 		m_one_draw = false;
-		m_startflg = true;
 	}
 	if (m_counttimer == 300)
 	{
-		m_startflg = false;
-		m_counttimer = 301;
+		m_uistartflag = true;
 	}
-	DataBank::Instance()->SetStartflag(m_startflg);
+	DataBank::Instance()->SetUIStartflag(m_uistartflag);
 }
 
 void StartProduction::ReleaseTex()

@@ -27,11 +27,10 @@ UIManager::~UIManager()
 
 void UIManager::Init()
 {
-	
-		for (int i = 0; i < m_UI.size(); i++)
-		{
-			m_UI[i]->Init();
-		}
+	for (int i = 0; i < m_UI.size(); i++)
+	{
+		m_UI[i]->Init();
+	}
 	
 }
 

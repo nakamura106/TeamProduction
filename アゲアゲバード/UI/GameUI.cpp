@@ -40,6 +40,10 @@ void GameUI::Init()
 	m_tens = 0;
 	m_onem = 0;
 	m_tenm = 0;
+
+	sprintf_s(m_timefont, "%d%d:%d%d", m_tenm, m_onem, m_tens, m_ones);
+
+	
 }
 
 void GameUI::LoadTex()
@@ -132,8 +136,10 @@ void GameUI::UpDate()
 
 void GameUI::UpDateTimer()
 {
-
-	timercounter++;
+	if (DataBank::Instance()->GetUIStartflag() == true)
+	{
+		timercounter++;
+	}
 
 	if (timercounter == 60)
 	{

@@ -16,7 +16,7 @@ public:
 		m_CameraPos.z = pos_.z;
 
 		m_EyePos.x = 0.0f;
-		m_EyePos.y = 0.0f;
+		m_EyePos.y = -300.0f;
 		m_EyePos.z = 0.0f;
 
 		m_CameraUp.x = 0.0f;
@@ -31,6 +31,8 @@ public:
 
 		m_Speed = m_WalkSpeed;
 
+		m_startflag = true;
+
 		D3DXMatrixIdentity(&m_MatView);
 	}
 	
@@ -39,6 +41,8 @@ public:
 
 	// ƒJƒƒ‰‚ÌˆÚ“®
 	void Move();
+
+	void ProductionMove();
 
 	void MouseRotate();
 
@@ -108,6 +112,8 @@ private:
 
 	/* ˆÚ“®‘¬“x */
 	//D3DXVECTOR3 m_Velocity;
+
+	bool m_startflag;
 };
 
 #endif

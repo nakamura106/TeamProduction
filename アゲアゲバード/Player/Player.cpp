@@ -15,11 +15,11 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pos.z = pos_z_;
 
 	m_camera_pos.x = 0.0f;
-	m_camera_pos.x = 0.0f;
-	m_camera_pos.x = 0.0f;
+	m_camera_pos.y = 150.0f;
+	m_camera_pos.z = 0.0f;
 
 
-	m_pinfo.walk_speed = 0.5f;
+	m_pinfo.walk_speed = 2.5f;
 	m_pinfo.sprint_speed = 1.0f;
 	m_pinfo.speed = m_pinfo.walk_speed;
 
@@ -55,13 +55,17 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 void Character::Player::Update()
 {
-	Move();
+	if (DataBank::Instance()->GetUIStartflag() == true)
+	{
+		Move();
+
+		SetBlock();
+	}
 
 	CollisionDetection();
 
 	m_p_camera->Update();
 
-	SetBlock();
 
 	ThrowingItems();
 

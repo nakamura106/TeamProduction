@@ -34,10 +34,15 @@ void CAMERA::Update()
 		20000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
 	//射影座標変換用の行列算出 endMove();
+	//ProductionMove();
+	DataBank::Instance()->SetStartflag(m_startflag);
 
-	Move();
+	if (DataBank::Instance()->GetUIStartflag() == true)
+	{
+		Move();
+	}
 	MouseRotate();
-	StickRotate();
+	//StickRotate();
 
 	m_Forward = m_EyePos - m_CameraPos;
 	D3DXVec3Normalize(&m_Forward, &m_Forward);
@@ -47,6 +52,7 @@ void CAMERA::Update()
 
 void CAMERA::Move()
 {
+	
 	DataBank* p_db = DataBank::Instance();
 
 	// 過去のプレイヤーの位置を取得(移動前)
@@ -57,22 +63,39 @@ void CAMERA::Move()
 	D3DXVECTOR3 amount_of_movement = after_player - befor_player;
 	// カメラにプレイヤーの移動量を足す
 	m_CameraPos += amount_of_movement;
+	
+	
 
 	DataBank::Instance()->SetCameraPos(m_CameraPos);
+}
+
+void CAMERA::ProductionMove()
+{
+	if (DataBank::Instance()->GetAfterPlayerPos().y <= m_CameraPos.y)
+	{
+		m_CameraPos.y -= 0.25f;
+	}
+	else
+	{
+		m_startflag = true;
+	}
+	DataBank::Instance()->SetStartflag(m_startflag);
+
 }
 
 void CAMERA::MouseRotate()
 {
 	SetCursorPos(960, 540);
-
 	m_Yaw += (GetMousePos().X - 960) / 1920 * 50;//ここでカメラ感度変更可能
 	m_Pitch -= (GetMousePos().Y - 540) / 1080 * 20;
 	if (m_Pitch > 88.0f) { m_Pitch = 178.0f - m_Pitch; }
 	if (m_Pitch < -88.0f) { m_Pitch = -178.0f - m_Pitch; }
 
+
 	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
 	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));
 	m_EyePos.z = m_CameraPos.z + cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	
 }
 
 void CAMERA::StickRotate()
