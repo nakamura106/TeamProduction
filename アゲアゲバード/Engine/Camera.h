@@ -16,7 +16,7 @@ public:
 		m_CameraPos.z = pos_.z;
 
 		m_EyePos.x = 0.0f;
-		m_EyePos.y = -300.0f;
+		m_EyePos.y = 0.0f;
 		m_EyePos.z = 0.0f;
 
 		m_CameraUp.x = 0.0f;

@@ -42,7 +42,7 @@ void CAMERA::Update()
 		Move();
 	}
 	MouseRotate();
-	//StickRotate();
+	StickRotate();
 
 	m_Forward = m_EyePos - m_CameraPos;
 	D3DXVec3Normalize(&m_Forward, &m_Forward);
