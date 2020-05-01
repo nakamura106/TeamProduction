@@ -66,6 +66,10 @@ public:
 
 	void SetClearflag(bool clearflag_);
 
+	void SetPage(int page_);
+
+	void SetSelect(int sel_);
+
 #pragma endregion
 
 #pragma region Get
@@ -133,6 +137,10 @@ public:
 
 	bool GetClearflag() { return m_clearflag; }
 
+	int GetPage() { return m_now_page; }
+
+	int GetSelect() { return m_now_select; }
+
 #pragma endregion
 
 protected:
@@ -177,6 +185,8 @@ private:
 
 	BaseScene::SceneId m_scene_id;
 
+	int m_now_page;
+	int m_now_select;
 };
 
 #endif // !DATABANK_H_

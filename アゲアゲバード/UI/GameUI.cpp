@@ -2,6 +2,11 @@
 #include <iostream>
 #include <fstream>
 
+GameUI::GameUI()
+{
+	m_key = "game";
+}
+
 void GameUI::Init()
 {
 	tex_pos.x = 1800.0f;
@@ -210,18 +215,10 @@ void GameUI::ConversionBlockStock()
 
 }
 
-void GameUI::ReleaseUITexture(TEXTURE_DATA* texture)
-{
-	if (texture->Texture != NULL)
-	{
-		texture->Texture->Release();
-		texture->Texture = NULL;
-	}
-}
+
 
 void GameUI::ReleaseTex()
 {
 	ReleaseUITexture(&m_position);
 	ReleaseUITexture(&m_player_pos);
-
 }

@@ -10,7 +10,6 @@
 
 GameScene::GameScene()
 {
-	    
 	Init();
 }
 
@@ -20,7 +19,8 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {
-	UIManager::Instance()->Init();
+	UIManager::Instance()->Init((int)UIManager::Scene::game);
+
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 }
 
@@ -29,28 +29,30 @@ void GameScene::Init()
 void GameScene::Draw()
 {
 	ObjectManager::Instance()->Draw();
-	UIManager::Instance()->Draw();
+
+	UIManager::Instance()->Draw((int)UIManager::Scene::game);
+
 	ProductionManager::Instance()->Draw();
 }
 
 void GameScene::InitScene()
 {
 	DataBank::Instance()->SetClearflag(false);
+
 	ObjectManager::Instance()->CreateObject();
 	ObjectManager::Instance()->CreatePlayer();
 
 	SoundManager::Instance()->RegisterGameMainSound();
 	SoundManager::Instance()->SoundBGM(-1000);
 
-    UIManager::Instance()->CreateUI();
-	UIManager::Instance()->LoadTex();
-	UIManager::Instance()->LoadFile();
+	UIManager::Instance()->LoadTex((int)UIManager::Scene::game);
+	UIManager::Instance()->LoadFile((int)UIManager::Scene::game);
+	UIManager::Instance()->Init((int)UIManager::Scene::game);
 
 	ProductionManager::Instance()->CreateProduction();
 	ProductionManager::Instance()->LoadTex();
 	ProductionManager::Instance()->Init();
 
-	UIManager::Instance()->Init();
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
 }
 
@@ -58,11 +60,12 @@ void GameScene::MainScene()
 {
 	if (DataBank::Instance()->GetStartflag() == true)
 	{
-		UIManager::Instance()->UpDate();
+		UIManager::Instance()->UpDate((int)UIManager::Scene::game);
 		ProductionManager::Instance()->UpDate();
 	}
+
 	ObjectManager::Instance()->Update();
-	
+
 	if (DataBank::Instance()->GetAfterPlayerPos().y<=DataBank::Instance()->GetOilPos() )
 	{
 		DataBank::Instance()->SetClearflag(false);
@@ -76,19 +79,22 @@ void GameScene::MainScene()
 	if (GetKeyDown(F_KEY))
 	{
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
-
 	}
 	
 }
 
 void GameScene::EndScene()
 {
-
 	SoundManager::Instance()->ReleaseBattleSound();
-	UIManager::Instance()->Release();
+
+	UIManager::Instance()->Release((int)UIManager::Scene::game);
+
 	ProductionManager::Instance()->ReleaseTex();
+
 	ObjectManager::Instance()->AllDeleteObject();
+
+	DataBank::Instance()->DeleteGameData();
+
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 	SceneManager::Instance()->SetSceneId(BaseScene::SceneId::End);
-	DataBank::Instance()->DeleteGameData();
 }

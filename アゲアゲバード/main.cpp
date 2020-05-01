@@ -28,7 +28,11 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		return 0;
 	}
 
+	UIManager::Instance()->CreateUI();
+
 	SceneManager::Instance()->Init();
+
+	
 
 	while (true)
 	{

@@ -24,6 +24,9 @@ void DataBank::DeleteGameData()
 	m_item_pos.x=0;
 	m_item_pos.y = 0;
 	m_item_pos.z = 0;
+	m_after_player_pos.x = 0;
+	m_after_player_pos.y = 0;
+	m_after_player_pos.z = 0;
 	m_before_player_pos.x = 0;
 	m_before_player_pos.y = 0;
 	m_before_player_pos.z = 0;
@@ -152,4 +155,14 @@ void DataBank::SetStartflag(bool startflag_)
 void DataBank::SetClearflag(bool clearflag_)
 {
 	m_clearflag = clearflag_;
+}
+
+void DataBank::SetPage(int page_)
+{
+	m_now_page = page_;
+}
+
+void DataBank::SetSelect(int sel_)
+{
+	m_now_select = sel_;
 }

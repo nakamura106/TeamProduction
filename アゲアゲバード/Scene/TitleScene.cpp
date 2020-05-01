@@ -4,6 +4,7 @@
 #include"../Engine/Input.h"
 #include"../DataBank/DataBank.h"
 #include"../Manager/SceneManager.h"
+#include"../Manager/UIManager.h"
 
 TitleScene::TitleScene()
 {
@@ -17,69 +18,45 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
-
+	UIManager::Instance()->Init((int)UIManager::Scene::title);
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 }
 
 
 void TitleScene::Draw()
 {
-	if (m_select_flag == 0)
-	{
-		DrawUITexture(&m_title, m_title_bg_pos);
-	}
-	else
-	{
-		DrawUITexture(&m_help, m_title_bg_pos);
-	}
+	UIManager::Instance()->Draw((int)UIManager::Scene::title);
+
 }
 
 void TitleScene::InitScene()
 {
-	SoundManager::Instance()->SoundBGM(-1000);
-	m_title_bg_pos.x = 0;
-	m_title_bg_pos.y = 0;
+
 	m_select_flag = 0;
+	
+	UIManager::Instance()->Init((int)UIManager::Scene::title);
+	UIManager::Instance()->LoadTex((int)UIManager::Scene::title);
+	UIManager::Instance()->LoadFile((int)UIManager::Scene::title);
+
+	
 	SoundManager::Instance()->RegisterTitleSound();
-	LoadTexture("Res/Tex/GameSelect.png", &m_title);
-	LoadTexture("Res/Tex/HelpSelect.png", &m_help);
 	SoundManager::Instance()->SoundBGM(-1000);
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
 }
 
 void TitleScene::MainScene()
 {
-	if(GetKeyDown(DOWN_KEY)||IsButtonDown(DownButton) || IsButtonDown(L_DownStick))
-	{
-		SoundManager::Instance()->SoundSelectSE();
-		m_select_flag = 1;
-	}
-	else
-	{
-		SoundManager::Instance()->ResetSelectFlag();
-	}
-	if (GetKeyDown(UP_KEY)|| IsButtonDown(UpButton) || IsButtonDown(L_UpStick))
-	{
-		SoundManager::Instance()->SoundSelectSE();
+	UpdateSelect();
 
-		m_select_flag = 0;
-	}
-	else
-	{
-		SoundManager::Instance()->ResetSelectFlag();
-	}
-	if (GetKeyDown(RETURN_KEY)|| IsButtonDown(BButton))
-	{
-		SoundManager::Instance()->SoundClickSE();
-		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
-	}
+	UIManager::Instance()->UpDate((int)UIManager::Scene::title);
+
 }
 
 void TitleScene::EndScene()
 {
-	ReleaseTexture(&m_title);
-	ReleaseTexture(&m_help);
+	
 	SetCursorPos(960, 540);
+	UIManager::Instance()->Release((int)UIManager::Scene::title);
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 	if (m_select_flag == 0)
 	{
@@ -89,6 +66,100 @@ void TitleScene::EndScene()
 	if (m_select_flag == 1)
 	{
 		SceneManager::Instance()->SetSceneId(BaseScene::SceneId::Help);
+	}
+}
+
+void TitleScene::UpdateSelect()
+{
+	if (DataBank::Instance()->GetPage() == (int)TitleUi::page::page1)
+	{
+		if (GetKeyDown(DOWN_KEY) || IsButtonDown(L_DownStick))
+		{
+			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Option)
+			{
+				DataBank::Instance()->SetSelect((int)TitleUi::Select::Help);
+				SoundManager::Instance()->SoundSelectSE();
+			}
+			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Solo)
+			{
+				DataBank::Instance()->SetSelect((int)TitleUi::Select::Option);
+				SoundManager::Instance()->SoundSelectSE();
+			}
+			
+		}
+		else
+		{
+			SoundManager::Instance()->ResetSelectFlag();
+		}
+		if (GetKeyDown(UP_KEY) || IsButtonDown(L_UpStick))
+		{
+			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Option)
+			{
+				DataBank::Instance()->SetSelect((int)TitleUi::Select::Solo);
+				SoundManager::Instance()->SoundSelectSE();
+			}
+			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Help)
+			{
+				DataBank::Instance()->SetSelect((int)TitleUi::Select::Option);
+				SoundManager::Instance()->SoundSelectSE();
+			}
+			
+		}
+		else
+		{
+			SoundManager::Instance()->ResetSelectFlag();
+		}
+	}
+	if (DataBank::Instance()->GetPage() == (int)TitleUi::page::page2)
+	{
+		if (GetKeyDown(DOWN_KEY) || IsButtonDown(L_DownStick))
+		{
+			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Freemode)
+			{
+				DataBank::Instance()->SetSelect((int)TitleUi::Select::Back);
+				SoundManager::Instance()->SoundSelectSE();
+			}
+			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Timeattack)
+			{
+				DataBank::Instance()->SetSelect((int)TitleUi::Select::Freemode);
+				SoundManager::Instance()->SoundSelectSE();
+			}
+		}
+		else
+		{
+			SoundManager::Instance()->ResetSelectFlag();
+		}
+		if (GetKeyDown(UP_KEY) || IsButtonDown(L_UpStick))
+		{
+			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Freemode)
+			{
+				DataBank::Instance()->SetSelect((int)TitleUi::Select::Timeattack);
+				SoundManager::Instance()->SoundSelectSE();
+			}
+			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Back)
+			{
+				DataBank::Instance()->SetSelect((int)TitleUi::Select::Freemode);
+				SoundManager::Instance()->SoundSelectSE();
+			}
+		}
+		else
+		{
+			SoundManager::Instance()->ResetSelectFlag();
+		}
+	}
+	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
+	{
+		if (DataBank::Instance()->GetPage() == (int)TitleUi::page::page2)
+		{
+			SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+		}
+		if (DataBank::Instance()->GetPage() == (int)TitleUi::page::page1)
+		{
+
+			SoundManager::Instance()->SoundClickSE();
+			DataBank::Instance()->SetPage((int)TitleUi::page::page2);
+			DataBank::Instance()->SetSelect((int)TitleUi::Select::Timeattack);
+		}
 	}
 }
 

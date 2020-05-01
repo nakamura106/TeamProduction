@@ -3,6 +3,7 @@
 
 #include"BaseScene.h"
 #include"../Engine/Graphics.h"
+#include"../UI/TitleUI.h"
 
 class TitleScene :public BaseScene
 {
@@ -18,10 +19,13 @@ public:
 	void EndScene();
 
 private:
+	void UpdateSelect();
+
 	int m_select_flag;
-	D3DXVECTOR2 m_title_bg_pos;
-	TEXTURE_DATA m_title;
-	TEXTURE_DATA m_help;
+
+
+	
+
 };
 
 #endif
