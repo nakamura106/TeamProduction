@@ -221,5 +221,4 @@ void GameUI::ReleaseTex()
 {
 	ReleaseUITexture(&m_position);
 	ReleaseUITexture(&m_player_pos);
-
 }

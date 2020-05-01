@@ -47,12 +47,11 @@ void GameScene::InitScene()
 
 	UIManager::Instance()->LoadTex((int)UIManager::Scene::game);
 	UIManager::Instance()->LoadFile((int)UIManager::Scene::game);
+	UIManager::Instance()->Init((int)UIManager::Scene::game);
 
 	ProductionManager::Instance()->CreateProduction();
 	ProductionManager::Instance()->LoadTex();
 	ProductionManager::Instance()->Init();
-
-	UIManager::Instance()->Init((int)UIManager::Scene::game);
 
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
 }
@@ -61,15 +60,11 @@ void GameScene::MainScene()
 {
 	if (DataBank::Instance()->GetStartflag() == true)
 	{
-		UIManager::Instance()->UpDate();
+		UIManager::Instance()->UpDate((int)UIManager::Scene::game);
 		ProductionManager::Instance()->UpDate();
 	}
 
 	ObjectManager::Instance()->Update();
-
-	UIManager::Instance()->UpDate((int)UIManager::Scene::game);
-
-	ProductionManager::Instance()->UpDate();
 
 	if (DataBank::Instance()->GetAfterPlayerPos().y<=DataBank::Instance()->GetOilPos() )
 	{
@@ -90,12 +85,16 @@ void GameScene::MainScene()
 
 void GameScene::EndScene()
 {
-
 	SoundManager::Instance()->ReleaseBattleSound();
+
 	UIManager::Instance()->Release((int)UIManager::Scene::game);
+
 	ProductionManager::Instance()->ReleaseTex();
+
 	ObjectManager::Instance()->AllDeleteObject();
+
+	DataBank::Instance()->DeleteGameData();
+
 	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
 	SceneManager::Instance()->SetSceneId(BaseScene::SceneId::End);
-	DataBank::Instance()->DeleteGameData();
 }
