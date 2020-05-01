@@ -1,5 +1,6 @@
 #include"UIManager.h"
 #include "../UI/GameUI.h"
+#include"../UI/TitleUI.h"
 #include"../DataBank/DataBank.h"
 
 UIManager* UIManager::p_instance = 0;
@@ -25,60 +26,43 @@ UIManager::~UIManager()
 }
 
 
-void UIManager::Init()
+void UIManager::Init(int scene_)
 {
-	
-		for (int i = 0; i < m_UI.size(); i++)
-		{
-			m_UI[i]->Init();
-		}
-	
+	m_UI[scene_]->Init();	
 }
 
 void UIManager::CreateUI()
 {
+	m_UI.push_back(new TitleUi);
 	m_UI.push_back(new GameUI);
 }
 
-void UIManager::LoadTex()
+void UIManager::LoadTex(int scene_)
+{	
+	m_UI[scene_]->LoadTex();
+}
+
+void UIManager::LoadFile(int scene_)
 {
-	for (int i = 0; i < m_UI.size(); i++)
-	{
-		m_UI[i]->LoadTex();
-	}
+	
+		m_UI[scene_]->LoadFile();
+	
+
+}
+
+void UIManager::Draw(int scene_)
+{
+	
+		m_UI[scene_]->Draw();
 	
 }
 
-void UIManager::LoadFile()
+void UIManager::UpDate(int scene_)
 {
-	for (int i = 0; i < m_UI.size(); i++)
-	{
-		m_UI[i]->LoadFile();
-	}
-
+		m_UI[scene_]->UpDate();
 }
 
-void UIManager::Draw()
+void UIManager::Release(int scene_)
 {
-	for (int i = 0; i < m_UI.size(); i++)
-	{
-		m_UI[i]->Draw();
-	}
-}
-
-void UIManager::UpDate()
-{
-	for (int i = 0; i < m_UI.size(); i++)
-	{
-		m_UI[i]->UpDate();
-	}
-}
-
-void UIManager::Release()
-{
-	for (int i = 0; i < m_UI.size(); i++)
-	{
-		m_UI[i]->ReleaseTex();
-	}
-	
+		m_UI[scene_]->ReleaseTex();
 }

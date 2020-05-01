@@ -10,13 +10,22 @@ class UIManager
 public:
 	static UIManager* Instance();
 
-	void Init();
+	void Init(int scene_);
 	void CreateUI();
-	void LoadTex();
-	void LoadFile();
-	void Draw();
-	void UpDate();
-	void Release();
+	void LoadTex(int scene_);
+	void LoadFile(int scene_);
+	void Draw(int scene_);
+	void UpDate(int scene_);
+	void Release(int scene_);
+
+	enum class Scene :int
+	{
+		title,
+		game,
+		help,
+		option,
+		end,
+	};
 
 protected:
 	UIManager();
