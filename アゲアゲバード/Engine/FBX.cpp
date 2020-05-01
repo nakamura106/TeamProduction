@@ -37,7 +37,6 @@ void InitMaterial(MaterialData* pMaterial, int materialNum)
 	}
 }
 
-//FBXのマネージャー作成
 FBXMeshData Fbx::LoadFbx(const char* file_name)
 {
 	FBXMeshData fbxMeshData;

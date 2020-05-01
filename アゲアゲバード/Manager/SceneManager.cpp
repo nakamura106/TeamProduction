@@ -6,6 +6,7 @@
 #include"../Engine/Input.h"
 #include"../Engine/Graphics.h"
 #include"../DataBank/DataBank.h"
+#include"../Manager/UIManager.h"
 
 SceneManager* SceneManager::p_instance = 0;
 

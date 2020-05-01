@@ -1,6 +1,7 @@
 #ifndef UIBASE_H_
 #define UIBASE_H_
-#include <d3dx9.h>
+
+#include<string>
 #include "../Engine/Graphics.h"
 class UIBase
 {
@@ -16,7 +17,8 @@ public:
 	virtual void ReleaseTex() = 0;
 
 protected:
-	
+	virtual void ReleaseUITexture(TEXTURE_DATA* texture);
+	std::string m_key;
 };
 
 #endif

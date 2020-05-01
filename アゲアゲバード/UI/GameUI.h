@@ -10,7 +10,7 @@
 class GameUI:public UIBase
 {
 public:
-	GameUI(){}
+	GameUI();
 	~GameUI() {}
 
 	virtual void Init()override;
@@ -34,7 +34,7 @@ public:
 
 	virtual void ReleaseTex()override;
 
-	void ReleaseUITexture(TEXTURE_DATA* texture);
+	
 private:
 	const char *m_filename;
 
