@@ -135,35 +135,35 @@ void Character::Player::Move()
 		m_pinfo.speed = m_pinfo.walk_speed;
 	}
 
-	// ジャンプ
-	if (GetKeyDown(E_KEY) || IsButtonDown(AButton) && m_jflag == false)
-	{
-		m_stand_flag = false;
-		m_jflag = true;
+	//// ジャンプ
+	//if (GetKeyDown(E_KEY) || IsButtonDown(AButton) && m_jflag == false)
+	//{
+	//	m_stand_flag = false;
+	//	m_jflag = true;
 
-		m_pinfo.state = PlayerStatus::JAMP;
-	}
-	if (m_jflag == true)
-	{
-		m_grav.ThrowingUp(m_pos.y, m_pinfo.jamp_power);
-		m_pos.y = m_grav.GetPosY();
+	//	m_pinfo.state = PlayerStatus::JAMP;
+	//}
+	//if (m_jflag == true)
+	//{
+	//	m_grav.ThrowingUp(m_pos.y, m_pinfo.jamp_power);
+	//	m_pos.y = m_grav.GetPosY();
 
-		// 地面につくまで
-		if (m_pos.y <= 0.0f)
-		{
-			m_stand_flag = true;
-			m_jflag = false;
-			m_pos.y = 0.0f;
-			m_grav.ResetPalam();
+	//	// 地面につくまで
+	//	if (m_pos.y <= 0.0f)
+	//	{
+	//		m_stand_flag = true;
+	//		m_jflag = false;
+	//		m_pos.y = 0.0f;
+	//		m_grav.ResetPalam();
 
-			m_pinfo.state = PlayerStatus::WAIT;
-		}
-	}
-	if (m_pos.y <= 0.0f && m_grav.GetPosY() <= 0.0f)
-	{
-		m_stand_flag = true;
-		m_grav.ResetPalam();
-	}
+	//		m_pinfo.state = PlayerStatus::WAIT;
+	//	}
+	//}
+	//if (m_pos.y <= 0.0f && m_grav.GetPosY() <= 0.0f)
+	//{
+	//	m_stand_flag = true;
+	//	m_grav.ResetPalam();
+	//}
 	// デバッグ用
 	// 上
 	if (GetKey(E_KEY) || IsButtonPush(UpButton) || IsButtonPush(RightTButton)) {
@@ -176,13 +176,13 @@ void Character::Player::Move()
 
 #pragma endregion 
 
-	// 何かの上に乗るまで落ちる
-	if (m_stand_flag == false && m_jflag == false && m_grav.GetPosY() >= 0.0f)
-	{
-		// 自由落下
-		m_grav.FreeFall(m_pos.y);
-		m_pos.y = m_grav.GetPosY();
-	}
+	//// 何かの上に乗るまで落ちる
+	//if (m_stand_flag == false && m_jflag == false && m_grav.GetPosY() >= 0.0f)
+	//{
+	//	// 自由落下
+	//	m_grav.FreeFall(m_pos.y);
+	//	m_pos.y = m_grav.GetPosY();
+	//}
 }
 
 void Character::Player::CollisionDetection()

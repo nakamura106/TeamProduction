@@ -2,6 +2,7 @@
 #define END_H_
 #include "ProductionBase.h"
 #include "../Engine/Graphics.h"
+#include "../Utility/Gravity.h"
 
 class EndProduction :public ProductionBase
 {
@@ -19,13 +20,26 @@ public:
 
 
 private:
+
+	Gravity m_grav;
+
 	D3DXVECTOR2 m_finish_pos;
 	D3DXVECTOR2 m_fly_pos;
-
 
 	TEXTURE_DATA m_finish;
 	TEXTURE_DATA m_fly;
 
+	bool clearflg;
+	bool flyflg;
+
+	float m;   //質量
+	float fa;  //摩擦係数
+	float f;   //摩擦力
+	float e;  //自然対数(ネイピアの数)
+
+	float speed;
+
+	int timer;
 };
 
 #endif
