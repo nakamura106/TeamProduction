@@ -54,10 +54,13 @@ public:
 	GetItemBox();
 	~GetItemBox();
 
-
+	void Update()override;
 
 private:
-	
+	void BoxProduction();
+	int m_floattime;
+	float m_rotspeed;
+	bool m_Upward;
 	Collision* m_collision;
 };
 
