@@ -30,6 +30,7 @@ public:
 	void SetMapRadius(float map_radius_);
 
 	void SetBlockStock(int stock_);
+	void PlusBlockStock(int plsstock_);
 
 	// マップ(ポット)の頂上の中心座標を保存する
 	void SetMapTop(D3DXVECTOR3 map_top_);

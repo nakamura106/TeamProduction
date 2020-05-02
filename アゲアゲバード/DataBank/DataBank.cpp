@@ -70,6 +70,11 @@ void DataBank::SetBlockStock(int stock_)
 	m_blockstock = stock_;
 }
 
+void DataBank::PlusBlockStock(int plsstock_)
+{
+	m_blockstock += plsstock_;
+}
+
 void DataBank::SetMapTop(D3DXVECTOR3 map_top_)
 {
 	m_map_top = map_top_;

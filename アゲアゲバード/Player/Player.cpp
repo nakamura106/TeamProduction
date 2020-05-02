@@ -345,6 +345,7 @@ void Character::Player::Animation()
 
 void Character::Player::SetBlock()
 {
+	m_blockstock = DataBank::Instance()->GetBlockStock();
 	if (m_blockstock > 0)
 	{
 		if (GetKeyDown(SPACE_KEY) || IsButtonDown(LeftBButton))

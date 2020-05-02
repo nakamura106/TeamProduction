@@ -48,5 +48,19 @@ private:
 	Collision* collision;
 };
 
+class GetItemBox :public ObjectBase
+{
+public:
+	GetItemBox();
+	~GetItemBox();
+
+
+
+private:
+	
+	Collision* m_collision;
+};
+
+
 #endif
 

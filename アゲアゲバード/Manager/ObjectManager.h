@@ -2,6 +2,7 @@
 #define OBJECTMANAGER_H_
 
 #include"../Object/ObjectBase.h"
+#include"../Utility/Collision.h"
 #include<vector>
 
 class ObjectManager
@@ -15,6 +16,7 @@ public:
 	void CreateObject();//マップ、プレイヤー(2まで)、アイテム。ブロックは別配列
 	bool CreateBlock();
 	void CreateItem();
+	void CreateItemBox();
 	void CreatePlayer();	// K新しく追加した
 	void Update();
 	void Draw();
@@ -32,9 +34,11 @@ protected:
 
 private:
 	static ObjectManager* p_instance;
+	Collision* m_collision;
 	std::vector<ObjectBase*> m_Object;
 	std::vector<ObjectBase*> m_Block;
 	std::vector<ObjectBase*> m_Item;
+	std::vector<ObjectBase*> m_ItemBox;
 	std::vector<ObjectBase*> m_player;
 
 };

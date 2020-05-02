@@ -40,6 +40,7 @@ void GameScene::InitScene()
 	DataBank::Instance()->SetClearflag(false);
 
 	ObjectManager::Instance()->CreateObject();
+	ObjectManager::Instance()->CreateItemBox();
 	ObjectManager::Instance()->CreatePlayer();
 
 	SoundManager::Instance()->RegisterGameMainSound();

@@ -18,7 +18,7 @@ void Oil::Update()
 {
 	m_pos.y += 0.005f;
 	D3DXMatrixTranslation(&m_mat_move, 0.0f, m_pos.y, 0.0f);
-	//D3DXMatrixMultiply(&m_mat_world, &m_mat_world,&m_mat_move);
+	D3DXMatrixMultiply(&m_mat_world, &m_mat_world,&m_mat_move);
 	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);
 	DataBank::Instance()->SetOilPos(m_pos.y);
 }

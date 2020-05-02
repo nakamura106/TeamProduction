@@ -1,6 +1,9 @@
 #include "Item.h"
 #include "../DataBank/DataBank.h"
 #include "../Engine/Input.h"
+#include<math.h>
+#include<stdio.h>
+#include<time.h>
 
 
 Item::Item()
@@ -61,5 +64,28 @@ bool Item::UpdateHitItem()
 	}
 	
 }
+
+GetItemBox::GetItemBox()
+{
+	m_key = "ItemBox";
+	m_pos.x = (rand() % 50 +0)-25;
+	m_pos.z = (rand() % 50 + +0)-25;
+	m_pos.y = rand() % 90 + 0;
+	
+	DataBank::Instance()->BlockInstallation(m_pos);
+
+	D3DXMatrixIdentity(&m_mat_world);
+	D3DXMatrixScaling(&m_mat_scale, 1.0f, 1.0f, 1.0f);
+	D3DXMatrixTranslation(&m_mat_move, m_pos.x, m_pos.y, m_pos.z);//ì™Ç…ê›íË
+	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);
+}
+
+GetItemBox::~GetItemBox()
+{
+}
+
+
+
+
 
 

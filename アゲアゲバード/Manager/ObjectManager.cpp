@@ -95,7 +95,16 @@ bool ObjectManager::CreateBlock()
 
 void ObjectManager::CreateItem()
 {
+	srand((unsigned)time(NULL));
 	m_Item.push_back(new Item);
+}
+
+void ObjectManager::CreateItemBox()
+{
+	for (int i = 0; i <= 20; i++)
+	{
+		m_ItemBox.push_back(new GetItemBox);
+	}
 }
 
 void ObjectManager::CreatePlayer()
@@ -121,10 +130,23 @@ void ObjectManager::Update()
 	for (int i = 0; i < m_Item.size(); i++)
 	{
 		m_Item[i]->Update();
+
 		if (DataBank::Instance()->GetOilPos() >= m_Item[i]->GetPos().y)
 		{
 			m_Item.erase(m_Item.begin() + i);
 		}
+		
+	}
+	for (int i = 0; i < m_ItemBox.size(); i++)
+	{
+		m_ItemBox[i]->Update();
+		if (DataBank::Instance()->GetOilPos() >= m_ItemBox[i]->GetPos().y ||
+			m_collision->HitBox(m_ItemBox[i]->GetPos(), DataBank::Instance()->GetAfterPlayerPos(), 2.0f, 2.0f))
+		{
+			DataBank::Instance()->PlusBlockStock(5);
+			m_ItemBox.erase(m_ItemBox.begin() + i);
+		}
+		
 	}
 	for (int i = 0; i < m_player.size(); i++)
 	{
@@ -147,6 +169,10 @@ void ObjectManager::Draw()
 	for (int i = 0; i < m_Item.size(); i++)
 	{
 		m_Item[i]->Draw();
+	}
+	for (int i = 0; i < m_ItemBox.size(); i++)
+	{
+		m_ItemBox[i]->Draw();
 	}
 	for (int i = 0; i < m_player.size(); i++)
 	{
