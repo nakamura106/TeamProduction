@@ -34,8 +34,7 @@ void CAMERA::Update()
 		20000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
 	//ŽË‰eÀ•W•ÏŠ·—p‚Ìs—ñŽZo endMove();
-	//ProductionMove();
-	DataBank::Instance()->SetStartflag(m_startflag);
+	ProductionMove();
 
 	if (DataBank::Instance()->GetUIStartflag() == true)
 	{
