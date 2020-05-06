@@ -162,6 +162,15 @@ void DataBank::SetClearflag(bool clearflag_)
 	m_clearflag = clearflag_;
 }
 
+void DataBank::SetFinishflag(bool finishflag_)
+{
+	m_finishflag = finishflag_;
+}
+void DataBank::SetFlyflag(bool flyflag_)
+{
+	m_flyflag = flyflag_;
+}
+
 void DataBank::SetPage(int page_)
 {
 	m_now_page = page_;

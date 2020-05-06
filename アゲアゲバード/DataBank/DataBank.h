@@ -67,6 +67,10 @@ public:
 
 	void SetClearflag(bool clearflag_);
 
+	void SetFinishflag(bool finishflag_);
+
+	void SetFlyflag(bool flyflag_);
+
 	void SetPage(int page_);
 
 	void SetSelect(int sel_);
@@ -138,6 +142,10 @@ public:
 
 	bool GetClearflag() { return m_clearflag; }
 
+	bool GetFinishflag() { return m_finishflag; }
+
+	bool GetFlyflag() { return m_flyflag; }
+
 	int GetPage() { return m_now_page; }
 
 	int GetSelect() { return m_now_select; }
@@ -156,6 +164,11 @@ private:
 	bool m_startflag;
 
 	bool m_clearflag;
+
+	bool m_finishflag;
+
+	bool m_flyflag;
+
 
 	float m_oilelevation;
 
