@@ -67,7 +67,7 @@ void GameScene::MainScene()
 
 	ObjectManager::Instance()->Update();
 
-	if (DataBank::Instance()->GetAfterPlayerPos().y<=DataBank::Instance()->GetOilPos() )
+	if (DataBank::Instance()->GetAfterPlayerPos().y-2.0f<=DataBank::Instance()->GetOilPos() )
 	{
 		DataBank::Instance()->SetClearflag(false);
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
