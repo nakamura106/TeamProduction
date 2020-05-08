@@ -1,5 +1,6 @@
 #include "StartProduction.h"
 #include "../DataBank/DataBank.h"
+#include "../Manager/SoundManager.h"
 
 void StartProduction::Init()
 {
@@ -57,26 +58,34 @@ void StartProduction::Draw()
 
 void StartProduction::UpDate()
 {
-	
-	m_counttimer++;
+	if (m_counttimer <= 300)
+	{
+		m_counttimer++;
+	}
 	
 	if (m_counttimer == 60)
 	{
 		m_three_draw = true;
+		SoundManager::Instance()->SoundCountSE();
 	}
 	if (m_counttimer == 120)
 	{
 		m_three_draw = false;
 		m_two_draw = true;
+		SoundManager::Instance()->SoundCountSE();
+
 	}
 	if (m_counttimer == 180)
 	{
 		m_two_draw = false;
 		m_one_draw = true;
+		SoundManager::Instance()->SoundCountSE();
+
 	}
 	if (m_counttimer == 240)
 	{
 		m_one_draw = false;
+		SoundManager::Instance()->SoundStartSE();
 	}
 	if (m_counttimer == 300)
 	{

@@ -24,6 +24,11 @@ public:
 	void SoundCancelSE();
 	void SoundClickSE();
 	void SoundThrow();
+	void SoundCountSE();
+	void SoundStartSE();
+	void SoundClearSE();
+	void SoundFlySE();
+
 
 	//音が鳴り終わったらフラグを元に戻す関数
 	void ResetSelectFlag();
@@ -55,6 +60,11 @@ private:
 	std::string m_cancel_se;
 	std::string m_click_se;
 	std::string m_throw_se;
+	std::string m_count_se;
+	std::string m_start_se;
+	std::string m_clear_se;
+	std::string m_fly_se;
+
 
 	// flie読み込み用変数(音ごとに必要)
 	std::string m_bgm_file;
@@ -64,6 +74,10 @@ private:
 	std::string m_cancel_file;
 	std::string m_click_se_file;
 	std::string m_throw_se_file;
+	std::string m_count_se_file;
+	std::string m_start_se_file;
+	std::string m_clear_se_file;
+	std::string m_fly_se_file;
 
 	AudioPlayer* m_pAudio = AudioPlayer::GetInstance(GetWindowHandle());
 };

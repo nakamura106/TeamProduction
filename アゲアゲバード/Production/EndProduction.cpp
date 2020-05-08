@@ -1,5 +1,6 @@
 #include "EndProduction.h"
 #include "../DataBank/DataBank.h"
+#include "../Manager/SoundManager.h"
 
 void EndProduction::Init()
 {
@@ -17,6 +18,10 @@ void EndProduction::Init()
 	fa = 0.3f;
 	e = 2.71828182845904523536f;
 
+	finishflag = false;
+	flyflag = false;
+	clear_seflag = false;
+	fly_seflag = false;
 }
 
 void EndProduction::LoadTex()
@@ -27,11 +32,11 @@ void EndProduction::LoadTex()
 
 void EndProduction::Draw()
 {
-	if (DataBank::Instance()->GetClearflag() == true)
+	if (DataBank::Instance()->GetAfterPlayerPos().y >= DataBank::Instance()->GetMapTop().y && DataBank::Instance()->GetStartflag() == true)
 	{
 		DrawUITexture(&m_finish, m_finish_pos);
 	}
-	else if(DataBank::Instance()->GetAfterPlayerPos().y <= DataBank::Instance()->GetOilPos())
+	else if(DataBank::Instance()->GetAfterPlayerPos().y <= DataBank::Instance()->GetOilPos() && DataBank::Instance()->GetStartflag() == true)
 	{
 		DrawUITexture(&m_fly, m_fly_pos);
 	}
@@ -41,6 +46,8 @@ void EndProduction::UpDate()
 {
 	if (DataBank::Instance()->GetAfterPlayerPos().y <= DataBank::Instance()->GetOilPos())
 	{
+		fly_seflag = true;
+
 		if (m_fly_pos.y >= -300.0f)
 		{
 			m_grav.ThrowingUp(m_fly_pos.y, 8.0f);
@@ -48,11 +55,14 @@ void EndProduction::UpDate()
 		}
 		else
 		{
-			clearflg = true;
+			flyflag = true;
 		}
 	}
-	if (DataBank::Instance()->GetAfterPlayerPos().y >= DataBank::Instance()->GetMapTop().y)
-	{
+	if (DataBank::Instance()->GetAfterPlayerPos().y >= DataBank::Instance()->GetMapTop().y && DataBank::Instance()->GetStartflag() == true)
+	{	
+
+		clear_seflag = true;
+
 		if (m_finish_pos.y <= 400.0f)
 		{
 			timer++;
@@ -67,10 +77,23 @@ void EndProduction::UpDate()
 		}
 		else
 		{
-			flyflg = true;
+			finishflag = true;
 		}
 		
 	}
+
+	if (clear_seflag == true)
+	{
+		SoundManager::Instance()->SoundClearSE();
+	}
+	else if (fly_seflag == true)
+	{
+		SoundManager::Instance()->SoundFlySE();
+	}
+
+	DataBank::Instance()->SetFinishflag(finishflag);
+	DataBank::Instance()->SetFlyflag(flyflag);
+
 }
 
 void EndProduction::ReleaseTex()

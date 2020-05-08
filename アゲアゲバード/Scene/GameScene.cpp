@@ -67,12 +67,13 @@ void GameScene::MainScene()
 
 	ObjectManager::Instance()->Update();
 
-	if (DataBank::Instance()->GetAfterPlayerPos().y-2.0f<=DataBank::Instance()->GetOilPos() )
-	{
+
+	if (DataBank::Instance()->GetFlyflag() == true)
+{
 		DataBank::Instance()->SetClearflag(false);
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
 	}
-	if (DataBank::Instance()->GetAfterPlayerPos().y >= DataBank::Instance()->GetMapTop().y)
+	if (DataBank::Instance()->GetFinishflag() == true)
 	{
 		DataBank::Instance()->SetClearflag(true);
 		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);

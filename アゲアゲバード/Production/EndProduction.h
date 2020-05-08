@@ -29,8 +29,11 @@ private:
 	TEXTURE_DATA m_finish;
 	TEXTURE_DATA m_fly;
 
-	bool clearflg;
-	bool flyflg;
+	bool finishflag;
+	bool clear_seflag;
+
+	bool flyflag;
+	bool fly_seflag;
 
 	float m;   //¿—Ê
 	float fa;  //–€CŒW”

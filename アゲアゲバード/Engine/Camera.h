@@ -31,7 +31,7 @@ public:
 
 		m_Speed = m_WalkSpeed;
 
-		m_startflag = true;
+		m_startflag = false;
 
 		D3DXMatrixIdentity(&m_MatView);
 	}

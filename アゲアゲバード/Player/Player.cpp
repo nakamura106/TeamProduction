@@ -31,7 +31,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 	DataBank::Instance()->SetBlockStock(m_blockstock);
 
-	m_p_camera = new CAMERA(m_pos);
+	m_p_camera = new CAMERA(m_camera_pos);
 
 	m_pinfo.eye = m_p_camera->GetEyePos();
 	m_pinfo.upvec = m_p_camera->GetCameraUp();
