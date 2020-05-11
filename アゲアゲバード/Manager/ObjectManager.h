@@ -40,7 +40,6 @@ public:
 	std::vector<Block*>* GetBlock() { return &m_Block; }
 	Character::Player* GetPlayer(std::string key_) { return m_player[key_]; }
 	ObjectBase* GetOil(std::string key_) { return m_Object[key_]; }
-	CAMERA* GetCamera() { return m_camera; }
 	
 protected:
 	ObjectManager();
@@ -52,7 +51,6 @@ private:
 	void CreateItemBox();
 
 	Collision* m_collision;
-	CAMERA* m_camera;
 	Pot* m_pot;
 	std::map<std::string,ObjectBase*> m_Object;
 	std::map<std::string,Character::Player*> m_player;

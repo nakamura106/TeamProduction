@@ -32,10 +32,11 @@ private:
 
 	struct SceneInfo
 	{
-		SceneId m_CurrentSceneID;
+		SceneId m_CurrentSceneID=SceneId::Title;
 
-		SceneStep m_CurrentSceneStep;
+		SceneStep m_CurrentSceneStep=SceneStep::InitStep;
 	}m_SceneInfo;
+
 	struct SceneInstance
 	{
 		TitleScene* m_title;

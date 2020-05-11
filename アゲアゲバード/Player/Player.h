@@ -76,7 +76,7 @@ namespace Character
 		void Draw()override;
 		void PlusBlockStock(int plusstock_);
 		D3DXVECTOR3 Amountofmovement();
-		PlayerInfo* GetPlayerData();
+		const PlayerInfo* GetPlayerData()const;
 	};
 }
 #endif

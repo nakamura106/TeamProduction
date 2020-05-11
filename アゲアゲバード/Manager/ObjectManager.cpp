@@ -134,8 +134,7 @@ void ObjectManager::CreateItemBox()
 void ObjectManager::CreatePlayer()
 {
 	m_player["player1"]=(new Character::Player(0.0f, 5.0f, 0.0f));
-	m_camera = new CAMERA(m_player["player1"]->GetPlayerData()->m_camera_pos);
-
+	
 }
 
 void ObjectManager::Update()

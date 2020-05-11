@@ -33,6 +33,8 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 	m_pinfo.m_blockstock = 20;
 	
+	m_pinfo.m_p_camera=
+
 	m_pinfo.eye = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_EyePos;
 	m_pinfo.upvec = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_CameraUp;
 
@@ -393,7 +395,7 @@ D3DXVECTOR3 Character::Player::Amountofmovement()
 	return amount_of_movement;
 }
 
-Character::Player::PlayerInfo* Character::Player::GetPlayerData()
+const Character::Player::PlayerInfo* Character::Player::GetPlayerData()const
 {
 	return &m_pinfo;
 }
