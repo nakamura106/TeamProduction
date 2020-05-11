@@ -2,10 +2,13 @@
 #define PRODUCTIONMANAGER_H_
 
 #include "../Production/ProductionBase.h"
-#include "../Production/StartProduction.h"
-#include "../Production/EndProduction.h"
+
 
 #include <vector>
+
+//ëOï˚êÈåæ
+class StartProduction;
+class EndProduction;
 
 class ProductionManager
 {
@@ -18,13 +21,18 @@ public:
 	void Draw();
 	void UpDate();
 	void ReleaseTex();
+
+	const StartProduction* GetStartProduction()const { return m_StartProduction; }
+	const EndProduction* GetEndProduction()const { return m_EndProduction; }
+
 protected:
 	ProductionManager(){}
 	~ProductionManager(){}
 
 private:
 	static ProductionManager* p_instance;
-	std::vector<ProductionBase*> m_Production;
+	StartProduction* m_StartProduction;
+	EndProduction* m_EndProduction;
 };
 
 #endif

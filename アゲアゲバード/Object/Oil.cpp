@@ -5,31 +5,31 @@
 Oil::Oil()
 {
 	
-	m_key = "oil";
-	m_pos.y = -10.0f;
-	D3DXMatrixIdentity(&m_mat_world);
-	D3DXMatrixScaling(&m_mat_scale, 1.0f, 1.0f, 1.0f);
-	D3DXMatrixTranslation(&m_mat_move, 0.0f, m_pos.y, 0.0f);
-	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);
+	m_oildata.m_key = "oil";
+	m_oildata.m_pos.y = -10.0f;
+	D3DXMatrixIdentity(&m_oildata.m_mat_world);
+	D3DXMatrixScaling(&m_oildata.m_mat_scale, 1.0f, 1.0f, 1.0f);
+	D3DXMatrixTranslation(&m_oildata.m_mat_move, 0.0f, m_oildata.m_pos.y, 0.0f);
+	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);
 	
 }
 
 void Oil::Update()
 {
-	m_pos.y += 0.005f;
-	D3DXMatrixTranslation(&m_mat_move, 0.0f, m_pos.y, 0.0f);
-	D3DXMatrixMultiply(&m_mat_world, &m_mat_world,&m_mat_move);
-	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);
-	DataBank::Instance()->SetOilPos(m_pos.y);
+	m_oildata.m_pos.y += 0.005f;
+	D3DXMatrixTranslation(&m_oildata.m_mat_move, 0.0f, m_oildata.m_pos.y, 0.0f);
+	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_world,&m_oildata.m_mat_move);
+	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);
+	
 }
 
 FillOil::FillOil()
 {
-	m_key = "filloil";
-	D3DXMatrixIdentity(&m_mat_world);
-	D3DXMatrixScaling(&m_mat_scale, 10.0f, 40.0f, 10.0f);
-	D3DXMatrixTranslation(&m_mat_move, 0.0f, -1.0f, 0.0f);
-	D3DXMatrixMultiply(&m_mat_world, &m_mat_move, &m_mat_scale);
+	m_filloildata.m_key = "filloil";
+	D3DXMatrixIdentity(&m_filloildata.m_mat_world);
+	D3DXMatrixScaling(&m_filloildata.m_mat_scale, 10.0f, 40.0f, 10.0f);
+	D3DXMatrixTranslation(&m_filloildata.m_mat_move, 0.0f, -1.0f, 0.0f);
+	D3DXMatrixMultiply(&m_filloildata.m_mat_world, &m_filloildata.m_mat_move, &m_filloildata.m_mat_scale);
 	
 }
 

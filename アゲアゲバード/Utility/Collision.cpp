@@ -2,7 +2,7 @@
 #include <math.h>
 #include <d3dx9.h>
 #include "Vec.h"
-#include "../DataBank/DataBank.h"
+#include"../Manager/ObjectManager.h"
 
 //プレイヤーとアイテム
 bool Collision::HitItemPlayer(D3DXVECTOR3 player_pos_, D3DXVECTOR3 item_pos_, float player_radius, float item_radius)
@@ -269,8 +269,7 @@ bool Collision::HitVisualBox2(D3DXVECTOR3 block_pos_, float block_width_, float 
 	N.y = N.y / lenght;
 	N.z = N.z / lenght;
 
-	DataBank* p_db = DataBank::Instance();
-	D3DXVECTOR3 camera_pos = p_db->GetCameraPos();
+	D3DXVECTOR3 camera_pos = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_CameraPos;
 
 	//カメラPos
 	//D3DXVECTOR3 PA(P.x - p_camera->GetCamaraPos().x, P.y - p_camera->GetCamaraPos().x, P.z - p_camera->GetCamaraPos().z);

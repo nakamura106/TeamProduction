@@ -6,6 +6,12 @@
 
 class GameScene :public BaseScene
 {
+private:
+	struct GameSceneInfo{
+		bool m_ClearFlag=false;
+		Fbx m_fbx;
+	}m_GameSceneInfo;
+
 public:
 	GameScene();
 	~GameScene();
@@ -17,8 +23,8 @@ public:
 	void MainScene();
 	void EndScene();
 
-private:
-	Fbx m_fbx;
+	const GameSceneInfo* GetGameSceneInfo()const { return &m_GameSceneInfo; }
+
 };
 
 #endif

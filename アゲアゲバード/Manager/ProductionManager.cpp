@@ -1,4 +1,6 @@
 #include "ProductionManager.h"
+#include "../Production/StartProduction.h"
+#include "../Production/EndProduction.h"
 
 ProductionManager* ProductionManager::p_instance = 0;
 
@@ -13,47 +15,36 @@ ProductionManager* ProductionManager::Instance()
 
 void ProductionManager::Init()
 {
-	for (int i = 0; i < m_Production.size(); i++)
-	{
-		m_Production[i]->Init();
-	}
+	m_StartProduction->Init();
+	m_EndProduction->Init();
 }
 
 void ProductionManager::CreateProduction()
 {
-	m_Production.push_back(new StartProduction);
-	m_Production.push_back(new EndProduction);
-
+	m_StartProduction = (new StartProduction);
+	m_EndProduction = (new EndProduction);
 }
 
 void ProductionManager::LoadTex()
 {
-	for (int i = 0; i < m_Production.size(); i++)
-	{
-		m_Production[i]->LoadTex();
-	}
+	m_StartProduction->LoadTex();
+	m_EndProduction->LoadTex();
 }
 
 void ProductionManager::Draw()
 {
-	for (int i = 0; i < m_Production.size(); i++)
-	{
-		m_Production[i]->Draw();
-	}
+	m_StartProduction->Draw();
+	m_EndProduction->Draw();
 }
 
 void ProductionManager::UpDate()
 {
-	for (int i = 0; i < m_Production.size(); i++)
-	{
-		m_Production[i]->UpDate();
-	}
+	m_StartProduction->UpDate();
+	m_EndProduction->UpDate();
 }
 
 void ProductionManager::ReleaseTex()
 {
-	for (int i = 0; i < m_Production.size(); i++)
-	{
-		m_Production[i]->ReleaseTex();
-	}
+	m_StartProduction->ReleaseTex();
+	m_EndProduction->ReleaseTex();
 }

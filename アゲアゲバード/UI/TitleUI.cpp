@@ -1,11 +1,11 @@
 #include "TitleUI.h"
 #include"../Engine/Graphics.h"
 #include"../Engine/Input.h"
-#include"../DataBank/DataBank.h"
+#include"../Scene/TitleScene.h"
+#include"../Manager/SceneManager.h"
 
 TitleUi::TitleUi()
 {
-	m_key = "title";
 }
 
 TitleUi::~TitleUi()
@@ -14,8 +14,6 @@ TitleUi::~TitleUi()
 
 void TitleUi::Init()
 {
-	DataBank::Instance()->SetPage((int)page::page1);
-	DataBank::Instance()->SetSelect((int)Select::Solo);
 
 	m_select_pos.x = 700.0f;
 	m_select_pos.y = 600.0f;
@@ -63,7 +61,7 @@ void TitleUi::LoadFile()
 
 void TitleUi::Draw()
 {
-	DrawTitleUi(DataBank::Instance()->GetPage());
+	/*DrawTitleUi(DataBank::Instance()->GetPage());*/
 }
 
 void TitleUi::UpDate()
@@ -100,32 +98,32 @@ void TitleUi::DrawTitleUi(int page_)
 
 void TitleUi::UpdateSelect()
 {
-	if (DataBank::Instance()->GetSelect() == (int)Select::Solo)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Solo)
 	{
 		m_select_pos.x =-100.0f;
 		m_select_pos.y = 360.0f;
 	}
-	if (DataBank::Instance()->GetSelect() ==(int)Select::Option )
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag ==(int)Select::Option )
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 550.0f;
 	}
-	if (DataBank::Instance()->GetSelect() == (int)Select::Help)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Help)
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 750.0f;
 	}
-	if (DataBank::Instance()->GetSelect() == (int)Select::Timeattack)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Timeattack)
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 500.0f;
 	}
-	if (DataBank::Instance()->GetSelect() == (int)Select::Freemode)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Freemode)
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 610.0f;
 	}
-	if (DataBank::Instance()->GetSelect() == (int)Select::Back)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Back)
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 700.0f;

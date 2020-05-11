@@ -2,19 +2,20 @@
 #include "Input.h"
 #include "Graphics.h"
 #include"../DataBank/DataBank.h"
+#include"../Manager/ObjectManager.h"
 
 void CAMERA::Update()
 {
 	//ビュー座標変換用の行列算出 start
-	D3DXVECTOR3 camera_pos(m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);	// カメラ位置
-	D3DXVECTOR3 eye_pos(m_EyePos.x, m_EyePos.y, m_EyePos.z);				// 注視点
-	D3DXVECTOR3 up_vector(m_CameraUp.x, m_CameraUp.y, m_CameraUp.z);		// カメラの向き;
-	D3DXMatrixLookAtLH(&m_MatView,
+	D3DXVECTOR3 camera_pos(m_cameradata.m_CameraPos.x, m_cameradata.m_CameraPos.y, m_cameradata.m_CameraPos.z);	// カメラ位置
+	D3DXVECTOR3 eye_pos(m_cameradata.m_EyePos.x, m_cameradata.m_EyePos.y, m_cameradata.m_EyePos.z);				// 注視点
+	D3DXVECTOR3 up_vector(m_cameradata.m_CameraUp.x, m_cameradata.m_CameraUp.y, m_cameradata.m_CameraUp.z);		// カメラの向き;
+	D3DXMatrixLookAtLH(&m_cameradata.m_MatView,
 		&camera_pos,				// カメラ座標
 		&eye_pos,					// 注視点座標
 		&up_vector);				// カメラの上の向きのベクトル
 
-	GetD3DDevice()->SetTransform(D3DTS_VIEW, &m_MatView);
+	GetD3DDevice()->SetTransform(D3DTS_VIEW, &m_cameradata.m_MatView);
 	//ビュー座標変換用の行列算出 end
 
 	D3DXMATRIX matProj;
@@ -34,66 +35,59 @@ void CAMERA::Update()
 		20000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
 	//射影座標変換用の行列算出 endMove();
-	ProductionMove();
-
-	if (DataBank::Instance()->GetUIStartflag() == true)
+	if (m_cameradata.m_startflag == false)
+	{
+		ProductionMove();
+	}
+	else
 	{
 		Move();
 	}
+
+
 	MouseRotate();
 	StickRotate();
 
-	m_Forward = m_EyePos - m_CameraPos;
-	D3DXVec3Normalize(&m_Forward, &m_Forward);
-	DataBank::Instance()->SetForward(m_Forward);
-	DataBank::Instance()->SetEyePos(eye_pos);
+	m_cameradata.m_Forward = m_cameradata.m_EyePos - m_cameradata.m_CameraPos;
+	D3DXVec3Normalize(&m_cameradata.m_Forward, &m_cameradata.m_Forward);
 }
 
 void CAMERA::Move()
 {
 	
-	DataBank* p_db = DataBank::Instance();
-
-	// 過去のプレイヤーの位置を取得(移動前)
-	D3DXVECTOR3 befor_player = p_db->GetBeforePlayerPos();
-	// 現在のプレイヤーの位置を取得(移動後)
-	D3DXVECTOR3 after_player = p_db->GetAfterPlayerPos();
-	// プレイヤーが動いた距離 = 現在のプレイヤーの位置 - 過去のプレイヤーの位置
-	D3DXVECTOR3 amount_of_movement = after_player - befor_player;
+	
 	// カメラにプレイヤーの移動量を足す
-	m_CameraPos += amount_of_movement;
+	m_cameradata.m_CameraPos += ObjectManager::Instance()->GetPlayer("player1")->Amountofmovement();
 	
 	
 
-	DataBank::Instance()->SetCameraPos(m_CameraPos);
 }
 
 void CAMERA::ProductionMove()
 {
-	if (DataBank::Instance()->GetAfterPlayerPos().y <= m_CameraPos.y)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= m_cameradata.m_CameraPos.y)
 	{
-		m_CameraPos.y -= 0.25f;
+		m_cameradata.m_CameraPos.y -= 0.25f;
 	}
 	else
 	{
-		m_startflag = true;
+		m_cameradata.m_startflag = true;
 	}
-	DataBank::Instance()->SetStartflag(m_startflag);
 
 }
 
 void CAMERA::MouseRotate()
 {
 	SetCursorPos(960, 540);
-	m_Yaw += (GetMousePos().X - 960) / 1920 * 50;//ここでカメラ感度変更可能
-	m_Pitch -= (GetMousePos().Y - 540) / 1080 * 20;
-	if (m_Pitch > 88.0f) { m_Pitch = 178.0f - m_Pitch; }
-	if (m_Pitch < -88.0f) { m_Pitch = -178.0f - m_Pitch; }
+	m_cameradata.m_Yaw += (GetMousePos().X - 960) / 1920 * 50;//ここでカメラ感度変更可能
+	m_cameradata.m_Pitch -= (GetMousePos().Y - 540) / 1080 * 20;
+	if (m_cameradata.m_Pitch > 88.0f) { m_cameradata.m_Pitch = 178.0f - m_cameradata.m_Pitch; }
+	if (m_cameradata.m_Pitch < -88.0f) { m_cameradata.m_Pitch = -178.0f - m_cameradata.m_Pitch; }
 
 
-	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
-	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));
-	m_EyePos.z = m_CameraPos.z + cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	m_cameradata.m_EyePos.x = m_cameradata.m_CameraPos.x + sinf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
+	m_cameradata.m_EyePos.y = m_cameradata.m_CameraPos.y + sinf(D3DXToRadian(m_cameradata.m_Pitch));
+	m_cameradata.m_EyePos.z = m_cameradata.m_CameraPos.z + cosf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
 	
 }
 
@@ -101,23 +95,23 @@ void CAMERA::StickRotate()
 {
 	if (IsButtonPush(R_LeftStick))
 	{
-		m_Yaw -= 2.0f;
+		m_cameradata.m_Yaw -= 2.0f;
 	}
 	if (IsButtonPush(R_RightStick))
 	{
-		m_Yaw += 2.0f;
+		m_cameradata.m_Yaw += 2.0f;
 	}
 	if (IsButtonPush(R_UpStick))
 	{
-		m_Pitch += 2.0f;
+		m_cameradata.m_Pitch += 2.0f;
 	}
 	if (IsButtonPush(R_DownStick))
 	{
-		m_Pitch -= 2.0f;
+		m_cameradata.m_Pitch -= 2.0f;
 	}
-	if (m_Pitch > 88.0f) { m_Pitch = 178.0f - m_Pitch; }
-	if (m_Pitch < -88.0f) { m_Pitch = -178.0f - m_Pitch; }
-	m_EyePos.x = m_CameraPos.x + sinf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
-	m_EyePos.y = m_CameraPos.y + sinf(D3DXToRadian(m_Pitch));
-	m_EyePos.z = m_CameraPos.z + cosf(D3DXToRadian(m_Yaw)) * cosf(D3DXToRadian(m_Pitch));
+	if (m_cameradata.m_Pitch > 88.0f) { m_cameradata.m_Pitch = 178.0f - m_cameradata.m_Pitch; }
+	if (m_cameradata.m_Pitch < -88.0f) { m_cameradata.m_Pitch = -178.0f - m_cameradata.m_Pitch; }
+	m_cameradata.m_EyePos.x = m_cameradata.m_CameraPos.x + sinf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
+	m_cameradata.m_EyePos.y = m_cameradata.m_CameraPos.y + sinf(D3DXToRadian(m_cameradata.m_Pitch));
+	m_cameradata.m_EyePos.z = m_cameradata.m_CameraPos.z + cosf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
 }

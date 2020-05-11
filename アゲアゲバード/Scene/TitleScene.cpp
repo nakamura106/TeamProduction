@@ -3,6 +3,8 @@
 #include"../Engine/Graphics.h"
 #include"../Engine/Input.h"
 #include"../DataBank/DataBank.h"
+#include"../Engine/Graphics.h"
+#include"../UI/TitleUI.h"
 #include"../Manager/SceneManager.h"
 #include"../Manager/UIManager.h"
 
@@ -18,8 +20,10 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
+	m_TitleSceneInfo.m_page = 0;
+	m_TitleSceneInfo.m_select_flag = 0;
 	UIManager::Instance()->Init((int)UIManager::Scene::title);
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
 }
 
 
@@ -32,7 +36,7 @@ void TitleScene::Draw()
 void TitleScene::InitScene()
 {
 
-	m_select_flag = 0;
+	m_TitleSceneInfo.m_select_flag = 0;
 	
 	UIManager::Instance()->Init((int)UIManager::Scene::title);
 	UIManager::Instance()->LoadTex((int)UIManager::Scene::title);
@@ -41,7 +45,7 @@ void TitleScene::InitScene()
 	
 	SoundManager::Instance()->RegisterTitleSound();
 	SoundManager::Instance()->SoundBGM(-1000);
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::MainStep;
 }
 
 void TitleScene::MainScene()
@@ -57,32 +61,32 @@ void TitleScene::EndScene()
 	
 	SetCursorPos(960, 540);
 	UIManager::Instance()->Release((int)UIManager::Scene::title);
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
-	if (m_select_flag == 0)
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
+	if (m_TitleSceneInfo.m_select_flag == 0)
 	{
 		SoundManager::Instance()->ReleaseTitleSound();
-		SceneManager::Instance()->SetSceneId(BaseScene::SceneId::Game);
+		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID = SceneId::Game;
 	}
-	if (m_select_flag == 1)
+	if (m_TitleSceneInfo.m_select_flag == 1)
 	{
-		SceneManager::Instance()->SetSceneId(BaseScene::SceneId::Help);
+		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID = SceneId::Help;
 	}
 }
 
 void TitleScene::UpdateSelect()
 {
-	if (DataBank::Instance()->GetPage() == (int)TitleUi::page::page1)
+	if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page1)
 	{
 		if (GetKeyDown(DOWN_KEY) || IsButtonDown(L_DownStick))
 		{
-			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Option)
+			if (m_TitleSceneInfo.m_select_flag == (int)TitleUi::Select::Option)
 			{
-				DataBank::Instance()->SetSelect((int)TitleUi::Select::Help);
+				m_TitleSceneInfo.m_select_flag=(int)TitleUi::Select::Help;
 				SoundManager::Instance()->SoundSelectSE();
 			}
-			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Solo)
+			if (m_TitleSceneInfo.m_select_flag == (int)TitleUi::Select::Solo)
 			{
-				DataBank::Instance()->SetSelect((int)TitleUi::Select::Option);
+				m_TitleSceneInfo.m_select_flag = (int)TitleUi::Select::Option;
 				SoundManager::Instance()->SoundSelectSE();
 			}
 			
@@ -93,14 +97,14 @@ void TitleScene::UpdateSelect()
 		}
 		if (GetKeyDown(UP_KEY) || IsButtonDown(L_UpStick))
 		{
-			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Option)
+			if (m_TitleSceneInfo.m_select_flag == (int)TitleUi::Select::Option)
 			{
-				DataBank::Instance()->SetSelect((int)TitleUi::Select::Solo);
+				m_TitleSceneInfo.m_select_flag = (int)TitleUi::Select::Solo;
 				SoundManager::Instance()->SoundSelectSE();
 			}
-			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Help)
+			if (m_TitleSceneInfo.m_select_flag == (int)TitleUi::Select::Help)
 			{
-				DataBank::Instance()->SetSelect((int)TitleUi::Select::Option);
+				m_TitleSceneInfo.m_select_flag = (int)TitleUi::Select::Option;
 				SoundManager::Instance()->SoundSelectSE();
 			}
 			
@@ -110,18 +114,18 @@ void TitleScene::UpdateSelect()
 			SoundManager::Instance()->ResetSelectFlag();
 		}
 	}
-	if (DataBank::Instance()->GetPage() == (int)TitleUi::page::page2)
+	if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page2)
 	{
 		if (GetKeyDown(DOWN_KEY) || IsButtonDown(L_DownStick))
 		{
-			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Freemode)
+			if (m_TitleSceneInfo.m_select_flag == (int)TitleUi::Select::Freemode)
 			{
-				DataBank::Instance()->SetSelect((int)TitleUi::Select::Back);
+				m_TitleSceneInfo.m_select_flag= (int)TitleUi::Select::Back;
 				SoundManager::Instance()->SoundSelectSE();
 			}
-			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Timeattack)
+			if (m_TitleSceneInfo.m_select_flag == (int)TitleUi::Select::Timeattack)
 			{
-				DataBank::Instance()->SetSelect((int)TitleUi::Select::Freemode);
+				m_TitleSceneInfo.m_select_flag = (int)TitleUi::Select::Freemode;
 				SoundManager::Instance()->SoundSelectSE();
 			}
 		}
@@ -131,14 +135,14 @@ void TitleScene::UpdateSelect()
 		}
 		if (GetKeyDown(UP_KEY) || IsButtonDown(L_UpStick))
 		{
-			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Freemode)
+			if (m_TitleSceneInfo.m_select_flag == (int)TitleUi::Select::Freemode)
 			{
-				DataBank::Instance()->SetSelect((int)TitleUi::Select::Timeattack);
+				m_TitleSceneInfo.m_select_flag = (int)TitleUi::Select::Timeattack;
 				SoundManager::Instance()->SoundSelectSE();
 			}
-			if (DataBank::Instance()->GetSelect() == (int)TitleUi::Select::Back)
+			if (m_TitleSceneInfo.m_select_flag == (int)TitleUi::Select::Back)
 			{
-				DataBank::Instance()->SetSelect((int)TitleUi::Select::Freemode);
+				m_TitleSceneInfo.m_select_flag = (int)TitleUi::Select::Freemode;
 				SoundManager::Instance()->SoundSelectSE();
 			}
 		}
@@ -149,16 +153,16 @@ void TitleScene::UpdateSelect()
 	}
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
-		if (DataBank::Instance()->GetPage() == (int)TitleUi::page::page2)
+		if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page2)
 		{
-			SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+			SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::EndStep;
 		}
-		if (DataBank::Instance()->GetPage() == (int)TitleUi::page::page1)
+		if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page1)
 		{
 
 			SoundManager::Instance()->SoundClickSE();
-			DataBank::Instance()->SetPage((int)TitleUi::page::page2);
-			DataBank::Instance()->SetSelect((int)TitleUi::Select::Timeattack);
+			m_TitleSceneInfo.m_page= (int)TitleUi::page::page2;
+			m_TitleSceneInfo.m_select_flag=(int)TitleUi::Select::Timeattack;
 		}
 	}
 }

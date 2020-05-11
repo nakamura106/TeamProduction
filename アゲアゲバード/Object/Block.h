@@ -10,6 +10,10 @@ public:
 	Block();
 	~Block();
 
+	ObjectData* GetBlockData() { return &m_BlockData;}
+
+private:
+	ObjectData m_BlockData;
 	
 };
 

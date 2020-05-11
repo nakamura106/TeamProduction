@@ -6,6 +6,15 @@
 
 class HelpScene :public BaseScene
 {
+private:
+	struct HelpSceneInfo  {
+		int m_help_flag;
+		D3DXVECTOR2 m_help_bg_pos;
+		TEXTURE_DATA m_help1;
+		TEXTURE_DATA m_help2;
+		TEXTURE_DATA m_help3;
+	}m_HelpSceneInfo;
+
 public:
 	HelpScene();
 	~HelpScene();
@@ -17,12 +26,8 @@ public:
 	void MainScene();
 	void EndScene();
 
-private:
-	int m_help_flag;
-	D3DXVECTOR2 m_help_bg_pos;
-	TEXTURE_DATA m_help1;
-	TEXTURE_DATA m_help2;
-	TEXTURE_DATA m_help3;
+	const HelpSceneInfo* GetHelpSceneInfo()const { return &m_HelpSceneInfo; }
+	
 };
 
 #endif

@@ -1,10 +1,10 @@
 #include "GameUI.h"
+#include"../Manager/ObjectManager.h"
 #include <iostream>
 #include <fstream>
 
 GameUI::GameUI()
 {
-	m_key = "game";
 }
 
 void GameUI::Init()
@@ -141,7 +141,7 @@ void GameUI::UpDate()
 
 void GameUI::UpDateTimer()
 {
-	if (DataBank::Instance()->GetUIStartflag() == true)
+	if (ObjectManager::Instance()->GetCamera()->GetCameraData()->m_startflag == true)
 	{
 		timercounter++;
 	}
@@ -172,19 +172,19 @@ void GameUI::UpDateTimer()
 
 void GameUI::UpDatePlayerPos()
 {
-	if (DataBank::Instance()->GetAfterPlayerPos().y >= 25.0f&& DataBank::Instance()->GetAfterPlayerPos().y < 50.0f)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 25.0f&& ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 50.0f)
 	{
 		player_pos.y = 525.0f;
 	}
-	else if (DataBank::Instance()->GetAfterPlayerPos().y >= 50.0f && DataBank::Instance()->GetAfterPlayerPos().y < 75.0f)
+	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 50.0f && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 75.0f)
 	{
 		player_pos.y = 350.0f;
 	}
-	else if (DataBank::Instance()->GetAfterPlayerPos().y >= 75.0f && DataBank::Instance()->GetAfterPlayerPos().y < 100.0f)
+	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 75.0f && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 100.0f)
 	{
 		player_pos.y = 175.0f;
 	}
-	else if (DataBank::Instance()->GetAfterPlayerPos().y >= 100.0f)
+	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 100.0f)
 	{
 		player_pos.y = 0.0f;
 	}
@@ -211,7 +211,7 @@ void GameUI::UpDatePlayerPos()
 void GameUI::ConversionBlockStock()
 {
 	
-	sprintf_s(m_stockfont, "%d", DataBank::Instance()->GetBlockStock());
+	sprintf_s(m_stockfont, "%d", ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_blockstock);
 
 }
 

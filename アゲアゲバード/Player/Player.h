@@ -4,33 +4,13 @@
 #include "../Engine/Camera.h"
 #include "../Object/ObjectBase.h"
 #include "../Utility/Collision.h"
+#include "../DataBank/Definition.h"
 
-enum class PlayerStatus {
-	WAIT,		// 待機
-	WALK,		// 歩く
-	//SPRINT,	// 疾走
-	JAMP,		// ジャンプ
-	THROW,		// 投げる
-};
+//前方宣言
+class Item;
+class Block;
 
-struct PlayerInfo {
-	PlayerStatus state;				// 状態
 
-	D3DXVECTOR3 eye;				// プレイヤーの向いている方向
-	D3DXVECTOR3 upvec;				// プレイヤーの上向きのベクトル
-	D3DXVECTOR3 amount_of_movement;	// 移動量
-
-	float walk_speed;				// 歩いているときのスピード
-	float sprint_speed;				// 走っているときのスピード
-	float speed;					// 移動用のスピード
-
-	float radius;					// 半径(プレイヤーの当たり判定をとるための)
-
-	float jamp_power;				// ジャンプ力
-	//float throw_power;			// 投げる力
-
-	D3DXVECTOR2 item;
-};
 
 namespace Character
 {
@@ -38,10 +18,6 @@ namespace Character
 	public:
 		Player(float pos_x_, float pos_y_, float pos_z_);
 		~Player() {}
-
-	public:
-		void Update()override;
-		void Draw()override;
 
 	private:
 		void Move();
@@ -51,23 +27,56 @@ namespace Character
 		void ThrowingItems();
 
 	private:
-		PlayerInfo m_pinfo;			// プレイヤー情報
 
-		CAMERA* m_p_camera;			// カメラ
+		std::vector<Block*>* m_block;
+		std::vector<Item*>* m_item;
 
-		Collision* m_p_collision;	// 当たり判定
+		struct PlayerInfo :public ObjectData {
 
-		Gravity m_grav;				// 重力
+			//状態
+			enum class PlayerStatus {
+				WAIT,		// 待機
+				WALK,		// 歩く
+				//SPRINT,	// 疾走
+				JAMP,		// ジャンプ
+				THROW,		// 投げる
+			}state;
 
-		D3DXVECTOR3 m_camera_pos;
+			D3DXVECTOR3 eye;				// プレイヤーの向いている方向
+			D3DXVECTOR3 upvec;				// プレイヤーの上向きのベクトル
+			D3DXVECTOR3 amount_of_movement;	// 移動量
+			D3DXVECTOR3 m_camera_pos;
+			D3DXVECTOR3 m_before_player_pos;
+			D3DXVECTOR3 m_after_player_pos;
 
-		int m_blockstock;			//ブロックの所持数
+			D3DXVECTOR2 item;
 
-		float m_item_effect_time;	// アイテムの効果量をはかる
+			CAMERA* m_p_camera;			// カメラ
 
-		bool m_jflag;				// ジャンプした時のフラグ
-		bool m_stand_flag;			// 立っている時のフラグ
-		bool m_item_hit_flag;		// アイテムに当たった時のフラグ
+			Collision* m_p_collision;	// 当たり判定
+
+			Gravity m_grav;				// 重力
+
+			int m_blockstock;				//ブロックの所持数
+
+			float walk_speed;				// 歩いているときのスピード
+			float sprint_speed;				// 走っているときのスピード
+			float speed;					// 移動用のスピード
+			float jamp_power;				// ジャンプ力
+			float m_item_effect_time;	// アイテムの効果量をはかる
+			//float throw_power;			// 投げる力
+
+			bool m_jflag;				// ジャンプした時のフラグ
+			bool m_stand_flag;			// 立っている時のフラグ
+			bool m_item_hit_flag;		// アイテムに当たった時のフラグ
+		}m_pinfo;
+
+	public:
+		void Update()override;
+		void Draw()override;
+		void PlusBlockStock(int plusstock_);
+		D3DXVECTOR3 Amountofmovement();
+		PlayerInfo* GetPlayerData();
 	};
 }
 #endif

@@ -1,5 +1,6 @@
 #include "EndProduction.h"
-#include "../DataBank/DataBank.h"
+#include"../Object/Pot.h"
+#include"../Manager/ObjectManager.h"
 #include "../Manager/SoundManager.h"
 
 void EndProduction::Init()
@@ -32,11 +33,11 @@ void EndProduction::LoadTex()
 
 void EndProduction::Draw()
 {
-	if (DataBank::Instance()->GetAfterPlayerPos().y >= DataBank::Instance()->GetMapTop().y && DataBank::Instance()->GetStartflag() == true)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetCamera()->GetCameraData()->m_startflag == true)
 	{
 		DrawUITexture(&m_finish, m_finish_pos);
 	}
-	else if(DataBank::Instance()->GetAfterPlayerPos().y <= DataBank::Instance()->GetOilPos() && DataBank::Instance()->GetStartflag() == true)
+	else if(ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil("oil")->GetObjectData()->m_pos.y && ObjectManager::Instance()->GetCamera()->GetCameraData()->m_startflag == true)
 	{
 		DrawUITexture(&m_fly, m_fly_pos);
 	}
@@ -44,7 +45,7 @@ void EndProduction::Draw()
 
 void EndProduction::UpDate()
 {
-	if (DataBank::Instance()->GetAfterPlayerPos().y <= DataBank::Instance()->GetOilPos())
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil("oil")->GetObjectData()->m_pos.y)
 	{
 		fly_seflag = true;
 
@@ -58,7 +59,7 @@ void EndProduction::UpDate()
 			flyflag = true;
 		}
 	}
-	if (DataBank::Instance()->GetAfterPlayerPos().y >= DataBank::Instance()->GetMapTop().y && DataBank::Instance()->GetStartflag() == true)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetCamera()->GetCameraData()->m_startflag == true)
 	{	
 
 		clear_seflag = true;
@@ -91,8 +92,7 @@ void EndProduction::UpDate()
 		SoundManager::Instance()->SoundFlySE();
 	}
 
-	DataBank::Instance()->SetFinishflag(finishflag);
-	DataBank::Instance()->SetFlyflag(flyflag);
+
 
 }
 

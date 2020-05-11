@@ -1,7 +1,7 @@
 #include "GameEndScene.h"
 #include"../Manager/SoundManager.h"
 #include"../Engine/Input.h"
-#include"../DataBank/DataBank.h"
+#include"../Scene/GameScene.h"
 #include"../Manager/SceneManager.h"
 #include"../Engine/Graphics.h"
 
@@ -17,7 +17,7 @@ GameEndScene::~GameEndScene()
 void GameEndScene::Init()
 {
 	
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 }
 
 
@@ -26,32 +26,32 @@ void GameEndScene::Draw()
 {
 	
 	
-	DrawUITexture(&m_end, m_end_bg_pos);
+	DrawUITexture(&m_GameEndSceneInfo.m_end, m_GameEndSceneInfo.m_end_bg_pos);
 	
 }
 
 void GameEndScene::InitScene()
 {
-	m_end_bg_pos.x = 0;
-	m_end_bg_pos.y = 0;
-	if (DataBank::Instance()->GetClearflag() == false)
+	m_GameEndSceneInfo.m_end_bg_pos.x = 0;
+	m_GameEndSceneInfo.m_end_bg_pos.y = 0;
+	if (SceneManager::Instance()->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == false)
 	{
-		LoadTexture("Res/Tex/END.png", &m_end);
+		LoadTexture("Res/Tex/END.png", &m_GameEndSceneInfo.m_end);
 	}
-	if (DataBank::Instance()->GetClearflag() == true)
+	if (SceneManager::Instance()->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == true)
 	{
-		LoadTexture("Res/Tex/クリア.png", &m_end);
+		LoadTexture("Res/Tex/クリア.png", &m_GameEndSceneInfo.m_end);
 	}
 	SoundManager::Instance()->RegisterEndSound();
 	SoundManager::Instance()->SoundBGM(-1000);
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;
 }
 
 void GameEndScene::MainScene()
 {
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
-		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::EndStep;
 	}
 }
 
@@ -59,7 +59,7 @@ void GameEndScene::EndScene()
 {
 
 	SoundManager::Instance()->ReleaseSelectSound();
-	ReleaseTexture(&m_end);
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
-	SceneManager::Instance()->SetSceneId(BaseScene::SceneId::Title);
+	ReleaseTexture(&m_GameEndSceneInfo.m_end);
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID=SceneId::Title;
 }

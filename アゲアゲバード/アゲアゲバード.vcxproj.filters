@@ -299,5 +299,8 @@
     <ClInclude Include="Production\EndProduction.h">
       <Filter>Production</Filter>
     </ClInclude>
+    <ClInclude Include="DataBank\Definition.h">
+      <Filter>DataBank</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

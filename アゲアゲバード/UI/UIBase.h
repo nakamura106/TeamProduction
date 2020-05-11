@@ -18,7 +18,6 @@ public:
 
 protected:
 	virtual void ReleaseUITexture(TEXTURE_DATA* texture);
-	std::string m_key;
 };
 
 #endif

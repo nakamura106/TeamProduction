@@ -6,6 +6,9 @@
 #include "../Engine/Camera.h"
 #include "../Utility/Collision.h"
 
+//ëOï˚êÈåæ
+class Block;
+
 enum class ItemID
 {
 	Bomb,
@@ -16,6 +19,26 @@ enum class ItemID
 
 class Item :public ObjectBase
 {
+private:
+
+	std::vector<Block*>* m_block;
+
+	struct ItemData :public ObjectData {
+
+		D3DXVECTOR3 m_direction;
+		D3DXVECTOR3 vec;
+
+		//CAMERA* p_camera;
+		Collision* collision;
+
+		float m_speed;
+		float m_provisional_speed;
+		float m_radius;
+		float m_gravity;
+
+		bool m_hit;
+
+	}m_itemdata;
 public:
 	Item();
 	~Item() {};
@@ -23,45 +46,39 @@ public:
 
 	void Update()override;
 
-	bool UpdateHitItem();
-
-
+	const ItemData* GetItemData()const { return &m_itemdata; };
 
 private:
-	
-	D3DXVECTOR3 m_direction;
-	float m_speed;
-	float m_provisional_speed;
-	
-	D3DXVECTOR3 vec;
+	bool UpdateHitItem();
 
-
-
-	float m_radius;
-
-	float m_gravity;
-
-
-	bool m_hit;
-
-	//CAMERA* p_camera;
-	Collision* collision;
 };
 
 class GetItemBox :public ObjectBase
 {
+private:
+	void BoxProduction();
+
+	struct ItemBoxData :public ObjectData {
+
+		Collision* m_collision;
+
+		int m_floattime;
+
+		float m_rotspeed;
+
+		bool m_Upward;
+
+	}m_boxdata;
+
 public:
 	GetItemBox();
 	~GetItemBox();
 
 	void Update()override;
 
-private:
-	void BoxProduction();
-	int m_floattime;
-	float m_rotspeed;
-	bool m_Upward;
-	Collision* m_collision;
+	const ItemBoxData* GetBoxData()const { return &m_boxdata; };
+
+
 };
 
 

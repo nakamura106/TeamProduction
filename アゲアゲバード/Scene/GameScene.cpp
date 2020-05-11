@@ -4,7 +4,7 @@
 #include"../Manager/UIManager.h"
 #include"../Manager/ProductionManager.h"
 #include"../Engine/Input.h"
-#include"../DataBank/DataBank.h"
+#include"../Production/StartProduction.h"
 #include"../Manager/SceneManager.h"
 #include"../Engine/FBX.h"
 
@@ -21,7 +21,7 @@ void GameScene::Init()
 {
 	UIManager::Instance()->Init((int)UIManager::Scene::game);
 
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
 }
 
 
@@ -37,10 +37,9 @@ void GameScene::Draw()
 
 void GameScene::InitScene()
 {
-	DataBank::Instance()->SetClearflag(false);
+	m_GameSceneInfo.m_ClearFlag = false;
 
 	ObjectManager::Instance()->CreateObject();
-	ObjectManager::Instance()->CreateItemBox();
 	ObjectManager::Instance()->CreatePlayer();
 
 	SoundManager::Instance()->RegisterGameMainSound();
@@ -54,12 +53,12 @@ void GameScene::InitScene()
 	ProductionManager::Instance()->LoadTex();
 	ProductionManager::Instance()->Init();
 
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::MainStep);
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;
 }
 
 void GameScene::MainScene()
 {
-	if (DataBank::Instance()->GetStartflag() == true)
+	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 	{
 		UIManager::Instance()->UpDate((int)UIManager::Scene::game);
 		ProductionManager::Instance()->UpDate();
@@ -70,17 +69,17 @@ void GameScene::MainScene()
 
 	if (DataBank::Instance()->GetFlyflag() == true)
 {
-		DataBank::Instance()->SetClearflag(false);
-		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+		m_GameSceneInfo.m_ClearFlag = false;
+		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::EndStep;
 	}
 	if (DataBank::Instance()->GetFinishflag() == true)
 	{
-		DataBank::Instance()->SetClearflag(true);
-		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+		m_GameSceneInfo.m_ClearFlag = true;
+		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
 	}
 	if (GetKeyDown(F_KEY))
 	{
-		SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::EndStep);
+		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
 	}
 	
 }
@@ -95,8 +94,7 @@ void GameScene::EndScene()
 
 	ObjectManager::Instance()->AllDeleteObject();
 
-	DataBank::Instance()->DeleteGameData();
-
-	SceneManager::Instance()->SetSceneStep(BaseScene::SceneStep::InitStep);
-	SceneManager::Instance()->SetSceneId(BaseScene::SceneId::End);
+	
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID=SceneId::End;
 }

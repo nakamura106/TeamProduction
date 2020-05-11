@@ -23,10 +23,10 @@ SceneManager* SceneManager::Instance()
 
 void SceneManager::Init()
 {
-	m_Scene.push_back(new TitleScene);
-	m_Scene.push_back(new HelpScene);
-	m_Scene.push_back(new GameScene);
-	m_Scene.push_back(new GameEndScene);
+	m_SceneInstance.m_title=(new TitleScene);
+	m_SceneInstance.m_help=(new HelpScene);
+	m_SceneInstance.m_game=(new GameScene);
+	m_SceneInstance.m_gameend=(new GameEndScene);
 }
 
 void SceneManager::Update()
@@ -34,19 +34,19 @@ void SceneManager::Update()
 	UpdateInput();
 	KeyStateUpdate();
 
-		switch (m_current_scene_id)
+		switch (m_SceneInfo.m_CurrentSceneID)
 		{
-		case BaseScene::SceneId::Title:
-			m_Scene[0]->Update();
+		case SceneId::Title:
+			m_SceneInstance.m_title->Update();
 			break;
-		case BaseScene::SceneId::Help:
-			m_Scene[1]->Update();
+		case SceneId::Help:
+			m_SceneInstance.m_help->Update();
 			break;
-		case BaseScene::SceneId::Game:
-			m_Scene[2]->Update();
+		case SceneId::Game:
+			m_SceneInstance.m_game->Update();
 			break;
-		case BaseScene::SceneId::End:
-			m_Scene[3]->Update();
+		case SceneId::End:
+			m_SceneInstance.m_gameend->Update();
 			break;
 		default:
 			break;
@@ -55,7 +55,7 @@ void SceneManager::Update()
 
 void SceneManager::Draw()
 {
-	if (m_current_scene_step == BaseScene::SceneStep::MainStep)
+	if (m_SceneInfo.m_CurrentSceneStep == SceneStep::MainStep)
 	{
 		DrawStart();
 
@@ -65,19 +65,19 @@ void SceneManager::Draw()
 		
 		SetLight();
 
-		switch (m_current_scene_id)
+		switch (m_SceneInfo.m_CurrentSceneID)
 		{
-		case BaseScene::SceneId::Title:
-			m_Scene[0]->Draw();
+		case SceneId::Title:
+			m_SceneInstance.m_title->Draw();
 			break;
-		case BaseScene::SceneId::Help:
-			m_Scene[1]->Draw();
+		case SceneId::Help:
+			m_SceneInstance.m_help->Draw();
 			break;
-		case BaseScene::SceneId::Game:
-			m_Scene[2]->Draw();
+		case SceneId::Game:
+			m_SceneInstance.m_game->Draw();
 			break;
-		case BaseScene::SceneId::End:
-			m_Scene[3]->Draw();
+		case SceneId::End:
+			m_SceneInstance.m_gameend->Draw();
 			break;
 		default:
 			break;
@@ -90,25 +90,32 @@ void SceneManager::RegisterScene()
 {
 }
 
-void SceneManager::SetSceneId(BaseScene::SceneId sceneid_)
-{
-	m_current_scene_id = sceneid_;
-}
-
-void SceneManager::SetSceneStep(BaseScene::SceneStep scenestep_)
-{
-	m_current_scene_step = scenestep_;
-}
-
 SceneManager::SceneManager()
 {
 }
 
 SceneManager::~SceneManager()
 {
-	for (int i=0;m_Scene.size();i++)
+	if (m_SceneInstance .m_title != nullptr)
 	{
-		delete m_Scene[i];
-		m_Scene[i] = nullptr;
+		delete m_SceneInstance.m_title;
+		m_SceneInstance.m_title = nullptr;
 	}
+	if (m_SceneInstance.m_help != nullptr)
+	{
+		delete m_SceneInstance.m_help;
+		m_SceneInstance.m_help = nullptr;
+	}
+	if (m_SceneInstance.m_game != nullptr)
+	{
+		delete m_SceneInstance.m_game;
+		m_SceneInstance.m_game = nullptr;
+	}
+	if (m_SceneInstance.m_gameend != nullptr)
+	{
+		delete m_SceneInstance.m_gameend;
+		m_SceneInstance.m_gameend = nullptr;
+	}
+	
+	
 }

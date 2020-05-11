@@ -12,7 +12,7 @@ public:
 	void Update()override;
 
 private:
-
+	ObjectData m_oildata;
 };
 
 class FillOil :public ObjectBase
@@ -22,7 +22,8 @@ public:
 	~FillOil() {};
 
 	void Update();
-
+private:
+	ObjectData m_filloildata;
 };
 
 

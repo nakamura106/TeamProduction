@@ -5,9 +5,8 @@
 
 BaseScene::BaseScene()
 {
-	m_CurrentSceneID = SceneId::Title;
-	m_CurrentSceneStep = SceneStep::InitStep;
-	DataBank::Instance()->SetSceneStep(m_CurrentSceneStep);
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID = SceneId::Title;
+	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 }
 
 BaseScene::~BaseScene()
@@ -22,7 +21,7 @@ void BaseScene::Init()
 
 void BaseScene::Update()
 {
-	switch (SceneManager::Instance()->GetSceneStep())
+	switch (SceneManager::Instance()->GetSceneInfo()->m_CurrentSceneStep)
 	{
 	case SceneStep::InitStep:
 		InitScene();
