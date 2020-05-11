@@ -2,6 +2,7 @@
 #include"../Manager/ObjectManager.h"
 #include"../Manager/SoundManager.h"
 #include"../Manager/UIManager.h"
+#include"../Production/EndProduction.h"
 #include"../Manager/ProductionManager.h"
 #include"../Engine/Input.h"
 #include"../Production/StartProduction.h"
@@ -67,12 +68,12 @@ void GameScene::MainScene()
 	ObjectManager::Instance()->Update();
 
 
-	if (DataBank::Instance()->GetFlyflag() == true)
+	if (ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->flyflag == true)
 {
 		m_GameSceneInfo.m_ClearFlag = false;
 		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::EndStep;
 	}
-	if (DataBank::Instance()->GetFinishflag() == true)
+	if (ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->finishflag == true)
 	{
 		m_GameSceneInfo.m_ClearFlag = true;
 		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;

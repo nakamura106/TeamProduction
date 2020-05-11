@@ -25,8 +25,8 @@ public:
 #pragma endregion
 
 protected:
-	DataBank();
-	~DataBank();
+	DataBank() {};
+	~DataBank() {};
 
 private:
 	static DataBank* p_instance;
