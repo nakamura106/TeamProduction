@@ -12,6 +12,9 @@ private:
 		Fbx m_fbx;
 	}m_GameSceneInfo;
 
+	char debugppos[50];
+	char debugcamerapos[50];
+
 public:
 	GameScene();
 	~GameScene();

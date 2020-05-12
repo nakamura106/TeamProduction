@@ -43,9 +43,6 @@ public:
 
 	void ReleaseUITexture(TEXTURE_DATA* texture);
 
-
-
-	
 };
 
 #endif

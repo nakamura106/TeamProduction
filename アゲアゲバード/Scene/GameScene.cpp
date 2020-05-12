@@ -9,6 +9,9 @@
 #include"../Manager/SceneManager.h"
 #include"../Engine/FBX.h"
 
+#include <iostream>
+#include <fstream>
+
 GameScene::GameScene()
 {
 	Init();
@@ -29,6 +32,16 @@ void GameScene::Init()
 
 void GameScene::Draw()
 {
+
+	sprintf_s(debugcamerapos, "c=%f", ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_CameraPos.y);
+
+	sprintf_s(debugppos, "p=%f", ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y);
+
+
+	DrawFont(100.0f, 100.0f, debugcamerapos, Regular, Red);
+	DrawFont(200.0f, 200.0f, debugppos, Regular, Red);
+
+
 	ObjectManager::Instance()->Draw();
 
 	UIManager::Instance()->Draw((int)UIManager::Scene::game);
@@ -59,7 +72,7 @@ void GameScene::InitScene()
 
 void GameScene::MainScene()
 {
-	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
 		UIManager::Instance()->UpDate((int)UIManager::Scene::game);
 		ProductionManager::Instance()->UpDate();
@@ -67,7 +80,7 @@ void GameScene::MainScene()
 
 	ObjectManager::Instance()->Update();
 
-
+	
 	if (ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->flyflag == true)
 {
 		m_GameSceneInfo.m_ClearFlag = false;
