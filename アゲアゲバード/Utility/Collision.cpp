@@ -269,7 +269,7 @@ bool Collision::HitVisualBox2(D3DXVECTOR3 block_pos_, float block_width_, float 
 	N.y = N.y / lenght;
 	N.z = N.z / lenght;
 
-	D3DXVECTOR3 camera_pos = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_CameraPos;
+	D3DXVECTOR3 camera_pos = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_CameraPos;
 
 	//ƒJƒƒ‰Pos
 	//D3DXVECTOR3 PA(P.x - p_camera->GetCamaraPos().x, P.y - p_camera->GetCamaraPos().x, P.z - p_camera->GetCamaraPos().z);

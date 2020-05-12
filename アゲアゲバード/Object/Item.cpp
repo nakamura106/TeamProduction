@@ -9,11 +9,11 @@
 
 Item::Item()
 {
-	m_itemdata.m_pos = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_CameraPos;
+	m_itemdata.m_pos = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_CameraPos;
 
-	m_itemdata.m_direction.x = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_Forward.x;
-	m_itemdata.m_direction.y = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_Forward.y;
-	m_itemdata.m_direction.z = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_Forward.z;
+	m_itemdata.m_direction.x = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_Forward.x;
+	m_itemdata.m_direction.y = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_Forward.y;
+	m_itemdata.m_direction.z = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_Forward.z;
 
 	m_itemdata.m_speed = 1.0f;
 

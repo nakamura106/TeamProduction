@@ -39,7 +39,7 @@ void TitleUi::Init()
 	m_Ui_pos[(int)Select::Title].x = 0.0f;
 	m_Ui_pos[(int)Select::Title].y = 0.0f;
 
-	m_page = page::page1;
+	
 	m_title_select = Select::Solo;
 }
 
@@ -61,7 +61,7 @@ void TitleUi::LoadFile()
 
 void TitleUi::Draw()
 {
-	/*DrawTitleUi(DataBank::Instance()->GetPage());*/
+	DrawTitleUi(SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_page);
 }
 
 void TitleUi::UpDate()
@@ -98,32 +98,32 @@ void TitleUi::DrawTitleUi(int page_)
 
 void TitleUi::UpdateSelect()
 {
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Solo)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Solo)
 	{
 		m_select_pos.x =-100.0f;
 		m_select_pos.y = 360.0f;
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag ==(int)Select::Option )
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select ==(int)Select::Option )
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 550.0f;
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Help)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Help)
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 750.0f;
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Timeattack)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Timeattack)
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 500.0f;
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Freemode)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Freemode)
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 610.0f;
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_select_flag == (int)Select::Back)
+	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Back)
 	{
 		m_select_pos.x = -100.0f;
 		m_select_pos.y = 700.0f;

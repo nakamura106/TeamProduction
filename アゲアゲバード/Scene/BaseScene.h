@@ -1,26 +1,30 @@
 #ifndef BASESCENE_H_
 #define BASESCENE_H_
 
-class BaseScene
+namespace MyBaseScene
 {
-public:
-	BaseScene();
-	~BaseScene();
-	
-protected:
-	
-	
+	class BaseScene
+	{
+	public:
+		BaseScene();
+		~BaseScene();
 
-public:
-	virtual void InitScene() {};
-	virtual void MainScene() {};
-	virtual void EndScene() {};
+	protected:
 
-	virtual void Init();
-	virtual void Update();
-	virtual void Draw();
 
-};
+
+	public:
+		virtual void InitScene() {};
+		virtual void MainScene() {};
+		virtual void EndScene() {};
+
+		virtual void Init();
+		virtual void Update();
+		virtual void Draw();
+
+	};
+}
+
 
 
 #endif

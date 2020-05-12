@@ -4,7 +4,7 @@
 #include"BaseScene.h"
 #include"../Engine/Graphics.h"
 
-class GameEndScene :public BaseScene
+class GameEndScene :public MyBaseScene::BaseScene
 {
 private:
 	struct GameEndSceneInfo 

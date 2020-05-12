@@ -3,11 +3,15 @@
 
 #include"BaseScene.h"
 
-class TitleScene :public BaseScene
+//‘O•ûéŒ¾
+
+
+class TitleScene :public MyBaseScene::BaseScene
 {
 private:
 	struct TitleSceneInfo
 	{
+		int m_now_select;
 		int m_select_flag;
 		int m_page;
 	}m_TitleSceneInfo;

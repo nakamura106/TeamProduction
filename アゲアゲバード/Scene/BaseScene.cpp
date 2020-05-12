@@ -3,23 +3,23 @@
 #include"../DataBank/DataBank.h"
 #include"../Manager/SceneManager.h"
 
-BaseScene::BaseScene()
+MyBaseScene::BaseScene::BaseScene()
 {
 	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID = SceneId::Title;
 	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 }
 
-BaseScene::~BaseScene()
+MyBaseScene::BaseScene::~BaseScene()
 {
 
 }
 
-void BaseScene::Init()
+void MyBaseScene::BaseScene::Init()
 {
 	
 }
 
-void BaseScene::Update()
+void MyBaseScene::BaseScene::Update()
 {
 	switch (SceneManager::Instance()->GetSceneInfo()->m_CurrentSceneStep)
 	{
@@ -40,7 +40,7 @@ void BaseScene::Update()
 	
 }
 
-void BaseScene::Draw()
+void MyBaseScene::BaseScene::Draw()
 {
 	Draw();
 }

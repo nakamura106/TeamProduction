@@ -34,7 +34,7 @@ public:
 	{
 		page1,
 		page2,
-	}m_page;
+	};
 
 private:
 

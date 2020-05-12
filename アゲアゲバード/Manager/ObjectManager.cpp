@@ -27,6 +27,11 @@ ObjectManager::ObjectManager()
 
 ObjectManager::~ObjectManager()
 {
+	if (m_pot != nullptr)
+	{
+		delete m_pot;
+		m_pot = nullptr;
+	}
 	if (m_Object["oil"] != nullptr)
 	{
 		delete m_Object["oil"];
@@ -71,11 +76,11 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::AllDeleteObject()
 {
+	std::map<std::string, Character::Player*>().swap(m_player);
 	std::map<std::string,ObjectBase*>().swap(m_Object);
 	std::vector<Block*>().swap(m_Block);
 	std::vector<Item*>().swap(m_Item);
 	std::vector<GetItemBox*>().swap(m_ItemBox);
-	std::map<std::string,Character::Player*>().swap(m_player);
 }
 
 D3DXVECTOR3 ObjectManager::BlockInstallation(D3DXVECTOR3 eyepos_, D3DXVECTOR3 forward_)
@@ -104,7 +109,7 @@ bool ObjectManager::CreateBlock()
 {
 
 	D3DXVECTOR3 eyepos;
-	eyepos = BlockInstallation(m_camera->GetCameraData()->m_CameraPos , m_camera->GetCameraData()->m_Forward);
+	eyepos = BlockInstallation(m_player["player1"]->GetPlayerData()->m_p_camera->GetCameraData()->m_EyePos , m_player["player1"]->GetPlayerData()->m_p_camera->GetCameraData()->m_Forward);
 
 	for (const auto& itr : m_Block)
 	{
@@ -140,7 +145,7 @@ void ObjectManager::CreatePlayer()
 void ObjectManager::Update()
 {
 	
-	m_Object["pot"]->Update();
+	m_pot->Update();
 	m_Object["oil"]->Update();
 	m_Object["filloil"]->Update();
 	
@@ -179,7 +184,7 @@ void ObjectManager::Update()
 
 void ObjectManager::Draw()
 {
-	m_Object["pot"]->Draw();
+	m_pot->Draw();
 	m_Object["oil"]->Draw();
 	m_Object["filloil"]->Draw();
 	

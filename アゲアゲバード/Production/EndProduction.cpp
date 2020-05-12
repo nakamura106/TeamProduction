@@ -33,11 +33,11 @@ void EndProduction::LoadTex()
 
 void EndProduction::Draw()
 {
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetCamera()->GetCameraData()->m_startflag == true)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
 		DrawUITexture(&m_EndProductionInfo.m_finish, m_EndProductionInfo.m_finish_pos);
 	}
-	else if(ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil("oil")->GetObjectData()->m_pos.y && ObjectManager::Instance()->GetCamera()->GetCameraData()->m_startflag == true)
+	else if(ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil("oil")->GetObjectData()->m_pos.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
 		DrawUITexture(&m_EndProductionInfo.m_fly, m_EndProductionInfo.m_fly_pos);
 	}
@@ -59,7 +59,7 @@ void EndProduction::UpDate()
 			m_EndProductionInfo.flyflag = true;
 		}
 	}
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetCamera()->GetCameraData()->m_startflag == true)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{	
 
 		m_EndProductionInfo.clear_seflag = true;

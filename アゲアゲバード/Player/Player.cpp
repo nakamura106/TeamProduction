@@ -33,10 +33,10 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 	m_pinfo.m_blockstock = 20;
 	
-	m_pinfo.m_p_camera=
+	m_pinfo.m_p_camera = new CAMERA(m_pinfo.m_camera_pos);
 
-	m_pinfo.eye = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_EyePos;
-	m_pinfo.upvec = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_CameraUp;
+	m_pinfo.eye = m_pinfo.m_p_camera->GetCameraData()->m_EyePos;
+	m_pinfo.upvec = m_pinfo.m_p_camera->GetCameraData()->m_CameraUp;
 
 	m_pinfo.m_item_effect_time = 0.0f;
 
@@ -50,7 +50,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	D3DXMatrixIdentity(&m_pinfo.m_mat_rot_y);
 	D3DXMatrixIdentity(&m_pinfo.m_mat_move);
 	D3DXMatrixScaling(&m_pinfo.m_mat_scale, 5.0f, 5.0f, 5.0f);
-	D3DXMatrixRotationY(&m_pinfo.m_mat_rot_y, D3DXToRadian(ObjectManager::Instance()->GetCamera()->GetCameraData()->m_Yaw));
+	D3DXMatrixRotationY(&m_pinfo.m_mat_rot_y, D3DXToRadian(m_pinfo.m_p_camera->GetCameraData()->m_Yaw));
 	D3DXMatrixTranslation(&m_pinfo.m_mat_move, m_pinfo.m_pos.x, m_pinfo.m_pos.y, m_pinfo.m_pos.z);
 	m_pinfo.m_mat_world = m_pinfo.m_mat_scale * m_pinfo.m_mat_rot_y * m_pinfo.m_mat_move;
 	m_item = ObjectManager::Instance()->GetItem();
@@ -77,7 +77,7 @@ void Character::Player::Update()
 
 	// かけ合わせ(拡縮×回転×移動)
 	D3DXMatrixScaling(&m_pinfo.m_mat_scale, 5.0f, 5.0f, 5.0f);
-	D3DXMatrixRotationY(&m_pinfo.m_mat_rot_y, D3DXToRadian(ObjectManager::Instance()->GetCamera()->GetCameraData()->m_Yaw));
+	D3DXMatrixRotationY(&m_pinfo.m_mat_rot_y, D3DXToRadian(m_pinfo.m_p_camera->GetCameraData()->m_Yaw));
 	D3DXMatrixTranslation(&m_pinfo.m_mat_move, m_pinfo.m_pos.x, m_pinfo.m_pos.y, m_pinfo.m_pos.z);
 	m_pinfo.m_mat_world = m_pinfo.m_mat_scale * m_pinfo.m_mat_rot_y * m_pinfo.m_mat_move;
 }
@@ -86,7 +86,7 @@ void Character::Player::Move()
 {
 	
 	m_pinfo.m_before_player_pos = m_pinfo.m_pos;
-	m_pinfo.eye = ObjectManager::Instance()->GetCamera()->GetCameraData()->m_EyePos;
+	m_pinfo.eye = m_pinfo.m_p_camera->GetCameraData()->m_EyePos;
 
 	// プレイヤーの前向きベクトルを出す
 	D3DXVECTOR3 forward;

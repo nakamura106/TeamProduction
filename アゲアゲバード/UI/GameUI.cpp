@@ -141,7 +141,7 @@ void GameUI::UpDate()
 
 void GameUI::UpDateTimer()
 {
-	if (ObjectManager::Instance()->GetCamera()->GetCameraData()->m_startflag == true)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
 		timercounter++;
 	}

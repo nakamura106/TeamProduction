@@ -4,7 +4,7 @@
 #include"BaseScene.h"
 #include"../Engine/FBX.h"
 
-class GameScene :public BaseScene
+class GameScene :public MyBaseScene::BaseScene
 {
 private:
 	struct GameSceneInfo{
