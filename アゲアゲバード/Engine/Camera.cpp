@@ -65,7 +65,7 @@ void CAMERA::Move()
 
 void CAMERA::ProductionMove()
 {
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= m_cameradata.m_CameraPos.y)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < m_cameradata.m_CameraPos.y)
 	{
 		m_cameradata.m_CameraPos.y -= 0.25f;
 	}

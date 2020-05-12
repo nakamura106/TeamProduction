@@ -187,6 +187,7 @@ void Character::Player::Move()
 		m_pinfo.m_grav.FreeFall(m_pinfo.m_pos.y);
 		m_pinfo.m_pos.y = m_pinfo.m_grav.GetPosY();
 	}
+	m_pinfo.m_after_player_pos = m_pinfo.m_pos;
 }
 
 void Character::Player::CollisionDetection()
@@ -391,10 +392,12 @@ D3DXVECTOR3 Character::Player::Amountofmovement()
 	return amount_of_movement;
 }
 
-const Character::Player::PlayerInfo* Character::Player::GetPlayerData()const
+const Character::Player::PlayerInfo* Character::Player::GetPlayerData() const
 {
 	return &m_pinfo;
 }
+
+
 
 
 
