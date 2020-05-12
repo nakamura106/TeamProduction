@@ -78,6 +78,7 @@ void ObjectManager::AllDeleteObject()
 {
 	delete m_filloil;
 	delete m_oil;
+	delete m_pot;
 	std::map<std::string, Character::Player*>().swap(m_player);
 	std::vector<Block*>().swap(m_Block);
 	std::vector<Item*>().swap(m_Item);
@@ -139,7 +140,7 @@ void ObjectManager::CreateItemBox()
 
 void ObjectManager::CreatePlayer()
 {
-	m_player["player1"]=(new Character::Player(0.0f, 0.0f, 0.0f));
+	m_player["player1"]=(new Character::Player(0.0f, 5.0f, 0.0f));
 	
 }
 

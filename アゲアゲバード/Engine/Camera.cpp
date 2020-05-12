@@ -1,7 +1,8 @@
 #include "Camera.h"
 #include "Input.h"
 #include "Graphics.h"
-#include"../DataBank/DataBank.h"
+#include"../Production/StartProduction.h"
+#include"../Manager/ProductionManager.h"
 #include"../Manager/ObjectManager.h"
 
 void CAMERA::Update()
@@ -35,7 +36,7 @@ void CAMERA::Update()
 		20000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
 	//ŽË‰eÀ•W•ÏŠ·—p‚Ìs—ñŽZo endMove();
-	if (m_cameradata.m_startflag == false)
+	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == false)
 	{
 		ProductionMove();
 	}
@@ -65,7 +66,7 @@ void CAMERA::Move()
 
 void CAMERA::ProductionMove()
 {
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < m_cameradata.m_CameraPos.y)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_after_player_pos.y <= m_cameradata.m_CameraPos.y)
 	{
 		m_cameradata.m_CameraPos.y -= 0.25f;
 	}

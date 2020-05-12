@@ -187,7 +187,6 @@ void Character::Player::Move()
 		m_pinfo.m_grav.FreeFall(m_pinfo.m_pos.y);
 		m_pinfo.m_pos.y = m_pinfo.m_grav.GetPosY();
 	}
-	m_pinfo.m_after_player_pos = m_pinfo.m_pos;
 }
 
 void Character::Player::CollisionDetection()

@@ -33,18 +33,18 @@ void GameScene::Init()
 void GameScene::Draw()
 {
 
-	sprintf_s(debugcamerapos, "c=%f", ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_CameraPos.y);
+	sprintf_s(debugcamerapos, "c=%f", ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_after_player_pos.y);
 
-	sprintf_s(debugppos, "p=%f", ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y);
+	sprintf_s(debugppos, "p=%f", ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_before_player_pos.y);
 
 
 	DrawFont(100.0f, 100.0f, debugcamerapos, Regular, Red);
 	DrawFont(200.0f, 200.0f, debugppos, Regular, Red);
 
+	UIManager::Instance()->Draw((int)UIManager::Scene::game);
+
 
 	ObjectManager::Instance()->Draw();
-
-	UIManager::Instance()->Draw((int)UIManager::Scene::game);
 
 	ProductionManager::Instance()->Draw();
 }

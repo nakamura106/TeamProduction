@@ -1,5 +1,7 @@
 #include "GameUI.h"
+#include"../Production/StartProduction.h"
 #include"../Manager/ObjectManager.h"
+#include"../Manager/ProductionManager.h"
 #include <iostream>
 #include <fstream>
 
@@ -89,16 +91,21 @@ void GameUI::LoadFile()
 
 void GameUI::Draw()
 {
-	DrawUITexture(&m_position, tex_pos);
-	DrawUITexture(&m_player_pos, player_pos);
+	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	{
+		DrawUITexture(&m_position, tex_pos);
+		DrawUITexture(&m_player_pos, player_pos);
+
+		DrawFont(1000, 0, m_timefont, FontSize::Regular, FontColor::Red);
+
+		DrawFont(10, 0, m_stockfont, FontSize::Regular, FontColor::Black);
+
+	}
+
 	/*DrawUVTexture(&m_timer, one_s_timer_pos, 50.0f, 100.0f, m_ones_tu, m_ones_tv);
 	DrawUVTexture(&m_timer, ten_s_timer_pos, 50.0f, 100.0f, m_tens_tu, m_tens_tv);
 	DrawUVTexture(&m_timer, one_m_timer_pos, 50.0f, 100.0f, m_onem_tu, m_onem_tv);
 	DrawUVTexture(&m_timer, ten_m_timer_pos, 50.0f, 100.0f, m_tenm_tu, m_tenm_tv);*/
-
-	DrawFont(1000, 0, m_timefont, FontSize::Regular, FontColor::Red);
-
-	DrawFont(10, 0, m_stockfont, FontSize::Regular, FontColor::Black);
 }
 
 void GameUI::UpDate()
