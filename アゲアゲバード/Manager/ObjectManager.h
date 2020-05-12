@@ -3,17 +3,19 @@
 
 #include"../Object/ObjectBase.h"
 #include"../Utility/Collision.h"
-#include"../DataBank/Definition.h"
 #include"../Player/Player.h"
+#include<string>
 #include<vector>
 #include<map>
 
 //ëOï˚êÈåæ
 class Block;
 class Item;
-class GetItemBox;
+class ItemBox;
 class Player;
 class Pot;
+class Oil;
+class FillOil;
 
 class ObjectManager
 {
@@ -35,11 +37,12 @@ public:
 	
 	D3DXVECTOR3 BlockInstallation(D3DXVECTOR3 eyepos_, D3DXVECTOR3 forward_);
 	
-	Pot* GetMap() { return m_pot; }
-	std::vector<Item*>* GetItem() { return &m_Item; }
-	std::vector<Block*>* GetBlock() { return &m_Block; }
-	Character::Player* GetPlayer(std::string key_) { return m_player[key_]; }
-	ObjectBase* GetOil(std::string key_) { return m_Object[key_]; }
+	 Pot* GetMap() { return m_pot; }
+	 std::vector<Item*>* GetItem() { return &m_Item; }
+	 std::vector<Block*>* GetBlock() { return &m_Block; }
+	 Character::Player* GetPlayer(std::string key_) { return m_player[key_]; }
+	 Oil* GetOil() { return m_oil; }
+	 FillOil* GetFillOilData() { return m_filloil; }
 	
 protected:
 	ObjectManager();
@@ -52,11 +55,13 @@ private:
 
 	Collision* m_collision;
 	Pot* m_pot;
-	std::map<std::string,ObjectBase*> m_Object;
+	Oil* m_oil;
+	FillOil* m_filloil;
+	
 	std::map<std::string,Character::Player*> m_player;
 	std::vector<Block*> m_Block;
 	std::vector<Item*> m_Item;
-	std::vector<GetItemBox*> m_ItemBox;
+	std::vector<ItemBox*> m_ItemBox;
 };
 
 #endif

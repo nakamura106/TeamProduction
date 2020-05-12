@@ -1,7 +1,7 @@
 #include "Item.h"
 #include"Block.h"
 #include"../Manager/ObjectManager.h"
-#include "../Engine/Input.h"
+#include"../Manager/FbxManager.h"
 #include<math.h>
 #include<stdio.h>
 #include<time.h>
@@ -50,6 +50,11 @@ void Item::Update()
 
 }
 
+void Item::Draw()
+{
+	MyFbxManager::FbxManager::Instance()->DrawFbx(m_itemdata.m_key, m_itemdata.m_mat_world);
+}
+
 
 
 bool Item::UpdateHitItem()
@@ -58,7 +63,7 @@ bool Item::UpdateHitItem()
 	{
 		if (m_itemdata.collision->HitItemBox(itr->GetBlockData()->m_pos, m_itemdata.m_pos, 5.0f, m_itemdata.m_radius) == true)
 		{
-			return m_itemdata.m_hit = true;
+			return  true;
 		}
 		else
 		{
@@ -68,7 +73,7 @@ bool Item::UpdateHitItem()
 	
 }
 
-GetItemBox::GetItemBox()
+ItemBox::ItemBox()
 {
 	m_boxdata.m_rotspeed = 0.0f;
 	m_boxdata.m_Upward = true;
@@ -86,16 +91,21 @@ GetItemBox::GetItemBox()
 	D3DXMatrixMultiply(&m_boxdata.m_mat_world, &m_boxdata.m_mat_move, &m_boxdata.m_mat_scale);
 }
 
-GetItemBox::~GetItemBox()
+ItemBox::~ItemBox()
 {
 }
 
-void GetItemBox::Update()
+void ItemBox::Update()
 {
 	BoxProduction();
 }
 
-void GetItemBox::BoxProduction()
+void ItemBox::Draw()
+{
+	MyFbxManager::FbxManager::Instance()->DrawFbx(m_boxdata.m_key, m_boxdata.m_mat_world);
+}
+
+void ItemBox::BoxProduction()
 {
 	
 	m_boxdata.m_rotspeed+=0.01f;

@@ -10,7 +10,9 @@ public:
 	~Oil() {};
 
 	void Update()override;
+	void Draw()override;
 
+	const ObjectData* GetOilData()const { return &m_oildata; }
 private:
 	ObjectData m_oildata;
 };
@@ -21,7 +23,11 @@ public:
 	FillOil();
 	~FillOil() {};
 
-	void Update();
+	void Update()override;
+	void Draw()override;
+
+	const ObjectData* GetFillOilData()const { return &m_filloildata; }
+
 private:
 	ObjectData m_filloildata;
 };

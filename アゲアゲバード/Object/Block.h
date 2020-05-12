@@ -10,6 +10,9 @@ public:
 	Block();
 	~Block();
 
+	void Update()override;
+	void Draw()override;
+
 	ObjectData* GetBlockData() { return &m_BlockData;}
 
 private:

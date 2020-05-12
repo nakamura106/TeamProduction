@@ -4,7 +4,7 @@
 #include"../Object/Oil.h"
 #include"../Object/Item.h"
 #include "../Player/Player.h"
-#include"../DataBank/DataBank.h"
+#include<time.h>
 
 
 
@@ -32,15 +32,15 @@ ObjectManager::~ObjectManager()
 		delete m_pot;
 		m_pot = nullptr;
 	}
-	if (m_Object["oil"] != nullptr)
+	if (m_oil != nullptr)
 	{
-		delete m_Object["oil"];
-		m_Object["oil"] = nullptr;
+		delete m_oil;
+		m_oil = nullptr;
 	}
-	if (m_Object["filloil"] != nullptr)
+	if (m_filloil != nullptr)
 	{
-		delete m_Object["filloil"];
-		m_Object["filloil"] = nullptr;
+		delete m_filloil;
+		m_filloil = nullptr;
 	}
 	if (m_player["player1"] != nullptr)
 	{
@@ -76,11 +76,12 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::AllDeleteObject()
 {
+	delete m_filloil;
+	delete m_oil;
 	std::map<std::string, Character::Player*>().swap(m_player);
-	std::map<std::string,ObjectBase*>().swap(m_Object);
 	std::vector<Block*>().swap(m_Block);
 	std::vector<Item*>().swap(m_Item);
-	std::vector<GetItemBox*>().swap(m_ItemBox);
+	std::vector<ItemBox*>().swap(m_ItemBox);
 }
 
 D3DXVECTOR3 ObjectManager::BlockInstallation(D3DXVECTOR3 eyepos_, D3DXVECTOR3 forward_)
@@ -100,8 +101,8 @@ D3DXVECTOR3 ObjectManager::BlockInstallation(D3DXVECTOR3 eyepos_, D3DXVECTOR3 fo
 void ObjectManager::CreateObject()
 {
 	m_pot = (new Pot);
-	m_Object["oil"]=(new Oil);
-	m_Object["filloil"]=(new FillOil);
+	m_oil=(new Oil);
+	m_filloil=(new FillOil);
 	CreateItemBox();
 }
  
@@ -132,7 +133,7 @@ void ObjectManager::CreateItemBox()
 	srand((unsigned)time(NULL));
 	for (int i = 0; i <= 20; i++)
 	{
-		m_ItemBox.push_back(new GetItemBox);
+		m_ItemBox.push_back(new ItemBox);
 	}
 }
 
@@ -146,13 +147,13 @@ void ObjectManager::Update()
 {
 	
 	m_pot->Update();
-	m_Object["oil"]->Update();
-	m_Object["filloil"]->Update();
+	m_oil->Update();
+	m_filloil->Update();
 	
 	for (int i = 0; i < m_Block.size(); i++)
 	{
 		m_Block[i]->Update();
-		if (m_Object["oil"]->GetObjectData()->m_pos.y>=m_Block[i]->GetBlockData()->m_pos.y)
+		if (m_oil->GetOilData()->m_pos.y>=m_Block[i]->GetBlockData()->m_pos.y)
 		{
 			m_Block.erase(m_Block.begin()+i);
 		}
@@ -161,7 +162,7 @@ void ObjectManager::Update()
 	{
 		m_Item[i]->Update();
 
-		if (m_Object["oil"]->GetObjectData()->m_pos.y >= m_Item[i]->GetItemData()->m_pos.y)
+		if (m_oil->GetOilData()->m_pos.y >= m_Item[i]->GetItemData()->m_pos.y)
 		{
 			m_Item.erase(m_Item.begin() + i);
 		}
@@ -185,8 +186,8 @@ void ObjectManager::Update()
 void ObjectManager::Draw()
 {
 	m_pot->Draw();
-	m_Object["oil"]->Draw();
-	m_Object["filloil"]->Draw();
+	m_oil->Draw();
+	m_oil->Draw();
 	
 	for (int i = 0; i < m_Block.size(); i++)
 	{	

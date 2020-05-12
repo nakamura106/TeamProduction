@@ -43,8 +43,8 @@ public:
 	Item();
 	~Item() {};
 
-
 	void Update()override;
+	void Draw()override;
 
 	const ItemData* GetItemData()const { return &m_itemdata; };
 
@@ -53,7 +53,7 @@ private:
 
 };
 
-class GetItemBox :public ObjectBase
+class ItemBox :public ObjectBase
 {
 private:
 	void BoxProduction();
@@ -71,10 +71,11 @@ private:
 	}m_boxdata;
 
 public:
-	GetItemBox();
-	~GetItemBox();
+	ItemBox();
+	~ItemBox();
 
 	void Update()override;
+	void Draw()override;
 
 	const ItemBoxData* GetBoxData()const { return &m_boxdata; };
 

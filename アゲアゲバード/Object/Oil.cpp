@@ -1,6 +1,5 @@
 #include"Oil.h"
-#include"../Engine/Graphics.h"
-#include"../DataBank/DataBank.h"
+#include"../Manager/FbxManager.h"
 
 Oil::Oil()
 {
@@ -23,6 +22,11 @@ void Oil::Update()
 	
 }
 
+void Oil::Draw()
+{
+	MyFbxManager::FbxManager::Instance()->DrawFbx(m_oildata.m_key, m_oildata.m_mat_world);
+}
+
 FillOil::FillOil()
 {
 	m_filloildata.m_key = "filloil";
@@ -36,4 +40,9 @@ FillOil::FillOil()
 void FillOil::Update()
 {
 	//GetD3DDevice()->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+}
+
+void FillOil::Draw()
+{
+	MyFbxManager::FbxManager::Instance()->DrawFbx(m_filloildata.m_key, m_filloildata.m_mat_world);
 }

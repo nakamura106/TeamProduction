@@ -1,5 +1,6 @@
 #include "EndProduction.h"
 #include"../Object/Pot.h"
+#include"../Object/Oil.h"
 #include"../Manager/ObjectManager.h"
 #include "../Manager/SoundManager.h"
 
@@ -37,7 +38,7 @@ void EndProduction::Draw()
 	{
 		DrawUITexture(&m_EndProductionInfo.m_finish, m_EndProductionInfo.m_finish_pos);
 	}
-	else if(ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil("oil")->GetObjectData()->m_pos.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
+	else if(ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil()->GetOilData()->m_pos.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
 		DrawUITexture(&m_EndProductionInfo.m_fly, m_EndProductionInfo.m_fly_pos);
 	}
@@ -45,7 +46,7 @@ void EndProduction::Draw()
 
 void EndProduction::UpDate()
 {
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil("oil")->GetObjectData()->m_pos.y)
+	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil()->GetOilData()->m_pos.y)
 	{
 		m_EndProductionInfo.fly_seflag = true;
 

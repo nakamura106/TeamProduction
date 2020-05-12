@@ -5,6 +5,7 @@
 #include "../Engine/Input.h"
 #include "../Utility/Gravity.h"
 #include"../Production/StartProduction.h"
+#include"../Manager/FbxManager.h"
 #include"../Manager/ProductionManager.h"
 #include"../Manager/SoundManager.h"
 #include"../Manager/ObjectManager.h"
@@ -195,7 +196,7 @@ void Character::Player::CollisionDetection()
 	// 側面map_radius = p_db->GetMapRadius();
 	if (m_pinfo.m_p_collision->HitMap(
 		m_pinfo.m_pos.x, m_pinfo.m_pos.z,	// 第一、二引数	：プレイヤーの座標(x,z)
-		ObjectManager::Instance()->GetMap()->GetMapData()->m_pos.x, ObjectManager::Instance()->GetMap()->GetObjectData()->m_pos.z,		// 第三、四引数	：マップの座標(x,z)
+		ObjectManager::Instance()->GetMap()->GetMapData()->m_pos.x, ObjectManager::Instance()->GetMap()->GetMapData()->m_pos.z,		// 第三、四引数	：マップの座標(x,z)
 		m_pinfo.radius,		// 第五引数		：プレイヤーの半径
 		ObjectManager::Instance()->GetMap()->GetMapData()->radius			// 第六引数		：マップの半径
 	) == true)
