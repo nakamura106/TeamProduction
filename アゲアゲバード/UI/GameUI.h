@@ -13,28 +13,23 @@ public:
 	GameUI();
 	~GameUI() {}
 
-	virtual void Init()override;
+public:
+	virtual void LoadFile()override;		// ç°égÇ¡ÇƒÇ»Ç¢
 
 	virtual void LoadTex()override;
-
-	virtual void LoadFile()override;
-
-	
-
+	virtual void Init()override;
 	virtual void Draw()override;
-
 	virtual void UpDate()override;
+	virtual void ReleaseTex()override;
 
+private:
 	void UpDateTimer();
-
 	void UpDatePlayerPos();
-
 	void ConversionBlockStock();
 
 
-	virtual void ReleaseTex()override;
 
-	
+
 private:
 	const char *m_filename;
 
