@@ -385,13 +385,8 @@ void Character::Player::PlusBlockStock(int plusstock_)
 
 D3DXVECTOR3 Character::Player::Amountofmovement()
 {
-	
-	// 過去のプレイヤーの位置を取得(移動前)
-	D3DXVECTOR3 befor_player = m_pinfo.m_before_player_pos;
-	// 現在のプレイヤーの位置を取得(移動後)
-	D3DXVECTOR3 after_player = m_pinfo.m_after_player_pos;
 	// プレイヤーが動いた距離 = 現在のプレイヤーの位置 - 過去のプレイヤーの位置
-	D3DXVECTOR3 amount_of_movement = after_player - befor_player;
+	D3DXVECTOR3 amount_of_movement = m_pinfo.m_after_player_pos - m_pinfo.m_before_player_pos;
 
 	return amount_of_movement;
 }
