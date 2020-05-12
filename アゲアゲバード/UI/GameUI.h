@@ -27,9 +27,6 @@ private:
 	void UpDatePlayerPos();
 	void ConversionBlockStock();
 
-
-
-
 private:
 	const char *m_filename;
 
