@@ -136,13 +136,13 @@ void Character::Player::Move()
 	}
 
 	// ƒWƒƒƒ“ƒv
-	if (GetKeyDown(E_KEY) || IsButtonDown(AButton) && m_jflag == false)
+	/*if (GetKeyDown(E_KEY) || IsButtonDown(AButton) && m_jflag == false)
 	{
 		m_stand_flag = false;
 		m_jflag = true;
 
 		m_pinfo.state = PlayerStatus::JAMP;
-	}
+	}*/
 	if (m_jflag == true)
 	{
 		m_grav.ThrowingUp(m_pos.y, m_pinfo.jamp_power);
