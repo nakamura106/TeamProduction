@@ -140,7 +140,7 @@ void Character::Player::Move()
 	}
 
 	// ƒWƒƒƒ“ƒv
-	if (GetKeyDown(E_KEY) || IsButtonDown(AButton) && m_pinfo.m_jflag == false)
+	if (GetKeyDown(SPACE_KEY) || IsButtonDown(AButton) && m_pinfo.m_jflag == false)
 	{
 		m_pinfo.m_stand_flag = false;
 		m_pinfo.m_jflag = true;
@@ -149,6 +149,7 @@ void Character::Player::Move()
 	}
 	if (m_pinfo.m_jflag == true)
 	{
+	
 		m_pinfo.m_grav.ThrowingUp(m_pinfo.m_pos.y, m_pinfo.jamp_power);
 		m_pinfo.m_pos.y = m_pinfo.m_grav.GetPosY();
 
