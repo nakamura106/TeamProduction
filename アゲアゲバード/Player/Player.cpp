@@ -337,7 +337,7 @@ void Character::Player::SetBlock()
 	
 	if (m_pinfo.m_blockstock > 0)
 	{
-		if (GetKeyDown(SPACE_KEY) || IsButtonDown(LeftBButton))
+		if (GetKeyDown(Y_KEY) || IsButtonDown(LeftBButton))
 		{
 			if (ObjectManager::Instance()->CreateBlock() == true)
 			{
