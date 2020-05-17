@@ -1,93 +1,69 @@
 #include "CSV.h"
+
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <sstream>
 
-int CreateFile()
+int CSV::CreateFile()
 {
-	const char* fileName = "test.txt";
+	const char* fileName = "creat.txt";
 
 	std::ofstream ofs(fileName);
 	if (!ofs)
 	{
-		std::cout << "ファイルが開けませんでした。" << std::endl;
 		std::cin.get();
 		return 0;
 	}
 
-	ofs << "player,座標,0.0,0.0,0.0\n" << std::endl;
-	//ofs << "enemy1,座標 0.0,0.0,0.0\n" << std::endl;
+	ofs << "player\n" << std::endl;
 
 	std::cin.get();
 }
 
-#pragma region C++での読み込み
-int LoadFile(const char* p_file_name_)
+std::vector<std::string> CSV::Split(std::string& input_, char delimiter_)
 {
-#pragma region char型の利用
-	/*
-		ファイルを開いて、1行ずつchar*型に読み込む場合は
-		char型の配列の長さを指定しておく必要がある
-	*/
+	std::istringstream stream(input_);
+	std::string field;
+	std::vector<std::string> result;
+	while (getline(stream, field, delimiter_))
+	{
+		result.push_back(field);
+	}
 
-	//// ""の中に開きたいファイル名
-	//std::ifstream ifs("test.txt");
+	return result;
+}
 
-	//// 例：1行80文字の場合、改行文字も含めるので最終的には81文字になる
-	//char str[256];
+bool CSV::LoadData(std::string str_)
+{
+	std::ifstream ifs(str_.c_str(), std::ios_base::in);
 
-	//// ファイルを開くときに失敗したとき
-	//if (ifs.fail())
-	//{
-	//	std::cerr << "Failed to open file." << std::endl;
-	//	return -1;
-	//}
-
-	//// getline()で1行ずつ読み込む
-	//while (ifs.getline(str, 256 - 1))
-	//{
-	//	std::cout << "{" << str << "}" << std::endl;
-	//}
-
-	// closeは使わなくても勝手に閉じてくれる
-	//ifs.close();
-
-	//return 0;
-
-#pragma endregion
-
-#pragma region string型の利用
-	/*
-		1行の長さを最初に指定する必要はない
-	*/
-
-	std::ifstream ifs(p_file_name_, std::ios_base::in);
-	std::string str;
-
-	// ファイルを開くときに失敗したとき
 	if (ifs.fail())
 	{
 		std::cerr << "Failed to open file." << std::endl;
 		return -1;
 	}
+	std::string str;
 
-	// getline()で1行ずつ読み込む
 	while (getline(ifs, str))
 	{
 		ifs >> str;
-		std::cout << str << std::endl;
+		std::vector<std::string> strvec = Split(str, ',');
+
+		param pr;
+
+		std::string charname = strvec[0];
+		pr.m_x = std::stof(strvec[1]);
+		pr.m_y = std::stof(strvec[2]);
+		pr.m_z = std::stof(strvec[3]);
+		pr.m_atk = std::stof(strvec[4]);
+		pr.m_hp = std::stof(strvec[5]);
+		pr.m_def = std::stof(strvec[6]);
+		pr.m_speed = std::stof(strvec[7]);
+
+		character_param[charname] = pr;
 	}
 
-	// closeは使わなくても勝手に閉じてくれる
 	ifs.close();
 
-	return 0;
-
-#pragma endregion
-}
-#pragma endregion
-
-void OutPutFile()
-{
-
+	return false;
 }
