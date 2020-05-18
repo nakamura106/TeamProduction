@@ -110,8 +110,9 @@ void DrawEnd();
 
 void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos);
 
-void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos, float sprite_width, float sprite_height, float tu, float tv);
+void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR3 pos_, float sprite_width, float sprite_height, float tu, float tv, D3DXVECTOR3 angle, D3DXVECTOR3 scale);
 
+void DrawUVTexture2(TEXTURE_DATA* texture, D3DXVECTOR3 pos_, float sprite_width, float sprite_height, D3DXVECTOR3 angle, D3DXVECTOR3 scale);
 //bool LoadTexture(const char*, TEXTURE_DATA*);
 
 bool LoadTexture(const char* file_name, TEXTURE_DATA* texture);

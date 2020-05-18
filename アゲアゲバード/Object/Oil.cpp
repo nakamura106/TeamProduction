@@ -5,11 +5,32 @@ Oil::Oil()
 {
 	
 	m_oildata.m_key = "oil";
+
+	m_oildata.m_pos.x = 0.0f;
 	m_oildata.m_pos.y = -10.0f;
-	D3DXMatrixIdentity(&m_oildata.m_mat_world);
-	D3DXMatrixScaling(&m_oildata.m_mat_scale, 1.0f, 1.0f, 1.0f);
+	m_oildata.m_pos.z = 0.0f;
+
+	m_oildata.angle_.x = 90.0f;
+	m_oildata.angle_.y = 0.0f;
+	m_oildata.angle_.z = 0.0f;
+
+	m_oildata.scale_.x = 1.0f;
+	m_oildata.scale_.y = 1.0f;
+	m_oildata.scale_.z = 1.0f;
+
+	
+	/*D3DXMatrixIdentity(&m_oildata.m_mat_world);
+	D3DXMatrixScaling(&m_oildata.m_mat_scale, m_oildata.scale_.x, m_oildata.scale_.y, m_oildata.scale_.z);
 	D3DXMatrixTranslation(&m_oildata.m_mat_move, 0.0f, m_oildata.m_pos.y, 0.0f);
-	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);
+	D3DXMatrixRotationX(&m_oildata.m_mat_rot_x, D3DXToRadian(m_oildata.angle_.x));
+	D3DXMatrixRotationY(&m_oildata.m_mat_rot_y, D3DXToRadian(m_oildata.angle_.y));
+	D3DXMatrixRotationZ(&m_oildata.m_mat_rot_z, D3DXToRadian(m_oildata.angle_.z));
+
+	m_oildata.m_mat_rot *= m_oildata.m_mat_rot_x * m_oildata.m_mat_rot_y * m_oildata.m_mat_rot_z;
+	m_oildata.m_mat_world *= m_oildata.m_mat_scale * m_oildata.m_mat_rot * m_oildata.m_mat_move;
+	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);*/
+
+	LoadTexture("Res/Tex/test.png", &m_oiltex);
 	
 }
 
@@ -24,7 +45,9 @@ void Oil::Update()
 
 void Oil::Draw()
 {
-	MyFbxManager::FbxManager::Instance()->DrawFbx(m_oildata.m_key, m_oildata.m_mat_world);
+	//MyFbxManager::FbxManager::Instance()->DrawFbx(m_oildata.m_key, m_oildata.m_mat_world);
+
+	DrawUVTexture2(&m_oiltex, m_oildata.m_pos,30.0f,30.0f,m_oildata.angle_, m_oildata.scale_);
 }
 
 FillOil::FillOil()

@@ -15,6 +15,8 @@ public:
 	const ObjectData* GetOilData()const { return &m_oildata; }
 private:
 	ObjectData m_oildata;
+
+	TEXTURE_DATA m_oiltex;
 };
 
 class FillOil :public ObjectBase
