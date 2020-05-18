@@ -1,9 +1,11 @@
 #ifndef OBJBASE_H_
 #define OBJBASE_H_
 
-
-#include "../Object/ObjectBase.h"
+//#include "../Object/ObjectBase.h"
 #include"../Engine/FBX.h"
+
+
+
 class ObjectBase
 {
 protected:
@@ -21,6 +23,9 @@ protected:
 		D3DXMATRIX m_mat_rot_z;		// ‰ñ“]z²
 
 		float radius;					// ”¼Œa(ƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è‚ğ‚Æ‚é‚½‚ß‚Ì)
+
+		D3DXVECTOR3 angle_;
+		D3DXVECTOR3 scale_;
 
 		std::string m_key;
 	};
