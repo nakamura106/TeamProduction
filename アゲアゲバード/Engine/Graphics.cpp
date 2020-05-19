@@ -64,7 +64,7 @@ bool CreateGraphicsDevice(D3DPRESENT_PARAMETERS* present_param)
 {
 	present_param->BackBufferCount = 1;
 	present_param->BackBufferFormat = D3DFMT_A8R8G8B8;
-	present_param->Windowed = false;
+	present_param->Windowed = true;
 	present_param->SwapEffect = D3DSWAPEFFECT_DISCARD;
 	present_param->EnableAutoDepthStencil = true;
 	present_param->MultiSampleType = D3DMULTISAMPLE_NONE;
@@ -313,23 +313,23 @@ void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos)
 void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR3 pos_,float sprite_width, float sprite_height, float tu, float tv, D3DXVECTOR3 angle, D3DXVECTOR3 scale)
 {
 
-	float harf_x = texture->Width / 2.0f;
-	float harf_y = texture->Height / 2.0f;
+	float harf_x = sprite_width / 2.0f;
+	float harf_y = sprite_height / 2.0f;
 
 	float Ttu = sprite_width / texture->Width;
 	float Ttv = sprite_height / texture->Height;
 
 	CUSTOM_VERTEX effect[4] =
 	{
-		{ pos_.x, pos_.y, 0.0f, 1.0f, tu, tv },
-		{ pos_.x + sprite_width, pos_.y, 0.0f, 1.0f, tu + Ttu , tv },
-		{ pos_.x + sprite_width, pos_.y + sprite_height, 0.0f, 1.0f, tu + Ttu, tv + Ttv},
-		{ pos_.x, pos_.y + sprite_height, 0.0f, 1.0f, tu, tv + Ttv },
+		{ -harf_x, harf_y, 0.0f,tu, tv },
+		{ harf_x, harf_y, 0.0f,tu + Ttu, tv },
+		{ harf_x, -harf_y, 0.0f, tu + Ttu, tv + Ttv },
+		{ -harf_x, -harf_y, 0.0f, tu, tv + Ttv },
 	};
 
 	D3DXMATRIX mat_world, mat_trans, mat_scale, mat_rot, mat_rot_x, mat_rot_y, mat_rot_z;
 	D3DXMatrixIdentity(&mat_world);
-	D3DXMatrixIdentity(&mat_trans);
+	//D3DXMatrixIdentity(&mat_trans);
 
 	// ˆÚ“®
 	D3DXMatrixTranslation(&mat_trans, pos_.x, pos_.y, pos_.z);
@@ -340,13 +340,15 @@ void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR3 pos_,float sprite_width, f
 	D3DXMatrixRotationY(&mat_rot_y, D3DXToRadian(angle.y));
 	D3DXMatrixRotationZ(&mat_rot_z, D3DXToRadian(angle.z));
 
-	mat_rot *= mat_rot_x * mat_rot_y * mat_rot_z;
+	mat_rot = mat_rot_x * mat_rot_y * mat_rot_z;
 
-	mat_world *= mat_scale * mat_rot * mat_trans;
+	mat_world = mat_scale * mat_rot * mat_trans;
 
 	GetD3DDevice()->SetTransform(D3DTS_WORLD, &mat_world);
+
+	GetD3DDevice()->SetRenderState(D3DRS_LIGHTING, FALSE);
 	// ’¸“_\‘¢‚ÌŽw’è
-	g_Device->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	g_Device->SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
 
 	g_Device->SetTexture(0, texture->Texture);
 

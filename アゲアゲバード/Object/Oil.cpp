@@ -18,7 +18,9 @@ Oil::Oil()
 	m_oildata.scale_.y = 1.0f;
 	m_oildata.scale_.z = 1.0f;
 
-	
+	tex_tu = 0.0f;
+	tex_tv = 0.0f;
+
 	/*D3DXMatrixIdentity(&m_oildata.m_mat_world);
 	D3DXMatrixScaling(&m_oildata.m_mat_scale, m_oildata.scale_.x, m_oildata.scale_.y, m_oildata.scale_.z);
 	D3DXMatrixTranslation(&m_oildata.m_mat_move, 0.0f, m_oildata.m_pos.y, 0.0f);
@@ -30,7 +32,7 @@ Oil::Oil()
 	m_oildata.m_mat_world *= m_oildata.m_mat_scale * m_oildata.m_mat_rot * m_oildata.m_mat_move;
 	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);*/
 
-	LoadTexture("Res/Tex/test.png", &m_oiltex);
+	LoadTexture("Res/Tex/OilGround_Loop.png", &m_oiltex);
 	
 }
 
@@ -41,13 +43,19 @@ void Oil::Update()
 	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_world,&m_oildata.m_mat_move);
 	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);
 	
+	tex_tu += 0.0005f;
+	
+	if (tex_tu >= 1.0f)
+	{
+		tex_tu = 0.0f;
+	}
 }
 
 void Oil::Draw()
 {
 	//MyFbxManager::FbxManager::Instance()->DrawFbx(m_oildata.m_key, m_oildata.m_mat_world);
 
-	DrawUVTexture2(&m_oiltex, m_oildata.m_pos,30.0f,30.0f,m_oildata.angle_, m_oildata.scale_);
+	DrawUVTexture(&m_oiltex, m_oildata.m_pos, 128.0f, 128.0f, tex_tu, tex_tv, m_oildata.angle_, m_oildata.scale_);
 }
 
 FillOil::FillOil()
