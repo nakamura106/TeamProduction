@@ -110,8 +110,8 @@ void CAMERA::StickRotate()
 	{
 		m_cameradata.m_Pitch -= 2.0f;
 	}
-	if (m_cameradata.m_Pitch > 88.0f) { m_cameradata.m_Pitch = 178.0f - m_cameradata.m_Pitch; }
-	if (m_cameradata.m_Pitch < -88.0f) { m_cameradata.m_Pitch = -178.0f - m_cameradata.m_Pitch; }
+	if (m_cameradata.m_Pitch > 87.0f) { m_cameradata.m_Pitch = 177.0f - m_cameradata.m_Pitch; }
+	if (m_cameradata.m_Pitch < -87.0f) { m_cameradata.m_Pitch = -177.0f - m_cameradata.m_Pitch; }
 	m_cameradata.m_EyePos.x = m_cameradata.m_CameraPos.x + sinf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
 	m_cameradata.m_EyePos.y = m_cameradata.m_CameraPos.y + sinf(D3DXToRadian(m_cameradata.m_Pitch));
 	m_cameradata.m_EyePos.z = m_cameradata.m_CameraPos.z + cosf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));

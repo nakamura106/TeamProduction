@@ -28,7 +28,7 @@ void EndProduction::Init()
 
 void EndProduction::LoadTex()
 {
-	LoadTexture("Res/Tex/UI フィニッシュ.png", &m_EndProductionInfo.m_finish);
+	LoadTexture("Res/Tex/UI フィニッシュ(サイズ修正).png", &m_EndProductionInfo.m_finish);
 	LoadTexture("Res/Tex/UI フライ.png", &m_EndProductionInfo.m_fly);
 }
 

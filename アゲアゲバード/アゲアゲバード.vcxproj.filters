@@ -168,6 +168,12 @@
     <ClCompile Include="Production\EndProduction.cpp">
       <Filter>Production</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\OptionScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\OptionUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Camera.h">
@@ -301,6 +307,12 @@
     </ClInclude>
     <ClInclude Include="DataBank\Definition.h">
       <Filter>DataBank</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\OptionScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\OptionUI.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

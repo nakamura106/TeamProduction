@@ -11,8 +11,8 @@ GameUI::GameUI()
 
 void GameUI::Init()
 {
-	tex_pos.x = 1800.0f;
-	tex_pos.y = 0.0f;
+	tex_pos.x = 1780.0f;
+	tex_pos.y = 100.0f;
 
 	player_pos.x = 1805.0f;
 	player_pos.y = 700.0f;
@@ -55,8 +55,8 @@ void GameUI::Init()
 
 void GameUI::LoadTex()
 {
-	LoadTexture("Res/Tex/UI位置情報_空ゲージ.png", &m_position);
-	LoadTexture("Res/Tex/UI位置情報_現在位置B.png", &m_player_pos);
+	LoadTexture("Res/Tex/UI位置情報(黒)(サイズ修正).png", &m_position);
+	LoadTexture("Res/Tex/UI位置情報(丸)(サイズ修正).png", &m_player_pos);
 	LoadTexture("Res/Tex/timer.png", &m_timer);
 }
 

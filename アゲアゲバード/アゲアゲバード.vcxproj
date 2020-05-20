@@ -182,10 +182,12 @@
     <ClCompile Include="Scene\GameEndScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\HelpScene.cpp" />
+    <ClCompile Include="Scene\OptionScene.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Sound\AudioPlayer.cpp" />
     <ClCompile Include="Sound\DirectSound.cpp" />
     <ClCompile Include="UI\GameUI.cpp" />
+    <ClCompile Include="UI\OptionUI.cpp" />
     <ClCompile Include="UI\ResultUI.cpp" />
     <ClCompile Include="UI\TitleUI.cpp" />
     <ClCompile Include="UI\UIBase.cpp" />
@@ -223,11 +225,13 @@
     <ClInclude Include="Scene\GameEndScene.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\HelpScene.h" />
+    <ClInclude Include="Scene\OptionScene.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sound\AudioPlayer.h" />
     <ClInclude Include="Sound\DirectSound.h" />
     <ClInclude Include="UI\GameUI.h" />
+    <ClInclude Include="UI\OptionUI.h" />
     <ClInclude Include="UI\ResultUI.h" />
     <ClInclude Include="UI\TitleUI.h" />
     <ClInclude Include="UI\UIBase.h" />

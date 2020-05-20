@@ -62,13 +62,19 @@ void TitleScene::EndScene()
 	
 	SetCursorPos(960, 540);
 	UIManager::Instance()->Release((int)UIManager::Scene::title);
-	if (m_TitleSceneInfo.m_select_flag == 1)
+	if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Option)
+	{
+		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
+
+		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID = SceneId::Option;
+	}
+	if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Help)
 	{
 		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 
 		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID = SceneId::Help;
 	}
-	if (m_TitleSceneInfo.m_select_flag == 0)
+	if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Timeattack|| m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Freemode)
 	{
 		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 
@@ -118,6 +124,7 @@ void TitleScene::UpdateSelect()
 			SoundManager::Instance()->ResetSelectFlag();
 		}
 	}
+
 	if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page2)
 	{
 		if (GetKeyDown(DOWN_KEY) || IsButtonDown(L_DownStick))
@@ -157,16 +164,22 @@ void TitleScene::UpdateSelect()
 	}
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
-		if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page2)
-		{
-			SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::EndStep;
-		}
-		if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page1)
-		{
 
-			SoundManager::Instance()->SoundClickSE();
-			m_TitleSceneInfo.m_page= (int)TitleUi::page::page2;
-			m_TitleSceneInfo.m_now_select =(int)TitleUi::Select::Timeattack;
+		SoundManager::Instance()->SoundClickSE();
+		if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Solo)
+		{
+			m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Timeattack;
+			m_TitleSceneInfo.m_page = (int)TitleUi::page::page2;
+		}
+		else if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Option || m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Help ||
+			m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Timeattack || m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Freemode)
+		{
+			SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+		}
+		else if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Back)
+		{
+			m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Solo;
+			m_TitleSceneInfo.m_page = (int)TitleUi::page::page1;
 		}
 	}
 }

@@ -10,11 +10,13 @@ class TitleScene;
 class HelpScene;
 class GameScene;
 class GameEndScene;
+class OptionScene;
 
 enum class SceneId
 {
 	Title,
 	Help,
+	Option,
 	Game,
 	End,
 	Max
@@ -43,6 +45,7 @@ private:
 		GameScene* m_game;
 		GameEndScene* m_gameend;
 		HelpScene* m_help;
+		OptionScene* m_option;
 	}m_SceneInstance;
 	
 
@@ -58,8 +61,9 @@ public:
 	SceneInfo* SetSceneInfo() { return &m_SceneInfo; }
 
 	const SceneInfo* GetSceneInfo()const { return &m_SceneInfo; }
-	const GameScene* GetGameScene() { return m_SceneInstance.m_game; }
-	const TitleScene* GetTitleScene() { return m_SceneInstance.m_title; }
+	const GameScene* GetGameScene()const { return m_SceneInstance.m_game; }
+	const TitleScene* GetTitleScene()const { return m_SceneInstance.m_title; }
+	const OptionScene* GetOptionScene()const { return m_SceneInstance.m_option; }
 	
 protected:
 	SceneManager();
