@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include"../Scene/TitleScene.h"
 #include"../Scene/HelpScene.h"
+#include"../Scene/OptionScene.h"
 #include"../Scene/GameScene.h"
 #include"../Scene/GameEndScene.h"
 #include"../Engine/Input.h"
@@ -25,6 +26,7 @@ void SceneManager::Init()
 {
 	m_SceneInstance.m_title=(new TitleScene);
 	m_SceneInstance.m_help=(new HelpScene);
+	m_SceneInstance.m_option = (new OptionScene);
 	m_SceneInstance.m_game=(new GameScene);
 	m_SceneInstance.m_gameend=(new GameEndScene);
 }
@@ -42,6 +44,9 @@ void SceneManager::Update()
 		case SceneId::Help:
 			m_SceneInstance.m_help->Update();
 			break;
+		case SceneId::Option:
+			m_SceneInstance.m_option->Update();
+			break;
 		case SceneId::Game:
 			m_SceneInstance.m_game->Update();
 			break;
@@ -50,7 +55,7 @@ void SceneManager::Update()
 			break;
 		default:
 			break;
-	}
+		}
 }
 
 void SceneManager::Draw()
@@ -72,6 +77,9 @@ void SceneManager::Draw()
 			break;
 		case SceneId::Help:
 			m_SceneInstance.m_help->Draw();
+			break;
+		case SceneId::Option:
+			m_SceneInstance.m_option->Draw();
 			break;
 		case SceneId::Game:
 			m_SceneInstance.m_game->Draw();
@@ -106,6 +114,11 @@ SceneManager::~SceneManager()
 		delete m_SceneInstance.m_help;
 		m_SceneInstance.m_help = nullptr;
 	}
+	if (m_SceneInstance.m_option != nullptr)
+	{
+		delete m_SceneInstance.m_option;
+		m_SceneInstance.m_option = nullptr;
+	}
 	if (m_SceneInstance.m_game != nullptr)
 	{
 		delete m_SceneInstance.m_game;
@@ -116,6 +129,5 @@ SceneManager::~SceneManager()
 		delete m_SceneInstance.m_gameend;
 		m_SceneInstance.m_gameend = nullptr;
 	}
-	
 	
 }

@@ -10,9 +10,7 @@ private:
 	struct HelpSceneInfo  {
 		int m_help_flag;
 		D3DXVECTOR2 m_help_bg_pos;
-		TEXTURE_DATA m_help1;
-		TEXTURE_DATA m_help2;
-		TEXTURE_DATA m_help3;
+		TEXTURE_DATA m_help;
 	}m_HelpSceneInfo;
 
 public:
