@@ -33,7 +33,7 @@ void HelpScene::InitScene()
 	m_HelpSceneInfo.m_help_flag = 0;
 	m_HelpSceneInfo.m_help_bg_pos.x = 0;
 	m_HelpSceneInfo.m_help_bg_pos.y = 0;
-	LoadTexture("Res/Tex/help.png", &m_HelpSceneInfo.m_help);
+	LoadTexture("Res/Tex/ƒwƒ‹ƒv‰æ–Ê_C³2.png", &m_HelpSceneInfo.m_help);
 	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;
 }
 
@@ -41,6 +41,7 @@ void HelpScene::MainScene()
 {
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
+		SoundManager::Instance()->SoundClickSE();
 		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
 	}
 }

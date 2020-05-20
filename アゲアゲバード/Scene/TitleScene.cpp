@@ -164,7 +164,6 @@ void TitleScene::UpdateSelect()
 	}
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
-
 		SoundManager::Instance()->SoundClickSE();
 		if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Solo)
 		{
