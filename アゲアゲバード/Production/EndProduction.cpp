@@ -12,6 +12,7 @@ void EndProduction::Init()
 	m_EndProductionInfo.m_fly_pos.x = 600.0f;
 	m_EndProductionInfo.m_fly_pos.y = 500.0f;
 
+	m_EndProductionInfo.m_oil_filter_pos = D3DXVECTOR2(0.0f, 0.0f);
 
 	m_EndProductionInfo.speed = 5.0f;
 
@@ -30,6 +31,7 @@ void EndProduction::LoadTex()
 {
 	LoadTexture("Res/Tex/UI フィニッシュ(サイズ修正).png", &m_EndProductionInfo.m_finish);
 	LoadTexture("Res/Tex/UI フライ.png", &m_EndProductionInfo.m_fly);
+	LoadTexture("Res/Tex/Oil_50per.png", &m_EndProductionInfo.m_oil_filter);
 }
 
 void EndProduction::Draw()
@@ -40,6 +42,7 @@ void EndProduction::Draw()
 	}
 	else if(ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil()->GetOilData()->m_pos.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
+		DrawUITexture(&m_EndProductionInfo.m_oil_filter, m_EndProductionInfo.m_oil_filter_pos);
 		DrawUITexture(&m_EndProductionInfo.m_fly, m_EndProductionInfo.m_fly_pos);
 	}
 }
@@ -101,7 +104,7 @@ void EndProduction::ReleaseTex()
 {
 	ReleaseUITexture(&m_EndProductionInfo.m_finish);
 	ReleaseUITexture(&m_EndProductionInfo.m_fly);
-
+	ReleaseUITexture(&m_EndProductionInfo.m_oil_filter);
 }
 
 void EndProduction::ReleaseUITexture(TEXTURE_DATA* texture)

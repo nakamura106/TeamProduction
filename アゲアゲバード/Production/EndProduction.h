@@ -12,9 +12,11 @@ private:
 
 		D3DXVECTOR2 m_finish_pos;
 		D3DXVECTOR2 m_fly_pos;
+		D3DXVECTOR2 m_oil_filter_pos;
 
 		TEXTURE_DATA m_finish;
 		TEXTURE_DATA m_fly;
+		TEXTURE_DATA m_oil_filter;
 
 		bool finishflag;
 		bool clear_seflag;
