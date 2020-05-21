@@ -1,9 +1,10 @@
 #include "GameEndScene.h"
-#include"../Manager/SoundManager.h"
+#include"GameScene.h"
+#include"OptionScene.h"
 #include"../Engine/Input.h"
-#include"../Scene/GameScene.h"
-#include"../Manager/SceneManager.h"
 #include"../Engine/Graphics.h"
+#include"../Manager/SoundManager.h"
+#include"../Manager/SceneManager.h"
 
 GameEndScene::GameEndScene()
 {
@@ -43,7 +44,7 @@ void GameEndScene::InitScene()
 		LoadTexture("Res/Tex/ƒNƒŠƒA.png", &m_GameEndSceneInfo.m_end);
 	}
 	SoundManager::Instance()->RegisterEndSound();
-	SoundManager::Instance()->SoundBGM(-1000);
+	SoundManager::Instance()->SoundBGM(SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);
 	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;
 }
 

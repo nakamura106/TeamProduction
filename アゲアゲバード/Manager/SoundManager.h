@@ -37,6 +37,7 @@ public:
 	void ReleaseTitleSound();
 	void ReleaseSelectSound();
 	void ReleaseBattleSound();
+	void ReleaseBGM();
 
 protected:
 	SoundManager();

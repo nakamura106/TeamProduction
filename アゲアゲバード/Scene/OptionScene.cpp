@@ -35,6 +35,9 @@ void OptionScene::Init()
 	m_select_flag.m_stick_flag = StickFlagState::Nomal;
 	m_select_flag.m_sound_flag = SoundFlagState::Midium;
 	m_select_flag.m_deadzone_flag = DeadZoneFlagState::None;
+	m_OptionSceneInfo.m_dead_zone = 0;
+	m_OptionSceneInfo.m_sound_volume = -1200;
+	m_OptionSceneInfo.m_stick_sensitivity = 2.0f;
 }
 
 void OptionScene::Draw()
@@ -45,7 +48,7 @@ void OptionScene::Draw()
 void OptionScene::InitScene()
 {
 	m_OptionSceneInfo.m_dead_zone = 0;
-	m_OptionSceneInfo.m_sound_volume = -1000;
+	m_OptionSceneInfo.m_sound_volume = -1200;
 	m_OptionSceneInfo.m_stick_sensitivity = 2.0f;
 
 	m_OptionSceneInfo.m_option_scene_tex_pos["bg"] = D3DXVECTOR2(0.0f, 0.0f);
@@ -110,12 +113,16 @@ void OptionScene::UpdateSelect()
 			if (IsButtonDown(L_LeftStick) || GetKeyDown(LEFT_KEY))
 			{
 				m_select_flag.m_sound_flag = SoundFlagState::Small;
+				m_OptionSceneInfo.m_sound_volume = -3000;
 				SoundManager::Instance()->SoundSelectSE();
+				SoundManager::Instance()->SoundBGM(m_OptionSceneInfo.m_sound_volume);
 			}
 			else if (IsButtonDown(L_RightStick) || GetKeyDown(RIGHT_KEY))
 			{
 				m_select_flag.m_sound_flag = SoundFlagState::Large;
+				m_OptionSceneInfo.m_sound_volume = -300;
 				SoundManager::Instance()->SoundSelectSE();
+				SoundManager::Instance()->SoundBGM(m_OptionSceneInfo.m_sound_volume);
 			}
 			else
 			{
@@ -127,7 +134,9 @@ void OptionScene::UpdateSelect()
 			if (IsButtonDown(L_LeftStick) || GetKeyDown(LEFT_KEY))
 			{
 				m_select_flag.m_sound_flag = SoundFlagState::Midium;
+				m_OptionSceneInfo.m_sound_volume = -1200;
 				SoundManager::Instance()->SoundSelectSE();
+				SoundManager::Instance()->SoundBGM(m_OptionSceneInfo.m_sound_volume);
 			}
 			else
 			{
@@ -139,7 +148,9 @@ void OptionScene::UpdateSelect()
 			if (IsButtonDown(L_RightStick) || GetKeyDown(RIGHT_KEY))
 			{
 				m_select_flag.m_sound_flag = SoundFlagState::Midium;
+				m_OptionSceneInfo.m_sound_volume = -1000;
 				SoundManager::Instance()->SoundSelectSE();
+				SoundManager::Instance()->SoundBGM(m_OptionSceneInfo.m_sound_volume);
 			}
 			else
 			{
@@ -334,18 +345,6 @@ void OptionScene::DrawSelect()
 
 void OptionScene::SetInfo()
 {
-	if (m_select_flag.m_sound_flag == SoundFlagState::Small)
-	{
-		m_OptionSceneInfo.m_sound_volume = -3000;
-	}
-	else if (m_select_flag.m_sound_flag == SoundFlagState::Midium)
-	{
-		m_OptionSceneInfo.m_sound_volume = -1000;
-	}
-	else if (m_select_flag.m_sound_flag == SoundFlagState::Large)
-	{
-		m_OptionSceneInfo.m_sound_volume = -500;
-	}
 
 	if (m_select_flag.m_stick_flag == StickFlagState::Low)
 	{
@@ -353,11 +352,11 @@ void OptionScene::SetInfo()
 	}
 	else if (m_select_flag.m_stick_flag == StickFlagState::Nomal)
 	{
-		m_OptionSceneInfo.m_sound_volume = 2.0f;
+		m_OptionSceneInfo.m_stick_sensitivity = 2.0f;
 	}
 	else if (m_select_flag.m_stick_flag == StickFlagState::High)
 	{
-		m_OptionSceneInfo.m_sound_volume = 4.0f;
+		m_OptionSceneInfo.m_stick_sensitivity = 4.0f;
 	}
 
 	if (m_select_flag.m_deadzone_flag == DeadZoneFlagState::Existence)
@@ -366,10 +365,8 @@ void OptionScene::SetInfo()
 	}
 	else if (m_select_flag.m_deadzone_flag == DeadZoneFlagState::None)
 	{
-
 		m_OptionSceneInfo.m_dead_zone = 0;
 	}
-
 }
 
 void OptionScene::ReleaseTex()

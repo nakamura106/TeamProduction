@@ -1,8 +1,10 @@
 #include "Camera.h"
 #include "Input.h"
 #include "Graphics.h"
+#include"../Scene/OptionScene.h"
 #include"../Production/StartProduction.h"
 #include"../Manager/ProductionManager.h"
+#include"../Manager/SceneManager.h"
 #include"../Manager/ObjectManager.h"
 
 void CAMERA::Update()
@@ -96,19 +98,19 @@ void CAMERA::StickRotate()
 {
 	if (IsButtonPush(R_LeftStick))
 	{
-		m_cameradata.m_Yaw -= 2.0f;
+		m_cameradata.m_Yaw -= SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_stick_sensitivity;
 	}
 	if (IsButtonPush(R_RightStick))
 	{
-		m_cameradata.m_Yaw += 2.0f;
+		m_cameradata.m_Yaw += SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_stick_sensitivity;
 	}
 	if (IsButtonPush(R_UpStick))
 	{
-		m_cameradata.m_Pitch += 2.0f;
+		m_cameradata.m_Pitch += SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_stick_sensitivity;
 	}
 	if (IsButtonPush(R_DownStick))
 	{
-		m_cameradata.m_Pitch -= 2.0f;
+		m_cameradata.m_Pitch -= SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_stick_sensitivity;
 	}
 	if (m_cameradata.m_Pitch > 87.0f) { m_cameradata.m_Pitch = 177.0f - m_cameradata.m_Pitch; }
 	if (m_cameradata.m_Pitch < -87.0f) { m_cameradata.m_Pitch = -177.0f - m_cameradata.m_Pitch; }
