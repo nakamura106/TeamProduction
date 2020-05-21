@@ -21,6 +21,8 @@ Oil::Oil()
 	tex_tu = 0.0f;
 	tex_tv = 0.0f;
 
+	m_uv_counter = 0;
+
 	/*D3DXMatrixIdentity(&m_oildata.m_mat_world);
 	D3DXMatrixScaling(&m_oildata.m_mat_scale, m_oildata.scale_.x, m_oildata.scale_.y, m_oildata.scale_.z);
 	D3DXMatrixTranslation(&m_oildata.m_mat_move, 0.0f, m_oildata.m_pos.y, 0.0f);
@@ -32,7 +34,7 @@ Oil::Oil()
 	m_oildata.m_mat_world *= m_oildata.m_mat_scale * m_oildata.m_mat_rot * m_oildata.m_mat_move;
 	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);*/
 
-	LoadTexture("Res/Tex/OilGround_Loop.png", &m_oiltex);
+	LoadTexture("Res/Tex/OilFloorEx_Loop2.png", &m_oiltex);
 	
 }
 
@@ -43,8 +45,13 @@ void Oil::Update()
 	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_world,&m_oildata.m_mat_move);
 	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);
 	
-	tex_tu += 0.0005f;
-	
+	m_uv_counter++;
+	if (m_uv_counter == 10)
+	{
+		tex_tu += 0.6f;
+		m_uv_counter = 0;
+	}
+
 	if (tex_tu >= 1.0f)
 	{
 		tex_tu = 0.0f;

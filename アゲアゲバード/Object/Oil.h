@@ -19,6 +19,8 @@ private:
 	TEXTURE_DATA m_oiltex;
 
 	float tex_tu, tex_tv;
+
+	int m_uv_counter;
 };
 
 class FillOil :public ObjectBase

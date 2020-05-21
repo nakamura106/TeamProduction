@@ -11,11 +11,11 @@ GameUI::GameUI()
 
 void GameUI::Init()
 {
-	tex_pos.x = 1780.0f;
-	tex_pos.y = 100.0f;
+	tex_pos.x = 1800.0f;
+	tex_pos.y = 200.0f;
 
-	player_pos.x = 1805.0f;
-	player_pos.y = 700.0f;
+	player_pos.x = 1795.0f;
+	player_pos.y = 690.0f;
 
 	one_s_timer_pos.x = 950.0f;
 	one_s_timer_pos.y = 50.0f;
@@ -181,19 +181,19 @@ void GameUI::UpDatePlayerPos()
 {
 	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 25.0f&& ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 50.0f)
 	{
-		player_pos.y = 525.0f;
+		player_pos.y = 581.0f;
 	}
 	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 50.0f && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 75.0f)
 	{
-		player_pos.y = 350.0f;
+		player_pos.y = 472.0f;
 	}
 	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 75.0f && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 100.0f)
 	{
-		player_pos.y = 175.0f;
+		player_pos.y = 363.0f;
 	}
 	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 100.0f)
 	{
-		player_pos.y = 0.0f;
+		player_pos.y = 254.0f;
 	}
 	////ƒvƒŒƒCƒ„[‚Ìoldpos‚Æpos‚ð”äŠr‚µ‚Ä+‚È‚ç+
 	//if (DataBank::Instance()->GetBeforePlayerPos().y < DataBank::Instance()->GetAfterPlayerPos().y)
