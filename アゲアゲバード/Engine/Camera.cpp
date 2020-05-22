@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "Graphics.h"
 #include"../Production/StartProduction.h"
+#include"../Production/EndProduction.h"
 #include"../Manager/ProductionManager.h"
 #include"../Manager/ObjectManager.h"
 
@@ -40,7 +41,9 @@ void CAMERA::Update()
 	{
 		ProductionMove();
 	}
-	else
+	else if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true
+		&& ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->fly_seflag != true
+		&& ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->clear_seflag != true)
 	{
 		Move();
 	}

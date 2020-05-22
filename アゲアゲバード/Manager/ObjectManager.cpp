@@ -88,7 +88,7 @@ void ObjectManager::AllDeleteObject()
 D3DXVECTOR3 ObjectManager::BlockInstallation(D3DXVECTOR3 eyepos_, D3DXVECTOR3 forward_)
 {
 	D3DXVECTOR3 blockpos;
-	blockpos = eyepos_+(forward_*4.0f);
+	blockpos = eyepos_+(forward_*3.0f);
 	blockpos /= 2.0f;
 	blockpos.x = roundf(blockpos.x);
 	blockpos.y = roundf(blockpos.y);

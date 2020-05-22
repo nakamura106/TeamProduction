@@ -8,7 +8,7 @@ Pot::Pot()
 	m_mapdata.m_pos.x = 0.0f;
 	m_mapdata.m_pos.y = 0.0f;
 	m_mapdata.m_pos.z = 0.0f;
-	m_mapdata.radius = 100.0f;
+	m_mapdata.radius = 30.0f;
 	m_mapdata.m_map_top.x = 0.0f;
 	m_mapdata.m_map_top.y = 100.0f;
 	m_mapdata.m_map_top.z = 0.0f;

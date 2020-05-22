@@ -5,6 +5,7 @@
 #include "../Engine/Input.h"
 #include "../Utility/Gravity.h"
 #include"../Production/StartProduction.h"
+#include"../Production/EndProduction.h"
 #include"../Manager/FbxManager.h"
 #include"../Manager/ProductionManager.h"
 #include"../Manager/SoundManager.h"
@@ -60,7 +61,9 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 
 void Character::Player::Update()
 {
-	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true
+		&& ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->fly_seflag != true
+		&& ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->clear_seflag != true)
 	{
 		Move();
 
@@ -267,12 +270,12 @@ void Character::Player::CollisionDetection()
 		if (m_pinfo.m_p_collision->HitBox(
 			itr->GetBlockData()->m_pos,			// 第一引数：ブロックの座標
 			m_pinfo.m_pos,			// 第二引数：プレイヤー座標
-			2.0f,			// 第三引数：ブロックの幅
+			1.0f,			// 第三引数：ブロックの幅
 			m_pinfo.radius	// 第四引数：プレイヤーの半径
 		) == true)
 		{
 			m_pinfo.m_pos = m_pinfo.m_before_player_pos;
-			if (m_pinfo.m_pos.y > itr->GetBlockData()->m_pos.y + 2.5f)
+			if (m_pinfo.m_pos.y > itr->GetBlockData()->m_pos.y + 2.0f)
 			{
 				m_pinfo.m_stand_flag = true;
 				m_pinfo.m_jflag = false;

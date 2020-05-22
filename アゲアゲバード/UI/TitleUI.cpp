@@ -51,7 +51,7 @@ void TitleUi::LoadTex()
 	LoadTexture("Res/Tex/UIフリープレイ.png", &m_Ui[(int)Select::Freemode]);
 	LoadTexture("Res/Tex/オプション文字UI(サイズ修正).png", &m_Ui[(int)Select::Option]);
 	LoadTexture("Res/Tex/UI戻る.png", &m_Ui[(int)Select::Back]);
-	LoadTexture("Res/Tex/タイトル画面.png", &m_Ui[(int)Select::Title]);
+	LoadTexture("Res/Tex/Title_LogoOn.png", &m_Ui[(int)Select::Title]);
 	LoadTexture("Res/Tex/ヘルプ文字UI(サイズ修正).png", &m_Ui[(int)Select::Help]);
 }
 

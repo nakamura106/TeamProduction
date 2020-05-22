@@ -64,7 +64,7 @@ bool CreateGraphicsDevice(D3DPRESENT_PARAMETERS* present_param)
 {
 	present_param->BackBufferCount = 1;
 	present_param->BackBufferFormat = D3DFMT_A8R8G8B8;
-	present_param->Windowed = true;
+	present_param->Windowed = false;
 	present_param->SwapEffect = D3DSWAPEFFECT_DISCARD;
 	present_param->EnableAutoDepthStencil = true;
 	present_param->MultiSampleType = D3DMULTISAMPLE_NONE;
