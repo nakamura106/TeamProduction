@@ -7,6 +7,15 @@
 #include <vector>
 #include <map>
 
+enum class RANK
+{
+	FIRST,
+	SECOND,
+	THIRD,
+
+	MAX
+};
+
 class CSV :public Singleton<CSV>
 {
 private:
@@ -36,6 +45,15 @@ public:
 	*/
 	bool LoadData(std::string str_);
 
+	/**
+	*	@brief csv(txt)ファイルに書き込む関数
+	*	@param[in] str_		string型の文字列を入れる
+	*	@param[in] vecf_	vector型を返す(float型を格納して)
+	*	@return bool型を返す
+	*	※今はランキングしか考えていないので、上位3位までを書き込むようにしている
+	*/
+	bool WriteData(std::string str_, std::vector<float> vecf_);
+
 private:
 	/**
 	*	@brief コンマ区切りで文字列を分割する関数
@@ -56,9 +74,6 @@ private:
 
 private:
 	static CSV* p_CSVInstance;
-
-	std::vector<std::string> m_name;
-	std::vector<float> m_param;
 
 	std::map < std::string, std::vector<std::string> > character_param;
 
