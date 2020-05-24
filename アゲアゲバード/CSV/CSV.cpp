@@ -50,6 +50,27 @@ bool CSV::LoadData(std::string str_)
 	return false;
 }
 
+bool CSV::WriteData(std::string str_, std::vector<float> vecf_)
+{
+	std::ofstream ofs(str_, std::ios_base::out);
+
+	// ファイルを開くときに失敗したとき
+	if (ofs.fail())
+	{
+		std::cerr << "Failed to open file." << std::endl;
+		return -1;
+	}
+
+	ofs << "RANKING" << std::endl;
+	ofs << "Ranking" << ','
+		<< vecf_[static_cast<int>(RANK::FIRST)] << ','
+		<< vecf_[static_cast<int>(RANK::SECOND)] << ','
+		<< vecf_[static_cast<int>(RANK::THIRD)]
+		<< std::endl;
+
+	ofs.close();
+}
+
 std::vector<std::string> CSV::Split(std::string& input_, char delimiter_)
 {
 	std::istringstream stream(input_);

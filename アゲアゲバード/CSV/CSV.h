@@ -7,6 +7,15 @@
 #include <vector>
 #include <map>
 
+enum class RANK
+{
+	FIRST,
+	SECOND,
+	THIRD,
+
+	MAX
+};
+
 class CSV :public Singleton<CSV>
 {
 private:
@@ -35,6 +44,15 @@ public:
 	*	@return boolŒ^‚ğ•Ô‚·
 	*/
 	bool LoadData(std::string str_);
+
+	/**
+	*	@brief csv(txt)ƒtƒ@ƒCƒ‹‚É‘‚«‚ŞŠÖ”
+	*	@param[in] str_		stringŒ^‚Ì•¶š—ñ‚ğ“ü‚ê‚é
+	*	@param[in] vecf_	vectorŒ^‚ğ•Ô‚·(floatŒ^‚ğŠi”[‚µ‚Ä)
+	*	@return boolŒ^‚ğ•Ô‚·
+	*	¦¡‚Íƒ‰ƒ“ƒLƒ“ƒO‚µ‚©l‚¦‚Ä‚¢‚È‚¢‚Ì‚ÅA‘‚«‚Ş“à—e‚ÍŒˆ‚Ü‚Á‚Ä‚¢‚é
+	*/
+	bool WriteData(std::string str_, std::vector<float> vecf_);
 
 private:
 	/**
