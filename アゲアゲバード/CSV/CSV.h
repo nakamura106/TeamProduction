@@ -50,7 +50,7 @@ public:
 	*	@param[in] str_		string型の文字列を入れる
 	*	@param[in] vecf_	vector型を返す(float型を格納して)
 	*	@return bool型を返す
-	*	※今はランキングしか考えていないので、書き込む内容は決まっている
+	*	※今はランキングしか考えていないので、上位3位までを書き込むようにしている
 	*/
 	bool WriteData(std::string str_, std::vector<float> vecf_);
 
@@ -74,9 +74,6 @@ private:
 
 private:
 	static CSV* p_CSVInstance;
-
-	std::vector<std::string> m_name;
-	std::vector<float> m_param;
 
 	std::map < std::string, std::vector<std::string> > character_param;
 

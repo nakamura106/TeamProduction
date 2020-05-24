@@ -54,7 +54,6 @@ bool CSV::WriteData(std::string str_, std::vector<float> vecf_)
 {
 	std::ofstream ofs(str_, std::ios_base::out);
 
-	// ファイルを開くときに失敗したとき
 	if (ofs.fail())
 	{
 		std::cerr << "Failed to open file." << std::endl;
