@@ -1,9 +1,11 @@
 #define DIRECTINPUT_VERSION 0x0800
 #include "Input.h"
-#include <Windows.h>
-#include <dinput.h>
 #include "../Utility/Vec.h"
 #include "Window.h"
+#include"../Manager/SceneManager.h"
+#include"../Scene/OptionScene.h"
+#include <Windows.h>
+#include <dinput.h>
 #include<d3dx9math.h>
 #include<math.h>
 //#include "DirectX.h"
