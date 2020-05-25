@@ -47,9 +47,6 @@ void OptionScene::Draw()
 
 void OptionScene::InitScene()
 {
-	m_OptionSceneInfo.m_dead_zone = 0;
-	m_OptionSceneInfo.m_sound_volume = -1200;
-	m_OptionSceneInfo.m_stick_sensitivity = 2.0f;
 
 	m_OptionSceneInfo.m_option_scene_tex_pos["bg"] = D3DXVECTOR2(0.0f, 0.0f);
 	LoadTexture("Res/Tex/Option_Plane.png",&m_OptionSceneInfo.m_select_icon_tex["bg"]);
