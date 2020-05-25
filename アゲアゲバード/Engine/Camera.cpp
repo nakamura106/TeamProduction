@@ -1,9 +1,11 @@
 #include "Camera.h"
 #include "Input.h"
 #include "Graphics.h"
+#include"../Scene/OptionScene.h"
 #include"../Production/StartProduction.h"
 #include"../Production/EndProduction.h"
 #include"../Manager/ProductionManager.h"
+#include"../Manager/SceneManager.h"
 #include"../Manager/ObjectManager.h"
 
 void CAMERA::Update()
@@ -85,8 +87,8 @@ void CAMERA::MouseRotate()
 	SetCursorPos(960, 540);
 	m_cameradata.m_Yaw += (GetMousePos().X - 960) / 1920 * 50;//ここでカメラ感度変更可能
 	m_cameradata.m_Pitch -= (GetMousePos().Y - 540) / 1080 * 20;
-	if (m_cameradata.m_Pitch > 88.0f) { m_cameradata.m_Pitch = 178.0f - m_cameradata.m_Pitch; }
-	if (m_cameradata.m_Pitch < -88.0f) { m_cameradata.m_Pitch = -178.0f - m_cameradata.m_Pitch; }
+	if (m_cameradata.m_Pitch > 90.0f) { m_cameradata.m_Pitch = 180.0f - m_cameradata.m_Pitch; }
+	if (m_cameradata.m_Pitch < -90.0f) { m_cameradata.m_Pitch = -180.0f - m_cameradata.m_Pitch; }
 
 
 	m_cameradata.m_EyePos.x = m_cameradata.m_CameraPos.x + sinf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
@@ -99,22 +101,20 @@ void CAMERA::StickRotate()
 {
 	if (IsButtonPush(R_LeftStick))
 	{
-		m_cameradata.m_Yaw -= 2.0f;
+		m_cameradata.m_Yaw -= SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_stick_sensitivity;
 	}
 	if (IsButtonPush(R_RightStick))
 	{
-		m_cameradata.m_Yaw += 2.0f;
+		m_cameradata.m_Yaw += SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_stick_sensitivity;
 	}
-	if (IsButtonPush(R_UpStick))
+	if (IsButtonPush(R_UpStick) && m_cameradata.m_Pitch < 87.0f)
 	{
-		m_cameradata.m_Pitch += 2.0f;
+		m_cameradata.m_Pitch += SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_stick_sensitivity;
 	}
-	if (IsButtonPush(R_DownStick))
+	if (IsButtonPush(R_DownStick)&&m_cameradata.m_Pitch > -87.0f)
 	{
-		m_cameradata.m_Pitch -= 2.0f;
+		m_cameradata.m_Pitch -= SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_stick_sensitivity;
 	}
-	if (m_cameradata.m_Pitch > 87.0f) { m_cameradata.m_Pitch = 177.0f - m_cameradata.m_Pitch; }
-	if (m_cameradata.m_Pitch < -87.0f) { m_cameradata.m_Pitch = -177.0f - m_cameradata.m_Pitch; }
 	m_cameradata.m_EyePos.x = m_cameradata.m_CameraPos.x + sinf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
 	m_cameradata.m_EyePos.y = m_cameradata.m_CameraPos.y + sinf(D3DXToRadian(m_cameradata.m_Pitch));
 	m_cameradata.m_EyePos.z = m_cameradata.m_CameraPos.z + cosf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));

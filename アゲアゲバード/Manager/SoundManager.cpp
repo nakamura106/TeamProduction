@@ -171,6 +171,11 @@ void SoundManager::ReleaseBattleSound()
 
 }
 
+void SoundManager::ReleaseBGM()
+{
+	m_pAudio->Release(m_bgm);
+}
+
 SoundManager::SoundManager()
 {
 	m_select1_flag = false;

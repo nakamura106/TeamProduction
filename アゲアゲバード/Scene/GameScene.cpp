@@ -1,13 +1,15 @@
 #include "GameScene.h"
+#include"../Engine/FBX.h"
+#include"../Production/EndProduction.h"
+#include"../Engine/Input.h"
+#include"../Production/StartProduction.h"
+#include"OptionScene.h"
+#include"../Manager/SceneManager.h"
 #include"../Manager/ObjectManager.h"
 #include"../Manager/SoundManager.h"
 #include"../Manager/UIManager.h"
-#include"../Production/EndProduction.h"
 #include"../Manager/ProductionManager.h"
-#include"../Engine/Input.h"
-#include"../Production/StartProduction.h"
-#include"../Manager/SceneManager.h"
-#include"../Engine/FBX.h"
+
 
 #include <iostream>
 #include <fstream>
@@ -57,7 +59,7 @@ void GameScene::InitScene()
 	ObjectManager::Instance()->CreatePlayer();
 
 	SoundManager::Instance()->RegisterGameMainSound();
-	SoundManager::Instance()->SoundBGM(-1000);
+	SoundManager::Instance()->SoundBGM(SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);
 
 	UIManager::Instance()->LoadTex((int)UIManager::Scene::game);
 	UIManager::Instance()->LoadFile((int)UIManager::Scene::game);

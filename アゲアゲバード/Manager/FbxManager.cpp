@@ -19,12 +19,13 @@ MyFbxManager::FbxManager::FbxManager()
 	{
 		m_Fbx = new Fbx();
 	}
-	LoadFbxMesh("pot", "Res/FBX/KanAndOilMaya2.fbx");
+	LoadFbxMesh("pot", "Res/FBX/KanAndOilMaya_A.fbx");
 	LoadFbxMesh("block", "Res/FBX/tenkasuMaya.fbx");
 	LoadFbxMesh("oil", "Res/FBX/FloorOil.fbx");
 	LoadFbxMesh("filloil", "Res/FBX/FillOil.fbx");
 	LoadFbxMesh("item", "Res/FBX/BallMayaColor.fbx");
-	LoadFbxMesh("ItemBox", "Res/FBX/tenkasuMaya.fbx");
+	LoadFbxMesh("ItemBox", "Res/FBX/BlockItemMAYA_B.fbx");
+	LoadFbxMesh("WorldBox", "Res/FBX/WorldBoxA.fbx");
 	//LoadFbxMesh("player", "Res/FBX/PopBird_Export.fbx");
 	/*LoadFbxMesh("player_wait", "Res/FBX/PopBirdAnim_Taiki.fbx");
 	LoadFbxMesh("player_walk", "Res/FBX/PopBirdAnim_Run.fbx");

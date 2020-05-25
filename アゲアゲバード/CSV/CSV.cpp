@@ -4,20 +4,70 @@
 #include <fstream>
 #include <sstream>
 
-int CSV::CreateFile()
+bool CSV::LoadData(std::string str_)
 {
-	const char* fileName = "creat.txt";
+	std::ifstream ifs(str_.c_str(), std::ios_base::in);
 
-	std::ofstream ofs(fileName);
-	if (!ofs)
+	if (ifs.fail())
 	{
-		std::cin.get();
-		return 0;
+		std::cerr << "Failed to open file." << std::endl;
+		return -1;
 	}
 
-	ofs << "player\n" << std::endl;
+	std::string str;
+	while (getline(ifs, str))
+	{
+		ifs >> str;
 
-	std::cin.get();
+		std::vector<std::string> strvec = Split(str, ',');
+
+		if (strvec.empty() == false)
+		{
+			std::string key_name = strvec[0];
+			auto itr = character_param.find(key_name);
+			if (itr != character_param.end())
+			{
+				// キーが設定されている場合
+				//要素をいったん消してからpush_back
+				character_param.erase(key_name);
+				for (int i = 1; i < strvec.size(); ++i)
+				{
+					character_param[key_name].push_back(strvec[i]);
+				}
+			}
+			else {
+				// キーが設定されていない場合
+				for (int i = 1; i < strvec.size(); ++i)
+				{
+					character_param[key_name].push_back(strvec[i]);
+				}
+			}
+		}
+	}
+
+	ifs.close();
+
+	return false;
+}
+
+bool CSV::WriteData(std::string str_, std::vector<float> vecf_)
+{
+	std::ofstream ofs(str_, std::ios_base::out);
+
+	if (ofs.fail())
+	{
+		std::cerr << "Failed to open file." << std::endl;
+		return -1;
+	}
+
+	ofs << "RANKING" << std::endl;
+	ofs << "Ranking" << ','
+		<< vecf_[static_cast<int>(RANK::FIRST)] << ','
+		<< vecf_[static_cast<int>(RANK::SECOND)] << ','
+		<< vecf_[static_cast<int>(RANK::THIRD)]
+		<< std::endl;
+
+	ofs.close();
 }
 
 std::vector<std::string> CSV::Split(std::string& input_, char delimiter_)
@@ -31,39 +81,4 @@ std::vector<std::string> CSV::Split(std::string& input_, char delimiter_)
 	}
 
 	return result;
-}
-
-bool CSV::LoadData(std::string str_)
-{
-	std::ifstream ifs(str_.c_str(), std::ios_base::in);
-
-	if (ifs.fail())
-	{
-		std::cerr << "Failed to open file." << std::endl;
-		return -1;
-	}
-	std::string str;
-
-	while (getline(ifs, str))
-	{
-		ifs >> str;
-		std::vector<std::string> strvec = Split(str, ',');
-
-		param pr;
-
-		std::string charname = strvec[0];
-		pr.m_x = std::stof(strvec[1]);
-		pr.m_y = std::stof(strvec[2]);
-		pr.m_z = std::stof(strvec[3]);
-		pr.m_atk = std::stof(strvec[4]);
-		pr.m_hp = std::stof(strvec[5]);
-		pr.m_def = std::stof(strvec[6]);
-		pr.m_speed = std::stof(strvec[7]);
-
-		character_param[charname] = pr;
-	}
-
-	ifs.close();
-
-	return false;
 }

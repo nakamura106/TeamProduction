@@ -1,11 +1,12 @@
 #include "TitleScene.h"
-#include"../Manager/SoundManager.h"
 #include"../Engine/Graphics.h"
 #include"../Engine/Input.h"
 #include"../DataBank/DataBank.h"
 #include"../Engine/Graphics.h"
 #include"../UI/TitleUI.h"
+#include"OptionScene.h"
 #include"../Manager/SceneManager.h"
+#include"../Manager/SoundManager.h"
 #include"../Manager/UIManager.h"
 
 TitleScene::TitleScene()
@@ -45,7 +46,7 @@ void TitleScene::InitScene()
 	UIManager::Instance()->LoadFile((int)UIManager::Scene::title);
 	
 	SoundManager::Instance()->RegisterTitleSound();
-	SoundManager::Instance()->SoundBGM(-1000);
+	SoundManager::Instance()->SoundBGM(SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);
 	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::MainStep;
 }
 

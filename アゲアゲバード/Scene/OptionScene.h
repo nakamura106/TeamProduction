@@ -69,7 +69,7 @@ public:
 	void MainScene();
 	void EndScene();
 
-	const OptionSceneInfo* GetOptionSceneInfo() { return &m_OptionSceneInfo; }
+	const OptionSceneInfo* GetOptionSceneInfo()const { return &m_OptionSceneInfo; }
 
 private:
 	void UpdateSelect();
