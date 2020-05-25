@@ -310,14 +310,14 @@ void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos)
 }
 
 //UV—p
-void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR3 pos_,float sprite_width, float sprite_height, float tu, float tv, D3DXVECTOR3 angle, D3DXVECTOR3 scale)
+void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR3 pos_,float sprite_width, float sprite_height, float tu, float tv,float Ttu,float Ttv, D3DXVECTOR3 angle, D3DXVECTOR3 scale)
 {
 
 	float harf_x = sprite_width / 2.0f;
 	float harf_y = sprite_height / 2.0f;
 
-	float Ttu = sprite_width / texture->Width;
-	float Ttv = sprite_height / texture->Height;
+	/*float Ttu = sprite_width / texture->Width;
+	float Ttv = sprite_height / texture->Height;*/
 
 	CUSTOM_VERTEX effect[4] =
 	{

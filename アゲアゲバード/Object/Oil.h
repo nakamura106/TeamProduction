@@ -36,6 +36,19 @@ public:
 
 private:
 	ObjectData m_filloildata;
+
+	//ObjectData m_filloildata;
+
+	TEXTURE_DATA m_filloiltex;
+
+	D3DXVECTOR3 angle2_;
+	D3DXVECTOR3 angle3_;
+	D3DXVECTOR3 angle4_;
+
+
+	float tex_tu, tex_tv;
+
+	int m_uv_counter;
 };
 
 
