@@ -197,7 +197,9 @@ void ObjectManager::Draw()
 {
 	m_pot->Draw();
 	m_oil->Draw();
+	m_filloil->Draw();
 
+	m_world_box->Draw();
 	
 	for (int i = 0; i < m_Block.size(); i++)
 	{	
