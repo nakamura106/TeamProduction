@@ -78,9 +78,9 @@ ItemBox::ItemBox()
 	m_boxdata.m_rotspeed = 0.0f;
 	m_boxdata.m_Upward = true;
 	m_boxdata.m_key = "ItemBox";
-	m_boxdata.m_pos.x = (rand() % 50 +0)-25;
-	m_boxdata.m_pos.z = (rand() % 50 + +0)-25;
-	m_boxdata.m_pos.y = rand() % 90 + 0;
+	m_boxdata.m_pos.x = (rand() % 50 +0)-20;
+	m_boxdata.m_pos.z = (rand() % 50 + +0)-20;
+	m_boxdata.m_pos.y = rand() % 85 + 0;
 	
 
 	m_boxdata.m_floattime = 1;

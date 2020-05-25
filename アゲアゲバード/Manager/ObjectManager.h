@@ -16,6 +16,7 @@ class Player;
 class Pot;
 class Oil;
 class FillOil;
+class WorldBox;
 
 class ObjectManager
 {
@@ -38,11 +39,13 @@ public:
 	D3DXVECTOR3 BlockInstallation(D3DXVECTOR3 eyepos_, D3DXVECTOR3 forward_);
 	
 	 Pot* GetMap() { return m_pot; }
-	 std::vector<Item*>* GetItem() { return &m_Item; }
-	 std::vector<Block*>* GetBlock() { return &m_Block; }
 	 Character::Player* GetPlayer(std::string key_) { return m_player[key_]; }
 	 Oil* GetOil() { return m_oil; }
 	 FillOil* GetFillOilData() { return m_filloil; }
+	 WorldBox* GetWorldBoxData() { return m_world_box; }
+	 std::vector<Item*>* GetItem() { return &m_Item; }
+	 std::vector<Block*>* GetBlock() { return &m_Block; }
+	
 	
 protected:
 	ObjectManager();
@@ -57,6 +60,7 @@ private:
 	Pot* m_pot;
 	Oil* m_oil;
 	FillOil* m_filloil;
+	WorldBox* m_world_box;
 	
 	std::map<std::string,Character::Player*> m_player;
 	std::vector<Block*> m_Block;

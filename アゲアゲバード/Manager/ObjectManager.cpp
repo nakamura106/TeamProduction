@@ -3,6 +3,7 @@
 #include"../Object/Block.h"
 #include"../Object/Oil.h"
 #include"../Object/Item.h"
+#include"../Object/WorldBox.h"
 #include "../Player/Player.h"
 #include<time.h>
 
@@ -42,6 +43,11 @@ ObjectManager::~ObjectManager()
 		delete m_filloil;
 		m_filloil = nullptr;
 	}
+	if (m_world_box != nullptr)
+	{
+		delete m_world_box;
+		m_world_box = nullptr;
+	}
 	if (m_player["player1"] != nullptr)
 	{
 		delete m_player["player1"];
@@ -79,6 +85,7 @@ void ObjectManager::AllDeleteObject()
 	delete m_filloil;
 	delete m_oil;
 	delete m_pot;
+	delete m_world_box;
 	std::map<std::string, Character::Player*>().swap(m_player);
 	std::vector<Block*>().swap(m_Block);
 	std::vector<Item*>().swap(m_Item);
@@ -104,6 +111,7 @@ void ObjectManager::CreateObject()
 	m_pot = (new Pot);
 	m_oil=(new Oil);
 	m_filloil=(new FillOil);
+	m_world_box = (new WorldBox);
 	CreateItemBox();
 }
  
@@ -150,6 +158,7 @@ void ObjectManager::Update()
 	m_pot->Update();
 	m_oil->Update();
 	m_filloil->Update();
+	m_world_box->Update();
 	
 	for (int i = 0; i < m_Block.size(); i++)
 	{
@@ -189,6 +198,7 @@ void ObjectManager::Draw()
 	m_pot->Draw();
 	m_oil->Draw();
 	m_oil->Draw();
+	m_world_box->Draw();
 	
 	for (int i = 0; i < m_Block.size(); i++)
 	{	
