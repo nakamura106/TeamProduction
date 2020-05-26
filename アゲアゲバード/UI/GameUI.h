@@ -4,8 +4,11 @@
 #include <d3dx9.h>
 #include "UIBase.h"
 #include "../Engine/Graphics.h"
-#include "../DataBank/DataBank.h"
+#include"../Manager/ObjectManager.h"
+#include"../Manager/ProductionManager.h"
 
+//‘O•ûéŒ¾
+class StartProduction;
 
 class GameUI:public UIBase
 {
@@ -70,7 +73,8 @@ private:
 	TEXTURE_DATA m_player_pos;
 	TEXTURE_DATA m_timer;
 
-	
+	ObjectManager* m_objectmanager = ObjectManager::Instance();
+	ProductionManager* m_productionmanager = ProductionManager::Instance();
 };
 
 #endif

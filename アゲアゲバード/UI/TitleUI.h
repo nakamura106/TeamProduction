@@ -2,7 +2,10 @@
 #define TITLE_UI_H_
 
 #include"UIBase.h"
+#include"../Manager/SceneManager.h"
 #include<vector>
+
+class TitleScene;
 
 class TitleUi :public UIBase
 {
@@ -47,6 +50,8 @@ private:
 	TEXTURE_DATA	 m_select;
 	D3DXVECTOR2		 m_Ui_pos[(int)Select::SelectMax];
 	D3DXVECTOR2		 m_select_pos;
+
+	SceneManager* m_scenemanager = SceneManager::Instance();
 };
 
 

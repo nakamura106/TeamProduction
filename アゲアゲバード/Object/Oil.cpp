@@ -6,17 +6,11 @@ Oil::Oil()
 	
 	m_oildata.m_key = "oil";
 
-	m_oildata.m_pos.x = 0.0f;
-	m_oildata.m_pos.y = -10.0f;
-	m_oildata.m_pos.z = 0.0f;
+	m_oildata.m_pos = D3DXVECTOR3(0.0f, -10.0f, 0.0f);
 
-	m_oildata.angle_.x = 90.0f;
-	m_oildata.angle_.y = 0.0f;
-	m_oildata.angle_.z = 0.0f;
+	m_oildata.angle_ = D3DXVECTOR3(90.0f, 0.0f, 0.0f);
 
-	m_oildata.scale_.x = 1.0f;
-	m_oildata.scale_.y = 1.0f;
-	m_oildata.scale_.z = 1.0f;
+	m_oildata.scale_ = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 
 	tex_tu = 0.0f;
 	tex_tv = 0.0f;
@@ -125,12 +119,12 @@ void FillOil::Update()
 
 void FillOil::Draw()
 {
+
 	//MyFbxManager::FbxManager::Instance()->DrawFbx(m_filloildata.m_key, m_filloildata.m_mat_world);
 
 	DrawUVTexture(&m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, tex_tu, tex_tv, 0.3f, 1.0f, m_filloildata.angle_, m_filloildata.scale_);
 	DrawUVTexture(&m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, tex_tu, tex_tv, 0.3f, 1.0f, angle2_, m_filloildata.scale_);
 	DrawUVTexture(&m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, tex_tu, tex_tv, 0.3f, 1.0f, angle3_, m_filloildata.scale_);
 	DrawUVTexture(&m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, tex_tu, tex_tv, 0.3f, 1.0f, angle4_, m_filloildata.scale_);
-
 
 }

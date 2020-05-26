@@ -3,8 +3,7 @@
 
 //#include "../Object/ObjectBase.h"
 #include"../Engine/FBX.h"
-
-
+#include"../Manager/FbxManager.h"
 
 class ObjectBase
 {
@@ -30,6 +29,9 @@ protected:
 		std::string m_key;
 	};
 
+
+	MyFbxManager::FbxManager* m_fbxmanager = MyFbxManager::FbxManager::Instance();
+
 public:
 	ObjectBase();
 	virtual ~ObjectBase();
@@ -39,7 +41,6 @@ public:
 	
 	
 private:
-	
 
 };
 
