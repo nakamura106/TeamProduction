@@ -1,6 +1,5 @@
 #include "Item.h"
 #include"Block.h"
-#include"../Manager/ObjectManager.h"
 #include"../Manager/FbxManager.h"
 #include<math.h>
 #include<stdio.h>
@@ -9,11 +8,9 @@
 
 Item::Item()
 {
-	m_itemdata.m_pos = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_CameraPos;
+	m_itemdata.m_pos = m_camera->GetCameraData()->m_CameraPos;
 
-	m_itemdata.m_direction.x = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_Forward.x;
-	m_itemdata.m_direction.y = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_Forward.y;
-	m_itemdata.m_direction.z = ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_Forward.z;
+	m_itemdata.m_direction = m_camera->GetCameraData()->m_Forward;
 
 	m_itemdata.m_speed = 1.0f;
 
@@ -29,16 +26,14 @@ Item::Item()
 	D3DXMatrixTranslation(&m_itemdata.m_mat_move, m_itemdata.m_pos.x, m_itemdata.m_pos.y, m_itemdata.m_pos.z);//“ª‚ÉÝ’è
 	D3DXMatrixMultiply(&m_itemdata.m_mat_world, &m_itemdata.m_mat_move, &m_itemdata.m_mat_scale);
 	//m_object.fbxinfo.world = m_mat_world;
-	m_block = ObjectManager::Instance()->GetBlock();
+	m_block = m_objectmanager->GetBlock();
 }
 
 
 void Item::Update()
 {
 	
-	m_itemdata.m_pos.x += m_itemdata.m_direction.x * m_itemdata.m_speed;
-	m_itemdata.m_pos.y += m_itemdata.m_direction.y * m_itemdata.m_speed;
-	m_itemdata.m_pos.z += m_itemdata.m_direction.z * m_itemdata.m_speed;
+	m_itemdata.m_pos += m_itemdata.m_direction * m_itemdata.m_speed;
 
 	m_itemdata.m_pos.y -= m_itemdata.m_gravity;
 	m_itemdata.m_gravity += 0.01f;
@@ -52,7 +47,7 @@ void Item::Update()
 
 void Item::Draw()
 {
-	MyFbxManager::FbxManager::Instance()->DrawFbx(m_itemdata.m_key, m_itemdata.m_mat_world);
+	m_fbxmanager->DrawFbx(m_itemdata.m_key, m_itemdata.m_mat_world);
 }
 
 
@@ -112,7 +107,7 @@ void ItemBox::Update()
 
 void ItemBox::Draw()
 {
-	MyFbxManager::FbxManager::Instance()->DrawFbx(m_boxdata.m_key, m_boxdata.m_mat_world);
+	m_fbxmanager->DrawFbx(m_boxdata.m_key, m_boxdata.m_mat_world);
 }
 
 void ItemBox::BoxProduction()

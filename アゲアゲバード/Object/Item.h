@@ -4,10 +4,11 @@
 #include "../Object/ObjectBase.h"
 #include "../Utility/Vec.h"
 #include "../Engine/Camera.h"
-#include "../Utility/Collision.h"
+#include"../Manager/ObjectManager.h"
 
 //‘O•ûéŒ¾
 class Block;
+class Collision;
 
 enum class ItemID
 {
@@ -50,6 +51,8 @@ public:
 
 private:
 	bool UpdateHitItem();
+	ObjectManager* m_objectmanager = ObjectManager::Instance();
+	CAMERA* m_camera = m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_p_camera;
 
 };
 

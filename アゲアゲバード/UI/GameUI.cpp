@@ -1,7 +1,5 @@
 #include "GameUI.h"
 #include"../Production/StartProduction.h"
-#include"../Manager/ObjectManager.h"
-#include"../Manager/ProductionManager.h"
 #include <iostream>
 #include <fstream>
 
@@ -13,21 +11,27 @@ void GameUI::Init()
 {
 	tex_pos.x = 1800.0f;
 	tex_pos.y = 200.0f;
+	tex_pos = D3DXVECTOR2(1800.0f, 200.0f);
 
 	player_pos.x = 1795.0f;
 	player_pos.y = 690.0f;
+	player_pos= D3DXVECTOR2(1795.0f, 690.0f);
 
 	one_s_timer_pos.x = 950.0f;
 	one_s_timer_pos.y = 50.0f;
+	one_s_timer_pos= D3DXVECTOR2(950.0f, 50.0f);
 
 	ten_s_timer_pos.x = 900.0f;
 	ten_s_timer_pos.y = 50.0f;
+	ten_s_timer_pos=D3DXVECTOR2(900.0f, 50.0f);
 
 	one_m_timer_pos.x = 850.0f;
 	one_m_timer_pos.y = 50.0f;
+	one_m_timer_pos= D3DXVECTOR2(850.0f, 50.0f);
 
 	ten_m_timer_pos.x = 800.0f;
 	ten_m_timer_pos.y = 50.0f;
+	ten_m_timer_pos= D3DXVECTOR2(800.0f, 50.0f);
 
 	m_ones_tu = 0.0f;
 	m_ones_tv = 0.0f;
@@ -91,7 +95,7 @@ void GameUI::LoadFile()
 
 void GameUI::Draw()
 {
-	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 	{
 		DrawUITexture(&m_position, tex_pos);
 		DrawUITexture(&m_player_pos, player_pos);
@@ -148,7 +152,7 @@ void GameUI::UpDate()
 
 void GameUI::UpDateTimer()
 {
-	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 	{
 		timercounter++;
 	}
@@ -179,19 +183,19 @@ void GameUI::UpDateTimer()
 
 void GameUI::UpDatePlayerPos()
 {
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 25.0f&& ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 50.0f)
+	if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 25.0f&& m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y < 50.0f)
 	{
 		player_pos.y = 581.0f;
 	}
-	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 50.0f && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 75.0f)
+	else if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 50.0f && m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y < 75.0f)
 	{
 		player_pos.y = 472.0f;
 	}
-	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 75.0f && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y < 100.0f)
+	else if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 75.0f && m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y < 100.0f)
 	{
 		player_pos.y = 363.0f;
 	}
-	else if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 100.0f)
+	else if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 100.0f)
 	{
 		player_pos.y = 254.0f;
 	}
@@ -218,7 +222,7 @@ void GameUI::UpDatePlayerPos()
 void GameUI::ConversionBlockStock()
 {
 	
-	sprintf_s(m_stockfont, "%d", ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_blockstock);
+	sprintf_s(m_stockfont, "%d", m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_blockstock);
 
 }
 

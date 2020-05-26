@@ -6,17 +6,11 @@ Oil::Oil()
 	
 	m_oildata.m_key = "oil";
 
-	m_oildata.m_pos.x = 0.0f;
-	m_oildata.m_pos.y = -10.0f;
-	m_oildata.m_pos.z = 0.0f;
+	m_oildata.m_pos = D3DXVECTOR3(0.0f, -10.0f, 0.0f);
 
-	m_oildata.angle_.x = 90.0f;
-	m_oildata.angle_.y = 0.0f;
-	m_oildata.angle_.z = 0.0f;
+	m_oildata.angle_ = D3DXVECTOR3(90.0f, 0.0f, 0.0f);
 
-	m_oildata.scale_.x = 1.0f;
-	m_oildata.scale_.y = 1.0f;
-	m_oildata.scale_.z = 1.0f;
+	m_oildata.scale_ = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 
 	tex_tu = 0.0f;
 	tex_tv = 0.0f;
@@ -82,5 +76,5 @@ void FillOil::Update()
 
 void FillOil::Draw()
 {
-	MyFbxManager::FbxManager::Instance()->DrawFbx(m_filloildata.m_key, m_filloildata.m_mat_world);
+	m_fbxmanager->DrawFbx(m_filloildata.m_key, m_filloildata.m_mat_world);
 }

@@ -12,7 +12,6 @@
 #include"Manager/ObjectManager.h"
 #include"Manager/SoundManager.h"
 #include"Manager/UIManager.h"
-#include"DataBank/DataBank.h"
 #include"Manager/SceneManager.h"
 #include"Utility/Collision.h"
 

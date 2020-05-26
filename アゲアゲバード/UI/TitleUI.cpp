@@ -2,7 +2,6 @@
 #include"../Engine/Graphics.h"
 #include"../Engine/Input.h"
 #include"../Scene/TitleScene.h"
-#include"../Manager/SceneManager.h"
 
 TitleUi::TitleUi()
 {
@@ -15,30 +14,21 @@ TitleUi::~TitleUi()
 void TitleUi::Init()
 {
 
-	m_select_pos.x = 145.0f;
-	m_select_pos.y = 620.0f;
+	m_select_pos = D3DXVECTOR2(145.0f, 620.0f);
 
-	m_Ui_pos[(int)Select::Solo].x = 300.0f;
-	m_Ui_pos[(int)Select::Solo].y = 620.0f;
+	m_Ui_pos[(int)Select::Solo] = D3DXVECTOR2(300.0f, 620.0f);
 
-	m_Ui_pos[(int)Select::Option].x = 308.0f;
-	m_Ui_pos[(int)Select::Option].y = 732.0f;
+	m_Ui_pos[(int)Select::Option]= D3DXVECTOR2(308.0f, 732.0f);
 
-	m_Ui_pos[(int)Select::Help].x = 293.0f;
-	m_Ui_pos[(int)Select::Help].y = 880.0f;
+	m_Ui_pos[(int)Select::Help]= D3DXVECTOR2(293.0f, 880.0f);
 
-	m_Ui_pos[(int)Select::Timeattack].x = 250.0f;
-	m_Ui_pos[(int)Select::Timeattack].y = 500.0f;
+	m_Ui_pos[(int)Select::Timeattack]= D3DXVECTOR2(250.0f, 500.0f);
 
-	m_Ui_pos[(int)Select::Freemode].x = 250.0f;
-	m_Ui_pos[(int)Select::Freemode].y = 600.0f;
+	m_Ui_pos[(int)Select::Freemode]= D3DXVECTOR2(250.0f, 600.0f);
 
-	m_Ui_pos[(int)Select::Back].x = 255.0f;
-	m_Ui_pos[(int)Select::Back].y = 720.0f;
+	m_Ui_pos[(int)Select::Back]= D3DXVECTOR2(255.0f, 720.0f);
 
-	m_Ui_pos[(int)Select::Title].x = 0.0f;
-	m_Ui_pos[(int)Select::Title].y = 0.0f;
-
+	m_Ui_pos[(int)Select::Title]= D3DXVECTOR2(0.0f, 0.0f);
 	
 	m_title_select = Select::Solo;
 }
@@ -61,7 +51,7 @@ void TitleUi::LoadFile()
 
 void TitleUi::Draw()
 {
-	DrawTitleUi(SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_page);
+	DrawTitleUi(m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_page);
 }
 
 void TitleUi::UpDate()
@@ -99,35 +89,29 @@ void TitleUi::DrawTitleUi(int page_)
 
 void TitleUi::UpdateSelect()
 {
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Solo)
+	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Solo)
 	{
-		m_select_pos.x = 145.0f;
-		m_select_pos.y = 620.0f;
+		m_select_pos= D3DXVECTOR2(145.0f, 620.0f);
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select ==(int)Select::Option )
+	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select ==(int)Select::Option )
 	{
-		m_select_pos.x = 145.0f;
-		m_select_pos.y = 735.0f;
+		m_select_pos = D3DXVECTOR2(145.0f, 735.0f);
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Help)
+	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Help)
 	{
-		m_select_pos.x = 145.0f;
-		m_select_pos.y = 865.0f;
+		m_select_pos = D3DXVECTOR2(145.0f, 865.0f);
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Timeattack)
+	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Timeattack)
 	{
-		m_select_pos.x = 145.0f;
-		m_select_pos.y = 480.0f;
+		m_select_pos = D3DXVECTOR2(145.0f, 480.0f);
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Freemode)
+	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Freemode)
 	{
-		m_select_pos.x = 145.0f;
-		m_select_pos.y = 600.0f;
+		m_select_pos = D3DXVECTOR2(145.0f, 600.0f);
 	}
-	if (SceneManager::Instance()->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Back)
+	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Back)
 	{
-		m_select_pos.x = 145.0f;
-		m_select_pos.y = 715.0f;
+		m_select_pos= D3DXVECTOR2(145.0f, 715.0f);
 	}
 	
 }
