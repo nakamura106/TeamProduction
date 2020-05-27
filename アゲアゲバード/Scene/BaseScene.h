@@ -1,6 +1,12 @@
 #ifndef BASESCENE_H_
 #define BASESCENE_H_
 
+
+
+//‘O•ûéŒ¾
+class SceneManager;
+
+
 namespace MyBaseScene
 {
 	class BaseScene
@@ -10,8 +16,7 @@ namespace MyBaseScene
 		~BaseScene();
 
 	protected:
-
-
+	
 
 	public:
 		virtual void InitScene() {};
@@ -21,7 +26,8 @@ namespace MyBaseScene
 		virtual void Init();
 		virtual void Update();
 		virtual void Draw();
-
+	private:
+		SceneManager* m_scene_manager;
 	};
 }
 

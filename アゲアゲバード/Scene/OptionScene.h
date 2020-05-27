@@ -2,6 +2,8 @@
 #define OPTIONSCENE_H_
 
 #include"../Scene/BaseScene.h"
+#include"../Manager/SceneManager.h"
+#include"../Manager/SoundManager.h"
 #include<d3dx9.h>
 #include<string>
 #include<map>
@@ -57,6 +59,9 @@ private:
 		StickFlagState m_stick_flag;
 		DeadZoneFlagState m_deadzone_flag;
 	}m_select_flag;
+
+	SceneManager* m_scene_manager;
+	SoundManager* m_sound_manager;
 
 public:
 	OptionScene();

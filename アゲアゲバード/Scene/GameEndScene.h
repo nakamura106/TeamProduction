@@ -3,6 +3,8 @@
 
 #include"BaseScene.h"
 #include"../Engine/Graphics.h"
+#include"../Manager/SceneManager.h"
+#include"../Manager/SoundManager.h"
 
 class GameEndScene :public MyBaseScene::BaseScene
 {
@@ -12,6 +14,9 @@ private:
 		D3DXVECTOR2 m_end_bg_pos;
 		TEXTURE_DATA m_end;
 	}m_GameEndSceneInfo;
+
+	SceneManager* m_scene_manager=SceneManager::Instance();
+	SoundManager* m_sound_manager=SoundManager::Instance();
 
 public:
 	GameEndScene();

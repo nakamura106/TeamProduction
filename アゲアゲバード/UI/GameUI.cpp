@@ -9,28 +9,16 @@ GameUI::GameUI()
 
 void GameUI::Init()
 {
-	tex_pos.x = 1800.0f;
-	tex_pos.y = 200.0f;
 	tex_pos = D3DXVECTOR2(1800.0f, 200.0f);
 
-	player_pos.x = 1795.0f;
-	player_pos.y = 690.0f;
 	player_pos= D3DXVECTOR2(1795.0f, 690.0f);
 
-	one_s_timer_pos.x = 950.0f;
-	one_s_timer_pos.y = 50.0f;
 	one_s_timer_pos= D3DXVECTOR2(950.0f, 50.0f);
 
-	ten_s_timer_pos.x = 900.0f;
-	ten_s_timer_pos.y = 50.0f;
 	ten_s_timer_pos=D3DXVECTOR2(900.0f, 50.0f);
 
-	one_m_timer_pos.x = 850.0f;
-	one_m_timer_pos.y = 50.0f;
 	one_m_timer_pos= D3DXVECTOR2(850.0f, 50.0f);
 
-	ten_m_timer_pos.x = 800.0f;
-	ten_m_timer_pos.y = 50.0f;
 	ten_m_timer_pos= D3DXVECTOR2(800.0f, 50.0f);
 
 	m_ones_tu = 0.0f;

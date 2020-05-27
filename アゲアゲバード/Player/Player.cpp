@@ -75,7 +75,7 @@ void Character::Player::Update()
 	m_pinfo.m_p_camera->Update();
 
 
-	ThrowingItems();
+	//ThrowingItems();
 
 	//Animation();
 

@@ -1,12 +1,15 @@
 #include"BaseScene.h"
 #include"../Engine/Input.h"
-#include"../DataBank/DataBank.h"
+
 #include"../Manager/SceneManager.h"
 
 MyBaseScene::BaseScene::BaseScene()
 {
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID = SceneId::Title;
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
+
+	m_scene_manager = SceneManager::Instance();
+
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneID = SceneId::Title;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 }
 
 MyBaseScene::BaseScene::~BaseScene()
@@ -21,7 +24,7 @@ void MyBaseScene::BaseScene::Init()
 
 void MyBaseScene::BaseScene::Update()
 {
-	switch (SceneManager::Instance()->GetSceneInfo()->m_CurrentSceneStep)
+	switch (m_scene_manager->GetSceneInfo()->m_CurrentSceneStep)
 	{
 	case SceneStep::InitStep:
 		InitScene();

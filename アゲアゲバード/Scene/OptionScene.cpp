@@ -1,11 +1,11 @@
 #include"OptionScene.h"
-#include"../Manager/SceneManager.h"
-#include"../Manager/SoundManager.h"
 #include"../Engine/Graphics.h"
 #include"../Engine/Input.h"
 
 OptionScene::OptionScene()
 {
+	m_scene_manager = SceneManager::Instance();
+	m_sound_manager = SoundManager::Instance();
 	Init();
 }
 
@@ -31,7 +31,7 @@ Y820ŒÅ’è*/
 
 void OptionScene::Init()
 {
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 	m_select_flag.m_stick_flag = StickFlagState::Nomal;
 	m_select_flag.m_sound_flag = SoundFlagState::Midium;
 	m_select_flag.m_deadzone_flag = DeadZoneFlagState::None;
@@ -82,7 +82,7 @@ void OptionScene::InitScene()
 	m_select_flag.m_Select_Now = SelectNow::Sound;
 	
 
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::MainStep;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::MainStep;
 }
 
 void OptionScene::MainScene()
@@ -94,8 +94,8 @@ void OptionScene::EndScene()
 {
 	ReleaseTex();
 
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID = SceneId::Title;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneID = SceneId::Title;
 	SetInfo();
 }
 
@@ -111,19 +111,19 @@ void OptionScene::UpdateSelect()
 			{
 				m_select_flag.m_sound_flag = SoundFlagState::Small;
 				m_OptionSceneInfo.m_sound_volume = -3000;
-				SoundManager::Instance()->SoundSelectSE();
-				SoundManager::Instance()->SoundBGM(m_OptionSceneInfo.m_sound_volume);
+				m_sound_manager->SoundSelectSE();
+				m_sound_manager->SoundBGM(m_OptionSceneInfo.m_sound_volume);
 			}
 			else if (IsButtonDown(L_RightStick) || GetKeyDown(RIGHT_KEY))
 			{
 				m_select_flag.m_sound_flag = SoundFlagState::Large;
 				m_OptionSceneInfo.m_sound_volume = -300;
-				SoundManager::Instance()->SoundSelectSE();
-				SoundManager::Instance()->SoundBGM(m_OptionSceneInfo.m_sound_volume);
+				m_sound_manager->SoundSelectSE();
+				m_sound_manager->SoundBGM(m_OptionSceneInfo.m_sound_volume);
 			}
 			else
 			{
-				SoundManager::Instance()->ResetSelectFlag();
+				m_sound_manager->ResetSelectFlag();
 			}
 		}
 		if (m_select_flag.m_sound_flag == SoundFlagState::Large)
@@ -132,12 +132,12 @@ void OptionScene::UpdateSelect()
 			{
 				m_select_flag.m_sound_flag = SoundFlagState::Midium;
 				m_OptionSceneInfo.m_sound_volume = -1200;
-				SoundManager::Instance()->SoundSelectSE();
-				SoundManager::Instance()->SoundBGM(m_OptionSceneInfo.m_sound_volume);
+				m_sound_manager->SoundSelectSE();
+				m_sound_manager->SoundBGM(m_OptionSceneInfo.m_sound_volume);
 			}
 			else
 			{
-				SoundManager::Instance()->ResetSelectFlag();
+				m_sound_manager->ResetSelectFlag();
 			}
 		}
 		if (m_select_flag.m_sound_flag == SoundFlagState::Small)
@@ -146,12 +146,12 @@ void OptionScene::UpdateSelect()
 			{
 				m_select_flag.m_sound_flag = SoundFlagState::Midium;
 				m_OptionSceneInfo.m_sound_volume = -1000;
-				SoundManager::Instance()->SoundSelectSE();
-				SoundManager::Instance()->SoundBGM(m_OptionSceneInfo.m_sound_volume);
+				m_sound_manager->SoundSelectSE();
+				m_sound_manager->SoundBGM(m_OptionSceneInfo.m_sound_volume);
 			}
 			else
 			{
-				SoundManager::Instance()->ResetSelectFlag();
+				m_sound_manager->ResetSelectFlag();
 			}
 		}
 	}
@@ -164,16 +164,16 @@ void OptionScene::UpdateSelect()
 			if (IsButtonDown(L_LeftStick) || GetKeyDown(LEFT_KEY))
 			{
 				m_select_flag.m_stick_flag = StickFlagState::Low;
-				SoundManager::Instance()->SoundSelectSE();
+				m_sound_manager->SoundSelectSE();
 			}
 			else if (IsButtonDown(L_RightStick) || GetKeyDown(RIGHT_KEY))
 			{
 				m_select_flag.m_stick_flag = StickFlagState::High;
-				SoundManager::Instance()->SoundSelectSE();
+				m_sound_manager->SoundSelectSE();
 			}
 			else
 			{
-				SoundManager::Instance()->ResetSelectFlag();
+				m_sound_manager->ResetSelectFlag();
 			}
 		}
 		if (m_select_flag.m_stick_flag == StickFlagState::High)
@@ -181,11 +181,11 @@ void OptionScene::UpdateSelect()
 			if (IsButtonDown(L_LeftStick) || GetKeyDown(LEFT_KEY))
 			{
 				m_select_flag.m_stick_flag = StickFlagState::Nomal;
-				SoundManager::Instance()->SoundSelectSE();
+				m_sound_manager->SoundSelectSE();
 			}
 			else
 			{
-				SoundManager::Instance()->ResetSelectFlag();
+				m_sound_manager->ResetSelectFlag();
 			}
 		}
 		if (m_select_flag.m_stick_flag == StickFlagState::Low)
@@ -193,11 +193,11 @@ void OptionScene::UpdateSelect()
 			if (IsButtonDown(L_RightStick) || GetKeyDown(RIGHT_KEY))
 			{
 				m_select_flag.m_stick_flag = StickFlagState::Nomal;
-				SoundManager::Instance()->SoundSelectSE();
+				m_sound_manager->SoundSelectSE();
 			}
 			else
 			{
-				SoundManager::Instance()->ResetSelectFlag();
+				m_sound_manager->ResetSelectFlag();
 			}
 		}
 	}
@@ -210,11 +210,11 @@ void OptionScene::UpdateSelect()
 			if (IsButtonDown(L_LeftStick) || GetKeyDown(LEFT_KEY))
 			{
 				m_select_flag.m_deadzone_flag = DeadZoneFlagState::None;
-				SoundManager::Instance()->SoundSelectSE();
+				m_sound_manager->SoundSelectSE();
 			}
 			else
 			{
-				SoundManager::Instance()->ResetSelectFlag();
+				m_sound_manager->ResetSelectFlag();
 			}
 		}
 		if (m_select_flag.m_deadzone_flag == DeadZoneFlagState::None)
@@ -222,11 +222,11 @@ void OptionScene::UpdateSelect()
 			if (IsButtonDown(L_RightStick) || GetKeyDown(RIGHT_KEY))
 			{
 				m_select_flag.m_deadzone_flag = DeadZoneFlagState::Existence;
-				SoundManager::Instance()->SoundSelectSE();
+				m_sound_manager->SoundSelectSE();
 			}
 			else
 			{
-				SoundManager::Instance()->ResetSelectFlag();
+				m_sound_manager->ResetSelectFlag();
 			}
 		}
 	}
@@ -238,47 +238,51 @@ void OptionScene::UpdateSelect()
 
 	if (GetKeyDown(DOWN_KEY) || IsButtonDown(L_DownStick))
 	{
-		SoundManager::Instance()->SoundSelectSE();
 		if (m_select_flag.m_Select_Now == SelectNow::Sound)
 		{
 			m_select_flag.m_Select_Now = SelectNow::Stick;
+			m_sound_manager->SoundSelectSE();
 		}
 		else if (m_select_flag.m_Select_Now == SelectNow::Stick)
 		{
 			m_select_flag.m_Select_Now = SelectNow::DeadZone;
+			m_sound_manager->SoundSelectSE();
 		}
 		else if (m_select_flag.m_Select_Now == SelectNow::DeadZone)
 		{
 			m_select_flag.m_Select_Now = SelectNow::Back;
+			m_sound_manager->SoundSelectSE();
 		}
 	}
 	else if (GetKeyDown(UP_KEY) || IsButtonDown(L_UpStick))
 	{
-		SoundManager::Instance()->SoundSelectSE();
 		if (m_select_flag.m_Select_Now == SelectNow::Stick)
 		{
 			m_select_flag.m_Select_Now = SelectNow::Sound;
+			m_sound_manager->SoundSelectSE();
 		}
 		else if (m_select_flag.m_Select_Now == SelectNow::DeadZone)
 		{
 			m_select_flag.m_Select_Now = SelectNow::Stick;
+			m_sound_manager->SoundSelectSE();
 		}
 		else if (m_select_flag.m_Select_Now == SelectNow::Back)
 		{
 			m_select_flag.m_Select_Now = SelectNow::DeadZone;
+			m_sound_manager->SoundSelectSE();
 		}
 	}
 	else
 	{
-		SoundManager::Instance()->ResetSelectFlag();
+		m_sound_manager->ResetSelectFlag();
 	}
 
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
 		if (m_select_flag.m_Select_Now == SelectNow::Back)
 		{
-			SoundManager::Instance()->SoundClickSE();
-			SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+			m_sound_manager->SoundClickSE();
+			m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
 		}
 	}
 }

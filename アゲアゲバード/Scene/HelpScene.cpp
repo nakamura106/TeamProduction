@@ -1,8 +1,5 @@
 #include "HelpScene.h"
-#include"../Manager/SoundManager.h"
-#include"../DataBank/DataBank.h"
 #include"../Engine/Graphics.h"
-#include"../Manager/SceneManager.h"
 #include"../Engine/Input.h"
 
 HelpScene::HelpScene()
@@ -16,7 +13,7 @@ HelpScene::~HelpScene()
 
 void HelpScene::Init()
 {
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
 }
 
 
@@ -34,15 +31,15 @@ void HelpScene::InitScene()
 	m_HelpSceneInfo.m_help_bg_pos.x = 0;
 	m_HelpSceneInfo.m_help_bg_pos.y = 0;
 	LoadTexture("Res/Tex/ƒwƒ‹ƒv‰æ–Ê_C³2.png", &m_HelpSceneInfo.m_help);
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;
 }
 
 void HelpScene::MainScene()
 {
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
-		SoundManager::Instance()->SoundClickSE();
-		SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+		m_sound_manager->SoundClickSE();
+		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
 	}
 }
 
@@ -50,7 +47,7 @@ void HelpScene::EndScene()
 {
 	ReleaseTexture(&m_HelpSceneInfo.m_help);
 
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
-	SceneManager::Instance()->SetSceneInfo()->m_CurrentSceneID=SceneId::Title;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
+	m_scene_manager->SetSceneInfo()->m_CurrentSceneID=SceneId::Title;
 
 }
