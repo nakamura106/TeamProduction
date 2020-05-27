@@ -36,7 +36,7 @@ void CAMERA::Update()
 		D3DXToRadian(60),	// 画角
 		aspect,				// アスペクト比
 		1.1f,				// near
-		20000.0f);			// far
+		1000.0f);			// far
 	GetD3DDevice()->SetTransform(D3DTS_PROJECTION, &matProj);
 	//射影座標変換用の行列算出 endMove();
 	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == false)
@@ -49,10 +49,16 @@ void CAMERA::Update()
 	{
 		Move();
 	}
+	
+	if (ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->fly_seflag != true
+		&& ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->clear_seflag != true)
+	{
 
+		MouseRotate();
+		StickRotate();
+	}
+	
 
-	MouseRotate();
-	StickRotate();
 
 	m_cameradata.m_Forward = m_cameradata.m_EyePos - m_cameradata.m_CameraPos;
 	D3DXVec3Normalize(&m_cameradata.m_Forward, &m_cameradata.m_Forward);

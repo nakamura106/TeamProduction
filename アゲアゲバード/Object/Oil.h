@@ -2,9 +2,24 @@
 #define OIL_H_
 
 #include"ObjectBase.h"
+#include"../Manager/ProductionManager.h"
+#include"../Manager/ObjectManager.h"
 
 class Oil :public ObjectBase
 {
+private:
+	struct OilData :public ObjectData{
+
+		TEXTURE_DATA m_oiltex;
+
+		float tex_tu, tex_tv;
+
+		int m_uv_counter;
+	}m_oil_data;
+
+	ObjectManager* m_object_manager = ObjectManager::Instance();
+	ProductionManager* m_production_manager = ProductionManager::Instance();
+
 public:
 	Oil();
 	~Oil() {};
@@ -12,19 +27,34 @@ public:
 	void Update()override;
 	void Draw()override;
 
-	const ObjectData* GetOilData()const { return &m_oildata; }
+	const OilData* GetOilData()const { return &m_oil_data; }
+
 private:
-	ObjectData m_oildata;
+	void UpdateUV();
+	void RisingOil();
 
-	TEXTURE_DATA m_oiltex;
-
-	float tex_tu, tex_tv;
-
-	int m_uv_counter;
 };
 
 class FillOil :public ObjectBase
 {
+private:
+	struct FillOilData :public ObjectData {
+
+		TEXTURE_DATA m_filloiltex;
+
+		D3DXVECTOR3 angle2_;
+		D3DXVECTOR3 angle3_;
+		D3DXVECTOR3 angle4_;
+
+		float tex_tu, tex_tv;
+
+		int m_uv_counter;
+
+		bool m_fall_flag;
+	}m_filloildata;
+
+	ProductionManager* m_production_manager = ProductionManager::Instance();
+
 public:
 	FillOil();
 	~FillOil() {};
@@ -32,23 +62,13 @@ public:
 	void Update()override;
 	void Draw()override;
 
-	const ObjectData* GetFillOilData()const { return &m_filloildata; }
+	const FillOilData* GetFillOilData()const { return &m_filloildata; }
 
 private:
-	ObjectData m_filloildata;
 
-	//ObjectData m_filloildata;
+	void UpdateUV();
+	void FallFillOil();
 
-	TEXTURE_DATA m_filloiltex;
-
-	D3DXVECTOR3 angle2_;
-	D3DXVECTOR3 angle3_;
-	D3DXVECTOR3 angle4_;
-
-
-	float tex_tu, tex_tv;
-
-	int m_uv_counter;
 };
 
 

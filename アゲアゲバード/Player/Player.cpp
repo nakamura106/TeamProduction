@@ -57,6 +57,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.m_mat_world = m_pinfo.m_mat_scale * m_pinfo.m_mat_rot_y * m_pinfo.m_mat_move;
 	m_item = ObjectManager::Instance()->GetItem();
 	m_block = ObjectManager::Instance()->GetBlock();
+
 }
 
 void Character::Player::Update()

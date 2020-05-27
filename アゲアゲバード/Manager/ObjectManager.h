@@ -41,8 +41,7 @@ public:
 	 Pot* GetMap() { return m_pot; }
 	 Character::Player* GetPlayer(std::string key_) { return m_player[key_]; }
 	 Oil* GetOil() { return m_oil; }
-	 FillOil* GetFillOilData() { return m_filloil; }
-	 WorldBox* GetWorldBoxData() { return m_world_box; }
+	 FillOil* GetFillOil() { return m_filloil; }
 	 std::vector<Item*>* GetItem() { return &m_Item; }
 	 std::vector<Block*>* GetBlock() { return &m_Block; }
 	

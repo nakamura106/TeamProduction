@@ -186,7 +186,10 @@ void ObjectManager::Update()
 			m_player["player1"]->PlusBlockStock(5);
 			m_ItemBox.erase(m_ItemBox.begin() + i);
 		}
-		
+		if (m_oil->GetOilData()->m_pos.y >= m_ItemBox[i]->GetBoxData()->m_pos.y)
+		{
+			m_ItemBox.erase(m_ItemBox.begin() + i);
+		}
 	}
 	
 	m_player["player1"]->Update();
