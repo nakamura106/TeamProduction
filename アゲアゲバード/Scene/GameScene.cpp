@@ -4,6 +4,8 @@
 #include"../Engine/Input.h"
 #include"../Production/StartProduction.h"
 #include"OptionScene.h"
+#include"../UI/TitleUI.h"
+#include"../Scene/TitleScene.h"
 #include"../Manager/ObjectManager.h"
 #include"../Manager/UIManager.h"
 #include"../Manager/ProductionManager.h"
@@ -73,30 +75,15 @@ void GameScene::InitScene()
 
 void GameScene::MainScene()
 {
-	if (m_object_manager->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
+	int a = 0;
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
 	{
-		m_ui_manager->UpDate((int)UIManager::Scene::game);
-		m_production_manager->UpDate();
+		TimeattackUpdate();
 	}
-
-	m_object_manager->Update();
-
-	
-	if (m_production_manager->GetEndProduction()->GetEndProductionInfo()->flyflag == true)
-{
-		m_GameSceneInfo.m_ClearFlag = false;
-		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::EndStep;
-	}
-	if (m_production_manager->GetEndProduction()->GetEndProductionInfo()->finishflag == true)
+	else if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Freemode)
 	{
-		m_GameSceneInfo.m_ClearFlag = true;
-		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+		FreemodeUpdate();
 	}
-	if (GetKeyDown(F_KEY))
-	{
-		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
-	}
-	
 }
 
 void GameScene::EndScene()
@@ -112,4 +99,59 @@ void GameScene::EndScene()
 	
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneID=SceneId::End;
+}
+
+void GameScene::TimeattackUpdate()
+{
+	if (m_object_manager->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
+	{
+		m_ui_manager->UpDate((int)UIManager::Scene::game);
+		m_production_manager->UpDate();
+	}
+
+	m_object_manager->Update();
+
+
+	if (m_production_manager->GetEndProduction()->GetEndProductionInfo()->flyflag == true)
+	{
+		m_GameSceneInfo.m_ClearFlag = false;
+		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+	}
+	if (m_production_manager->GetEndProduction()->GetEndProductionInfo()->finishflag == true)
+	{
+		m_GameSceneInfo.m_ClearFlag = true;
+		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+	}
+	if (GetKeyDown(F_KEY))
+	{
+		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+	}
+
+}
+
+void GameScene::FreemodeUpdate()
+{
+	if (m_object_manager->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
+	{
+		m_ui_manager->UpDate((int)UIManager::Scene::game);
+			m_production_manager->UpDate();
+	}
+
+	m_object_manager->Update();
+
+
+	if (m_production_manager->GetEndProduction()->GetEndProductionInfo()->flyflag == true)
+	{
+		m_GameSceneInfo.m_ClearFlag = false;
+		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+	}
+	if (m_production_manager->GetEndProduction()->GetEndProductionInfo()->finishflag == true)
+	{
+		m_GameSceneInfo.m_ClearFlag = true;
+		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+	}
+	if (GetKeyDown(F_KEY))
+	{
+		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
+	}
 }

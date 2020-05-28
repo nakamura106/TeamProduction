@@ -53,7 +53,6 @@ void CAMERA::Update()
 	if (ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->fly_seflag != true
 		&& ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->clear_seflag != true)
 	{
-
 		MouseRotate();
 		StickRotate();
 	}

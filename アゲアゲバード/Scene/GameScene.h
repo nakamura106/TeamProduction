@@ -39,6 +39,9 @@ public:
 
 	const GameSceneInfo* GetGameSceneInfo()const { return &m_GameSceneInfo; }
 
+private:
+	void TimeattackUpdate();
+	void FreemodeUpdate();
 };
 
 #endif

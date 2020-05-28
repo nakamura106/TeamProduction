@@ -1,5 +1,7 @@
 #include "GameUI.h"
 #include"../Production/StartProduction.h"
+#include"../Scene/TitleScene.h"
+#include"../UI/TitleUI.h"
 #include <iostream>
 #include <fstream>
 
@@ -83,16 +85,19 @@ void GameUI::LoadFile()
 
 void GameUI::Draw()
 {
-	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
-	{
-		DrawUITexture(&m_position, tex_pos);
-		DrawUITexture(&m_player_pos, player_pos);
-
-		DrawFont(1000, 0, m_timefont, FontSize::Regular, FontColor::Red);
-
-		DrawFont(10, 0, m_stockfont, FontSize::Regular, FontColor::Black);
-
-	}
+	
+		if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+		{
+			
+			if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
+			{
+				DrawFont(1000, 0, m_timefont, FontSize::Regular, FontColor::Red);
+			}
+			DrawFont(10, 0, m_stockfont, FontSize::Regular, FontColor::Black);
+			DrawUITexture(&m_position, tex_pos);
+			DrawUITexture(&m_player_pos, player_pos);
+		}
+	
 
 	/*DrawUVTexture(&m_timer, one_s_timer_pos, 50.0f, 100.0f, m_ones_tu, m_ones_tv);
 	DrawUVTexture(&m_timer, ten_s_timer_pos, 50.0f, 100.0f, m_tens_tu, m_tens_tv);
@@ -102,7 +107,10 @@ void GameUI::Draw()
 
 void GameUI::UpDate()
 {
-	UpDateTimer();
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
+	{
+		UpDateTimer();
+	}
 	UpDatePlayerPos();
 	ConversionBlockStock();
 }

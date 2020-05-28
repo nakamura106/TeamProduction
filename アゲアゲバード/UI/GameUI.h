@@ -6,6 +6,7 @@
 #include "../Engine/Graphics.h"
 #include"../Manager/ObjectManager.h"
 #include"../Manager/ProductionManager.h"
+#include"../Manager/SceneManager.h"
 
 //‘O•ûéŒ¾
 class StartProduction;
@@ -75,6 +76,7 @@ private:
 
 	ObjectManager* m_objectmanager = ObjectManager::Instance();
 	ProductionManager* m_productionmanager = ProductionManager::Instance();
+	SceneManager* m_scene_manager = SceneManager::Instance();
 };
 
 #endif

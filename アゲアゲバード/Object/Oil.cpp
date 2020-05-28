@@ -1,6 +1,8 @@
 #include"Oil.h"
 #include"../Manager/FbxManager.h"
 #include"../Production/StartProduction.h"
+#include"../Scene/TitleScene.h"
+#include"../UI/TitleUI.h"
 
 Oil::Oil()
 {
@@ -35,16 +37,18 @@ Oil::Oil()
 
 void Oil::Update()
 {
-	UpdateUV();
 	RisingOil();
 }
 
 void Oil::Draw()
 {
-	if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
 	{
-		DrawUVTexture(&m_oil_data.m_oiltex, m_oil_data.m_pos, 128.0f, 128.0f, m_oil_data.tex_tu, m_oil_data.tex_tv, 0.3f, 0.4f, m_oil_data.angle_, m_oil_data.scale_);
-	}	
+		if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+		{
+			DrawUVTexture(&m_oil_data.m_oiltex, m_oil_data.m_pos, 128.0f, 128.0f, m_oil_data.tex_tu, m_oil_data.tex_tv, 0.3f, 0.4f, m_oil_data.angle_, m_oil_data.scale_);
+		}
+	}
 }
 
 void Oil::UpdateUV()
@@ -64,14 +68,17 @@ void Oil::UpdateUV()
 
 void Oil::RisingOil()
 {
-	if (m_object_manager->GetFillOil()->GetFillOilData()->m_fall_flag == false)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
 	{
-		m_oil_data.m_pos.y += 0.005f;
-		D3DXMatrixTranslation(&m_oil_data.m_mat_move, 0.0f, m_oil_data.m_pos.y, 0.0f);
-		D3DXMatrixMultiply(&m_oil_data.m_mat_world, &m_oil_data.m_mat_world, &m_oil_data.m_mat_move);
-		D3DXMatrixMultiply(&m_oil_data.m_mat_world, &m_oil_data.m_mat_move, &m_oil_data.m_mat_scale);
+		if (m_object_manager->GetFillOil()->GetFillOilData()->m_fall_flag == false)
+		{
+			m_oil_data.m_pos.y += 0.005f;
+			D3DXMatrixTranslation(&m_oil_data.m_mat_move, 0.0f, m_oil_data.m_pos.y, 0.0f);
+			D3DXMatrixMultiply(&m_oil_data.m_mat_world, &m_oil_data.m_mat_world, &m_oil_data.m_mat_move);
+			D3DXMatrixMultiply(&m_oil_data.m_mat_world, &m_oil_data.m_mat_move, &m_oil_data.m_mat_scale);
+		}
+		UpdateUV();
 	}
-	
 }
 
 FillOil::FillOil()
@@ -108,12 +115,15 @@ void FillOil::Update()
 
 void FillOil::Draw()
 {
-	if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
 	{
-		DrawUVTexture(&m_filloildata.m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, m_filloildata.tex_tu, m_filloildata.tex_tv, 0.3f, 1.0f, m_filloildata.angle_, m_filloildata.scale_);
-		DrawUVTexture(&m_filloildata.m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f,m_filloildata.tex_tu, m_filloildata.tex_tv, 0.3f, 1.0f, m_filloildata.angle2_, m_filloildata.scale_);
-		DrawUVTexture(&m_filloildata.m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f,m_filloildata.tex_tu, m_filloildata.tex_tv, 0.3f, 1.0f, m_filloildata.angle3_, m_filloildata.scale_);
-		DrawUVTexture(&m_filloildata.m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f,m_filloildata.tex_tu, m_filloildata.tex_tv, 0.3f, 1.0f, m_filloildata.angle4_, m_filloildata.scale_);
+		if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+		{
+			DrawUVTexture(&m_filloildata.m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, m_filloildata.tex_tu, m_filloildata.tex_tv, 0.3f, 1.0f, m_filloildata.angle_, m_filloildata.scale_);
+			DrawUVTexture(&m_filloildata.m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, m_filloildata.tex_tu, m_filloildata.tex_tv, 0.3f, 1.0f, m_filloildata.angle2_, m_filloildata.scale_);
+			DrawUVTexture(&m_filloildata.m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, m_filloildata.tex_tu, m_filloildata.tex_tv, 0.3f, 1.0f, m_filloildata.angle3_, m_filloildata.scale_);
+			DrawUVTexture(&m_filloildata.m_filloiltex, m_filloildata.m_pos, 0.5f, 10.0f, m_filloildata.tex_tu, m_filloildata.tex_tv, 0.3f, 1.0f, m_filloildata.angle4_, m_filloildata.scale_);
+		}
 	}
 }
 
@@ -133,19 +143,22 @@ void FillOil::UpdateUV()
 
 void FillOil::FallFillOil()
 {
-	if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
 	{
-		if (m_filloildata.m_pos.y >= 190.0f)
+		if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 		{
-			m_filloildata.m_pos.y -= 0.2f;
-		}
-		else
-		{
-			if (m_filloildata.m_fall_flag == true)
+			if (m_filloildata.m_pos.y >= 190.0f)
 			{
-				m_filloildata.m_fall_flag = false;
+				m_filloildata.m_pos.y -= 0.2f;
 			}
-			UpdateUV();
+			else
+			{
+				if (m_filloildata.m_fall_flag == true)
+				{
+					m_filloildata.m_fall_flag = false;
+				}
+				UpdateUV();
+			}
 		}
 	}
 }

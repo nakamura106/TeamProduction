@@ -4,6 +4,7 @@
 #include"ObjectBase.h"
 #include"../Manager/ProductionManager.h"
 #include"../Manager/ObjectManager.h"
+#include"../Manager/SceneManager.h"
 
 class Oil :public ObjectBase
 {
@@ -19,6 +20,7 @@ private:
 
 	ObjectManager* m_object_manager = ObjectManager::Instance();
 	ProductionManager* m_production_manager = ProductionManager::Instance();
+	SceneManager* m_scene_manager = SceneManager::Instance();
 
 public:
 	Oil();
@@ -54,6 +56,7 @@ private:
 	}m_filloildata;
 
 	ProductionManager* m_production_manager = ProductionManager::Instance();
+	SceneManager* m_scene_manager = SceneManager::Instance();
 
 public:
 	FillOil();
