@@ -4,6 +4,21 @@
 #include <fstream>
 #include <sstream>
 
+int CSV::CreateFile_()
+{
+	const char* fileName = "test.txt";
+	std::ofstream ofs(fileName);
+	if (!ofs)
+	{
+		std::cout << "ファイルが開けませんでした。" << std::endl;
+		std::cin.get();
+		return 0;
+	}
+	ofs << "player\n" << std::endl;       // 題名とかがいいかも
+	std::cout << fileName << "に書き込みました。" << std::endl;
+	std::cin.get();
+}
+
 bool CSV::LoadData(std::string str_)
 {
 	std::ifstream ifs(str_.c_str(), std::ios_base::in);

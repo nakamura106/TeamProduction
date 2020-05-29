@@ -22,6 +22,8 @@ private:
 	friend Singleton<CSV>;
 
 public:
+
+	int CreateFile_();
 	/**
 	*	@brief<Get> 指定されたキーの中のパラメータ取得する関数
 	*	@param[in] key_ keyの名前を入れる

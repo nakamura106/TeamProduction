@@ -34,6 +34,10 @@ public:
 	// À‘Ì‚ğæ“¾‚·‚éŠÖ”
 	static T* GetInstance()
 	{
+		if (p_Instance == nullptr)
+		{
+			CreateInstance();
+		}
 		return p_Instance;
 	}
 

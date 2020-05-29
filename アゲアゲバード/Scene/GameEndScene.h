@@ -5,6 +5,7 @@
 #include"../Engine/Graphics.h"
 #include"../Manager/SceneManager.h"
 #include"../Manager/SoundManager.h"
+#include"../Manager/UIManager.h"
 
 class GameEndScene :public MyBaseScene::BaseScene
 {
@@ -17,6 +18,7 @@ private:
 
 	SceneManager* m_scene_manager=SceneManager::Instance();
 	SoundManager* m_sound_manager=SoundManager::Instance();
+	UIManager* m_ui_manager = UIManager::Instance();
 
 public:
 	GameEndScene();
