@@ -1,6 +1,8 @@
 #include"UIManager.h"
 #include "../UI/GameUI.h"
 #include"../UI/TitleUI.h"
+#include"../UI/ResultUI.h"
+
 #include"../DataBank/DataBank.h"
 
 UIManager* UIManager::p_instance = 0;
@@ -35,6 +37,8 @@ void UIManager::CreateUI()
 {
 	m_UI.push_back(new TitleUi);
 	m_UI.push_back(new GameUI);
+	m_UI.push_back(new ResultUI);
+
 }
 
 void UIManager::LoadTex(int scene_)

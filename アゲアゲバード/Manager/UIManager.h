@@ -18,18 +18,22 @@ public:
 	void UpDate(int scene_);
 	void Release(int scene_);
 
+	std::vector<UIBase*>* GetUI() { return &m_UI; }
+
 	enum class Scene :int
 	{
 		title,
 		game,
+		end,
 		help,
 		option,
-		end,
 	};
 
 protected:
 	UIManager();
 	~UIManager();
+
+	
 
 private:
 	static UIManager* p_instance;
