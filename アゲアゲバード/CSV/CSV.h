@@ -2,6 +2,7 @@
 #define CSV_H_
 
 #include "../Utility/Singleton.h"
+#include "../Utility/Calculation.h"
 
 #include <string>
 #include <vector>
@@ -50,11 +51,11 @@ public:
 	/**
 	*	@brief csv(txt)ƒtƒ@ƒCƒ‹‚É‘‚«‚ŞŠÖ”
 	*	@param[in] str_		stringŒ^‚Ì•¶š—ñ‚ğ“ü‚ê‚é
-	*	@param[in] vecf_	vectorŒ^‚ğ•Ô‚·(floatŒ^‚ğŠi”[‚µ‚Ä)
+	*	@param[in] string_	vectorŒ^‚ğ•Ô‚·(stringŒ^‚ğŠi”[‚µ‚Ä)
 	*	@return boolŒ^‚ğ•Ô‚·
 	*	¦¡‚Íƒ‰ƒ“ƒLƒ“ƒO‚µ‚©l‚¦‚Ä‚¢‚È‚¢‚Ì‚ÅAãˆÊ3ˆÊ‚Ü‚Å‚ğ‘‚«‚Ş‚æ‚¤‚É‚µ‚Ä‚¢‚é
 	*/
-	bool WriteData(std::string str_, std::vector<float> vecf_);
+	bool WriteData(std::string str_, std::vector<std::string> strvec_);
 
 private:
 	/**
@@ -76,6 +77,8 @@ private:
 
 private:
 	static CSV* p_CSVInstance;
+
+	Calculation m_calculation;
 
 	std::map < std::string, std::vector<std::string> > character_param;
 

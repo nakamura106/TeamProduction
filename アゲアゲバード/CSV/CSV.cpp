@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 int CSV::CreateFile_()
 {
@@ -25,7 +26,6 @@ bool CSV::LoadData(std::string str_)
 
 	if (ifs.fail())
 	{
-		std::cerr << "Failed to open file." << std::endl;
 		return -1;
 	}
 
@@ -65,21 +65,43 @@ bool CSV::LoadData(std::string str_)
 	return false;
 }
 
-bool CSV::WriteData(std::string str_, std::vector<float> vecf_)
+bool CSV::WriteData(std::string str_, std::vector<std::string> strvec_)
 {
 	std::ofstream ofs(str_, std::ios_base::out);
 
 	if (ofs.fail())
 	{
-		std::cerr << "Failed to open file." << std::endl;
 		return -1;
 	}
 
+	std::vector<int> score_table;
+	for (int i = 0; i < strvec_.size(); i++)
+	{
+		std::vector<int> num;
+		for (int j = 0; j < strvec_[i].size(); j++)
+		{
+			if (strvec_[i][j] == ':')
+			{
+				continue;
+			}
+			else {
+				num.push_back(strvec_[i][j] - '0');
+			}
+		}
+		score_table.push_back((num[0] * 600) + (num[1] * 60) + (num[2] * 10) + (num[3]));
+	}
+
+	std::sort(score_table.begin(), score_table.end());
+
+	std::vector<std::string> ranking;
+
+	ranking = m_calculation.FixTheMinute(score_table);
+
 	ofs << "RANKING" << std::endl;
 	ofs << "Ranking" << ','
-		<< vecf_[static_cast<int>(RANK::FIRST)] << ','
-		<< vecf_[static_cast<int>(RANK::SECOND)] << ','
-		<< vecf_[static_cast<int>(RANK::THIRD)]
+		<< ranking[0] << ','
+		<< ranking[1] << ','
+		<< ranking[2]
 		<< std::endl;
 
 	ofs.close();
