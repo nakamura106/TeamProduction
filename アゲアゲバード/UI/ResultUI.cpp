@@ -3,22 +3,24 @@
 void ResultUI::LoadFile()
 {
 	UIManager::Instance()->GetUI();
-	m_ranking.push_back(std::stof(m_timefont));
-
-	std::sort(m_ranking.begin(), m_ranking.end());
-
-	m_csv->WriteData("RankingData.txt", m_ranking);
 }
 
 void ResultUI::Init()
 {
+	// š ¼‚ª’Ç‰Á‚µ‚½‚â‚Â
 	m_csv->GetInstance()->LoadData("RankingData.txt");
-	m_strvec = *m_csv->GetInstance()->GetParam("Ranking");
+	m_score_table = *m_csv->GetInstance()->GetParam("Ranking");
 
-	m_no1[10] = std::stof(m_strvec[0]);
-	m_no2[10] = std::stof(m_strvec[1]);
-	m_no3[10] = std::stof(m_strvec[2]);
+	// geter‚±‚±
 
+	m_score_table.push_back(m_timefont);
+	m_csv->WriteData("RankingData.txt", m_score_table);
+	/*for (int i = 0; i < m_score_table[i].size(); i++)
+	{
+		m_no1[20] = m_score_table[0][i];
+		m_no2[20] = m_score_table[1][i];
+		m_no3[20] = m_score_table[2][i];
+	}*/
 }
 
 void ResultUI::Draw()

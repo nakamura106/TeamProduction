@@ -28,13 +28,13 @@ private:
 	CSV* m_csv;
 
 	char m_timefont[20];
-	char m_no1[10];
-	char m_no2[10];
-	char m_no3[10];
+	char m_no1[20];
+	char m_no2[20];
+	char m_no3[20];
 
+	// š ¼‚ª’Ç‰Á‚µ‚½‚â‚Â
+	std::vector<std::string> m_score_table;
 
-	std::vector<std::string> m_strvec;
-	std::vector<float> m_ranking;
 };
 
 #endif

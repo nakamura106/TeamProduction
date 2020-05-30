@@ -14,7 +14,7 @@ class StartProduction;
 class GameUI:public UIBase
 {
 public:
-	GameUI();
+	GameUI() {}
 	~GameUI() {}
 
 public:
@@ -77,6 +77,7 @@ private:
 	ObjectManager* m_objectmanager = ObjectManager::Instance();
 	ProductionManager* m_productionmanager = ProductionManager::Instance();
 	SceneManager* m_scene_manager = SceneManager::Instance();
+
 };
 
 #endif
