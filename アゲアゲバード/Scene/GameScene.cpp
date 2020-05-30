@@ -26,7 +26,7 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {
-	m_ui_manager->Init((int)UIManager::Scene::game);
+	m_ui_manager->Init(UIManager::Scene::game);
 
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
 }
@@ -44,7 +44,7 @@ void GameScene::Draw()
 	//DrawFont(100.0f, 100.0f, debugcamerapos, Regular, Red);
 	//DrawFont(200.0f, 200.0f, debugppos, Regular, Red);
 
-	m_ui_manager->Draw((int)UIManager::Scene::game);
+	m_ui_manager->Draw(UIManager::Scene::game);
 
 
 	m_object_manager->Draw();
@@ -62,9 +62,9 @@ void GameScene::InitScene()
 	m_sound_manager->RegisterGameMainSound();
 	m_sound_manager->SoundBGM(SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);
 
-	m_ui_manager->LoadTex((int)UIManager::Scene::game);
-	m_ui_manager->LoadFile((int)UIManager::Scene::game);
-	m_ui_manager->Init((int)UIManager::Scene::game);
+	m_ui_manager->LoadTex(UIManager::Scene::game);
+	m_ui_manager->LoadFile(UIManager::Scene::game);
+	m_ui_manager->Init(UIManager::Scene::game);
 
 	m_production_manager->CreateProduction();
 	m_production_manager->LoadTex();
@@ -76,11 +76,11 @@ void GameScene::InitScene()
 void GameScene::MainScene()
 {
 	int a = 0;
-	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
 	{
 		TimeattackUpdate();
 	}
-	else if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Freemode)
+	else if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Freemode)
 	{
 		FreemodeUpdate();
 	}
@@ -90,7 +90,7 @@ void GameScene::EndScene()
 {
 	m_sound_manager->ReleaseBattleSound();
 
-	m_ui_manager->Release((int)UIManager::Scene::game);
+	m_ui_manager->Release(UIManager::Scene::game);
 
 	m_production_manager->ReleaseTex();
 
@@ -105,7 +105,7 @@ void GameScene::TimeattackUpdate()
 {
 	if (m_object_manager->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
-		m_ui_manager->UpDate((int)UIManager::Scene::game);
+		m_ui_manager->UpDate(UIManager::Scene::game);
 		m_production_manager->UpDate();
 	}
 
@@ -133,7 +133,7 @@ void GameScene::FreemodeUpdate()
 {
 	if (m_object_manager->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
-		m_ui_manager->UpDate((int)UIManager::Scene::game);
+		m_ui_manager->UpDate(UIManager::Scene::game);
 			m_production_manager->UpDate();
 	}
 

@@ -7,11 +7,11 @@
 
 class TitleScene;
 
-class TitleUi :public UIBase
+class TitleUI :public UIBase
 {
 public:
-	TitleUi();
-	~TitleUi();
+	TitleUI();
+	~TitleUI();
 
 	virtual void Init()override;
 	virtual void LoadTex()override;
