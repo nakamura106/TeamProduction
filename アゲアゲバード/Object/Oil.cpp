@@ -42,7 +42,7 @@ void Oil::Update()
 
 void Oil::Draw()
 {
-	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
 	{
 		if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 		{
@@ -68,7 +68,7 @@ void Oil::UpdateUV()
 
 void Oil::RisingOil()
 {
-	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
 	{
 		if (m_object_manager->GetFillOil()->GetFillOilData()->m_fall_flag == false)
 		{
@@ -115,7 +115,7 @@ void FillOil::Update()
 
 void FillOil::Draw()
 {
-	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
 	{
 		if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 		{
@@ -143,7 +143,7 @@ void FillOil::UpdateUV()
 
 void FillOil::FallFillOil()
 {
-	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUi::Select::Timeattack)
+	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
 	{
 		if (m_production_manager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 		{
