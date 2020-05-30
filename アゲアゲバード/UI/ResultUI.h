@@ -8,6 +8,8 @@
 #include "../Engine/Graphics.h"
 #include"../Manager/ObjectManager.h"
 #include"../Manager/ProductionManager.h"
+#include"../Manager/SceneManager.h"
+
 #include "../CSV/CSV.h"
 
 class ResultUI:public UIBase
@@ -16,7 +18,6 @@ public:
 	ResultUI(){}
 	~ResultUI(){}
 
-	virtual void LoadFile();		// ç°égÇ¡ÇƒÇ»Ç¢
 
 	virtual void LoadTex(){}
 	virtual void Init();
@@ -26,6 +27,8 @@ public:
 
 private:
 	CSV* m_csv;
+
+	SceneManager* m_scene_manager = SceneManager::Instance();
 
 	char m_timefont[20];
 	char m_no1[20];

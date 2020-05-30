@@ -43,7 +43,6 @@ void TitleScene::InitScene()
 	
 	m_ui_manager->Init(UIManager::Scene::title);
 	m_ui_manager->LoadTex(UIManager::Scene::title);
-	m_ui_manager->LoadFile(UIManager::Scene::title);
 	
 	m_sound_manager->RegisterTitleSound();
 	m_sound_manager->SoundBGM(m_scene_manager->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);

@@ -45,10 +45,6 @@ void TitleUI::LoadTex()
 	LoadTexture("Res/Tex/ƒwƒ‹ƒv•¶šUI(ƒTƒCƒYC³).png", &m_Ui[(int)Select::Help]);
 }
 
-void TitleUI::LoadFile()
-{
-}
-
 void TitleUI::Draw()
 {
 	DrawTitleUi(m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_page);

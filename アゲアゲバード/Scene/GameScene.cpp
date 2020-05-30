@@ -63,7 +63,6 @@ void GameScene::InitScene()
 	m_sound_manager->SoundBGM(SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);
 
 	m_ui_manager->LoadTex(UIManager::Scene::game);
-	m_ui_manager->LoadFile(UIManager::Scene::game);
 	m_ui_manager->Init(UIManager::Scene::game);
 
 	m_production_manager->CreateProduction();

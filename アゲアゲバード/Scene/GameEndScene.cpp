@@ -25,10 +25,12 @@ void GameEndScene::Init()
 
 void GameEndScene::Draw()
 {
-	
-	
 	DrawUITexture(&m_GameEndSceneInfo.m_end, m_GameEndSceneInfo.m_end_bg_pos);
 	
+	if (m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == true)
+	{
+		m_ui_manager->Draw(UIManager::Scene::end);
+	}
 }
 
 void GameEndScene::InitScene()
@@ -44,7 +46,6 @@ void GameEndScene::InitScene()
 		LoadTexture("Res/Tex/ƒNƒŠƒA.png", &m_GameEndSceneInfo.m_end);
 	}
 	m_ui_manager->Init(UIManager::Scene::end);
-	m_ui_manager->LoadFile(UIManager::Scene::end);
 	m_sound_manager->RegisterEndSound();
 	m_sound_manager->SoundBGM(SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;

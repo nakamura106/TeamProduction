@@ -27,7 +27,6 @@ public:
 	void Init(Scene scene_);
 	void CreateUI();
 	void LoadTex(Scene scene_);
-	void LoadFile(Scene scene_);
 	void Draw(Scene scene_);
 	void UpDate(Scene scene_);
 	void Release(Scene scene_);

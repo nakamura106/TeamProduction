@@ -76,24 +76,6 @@ void UIManager::LoadTex(Scene scene_)
 	}
 }
 
-void UIManager::LoadFile(Scene scene_)
-{
-	
-		//m_UI[scene_]->LoadFile();
-	if (scene_ == Scene::title)
-	{
-		m_titleui->LoadFile();
-	}
-	else if (scene_ == Scene::game)
-	{
-		m_gameui->LoadFile();
-	}
-	else if (scene_ == Scene::end)
-	{
-		m_resultui->LoadFile();
-	}	
-}
-
 void UIManager::Draw(Scene scene_)
 {
 	
