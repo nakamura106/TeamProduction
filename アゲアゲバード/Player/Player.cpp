@@ -16,24 +16,24 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.m_key = "player";	// アニメーション追加後は"player_wait"になる
 	m_pinfo.state = PlayerInfo::PlayerStatus::WAIT;
 
-	m_pinfo.m_pos.x = pos_x_;
-	m_pinfo.m_pos.y = pos_y_;
-	m_pinfo.m_pos.z = pos_z_;
+	m_pinfo.m_pos.x = pos_x_;		// csvファイルからもらってこれるようにする
+	m_pinfo.m_pos.y = pos_y_;		// csvファイルからもらってこれるようにする
+	m_pinfo.m_pos.z = pos_z_;		// csvファイルからもらってこれるようにする
 
 	m_pinfo.m_camera_pos.x = 0.0f;
 	m_pinfo.m_camera_pos.y = 150.0f;
 	m_pinfo.m_camera_pos.z = 0.0f;
 
 
-	m_pinfo.walk_speed = 0.5f;
-	m_pinfo.sprint_speed = 1.0f;
+	m_pinfo.walk_speed = 0.5f;		// csvファイルからもらってこれるようにする
+	m_pinfo.sprint_speed = 1.0f;	// csvファイルからもらってこれるようにする
 	m_pinfo.speed = m_pinfo.walk_speed;
 
-	m_pinfo.radius = 2.0f;	// 分からん
+	m_pinfo.radius = 2.0f;			// csvファイルからもらってこれるようにする
 
-	m_pinfo.jamp_power = 2.0f;
+	m_pinfo.jamp_power = 2.0f;		// csvファイルからもらってこれるようにする
 
-	m_pinfo.m_blockstock = 20;
+	m_pinfo.m_blockstock = 20;		// csvファイルからもらってこれるようにする
 	
 	m_pinfo.m_p_camera = new CAMERA(m_pinfo.m_camera_pos);
 
