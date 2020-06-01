@@ -1,0 +1,3 @@
+object_name,x,y,z,radius,jamp_power,walk_speed,sprit_speed,block_stock
+,,,,,,,,
+player,0.0,0.0,0.0,2.0,2.0,0.5,1.0,20

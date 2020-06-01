@@ -2,6 +2,7 @@
 #define CSV_H_
 
 #include "../Utility/Singleton.h"
+#include "../Utility/Calculation.h"
 
 #include <string>
 #include <vector>
@@ -22,6 +23,8 @@ private:
 	friend Singleton<CSV>;
 
 public:
+
+	int CreateFile_();
 	/**
 	*	@brief<Get> 指定されたキーの中のパラメータ取得する関数
 	*	@param[in] key_ keyの名前を入れる
@@ -48,11 +51,11 @@ public:
 	/**
 	*	@brief csv(txt)ファイルに書き込む関数
 	*	@param[in] str_		string型の文字列を入れる
-	*	@param[in] vecf_	vector型を返す(float型を格納して)
+	*	@param[in] string_	vector型を返す(string型を格納して)
 	*	@return bool型を返す
 	*	※今はランキングしか考えていないので、上位3位までを書き込むようにしている
 	*/
-	bool WriteData(std::string str_, std::vector<float> vecf_);
+	bool WriteData(std::string str_, std::vector<std::string> strvec_);
 
 private:
 	/**
@@ -74,6 +77,8 @@ private:
 
 private:
 	static CSV* p_CSVInstance;
+
+	Calculation m_calculation;
 
 	std::map < std::string, std::vector<std::string> > character_param;
 

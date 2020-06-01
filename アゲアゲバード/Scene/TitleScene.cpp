@@ -21,29 +21,28 @@ TitleScene::~TitleScene()
 void TitleScene::Init()
 {
 	
-	m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Solo;
+	m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Solo;
 	m_TitleSceneInfo.m_page = 0;
 	m_TitleSceneInfo.m_select_flag = 0;
-	m_ui_manager->Init((int)UIManager::Scene::title);
+	m_ui_manager->Init(UIManager::Scene::title);
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
 }
 
 
 void TitleScene::Draw()
 {
-	m_ui_manager->Draw((int)UIManager::Scene::title);
+	m_ui_manager->Draw(UIManager::Scene::title);
 
 }
 
 void TitleScene::InitScene()
 {
-	m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Solo;
+	m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Solo;
 	m_TitleSceneInfo.m_page = 0;
 	m_TitleSceneInfo.m_select_flag = 0;
 	
-	m_ui_manager->Init((int)UIManager::Scene::title);
-	m_ui_manager->LoadTex((int)UIManager::Scene::title);
-	m_ui_manager->LoadFile((int)UIManager::Scene::title);
+	m_ui_manager->Init(UIManager::Scene::title);
+	m_ui_manager->LoadTex(UIManager::Scene::title);
 	
 	m_sound_manager->RegisterTitleSound();
 	m_sound_manager->SoundBGM(m_scene_manager->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);
@@ -54,7 +53,7 @@ void TitleScene::MainScene()
 {
 	UpdateSelect();
 
-	m_ui_manager->UpDate((int)UIManager::Scene::title);
+	m_ui_manager->UpDate(UIManager::Scene::title);
 
 }
 
@@ -62,20 +61,20 @@ void TitleScene::EndScene()
 {
 	
 	SetCursorPos(960, 540);
-	m_ui_manager->Release((int)UIManager::Scene::title);
-	if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Option)
+	m_ui_manager->Release(UIManager::Scene::title);
+	if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Option)
 	{
 		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 
 		m_scene_manager->SetSceneInfo()->m_CurrentSceneID = SceneId::Option;
 	}
-	if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Help)
+	if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Help)
 	{
 		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 
 		m_scene_manager->SetSceneInfo()->m_CurrentSceneID = SceneId::Help;
 	}
-	if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Timeattack|| m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Freemode)
+	if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Timeattack|| m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Freemode)
 	{
 		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 
@@ -87,18 +86,18 @@ void TitleScene::EndScene()
 
 void TitleScene::UpdateSelect()
 {
-	if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page1)
+	if (m_TitleSceneInfo.m_page == (int)TitleUI::page::page1)
 	{
 		if (GetKeyDown(DOWN_KEY) || IsButtonDown(L_DownStick))
 		{
-			if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Option)
+			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Option)
 			{
-				m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Help;
+				m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Help;
 				m_sound_manager->SoundSelectSE();
 			}
-			if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Solo)
+			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Solo)
 			{
-				m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Option;
+				m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Option;
 				m_sound_manager->SoundSelectSE();
 			}
 		}
@@ -108,14 +107,14 @@ void TitleScene::UpdateSelect()
 		}
 		if (GetKeyDown(UP_KEY) || IsButtonDown(L_UpStick))
 		{
-			if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Option)
+			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Option)
 			{
-				m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Solo;
+				m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Solo;
 				m_sound_manager->SoundSelectSE();
 			}
-			if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Help)
+			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Help)
 			{
-				m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Option;
+				m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Option;
 				m_sound_manager->SoundSelectSE();
 			}
 			
@@ -126,18 +125,18 @@ void TitleScene::UpdateSelect()
 		}
 	}
 
-	if (m_TitleSceneInfo.m_page == (int)TitleUi::page::page2)
+	if (m_TitleSceneInfo.m_page == (int)TitleUI::page::page2)
 	{
 		if (GetKeyDown(DOWN_KEY) || IsButtonDown(L_DownStick))
 		{
-			if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Freemode)
+			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Freemode)
 			{
-				m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Back;
+				m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Back;
 				m_sound_manager->SoundSelectSE();
 			}
-			if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Timeattack)
+			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Timeattack)
 			{
-				m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Freemode;
+				m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Freemode;
 				m_sound_manager->SoundSelectSE();
 			}
 		}
@@ -147,14 +146,14 @@ void TitleScene::UpdateSelect()
 		}
 		if (GetKeyDown(UP_KEY) || IsButtonDown(L_UpStick))
 		{
-			if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Freemode)
+			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Freemode)
 			{
-				m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Timeattack;
+				m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Timeattack;
 				m_sound_manager->SoundSelectSE();
 			}
-			if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Back)
+			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Back)
 			{
-				m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Freemode;
+				m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Freemode;
 				m_sound_manager->SoundSelectSE();
 			}
 		}
@@ -166,20 +165,20 @@ void TitleScene::UpdateSelect()
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
 		m_sound_manager->SoundClickSE();
-		if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Solo)
+		if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Solo)
 		{
-			m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Timeattack;
-			m_TitleSceneInfo.m_page = (int)TitleUi::page::page2;
+			m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Timeattack;
+			m_TitleSceneInfo.m_page = (int)TitleUI::page::page2;
 		}
-		else if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Option || m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Help ||
-			m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Timeattack || m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Freemode)
+		else if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Option || m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Help ||
+			m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Timeattack || m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Freemode)
 		{
 			m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
 		}
-		else if (m_TitleSceneInfo.m_now_select == (int)TitleUi::Select::Back)
+		else if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Back)
 		{
-			m_TitleSceneInfo.m_now_select = (int)TitleUi::Select::Solo;
-			m_TitleSceneInfo.m_page = (int)TitleUi::page::page1;
+			m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Solo;
+			m_TitleSceneInfo.m_page = (int)TitleUI::page::page1;
 		}
 	}
 }

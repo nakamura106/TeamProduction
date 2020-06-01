@@ -3,15 +3,15 @@
 #include"../Engine/Input.h"
 #include"../Scene/TitleScene.h"
 
-TitleUi::TitleUi()
+TitleUI::TitleUI()
 {
 }
 
-TitleUi::~TitleUi()
+TitleUI::~TitleUI()
 {
 }
 
-void TitleUi::Init()
+void TitleUI::Init()
 {
 
 	m_select_pos = D3DXVECTOR2(145.0f, 594.0f);
@@ -33,7 +33,7 @@ void TitleUi::Init()
 	m_title_select = Select::Solo;
 }
 
-void TitleUi::LoadTex()
+void TitleUI::LoadTex()
 {
 	LoadTexture("Res/Tex/選択中UI(サイズ修正).png", &m_select);
 	LoadTexture("Res/Tex/一人用UI.png", &m_Ui[(int)Select::Solo]);
@@ -45,21 +45,17 @@ void TitleUi::LoadTex()
 	LoadTexture("Res/Tex/ヘルプUI.png", &m_Ui[(int)Select::Help]);
 }
 
-void TitleUi::LoadFile()
-{
-}
-
-void TitleUi::Draw()
+void TitleUI::Draw()
 {
 	DrawTitleUi(m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_page);
 }
 
-void TitleUi::UpDate()
+void TitleUI::UpDate()
 {
 	UpdateSelect();
 }
 
-void TitleUi::ReleaseTex()
+void TitleUI::ReleaseTex()
 {
 	for (int i = 0; i<=(int)Select::SelectMax; i++)
 	{
@@ -67,7 +63,7 @@ void TitleUi::ReleaseTex()
 	}
 }
 
-void TitleUi::DrawTitleUi(int page_)
+void TitleUI::DrawTitleUi(int page_)
 {
 	DrawUITexture(&m_Ui[(int)Select::Title], m_Ui_pos[(int)Select::Title]);
 
@@ -87,7 +83,7 @@ void TitleUi::DrawTitleUi(int page_)
 	}
 }
 
-void TitleUi::UpdateSelect()
+void TitleUI::UpdateSelect()
 {
 	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Solo)
 	{

@@ -177,6 +177,9 @@
     <ClCompile Include="Object\WorldBox.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\Calculation.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Camera.h">
@@ -319,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="Object\WorldBox.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Calculation.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

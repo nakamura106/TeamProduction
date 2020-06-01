@@ -12,7 +12,6 @@ public:
 	~UIBase() {}
 
 public:
-	virtual void LoadFile() = 0;		// ¡g‚Á‚Ä‚È‚¢
 
 	virtual void LoadTex() = 0;
 	virtual void Init() = 0;

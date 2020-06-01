@@ -9,7 +9,7 @@ void EndProduction::Init()
 	m_EndProductionInfo.m_finish_pos.x = 400.0f;
 	m_EndProductionInfo.m_finish_pos.y = -100.0f;
 
-	m_EndProductionInfo.m_fly_pos.x = 600.0f;
+	m_EndProductionInfo.m_fly_pos.x = 0.0f;
 	m_EndProductionInfo.m_fly_pos.y = 500.0f;
 
 	m_EndProductionInfo.m_oil_filter_pos = D3DXVECTOR2(0.0f, 0.0f);
@@ -29,8 +29,8 @@ void EndProduction::Init()
 
 void EndProduction::LoadTex()
 {
-	LoadTexture("Res/Tex/UI フィニッシュ(サイズ修正).png", &m_EndProductionInfo.m_finish);
-	LoadTexture("Res/Tex/UI フライ.png", &m_EndProductionInfo.m_fly);
+	LoadTexture("Res/Tex/フィニッシュUI.png", &m_EndProductionInfo.m_finish);
+	LoadTexture("Res/Tex/フライ！UI.png", &m_EndProductionInfo.m_fly);
 	LoadTexture("Res/Tex/Oil_50per.png", &m_EndProductionInfo.m_oil_filter);
 }
 

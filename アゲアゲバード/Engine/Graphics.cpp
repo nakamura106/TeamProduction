@@ -64,7 +64,7 @@ bool CreateGraphicsDevice(D3DPRESENT_PARAMETERS* present_param)
 {
 	present_param->BackBufferCount = 1;
 	present_param->BackBufferFormat = D3DFMT_A8R8G8B8;
-	present_param->Windowed = false;
+	present_param->Windowed = true;
 	present_param->SwapEffect = D3DSWAPEFFECT_DISCARD;
 	present_param->EnableAutoDepthStencil = true;
 	present_param->MultiSampleType = D3DMULTISAMPLE_NONE;
@@ -357,50 +357,21 @@ void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR3 pos_,float sprite_width, f
 }
 
 //UV用
-void DrawUVTexture2(TEXTURE_DATA* texture, D3DXVECTOR3 pos_, float sprite_width, float sprite_height,D3DXVECTOR3 angle, D3DXVECTOR3 scale)
+void DrawUIUVTexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos_, float sprite_width, float sprite_height, float tu, float tv)
 {
-	float harf_x = sprite_width / 2.0f;
-	float harf_y = sprite_height / 2.0f;
-
-	/*float Ttu = sprite_width / texture->Width;
-	float Ttv = sprite_height / texture->Height;*/
+	float Ttu = sprite_width / texture->Width;
+	float Ttv = sprite_height / texture->Height;
 
 	CUSTOM_VERTEX effect[4] =
 	{
-		{ -harf_x, harf_y, 0.0f,0.0f, 0.0f },
-		{ harf_x, harf_y, 0.0f,1.0f, 0.0f },
-		{ harf_x, -harf_y, 0.0f, 1.0f, 1.0f },
-		{ -harf_x, -harf_y, 0.0f, 0.0f, 1.0f },
+		{ pos_.x, pos_.y, 0.0f, 1.0f, tu, tv },
+		{ pos_.x + sprite_width, pos_.y, 0.0f, 1.0f, tu + Ttu , tv },
+		{ pos_.x + sprite_width, pos_.y + sprite_height, 0.0f, 1.0f, tu + Ttu, tv + Ttv},
+		{ pos_.x, pos_.y + sprite_height, 0.0f, 1.0f, tu, tv + Ttv },
 	};
 
-	/*CUSTOM_VERTEX effect[4] =
-	{
-		{ pos_.x, pos_.x, 0.0f, 1.0f, 0.0f, 0.0f },
-		{ pos_.x + texture->Width, pos_.y, 0.0f, 1.0f, 1.0f , 0.0f },
-		{ pos_.x + texture->Width, pos_.y + texture->Height, 0.0f, 1.0f, 1.0f, 1.0f},
-		{ pos_.x, pos_.y + texture->Height, 0.0f, 1.0f, 0.0f, 1.0f },
-	};*/
-
-	D3DXMATRIX mat_world, mat_trans, mat_scale, mat_rot, mat_rot_x, mat_rot_y, mat_rot_z;
-	D3DXMatrixIdentity(&mat_world);
-	D3DXMatrixIdentity(&mat_trans);
-
-	// 移動
-	D3DXMatrixTranslation(&mat_trans, pos_.x, pos_.y, pos_.z);
-
-	D3DXMatrixScaling(&mat_scale, scale.x, scale.y, scale.z);
-
-	D3DXMatrixRotationX(&mat_rot_x, D3DXToRadian(angle.x));
-	D3DXMatrixRotationY(&mat_rot_y, D3DXToRadian(angle.y));
-	D3DXMatrixRotationZ(&mat_rot_z, D3DXToRadian(angle.z));
-
-	mat_rot = mat_rot_x * mat_rot_y * mat_rot_z;
-
-	mat_world *= mat_scale * mat_rot * mat_trans;
-
-	GetD3DDevice()->SetTransform(D3DTS_WORLD, &mat_world);
 	// 頂点構造の指定
-	g_Device->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	g_Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_TEX1);
 
 	g_Device->SetTexture(0, texture->Texture);
 
