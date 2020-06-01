@@ -38,6 +38,15 @@ private:
 	// š ¼‚ª’Ç‰Á‚µ‚½‚â‚Â
 	std::vector<std::string> m_score_table;
 
+	struct  Ranking
+	{
+		char first[6];
+		char second[6];
+		char third[6];
+	};
+	Ranking m_ranking;
+
+
 };
 
 #endif

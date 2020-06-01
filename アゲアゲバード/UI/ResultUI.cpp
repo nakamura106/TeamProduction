@@ -9,11 +9,11 @@ void ResultUI::Init()
 
 	m_score_table.push_back(UIManager::Instance()->GetGameUI()->GetUIInfo()->m_timefont);
 	m_csv->WriteData("RankingData.txt", m_score_table);
-	for (int i = 0; i < m_score_table[i].size(); i++)
+	for (int j = 0; j < m_score_table[0].size(); j++)
 	{
-		m_no1[20] = m_score_table[0][i];
-		m_no2[20] = m_score_table[1][i];
-		m_no3[20] = m_score_table[2][i];
+		m_ranking.first[j] = m_score_table[0][j];
+		m_ranking.second[j] = m_score_table[1][j];
+		m_ranking.third[j] = m_score_table[2][j];
 	}
 }
 
