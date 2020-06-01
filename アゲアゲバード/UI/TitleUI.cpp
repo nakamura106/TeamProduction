@@ -14,19 +14,19 @@ TitleUi::~TitleUi()
 void TitleUi::Init()
 {
 
-	m_select_pos = D3DXVECTOR2(145.0f, 620.0f);
+	m_select_pos = D3DXVECTOR2(145.0f, 594.0f);
 
-	m_Ui_pos[(int)Select::Solo] = D3DXVECTOR2(300.0f, 620.0f);
+	m_Ui_pos[(int)Select::Solo] = D3DXVECTOR2(300.0f, 594.0f);
 
-	m_Ui_pos[(int)Select::Option]= D3DXVECTOR2(308.0f, 732.0f);
+	m_Ui_pos[(int)Select::Option]= D3DXVECTOR2(308.0f, 705.0f);
 
-	m_Ui_pos[(int)Select::Help]= D3DXVECTOR2(293.0f, 880.0f);
+	m_Ui_pos[(int)Select::Help]= D3DXVECTOR2(293.0f, 808.0f);
 
-	m_Ui_pos[(int)Select::Timeattack]= D3DXVECTOR2(250.0f, 500.0f);
+	m_Ui_pos[(int)Select::Timeattack]= D3DXVECTOR2(250.0f, 615.0f);
 
-	m_Ui_pos[(int)Select::Freemode]= D3DXVECTOR2(250.0f, 600.0f);
+	m_Ui_pos[(int)Select::Freemode]= D3DXVECTOR2(250.0f, 723.0f);
 
-	m_Ui_pos[(int)Select::Back]= D3DXVECTOR2(255.0f, 720.0f);
+	m_Ui_pos[(int)Select::Back]= D3DXVECTOR2(255.0f, 838.0f);
 
 	m_Ui_pos[(int)Select::Title]= D3DXVECTOR2(0.0f, 0.0f);
 	
@@ -36,13 +36,13 @@ void TitleUi::Init()
 void TitleUi::LoadTex()
 {
 	LoadTexture("Res/Tex/選択中UI(サイズ修正).png", &m_select);
-	LoadTexture("Res/Tex/UI一人用(サイズ修正).png", &m_Ui[(int)Select::Solo]);
-	LoadTexture("Res/Tex/UIタイムアタック.png", &m_Ui[(int)Select::Timeattack]);
-	LoadTexture("Res/Tex/UIフリープレイ.png", &m_Ui[(int)Select::Freemode]);
-	LoadTexture("Res/Tex/オプション文字UI(サイズ修正).png", &m_Ui[(int)Select::Option]);
-	LoadTexture("Res/Tex/UI戻る.png", &m_Ui[(int)Select::Back]);
+	LoadTexture("Res/Tex/一人用UI.png", &m_Ui[(int)Select::Solo]);
+	LoadTexture("Res/Tex/タイムアタックUI.png", &m_Ui[(int)Select::Timeattack]);
+	LoadTexture("Res/Tex/フリープレイUI.png", &m_Ui[(int)Select::Freemode]);
+	LoadTexture("Res/Tex/オプションUI.png", &m_Ui[(int)Select::Option]);
+	LoadTexture("Res/Tex/戻るUI.png", &m_Ui[(int)Select::Back]);
 	LoadTexture("Res/Tex/Title_3D_A.png", &m_Ui[(int)Select::Title]);
-	LoadTexture("Res/Tex/ヘルプ文字UI(サイズ修正).png", &m_Ui[(int)Select::Help]);
+	LoadTexture("Res/Tex/ヘルプUI.png", &m_Ui[(int)Select::Help]);
 }
 
 void TitleUi::LoadFile()
@@ -91,27 +91,27 @@ void TitleUi::UpdateSelect()
 {
 	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Solo)
 	{
-		m_select_pos= D3DXVECTOR2(145.0f, 620.0f);
+		m_select_pos= D3DXVECTOR2(145.0f, 580.0f);
 	}
 	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select ==(int)Select::Option )
 	{
-		m_select_pos = D3DXVECTOR2(145.0f, 735.0f);
+		m_select_pos = D3DXVECTOR2(145.0f, 670.0f);
 	}
 	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Help)
 	{
-		m_select_pos = D3DXVECTOR2(145.0f, 865.0f);
+		m_select_pos = D3DXVECTOR2(145.0f, 790.0f);
 	}
 	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Timeattack)
 	{
-		m_select_pos = D3DXVECTOR2(145.0f, 480.0f);
+		m_select_pos = D3DXVECTOR2(110.0f, 605.0f);
 	}
 	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Freemode)
 	{
-		m_select_pos = D3DXVECTOR2(145.0f, 600.0f);
+		m_select_pos = D3DXVECTOR2(110.0f, 710.0f);
 	}
 	if (m_scenemanager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)Select::Back)
 	{
-		m_select_pos= D3DXVECTOR2(145.0f, 715.0f);
+		m_select_pos= D3DXVECTOR2(110.0f, 810.0f);
 	}
 	
 }

@@ -39,8 +39,6 @@ void MyBaseScene::BaseScene::Update()
 		break;
 	}
 
-
-	
 }
 
 void MyBaseScene::BaseScene::Draw()
