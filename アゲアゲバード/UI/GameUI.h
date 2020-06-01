@@ -49,6 +49,8 @@ private:
 
 		D3DXVECTOR2 tex_pos;
 		D3DXVECTOR2 player_pos;
+
+		D3DXVECTOR2 timerbg_pos;
 		D3DXVECTOR2 one_s_timer_pos;
 		D3DXVECTOR2 ten_s_timer_pos;
 
@@ -61,6 +63,8 @@ private:
 		TEXTURE_DATA m_position;
 		TEXTURE_DATA m_player_pos;
 		TEXTURE_DATA m_timer;
+		TEXTURE_DATA m_timerbg;
+
 	}m_gameuiinfo;;
 
 public:

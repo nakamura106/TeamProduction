@@ -10,11 +10,11 @@ void StartProduction::Init()
 	m_ProductionInfo.m_t_two_pos.x = 900.0f;
 	m_ProductionInfo.m_t_two_pos.y = 450.0f;
 
-	m_ProductionInfo.m_t_one_pos.x = 900.0f;
+	m_ProductionInfo.m_t_one_pos.x = 870.0f;
 	m_ProductionInfo.m_t_one_pos.y = 450.0f;
 
-	m_ProductionInfo.m_start_pos.x = 800.0f;
-	m_ProductionInfo.m_start_pos.y = 500.0f;
+	m_ProductionInfo.m_start_pos.x = 600.0f;
+	m_ProductionInfo.m_start_pos.y = 400.0f;
 
 	m_ProductionInfo.m_counttimer = 0;
 
@@ -28,11 +28,11 @@ void StartProduction::Init()
 
 void StartProduction::LoadTex()
 {
-	LoadTexture("Res/Tex/UI 1.png", &m_ProductionInfo.m_t_one);
-	LoadTexture("Res/Tex/UI 2.png", &m_ProductionInfo.m_t_two);
-	LoadTexture("Res/Tex/UI 3.png", &m_ProductionInfo.m_t_three);
+	LoadTexture("Res/Tex/1 UI.png", &m_ProductionInfo.m_t_one);
+	LoadTexture("Res/Tex/2 UI.png", &m_ProductionInfo.m_t_two);
+	LoadTexture("Res/Tex/3 UI.png", &m_ProductionInfo.m_t_three);
 
-	LoadTexture("Res/Tex/UIスタート.png", &m_ProductionInfo.m_start);
+	LoadTexture("Res/Tex/スタートUI.png", &m_ProductionInfo.m_start);
 
 }
 
