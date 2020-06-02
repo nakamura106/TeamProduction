@@ -39,6 +39,13 @@ private:
 
 
 		char m_timefont[20];      //ï∂éö
+
+		float m_oneblock_tu;
+		float m_oneblock_tv;
+
+		float m_tenblock_tu;
+		float m_tenblock_tv;
+
 		char m_stockfont[50];
 		int timecounter;		//1ïbêîÇ¶ÇÈ
 		int m_ones;	//1ÇÃíPà 
@@ -56,6 +63,9 @@ private:
 
 		D3DXVECTOR2 one_m_timer_pos;
 		D3DXVECTOR2 ten_m_timer_pos;
+
+		D3DXVECTOR2 one_block_pos;
+		D3DXVECTOR2 ten_block_pos;
 
 		D3DXVECTOR2 timer_pos;
 
