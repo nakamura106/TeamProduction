@@ -8,18 +8,15 @@
 
 void GameUI::Init()
 {
-	m_gameuiinfo.tex_pos = D3DXVECTOR2(1800.0f, 270.0f);
-
-	m_gameuiinfo.player_pos= D3DXVECTOR2(1800.0f, 690.0f);
+	m_gameuiinfo.tex_pos = D3DXVECTOR2(1780.0f, 270.0f);
+	m_gameuiinfo.player_pos= D3DXVECTOR2(1780.0f, 690.0f);
+	m_gameuiinfo.playerbg_pos = D3DXVECTOR2(1750.0f, 200.0f);
 
 	m_gameuiinfo.timerbg_pos = D3DXVECTOR2(750.0f, 50.0f);
 
 	m_gameuiinfo.one_s_timer_pos= D3DXVECTOR2(1030.0f, 70.0f);
-
 	m_gameuiinfo.ten_s_timer_pos=D3DXVECTOR2(980.0f, 70.0f);
-
 	m_gameuiinfo.one_m_timer_pos= D3DXVECTOR2(880.0f, 70.0f);
-
 	m_gameuiinfo.ten_m_timer_pos= D3DXVECTOR2(830.0f, 70.0f);
 
 	m_gameuiinfo.timer_pos = D3DXVECTOR2(930.0f, 70.0f);
@@ -59,8 +56,10 @@ void GameUI::LoadTex()
 {
 	LoadTexture("Res/Tex/位置情報UI(黒).png", &m_gameuiinfo.m_position);
 	LoadTexture("Res/Tex/位置情報UI(丸).png", &m_gameuiinfo.m_player_pos);
+	LoadTexture("Res/Tex/位置情報UI(木枠).png", &m_gameuiinfo.m_posbg);
 	LoadTexture("Res/Tex/タイムUI_02.png", &m_gameuiinfo.m_timer);
 	LoadTexture("Res/Tex/タイム枠UI.png", &m_gameuiinfo.m_timerbg);
+
 
 }
 
@@ -84,8 +83,10 @@ void GameUI::Draw()
 		DrawUIUVTexture(&m_gameuiinfo.m_timer, m_gameuiinfo.one_block_pos, 50.0f, 67.0f, m_gameuiinfo.m_oneblock_tu, m_gameuiinfo.m_oneblock_tv);
 		DrawUIUVTexture(&m_gameuiinfo.m_timer, m_gameuiinfo.ten_block_pos, 50.0f, 67.0f, m_gameuiinfo.m_tenblock_tu, m_gameuiinfo.m_tenblock_tv);
 		//DrawFont(10, 0, m_gameuiinfo.m_stockfont, FontSize::Regular, FontColor::Black);
+		//DrawUITexture(&m_gameuiinfo.m_posbg, m_gameuiinfo.playerbg_pos);
 		DrawUITexture(&m_gameuiinfo.m_position, m_gameuiinfo.tex_pos);
 		DrawUITexture(&m_gameuiinfo.m_player_pos, m_gameuiinfo.player_pos);
+
 	}
 }
 
