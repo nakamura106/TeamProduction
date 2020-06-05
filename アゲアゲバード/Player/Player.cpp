@@ -34,7 +34,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.jamp_power = 2.0f;		// csvファイルからもらってこれるようにする
 
 	m_pinfo.m_blockstock = 20;		// csvファイルからもらってこれるようにする
-	m_pinfo.m_blocset = false;
+	
 	
 	m_pinfo.m_p_camera = new CAMERA(m_pinfo.m_camera_pos);
 
@@ -339,16 +339,15 @@ void Character::Player::Animation()
 
 void Character::Player::SetBlock()
 {
-	m_pinfo.m_blocset = false;
+	
 	if (m_pinfo.m_blockstock > 0)
 	{
-		if (GetKeyDown(Y_KEY) || IsButtonDown(LeftBButton))
+		if (GetKeyDown(Y_KEY) || IsButtonDown(RightBButton))
 		{
 			if (ObjectManager::Instance()->CreateBlock() == true)
 			{
 				SoundManager::Instance()->SoundClickSE();
 				m_pinfo.m_blockstock--;
-				m_pinfo.m_blocset = true;
 			}
 		}
 	}

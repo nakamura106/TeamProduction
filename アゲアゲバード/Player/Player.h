@@ -58,9 +58,7 @@ namespace Character
 			Gravity m_grav;				// 重力
 
 			int m_blockstock;				//ブロックの所持数
-			bool m_blocset;				//ブロックの所持数
-
-
+			
 			float walk_speed;				// 歩いているときのスピード
 			float sprint_speed;				// 走っているときのスピード
 			float speed;					// 移動用のスピード
