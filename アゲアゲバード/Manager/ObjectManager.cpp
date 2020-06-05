@@ -102,7 +102,6 @@ D3DXVECTOR3 ObjectManager::BlockInstallation(D3DXVECTOR3 eyepos_, D3DXVECTOR3 fo
 	blockpos.z = roundf(blockpos.z);
 	blockpos *= 2.0f;
 	return blockpos;
-
 }
 
 
