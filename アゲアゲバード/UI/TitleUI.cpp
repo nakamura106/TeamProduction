@@ -35,7 +35,7 @@ void TitleUI::Init()
 
 void TitleUI::LoadTex()
 {
-	LoadTexture("Res/Tex/選択中UI(サイズ修正).png", &m_select);
+	LoadTexture("Res/Tex/選択中矢印UI.png", &m_select);
 	LoadTexture("Res/Tex/一人用UI.png", &m_Ui[(int)Select::Solo]);
 	LoadTexture("Res/Tex/タイムアタックUI.png", &m_Ui[(int)Select::Timeattack]);
 	LoadTexture("Res/Tex/フリープレイUI.png", &m_Ui[(int)Select::Freemode]);
