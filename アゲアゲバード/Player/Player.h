@@ -69,6 +69,8 @@ namespace Character
 			bool m_jflag;				// ジャンプした時のフラグ
 			bool m_stand_flag;			// 立っている時のフラグ
 			bool m_item_hit_flag;		// アイテムに当たった時のフラグ
+			bool filloilfly;
+
 		}m_pinfo;
 
 	public:

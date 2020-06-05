@@ -1,5 +1,6 @@
 #include "Player.h"
 #include"../Object/Pot.h"
+#include"../Object/Oil.h"
 #include"../Object/Block.h"
 #include"../Object/Item.h"
 #include "../Engine/Input.h"
@@ -46,6 +47,7 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.m_jflag = false;
 	m_pinfo.m_stand_flag = false;
 	m_pinfo.m_item_hit_flag = false;
+	m_pinfo.filloilfly = false;
 
 	// かけ合わせ(拡縮×回転×移動)
 	D3DXMatrixIdentity(&m_pinfo.m_mat_world);
@@ -231,6 +233,18 @@ void Character::Player::CollisionDetection()
 		m_pinfo.m_pos = m_pinfo.m_before_player_pos;
 	}
 
+	if (ObjectManager::Instance()->GetFillOil()->GetFillOilData()->m_fall_flag == false)
+	{
+		if (m_pinfo.m_p_collision->HitOil(
+			m_pinfo.m_pos,
+			ObjectManager::Instance()->GetFillOil()->GetFillOilData()->m_pos,
+			m_pinfo.radius,		// 第五引数		：プレイヤーの半径
+			ObjectManager::Instance()->GetFillOil()->GetFillOilData()->radius			// 第六引数		：マップの半径
+		) == true)
+		{
+			m_pinfo.filloilfly = true;
+		}
+	}
 #pragma endregion
 
 #pragma region アイテムとプレイヤーの当たり判定

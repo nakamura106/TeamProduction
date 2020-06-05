@@ -100,6 +100,9 @@ FillOil::FillOil()
 	m_filloildata.tex_tu = 0.0f;
 	m_filloildata.tex_tv = 1.0f;
 
+	m_filloildata.radius = 2.0f;
+
+
 	m_filloildata.m_uv_counter = 0;
 
 	m_filloildata.m_fall_flag = true;

@@ -12,6 +12,7 @@ void ResultUI::Init()
 
 	m_csv->GetInstance()->LoadData("RankingData.txt");
 	m_score_table = *m_csv->GetInstance()->GetParam("Ranking");
+	
 
 	for (int j = 0; j < m_score_table[0].size(); j++)
 	{
