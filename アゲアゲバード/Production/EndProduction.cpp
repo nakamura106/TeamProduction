@@ -1,8 +1,7 @@
 #include "EndProduction.h"
 #include"../Object/Pot.h"
 #include"../Object/Oil.h"
-#include"../Manager/ObjectManager.h"
-#include "../Manager/SoundManager.h"
+
 
 void EndProduction::Init()
 {
@@ -36,12 +35,13 @@ void EndProduction::LoadTex()
 
 void EndProduction::Draw()
 {
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
+	if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{
 		DrawUITexture(&m_EndProductionInfo.m_finish, m_EndProductionInfo.m_finish_pos);
 	}
-	else if(ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil()->GetOilData()->m_pos.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true
-		|| ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->filloilfly == true)
+	else if(m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y <= m_objectmanager->GetOil()->GetOilData()->m_pos.y 
+		&& m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true
+		|| m_objectmanager->GetPlayer("player1")->GetPlayerData()->filloilfly == true)
 	{
 		DrawUITexture(&m_EndProductionInfo.m_oil_filter, m_EndProductionInfo.m_oil_filter_pos);
 		DrawUITexture(&m_EndProductionInfo.m_fly, m_EndProductionInfo.m_fly_pos);
@@ -50,8 +50,8 @@ void EndProduction::Draw()
 
 void EndProduction::UpDate()
 {
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= ObjectManager::Instance()->GetOil()->GetOilData()->m_pos.y
-		|| ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->filloilfly == true)
+	if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y <= m_objectmanager->GetOil()->GetOilData()->m_pos.y
+		|| m_objectmanager->GetPlayer("player1")->GetPlayerData()->filloilfly == true)
 	{
 		m_EndProductionInfo.fly_seflag = true;
 
@@ -65,7 +65,8 @@ void EndProduction::UpDate()
 			m_EndProductionInfo.flyflag = true;
 		}
 	}
-	if (ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y >= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top.y && ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
+	if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= m_objectmanager->GetMap()->GetMapData()->m_map_top.y 
+		&& m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_p_camera->GetCameraData()->m_startflag == true)
 	{	
 
 		m_EndProductionInfo.clear_seflag = true;
@@ -91,15 +92,12 @@ void EndProduction::UpDate()
 
 	if (m_EndProductionInfo.clear_seflag == true)
 	{
-		SoundManager::Instance()->SoundClearSE();
+		m_soundmanager->SoundClearSE();
 	}
 	else if (m_EndProductionInfo.fly_seflag == true)
 	{
-		SoundManager::Instance()->SoundFlySE();
+		m_soundmanager->SoundFlySE();
 	}
-
-
-
 }
 
 void EndProduction::ReleaseTex()

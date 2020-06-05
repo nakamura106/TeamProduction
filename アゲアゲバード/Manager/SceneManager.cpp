@@ -94,10 +94,6 @@ void SceneManager::Draw()
 	}
 }
 
-void SceneManager::RegisterScene()
-{
-}
-
 SceneManager::SceneManager()
 {
 }

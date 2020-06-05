@@ -2,6 +2,7 @@
 #define START_H_
 #include "ProductionBase.h"
 #include "../Engine/Graphics.h"
+#include "../Manager/SoundManager.h"
 
 class StartProduction:public ProductionBase
 {
@@ -28,6 +29,8 @@ private:
 
 		bool m_uistartflag;
 	}m_ProductionInfo;
+
+	SoundManager* m_soundmanager = SoundManager::Instance();
 
 public:
 	StartProduction(){}

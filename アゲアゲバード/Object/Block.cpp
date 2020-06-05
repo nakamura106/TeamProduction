@@ -27,11 +27,3 @@ void Block::Draw()
 {
 	m_fbxmanager->DrawFbx(m_BlockData.m_key, m_BlockData.m_mat_world);
 }
-
-
-
-
-
-
-
-

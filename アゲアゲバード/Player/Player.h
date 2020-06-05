@@ -4,7 +4,10 @@
 #include "../Engine/Camera.h"
 #include "../Object/ObjectBase.h"
 #include "../Utility/Collision.h"
-#include "../DataBank/Definition.h"
+#include"../Manager/ObjectManager.h"
+#include"../Manager/ProductionManager.h"
+#include"../Production/StartProduction.h"
+#include"../Production/EndProduction.h"
 
 //‘O•ûéŒ¾
 class Item;
@@ -30,6 +33,10 @@ namespace Character
 
 		std::vector<Block*>* m_block;
 		std::vector<Item*>* m_item;
+
+		ObjectManager* m_objectmanager = ObjectManager::Instance();
+		StartProduction* m_startproduction = ProductionManager::Instance()->GetStartProduction();
+		EndProduction* m_endproduction = ProductionManager::Instance()->GetEndProduction();
 
 		struct PlayerInfo :public ObjectData {
 

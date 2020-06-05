@@ -20,17 +20,6 @@ Oil::Oil()
 
 	m_oil_data.m_uv_counter = 0;
 
-	/*D3DXMatrixIdentity(&m_oildata.m_mat_world);
-	D3DXMatrixScaling(&m_oildata.m_mat_scale, m_oildata.scale_.x, m_oildata.scale_.y, m_oildata.scale_.z);
-	D3DXMatrixTranslation(&m_oildata.m_mat_move, 0.0f, m_oildata.m_pos.y, 0.0f);
-	D3DXMatrixRotationX(&m_oildata.m_mat_rot_x, D3DXToRadian(m_oildata.angle_.x));
-	D3DXMatrixRotationY(&m_oildata.m_mat_rot_y, D3DXToRadian(m_oildata.angle_.y));
-	D3DXMatrixRotationZ(&m_oildata.m_mat_rot_z, D3DXToRadian(m_oildata.angle_.z));
-
-	m_oildata.m_mat_rot *= m_oildata.m_mat_rot_x * m_oildata.m_mat_rot_y * m_oildata.m_mat_rot_z;
-	m_oildata.m_mat_world *= m_oildata.m_mat_scale * m_oildata.m_mat_rot * m_oildata.m_mat_move;
-	D3DXMatrixMultiply(&m_oildata.m_mat_world, &m_oildata.m_mat_move, &m_oildata.m_mat_scale);*/
-
 	LoadTexture("Res/Tex/OilFloorEx_Loop2.png", &m_oil_data.m_oiltex);
 	
 }

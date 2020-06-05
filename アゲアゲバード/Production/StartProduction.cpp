@@ -1,6 +1,4 @@
 #include "StartProduction.h"
-#include "../DataBank/DataBank.h"
-#include "../Manager/SoundManager.h"
 
 void StartProduction::Init()
 {
@@ -66,26 +64,24 @@ void StartProduction::UpDate()
 	if (m_ProductionInfo.m_counttimer == 60)
 	{
 		m_ProductionInfo.m_three_draw = true;
-		SoundManager::Instance()->SoundCountSE();
+		m_soundmanager->SoundCountSE();
 	}
 	if (m_ProductionInfo.m_counttimer == 120)
 	{
 		m_ProductionInfo.m_three_draw = false;
 		m_ProductionInfo.m_two_draw = true;
-		SoundManager::Instance()->SoundCountSE();
-
+		m_soundmanager->SoundCountSE();
 	}
 	if (m_ProductionInfo.m_counttimer == 180)
 	{
 		m_ProductionInfo.m_two_draw = false;
 		m_ProductionInfo.m_one_draw = true;
-		SoundManager::Instance()->SoundCountSE();
-
+		m_soundmanager->SoundCountSE();
 	}
 	if (m_ProductionInfo.m_counttimer == 240)
 	{
 		m_ProductionInfo.m_one_draw = false;
-		SoundManager::Instance()->SoundStartSE();
+		m_soundmanager->SoundStartSE();
 	}
 	if (m_ProductionInfo.m_counttimer == 300)
 	{

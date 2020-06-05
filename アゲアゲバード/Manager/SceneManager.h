@@ -56,7 +56,6 @@ public:
 
 	void Update();
 	void Draw();
-	void RegisterScene();
 
 	SceneInfo* SetSceneInfo() { return &m_SceneInfo; }
 

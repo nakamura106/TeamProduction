@@ -5,12 +5,8 @@
 #include"../Object/Item.h"
 #include "../Engine/Input.h"
 #include "../Utility/Gravity.h"
-#include"../Production/StartProduction.h"
-#include"../Production/EndProduction.h"
 #include"../Manager/FbxManager.h"
-#include"../Manager/ProductionManager.h"
 #include"../Manager/SoundManager.h"
-#include"../Manager/ObjectManager.h"
 
 Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 {
@@ -58,16 +54,16 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	D3DXMatrixRotationY(&m_pinfo.m_mat_rot_y, D3DXToRadian(m_pinfo.m_p_camera->GetCameraData()->m_Yaw));
 	D3DXMatrixTranslation(&m_pinfo.m_mat_move, m_pinfo.m_pos.x, m_pinfo.m_pos.y, m_pinfo.m_pos.z);
 	m_pinfo.m_mat_world = m_pinfo.m_mat_scale * m_pinfo.m_mat_rot_y * m_pinfo.m_mat_move;
-	m_item = ObjectManager::Instance()->GetItem();
-	m_block = ObjectManager::Instance()->GetBlock();
+	m_item = m_objectmanager->GetItem();
+	m_block = m_objectmanager->GetBlock();
 
 }
 
 void Character::Player::Update()
 {
-	if (ProductionManager::Instance()->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true
-		&& ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->fly_seflag != true
-		&& ProductionManager::Instance()->GetEndProduction()->GetEndProductionInfo()->clear_seflag != true)
+	if (m_startproduction->GetStartProductionInfo()->m_uistartflag == true
+		&& m_endproduction->GetEndProductionInfo()->fly_seflag != true
+		&& m_endproduction->GetEndProductionInfo()->clear_seflag != true)
 	{
 		Move();
 
@@ -204,9 +200,9 @@ void Character::Player::CollisionDetection()
 	// 側面map_radius = p_db->GetMapRadius();
 	if (m_pinfo.m_p_collision->HitMap(
 		m_pinfo.m_pos.x, m_pinfo.m_pos.z,	// 第一、二引数	：プレイヤーの座標(x,z)
-		ObjectManager::Instance()->GetMap()->GetMapData()->m_pos.x, ObjectManager::Instance()->GetMap()->GetMapData()->m_pos.z,		// 第三、四引数	：マップの座標(x,z)
+		m_objectmanager->GetMap()->GetMapData()->m_pos.x, m_objectmanager->GetMap()->GetMapData()->m_pos.z,		// 第三、四引数	：マップの座標(x,z)
 		m_pinfo.radius,		// 第五引数		：プレイヤーの半径
-		ObjectManager::Instance()->GetMap()->GetMapData()->radius			// 第六引数		：マップの半径
+		m_objectmanager->GetMap()->GetMapData()->radius			// 第六引数		：マップの半径
 	) == true)
 	{
 		m_pinfo.m_pos = m_pinfo.m_before_player_pos;
@@ -215,8 +211,8 @@ void Character::Player::CollisionDetection()
 	// 天井とプレイヤーの当たり判定
 	if (m_pinfo.m_p_collision->HitAngle(
 		m_pinfo.m_pos,					// 第一引数：プレイヤーの座標
-		ObjectManager::Instance()->GetMap()->GetMapData()->m_map_top,					// 第二引数：マップの頂上の中心座標
-		ObjectManager::Instance()->GetMap()->GetMapData()->m_map_bottom,					// 第三引数：マップの底辺の中心座標
+		m_objectmanager->GetMap()->GetMapData()->m_map_top,					// 第二引数：マップの頂上の中心座標
+		m_objectmanager->GetMap()->GetMapData()->m_map_bottom,					// 第三引数：マップの底辺の中心座標
 		30.0f	// 今だけ		// 第四引数：限界角度
 	) == true)
 	{
@@ -227,19 +223,19 @@ void Character::Player::CollisionDetection()
 		//ポットの内側にいるとき
 		ポットの底辺の値より下回っているとき
 	*/
-	if (m_pinfo.m_pos.y <= ObjectManager::Instance()->GetMap()->GetMapData()->m_map_bottom.y)
+	if (m_pinfo.m_pos.y <= m_objectmanager->GetMap()->GetMapData()->m_map_bottom.y)
 	{
 		m_pinfo.m_stand_flag = true;
 		m_pinfo.m_pos = m_pinfo.m_before_player_pos;
 	}
 
-	if (ObjectManager::Instance()->GetFillOil()->GetFillOilData()->m_fall_flag == false)
+	if (m_objectmanager->GetFillOil()->GetFillOilData()->m_fall_flag == false)
 	{
 		if (m_pinfo.m_p_collision->HitOil(
 			m_pinfo.m_pos,
-			ObjectManager::Instance()->GetFillOil()->GetFillOilData()->m_pos,
+			m_objectmanager->GetFillOil()->GetFillOilData()->m_pos,
 			m_pinfo.radius,		// 第五引数		：プレイヤーの半径
-			ObjectManager::Instance()->GetFillOil()->GetFillOilData()->radius			// 第六引数		：マップの半径
+			m_objectmanager->GetFillOil()->GetFillOilData()->radius			// 第六引数		：マップの半径
 		) == true)
 		{
 			m_pinfo.filloilfly = true;
@@ -253,9 +249,9 @@ void Character::Player::CollisionDetection()
 	for (const auto&itr:*m_item)
 	{
 		if (m_pinfo.m_p_collision->HitItemPlayer(
-			m_pinfo.m_pos,				// 第一引数：プレイヤー座標
+			m_pinfo.m_pos,							// 第一引数：プレイヤー座標
 			itr->GetItemData()->m_pos,				// 第二引数：アイテム座標
-			m_pinfo.radius,		// 第三引数：プレイヤーの半径
+			m_pinfo.radius,							// 第三引数：プレイヤーの半径
 			itr->GetItemData()->m_radius			// 第四引数：アイテムの半径
 		) == true)
 		{
@@ -285,9 +281,9 @@ void Character::Player::CollisionDetection()
 	{
 		if (m_pinfo.m_p_collision->HitBox(
 			itr->GetBlockData()->m_pos,			// 第一引数：ブロックの座標
-			m_pinfo.m_pos,			// 第二引数：プレイヤー座標
-			1.0f,			// 第三引数：ブロックの幅
-			m_pinfo.radius	// 第四引数：プレイヤーの半径
+			m_pinfo.m_pos,						// 第二引数：プレイヤー座標
+			1.0f,								// 第三引数：ブロックの幅
+			m_pinfo.radius						// 第四引数：プレイヤーの半径
 		) == true)
 		{
 			m_pinfo.m_pos = m_pinfo.m_before_player_pos;
@@ -302,29 +298,10 @@ void Character::Player::CollisionDetection()
 		{
 			m_pinfo.m_stand_flag = false;
 		}
-		//if (m_p_collision->HitBoxTop(
-		//	itr,			// 第一引数：ブロックの座標
-		//	m_pos,			// 第二引数：プレイヤー座標
-		//	2.0f,			// 第三引数：ブロックの幅
-		//	m_pinfo.radius	// 第四引数：プレイヤーの半径
-		//) == false)
-		//{
-		//	m_stand_flag = false;
-		//}
+	
 	}
 
-	//// プレイヤーの視線とブロック
-	//for (const auto& itr : p_db->GetBlockPos())
-	//{
-	//	if (m_p_collision->HitVisualBox(
-	//		itr,				// 第一引数：ブロックの座標
-	//		5.0f,				// 第二引数：ブロックの幅
-	//		5.0f				// 第三引数：ブロックの奥行き
-	//		) == true)
-	//	{
-	//		
-	//	}
-	//}
+
 
 #pragma endregion
 
@@ -358,7 +335,7 @@ void Character::Player::SetBlock()
 	{
 		if (GetKeyDown(Y_KEY) || IsButtonDown(RightBButton))
 		{
-			if (ObjectManager::Instance()->CreateBlock() == true)
+			if (m_objectmanager->CreateBlock() == true)
 			{
 				SoundManager::Instance()->SoundClickSE();
 				m_pinfo.m_blockstock--;
@@ -372,7 +349,7 @@ void Character::Player::ThrowingItems()
 	if (GetKeyDown(T_KEY) || IsButtonDown(RightBButton))
 	{
 		SoundManager::Instance()->SoundThrow();
-		ObjectManager::Instance()->CreateItem();
+		m_objectmanager->CreateItem();
 	}
 }
 
@@ -415,11 +392,3 @@ const Character::Player::PlayerInfo* Character::Player::GetPlayerData() const
 {
 	return &m_pinfo;
 }
-
-
-
-
-
-
-
-

@@ -85,9 +85,6 @@ ItemBox::ItemBox()
 		m_boxdata.m_pos.z = (rand() % 50 + 0) - 20;
 	}
 	
-	
-	
-
 	m_boxdata.m_floattime = 1;
 
 	D3DXMatrixIdentity(&m_boxdata.m_mat_world);
@@ -146,9 +143,3 @@ void ItemBox::BoxProduction()
 	D3DXMatrixTranslation(&m_boxdata.m_mat_move, m_boxdata.m_pos.x, m_boxdata.m_pos.y, m_boxdata.m_pos.z);//ì™Ç…ê›íË
 	m_boxdata.m_mat_world = m_boxdata.m_mat_rot * m_boxdata.m_mat_scale * m_boxdata.m_mat_move;
 }
-
-
-
-
-
-

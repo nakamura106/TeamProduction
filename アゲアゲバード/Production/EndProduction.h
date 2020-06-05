@@ -1,8 +1,11 @@
 #ifndef END_H_
 #define END_H_
+
 #include "ProductionBase.h"
 #include "../Engine/Graphics.h"
 #include "../Utility/Gravity.h"
+#include "../Manager/ObjectManager.h"
+#include "../Manager/SoundManager.h"
 
 class EndProduction :public ProductionBase
 {
@@ -34,6 +37,8 @@ private:
 		int timer;
 	}m_EndProductionInfo;
 
+	ObjectManager* m_objectmanager = ObjectManager::Instance();
+	SoundManager* m_soundmanager = SoundManager::Instance();
 
 public:
 	EndProduction() {}
