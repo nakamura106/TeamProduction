@@ -1,5 +1,6 @@
 #include "GameUI.h"
 #include"../Production/StartProduction.h"
+#include"../Manager/ObjectManager.h"
 #include"../Scene/TitleScene.h"
 #include"../UI/TitleUI.h"
 #include <iostream>
@@ -90,7 +91,7 @@ void GameUI::Draw()
 
 void GameUI::UpDate()
 {
-	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
+	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 	{
 		UpDateTimer();
 		UpDateTimer2();
@@ -101,10 +102,12 @@ void GameUI::UpDate()
 
 void GameUI::UpDateTimer()
 {
-	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true
+		&& ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= 100.0f)
 	{
 		m_gameuiinfo.timercounter++;
 	}
+	
 	//1•b
 	if (m_gameuiinfo.timercounter == 60)
 	{
@@ -133,7 +136,8 @@ void GameUI::UpDateTimer()
 
 void GameUI::UpDateTimer2()
 {
-	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
+	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true
+		&& ObjectManager::Instance()->GetPlayer("player1")->GetPlayerData()->m_pos.y <= 100.0f)
 	{
 		m_gameuiinfo.timercounter2++;
 	}
