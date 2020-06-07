@@ -2,7 +2,7 @@
 #define BLOCK_H_
 
 #include"../Manager/ObjectManager.h"
-
+#include "../Player/Player.h"
 //‘O•ûéŒ¾
 class ObjectBase;
 

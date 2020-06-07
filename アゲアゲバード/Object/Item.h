@@ -4,6 +4,7 @@
 #include "../Object/ObjectBase.h"
 #include "../Utility/Vec.h"
 #include "../Engine/Camera.h"
+#include "../Player/Player.h"
 #include"../Manager/ObjectManager.h"
 
 //‘O•ûéŒ¾

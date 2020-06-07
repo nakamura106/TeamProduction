@@ -1,7 +1,7 @@
 #include "EndProduction.h"
 #include"../Object/Pot.h"
 #include"../Object/Oil.h"
-
+#include "../Player/Player.h"
 
 void EndProduction::Init()
 {

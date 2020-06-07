@@ -22,11 +22,14 @@ public:
 	void UpDate();
 	void ReleaseTex();
 
-	const StartProduction* GetStartProduction()const { return m_StartProduction; }
-	const EndProduction* GetEndProduction()const { return m_EndProduction; }
+	StartProduction* GetStartProduction()const { return m_StartProduction; }
+	EndProduction* GetEndProduction()const { return m_EndProduction; }
 
 protected:
-	ProductionManager(){}
+	ProductionManager() {
+		CreateProduction();
+		Init();
+	}
 	~ProductionManager(){}
 
 private:

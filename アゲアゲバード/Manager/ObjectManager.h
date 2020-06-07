@@ -3,16 +3,17 @@
 
 #include"../Object/ObjectBase.h"
 #include"../Utility/Collision.h"
-#include"../Player/Player.h"
 #include<string>
 #include<vector>
 #include<map>
 
 //‘O•ûéŒ¾
+namespace Character {
+	class Player;
+}
 class Block;
 class Item;
 class ItemBox;
-class Player;
 class Pot;
 class Oil;
 class FillOil;
