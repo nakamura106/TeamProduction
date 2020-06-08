@@ -2,6 +2,7 @@
 #include <math.h>
 #include <d3dx9.h>
 #include "Vec.h"
+#include "../Player/Player.h"
 #include"../Manager/ObjectManager.h"
 
 //プレイヤーとアイテム

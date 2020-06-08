@@ -5,6 +5,7 @@
 #include"../Production/StartProduction.h"
 #include"OptionScene.h"
 #include"../UI/TitleUI.h"
+#include "../Player/Player.h"
 #include"../Scene/TitleScene.h"
 #include"../Manager/ObjectManager.h"
 #include"../Manager/UIManager.h"
@@ -56,6 +57,10 @@ void GameScene::InitScene()
 {
 	m_GameSceneInfo.m_ClearFlag = false;
 
+	
+	m_production_manager->LoadTex();
+	m_production_manager->Init();
+
 	m_object_manager->CreateObject();
 	m_object_manager->CreatePlayer();
 
@@ -64,10 +69,6 @@ void GameScene::InitScene()
 
 	m_ui_manager->LoadTex(UIManager::Scene::game);
 	m_ui_manager->Init(UIManager::Scene::game);
-
-	m_production_manager->CreateProduction();
-	m_production_manager->LoadTex();
-	m_production_manager->Init();
 
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;
 }

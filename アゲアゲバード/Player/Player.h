@@ -8,6 +8,7 @@
 #include"../Manager/ProductionManager.h"
 #include"../Production/StartProduction.h"
 #include"../Production/EndProduction.h"
+#include<vector>
 
 //‘O•ûéŒ¾
 class Item;

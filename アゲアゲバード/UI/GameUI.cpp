@@ -3,6 +3,7 @@
 #include"../Manager/ObjectManager.h"
 #include"../Scene/TitleScene.h"
 #include"../UI/TitleUI.h"
+#include "../Player/Player.h"
 #include <iostream>
 #include <fstream>
 

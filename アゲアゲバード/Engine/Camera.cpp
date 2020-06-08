@@ -7,6 +7,7 @@
 #include"../Manager/ProductionManager.h"
 #include"../Manager/SceneManager.h"
 #include"../Manager/ObjectManager.h"
+#include "../Player/Player.h"
 
 void CAMERA::Update()
 {
