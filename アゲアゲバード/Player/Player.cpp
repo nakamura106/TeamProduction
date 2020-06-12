@@ -25,12 +25,11 @@ Character::Player::Player(std::string str_)
 	m_pinfo.sprint_speed = std::stof(strvec[static_cast<float>(PARAM::SPRINT_SPEED)]);
 	m_pinfo.m_blockstock = std::stof(strvec[static_cast<float>(PARAM::BLOCK_STOCK)]);
 
+	m_pinfo.speed = m_pinfo.walk_speed;
+
 	m_pinfo.m_camera_pos.x = 0.0f;
 	m_pinfo.m_camera_pos.y = 150.0f;
 	m_pinfo.m_camera_pos.z = 0.0f;
-
-	m_pinfo.speed = m_pinfo.walk_speed;
-	
 	m_pinfo.m_p_camera = new CAMERA(m_pinfo.m_camera_pos);
 
 	m_pinfo.eye = m_pinfo.m_p_camera->GetCameraData()->m_EyePos;
@@ -85,7 +84,6 @@ void Character::Player::Update()
 
 void Character::Player::Move()
 {
-	
 	m_pinfo.m_before_player_pos = m_pinfo.m_pos;
 	m_pinfo.eye = m_pinfo.m_p_camera->GetCameraData()->m_EyePos;
 
@@ -140,16 +138,16 @@ void Character::Player::Move()
 	}
 
 	// ƒWƒƒƒ“ƒv
-	if (GetKeyDown(SPACE_KEY) || IsButtonDown(AButton) && m_pinfo.m_jflag == false)
+	if ((GetKeyDown(SPACE_KEY) || IsButtonDown(AButton)) && m_pinfo.m_jflag == false)
 	{
 		m_pinfo.m_stand_flag = false;
 		m_pinfo.m_jflag = true;
+		m_pinfo.m_grav.ResetPalam();
 
 		m_pinfo.state = PlayerInfo::PlayerStatus::JAMP;
 	}
 	if (m_pinfo.m_jflag == true)
 	{
-	
 		m_pinfo.m_grav.ThrowingUp(m_pinfo.m_pos.y, m_pinfo.jamp_power);
 		m_pinfo.m_pos.y = m_pinfo.m_grav.GetPosY();
 
@@ -157,7 +155,7 @@ void Character::Player::Move()
 		if (m_pinfo.m_pos.y <= 0.0f)
 		{
 			m_pinfo.m_stand_flag = true;
-			m_pinfo.m_jflag = false;
+ 			m_pinfo.m_jflag = false;
 			m_pinfo.m_pos.y = 0.0f;
 			m_pinfo.m_grav.ResetPalam();
 
