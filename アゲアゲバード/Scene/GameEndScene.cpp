@@ -50,15 +50,6 @@ void GameEndScene::InitScene()
 	else
 	{
 		LoadTexture("Res/Tex/リザルト画面_フリープレイ.png", &m_GameEndSceneInfo.m_bg);
-
-		if (m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == false)
-		{
-			LoadTexture("Res/Tex/END.png", &m_GameEndSceneInfo.m_end);
-		}
-		if (m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == true)
-		{
-			LoadTexture("Res/Tex/クリア.png", &m_GameEndSceneInfo.m_end);
-		}
 	}
 	
 	m_ui_manager->Init(UIManager::Scene::end);

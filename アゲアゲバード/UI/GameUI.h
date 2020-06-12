@@ -70,35 +70,9 @@ private:
 		int m_onem;	//1•ª‚Ì’PˆÊ
 		int m_tenm;	//10•ª‚Ì’PˆÊ
 
-<<<<<<< HEAD
-		D3DXVECTOR2 tex_pos;
-		D3DXVECTOR2 player_pos;
-		D3DXVECTOR2 playerbg_pos;
-
-		D3DXVECTOR2 timerbg_pos;
-		D3DXVECTOR2 one_s_timer_pos;
-		D3DXVECTOR2 ten_s_timer_pos;
-
-		D3DXVECTOR2 one_m_timer_pos;
-		D3DXVECTOR2 ten_m_timer_pos;
-
-		D3DXVECTOR2 one_block_pos;
-		D3DXVECTOR2 ten_block_pos;
-
-		D3DXVECTOR2 timer_pos;
-
-		TEXTURE_DATA m_position;
-		TEXTURE_DATA m_player_pos;
-		TEXTURE_DATA m_timer;
-		TEXTURE_DATA m_timerbg;
-		TEXTURE_DATA m_posbg;
-=======
-
 		TEXTURE_DATA	 m_Ui[(int)GameUINum::GameUIMaxNum];
 		D3DXVECTOR2		 m_Ui_pos[(int)GameUINum::GameUIMaxNum];
 		
->>>>>>> UI
-
 	}m_gameuiinfo;;
 
 public:
