@@ -24,6 +24,9 @@ void EndProduction::Init()
 	m_EndProductionInfo.flyflag = false;
 	m_EndProductionInfo.clear_seflag = false;
 	m_EndProductionInfo.fly_seflag = false;
+
+	m_EndProductionInfo.m_grav.ResetPalam();
+
 }
 
 void EndProduction::LoadTex()
@@ -55,7 +58,7 @@ void EndProduction::UpDate()
 	{
 		m_EndProductionInfo.fly_seflag = true;
 
-		if (m_EndProductionInfo.m_fly_pos.y >= -300.0f)
+		if (m_EndProductionInfo.m_fly_pos.y >= -500.0f)
 		{
 			m_EndProductionInfo.m_grav.ThrowingUp(m_EndProductionInfo.m_fly_pos.y, 8.0f);
 			m_EndProductionInfo.m_fly_pos.y = m_EndProductionInfo.m_grav.GetPosY();
@@ -93,6 +96,7 @@ void EndProduction::UpDate()
 	if (m_EndProductionInfo.clear_seflag == true)
 	{
 		m_soundmanager->SoundClearSE();
+
 	}
 	else if (m_EndProductionInfo.fly_seflag == true)
 	{
