@@ -45,7 +45,7 @@ public:
 	bool HitBoxTopUnder(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_wight_, float player_radius_);
 
 	//—§•û‘Ì‚Æ‹…‚ÌXŽ²”»’è
-	bool HitBoxRightLeft(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_wight_, float player_radius_);
+	bool HitBoxRightLeft(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_);
 
 	//—§•û‘Ì‚Æ‹…‚ÌZŽ²”»’è
 	bool HitBoxInnerBack(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_wight_, float player_radius_);

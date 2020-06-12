@@ -274,15 +274,15 @@ void Character::Player::CollisionDetection()
 	// 上面と側面
 	for (const auto& itr : *m_block)
 	{
-		if (m_pinfo.m_p_collision->HitBox(
+		if (m_pinfo.m_p_collision->HitBox2(
 			itr->GetBlockData()->m_pos,			// 第一引数：ブロックの座標
 			m_pinfo.m_pos,						// 第二引数：プレイヤー座標
-			1.0f,								// 第三引数：ブロックの幅
-			m_pinfo.radius						// 第四引数：プレイヤーの半径
+			1.5f,								// 第三引数：ブロックの幅
+			m_pinfo.radius                     // 第四引数：プレイヤーの半径
 		) == true)
 		{
 			m_pinfo.m_pos = m_pinfo.m_before_player_pos;
-			if (m_pinfo.m_pos.y > itr->GetBlockData()->m_pos.y + 2.0f)
+			if (m_pinfo.m_pos.y > itr->GetBlockData()->m_pos.y + 1.5f)
 			{
 				m_pinfo.m_stand_flag = true;
 				m_pinfo.m_jflag = false;
