@@ -17,6 +17,24 @@ public:
 	GameUI() {}
 	~GameUI() {}
 
+public:
+	enum GameUINum
+	{
+		NowPosBg,
+		NowPosBg2,
+		NowPosBg3,
+		Player,
+		TimerBg,
+		One_S_Timer,
+		Ten_S_Timer,
+		One_M_Timer,
+		Ten_M_Timer,
+		Timer,
+		BlockCont,
+		One_Block,
+		Ten_Block,
+		GameUIMaxNum,
+	};
 private:
 	struct GameUIInfo
 	{
@@ -54,30 +72,9 @@ private:
 		int m_tenm;	//10•ª‚Ì’PˆÊ
 
 
-		D3DXVECTOR2 tex_pos;
-		D3DXVECTOR2 player_pos;
-		D3DXVECTOR2 playerbg_pos;
-
-
-		D3DXVECTOR2 timerbg_pos;
-		D3DXVECTOR2 one_s_timer_pos;
-		D3DXVECTOR2 ten_s_timer_pos;
-
-		D3DXVECTOR2 one_m_timer_pos;
-		D3DXVECTOR2 ten_m_timer_pos;
-
-		D3DXVECTOR2 one_block_pos;
-		D3DXVECTOR2 ten_block_pos;
-
-		D3DXVECTOR2 timer_pos;
-
-
-		TEXTURE_DATA m_position;
-		TEXTURE_DATA m_player_pos;
-		TEXTURE_DATA m_timer;
-		TEXTURE_DATA m_timerbg;
-		TEXTURE_DATA m_posbg;
-
+		TEXTURE_DATA	 m_Ui[(int)GameUINum::GameUIMaxNum];
+		D3DXVECTOR2		 m_Ui_pos[(int)GameUINum::GameUIMaxNum];
+		
 
 	}m_gameuiinfo;;
 
