@@ -93,6 +93,22 @@ bool CSV::WriteData(std::string str_, std::vector<std::string> strvec_)
 
 	std::sort(score_table.begin(), score_table.end());
 
+	int count = 0;
+	for (int i = 0; i < score_table.size(); i++)
+	{
+		if (score_table[i] == 0)
+		{
+			score_table.erase(score_table.begin() + i);
+			score_table.push_back(0);
+			i--;
+		}
+		count++;
+		if (count >= score_table.size())
+		{
+			break;
+		}
+	}
+
 	std::vector<std::string> ranking;
 
 	ranking = m_calculation.FixTheMinute(score_table);
