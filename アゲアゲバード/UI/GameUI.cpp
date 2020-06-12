@@ -61,7 +61,7 @@ void GameUI::LoadTex()
 	LoadTexture("Res/Tex/位置情報UI(赤).png", &m_gameuiinfo.m_Ui[(int)GameUINum::NowPosBg3]);
 	LoadTexture("Res/Tex/位置情報UI(丸).png", &m_gameuiinfo.m_Ui[(int)GameUINum::Player]);
 	LoadTexture("Res/Tex/タイムUI_02.png", &m_gameuiinfo.m_Ui[(int)GameUINum::Timer]);
-	LoadTexture("Res/Tex/ブロック個数数字UI.png", &m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont]);
+	LoadTexture("Res/Tex/ブロック個数数字UI_修正.png", &m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont]);
 	LoadTexture("Res/Tex/タイム枠UI.png", &m_gameuiinfo.m_Ui[(int)GameUINum::TimerBg]);
 
 
@@ -83,8 +83,8 @@ void GameUI::Draw()
 			DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::Timer], m_gameuiinfo.m_Ui_pos[(int)GameUINum::Timer], 50.0f, 67.0f, 0.88f,0.0f);
 
 		}
-		DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont], m_gameuiinfo.m_Ui_pos[(int)GameUINum::One_Block], 50.0f, 67.0f, m_gameuiinfo.m_oneblock_tu, m_gameuiinfo.m_oneblock_tv);
-		DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont], m_gameuiinfo.m_Ui_pos[(int)GameUINum::Ten_Block], 50.0f, 67.0f, m_gameuiinfo.m_tenblock_tu, m_gameuiinfo.m_tenblock_tv);
+		DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont], m_gameuiinfo.m_Ui_pos[(int)GameUINum::One_Block], 70.0f, 74.0f, m_gameuiinfo.m_oneblock_tu, m_gameuiinfo.m_oneblock_tv);
+		DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont], m_gameuiinfo.m_Ui_pos[(int)GameUINum::Ten_Block], 70.0f, 74.0f, m_gameuiinfo.m_tenblock_tu, m_gameuiinfo.m_tenblock_tv);
 		//DrawFont(10, 0, m_gameuiinfo.m_stockfont, FontSize::Regular, FontColor::Black);
 		//DrawUITexture(&m_gameuiinfo.m_posbg, m_gameuiinfo.playerbg_pos);
 		DrawUITexture(&m_gameuiinfo.m_Ui[(int)GameUINum::NowPosBg], m_gameuiinfo.m_Ui_pos[(int)GameUINum::NowPosBg]);
@@ -175,19 +175,19 @@ void GameUI::UpDatePlayerPos()
 {
 	if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 25.0f&& m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y < 50.0f)
 	{
-		m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player].y = 581.0f;
+		m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player].y = 511.0f;
 	}
 	else if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 50.0f && m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y < 75.0f)
 	{
-		m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player].y = 472.0f;
+		m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player].y = 402.0f;
 	}
 	else if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 75.0f && m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y < 100.0f)
 	{
-		m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player].y = 363.0f;
+		m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player].y = 293.0f;
 	}
 	else if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_pos.y >= 100.0f)
 	{
-		m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player].y = 254.0f;
+		m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player].y = 184.0f;
 	}
 
 }
@@ -204,6 +204,7 @@ void GameUI::ConversionBlockStock()
 		}
 		else if (m_gameuiinfo.m_stockfont[0] == '1')
 		{
+
 			m_gameuiinfo.m_tenblock_tu = 0.09f;
 		}
 		else if (m_gameuiinfo.m_stockfont[0] == '2')
