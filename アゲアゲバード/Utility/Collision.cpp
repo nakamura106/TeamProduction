@@ -99,21 +99,15 @@ bool Collision::HitBoxVec(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float
 bool Collision::HitBox2(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
 {
 	//‹…‚Æ—§•û‘Ì‚Ìã‰º”»’è
-	if (HitBoxTopUnder(block_pos_, player_pos_, block_width_, player_radius_) == true)
+	/*if (HitBoxTopUnder(block_pos_, player_pos_, block_width_, player_radius_) == true)
 	{
 		return true;
-	}
+	}*/
 	//‹…‚Æ—§•û‘Ì‚Ì¶‰E”»’è
 	if (HitBoxRightLeft(block_pos_, player_pos_, block_width_, player_radius_) == true)
 	{
 		return true;
 	}
-	//‹…‚Æ—§•û‘Ì‚Ì‘OŒã”»’è
-	if (HitBoxInnerBack(block_pos_, player_pos_, block_width_, player_radius_) == true)
-	{
-		return true;
-	}
-
 	return false;
 }
 
@@ -124,7 +118,7 @@ bool Collision::HitBoxTopUnder(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, 
 {
 	if (player_pos_.x >= block_pos_.x - (block_width_ / 2) && player_pos_.x <= block_pos_.x + (block_width_ / 2)
 		&& player_pos_.y + player_radius_ >= block_pos_.y - (block_width_ / 2) && player_pos_.y - player_radius_ <= block_pos_.y + (block_width_ / 2)
-		&& player_pos_.z >= block_pos_.z + (block_width_ / 2) && player_pos_.z <= block_pos_.z - (block_width_ / 2))
+		&& player_pos_.z >= block_pos_.z + (block_width_ / 2)  && player_pos_.z <= block_pos_.z - (block_width_ / 2))
 	{
 		return true;
 	}
@@ -136,8 +130,8 @@ bool Collision::HitBoxTopUnder(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, 
 bool Collision::HitBoxRightLeft(D3DXVECTOR3 block_pos_, D3DXVECTOR3 player_pos_, float block_width_, float player_radius_)
 {
 	if (player_pos_.x + player_radius_ >= block_pos_.x - (block_width_ / 2) && player_pos_.x - player_radius_ <= block_pos_.x + (block_width_ / 2)
-		&& player_pos_.y >= block_pos_.y - (block_width_ / 2) && player_pos_.y <= block_pos_.y + (block_width_ / 2)
-		&& player_pos_.z >= block_pos_.z + (block_width_ / 2) && player_pos_.z <= block_pos_.z - (block_width_ / 2))
+		&& player_pos_.y + player_radius_ >= block_pos_.y - (block_width_ / 2) && player_pos_.y - player_radius_ <= block_pos_.y + (block_width_ / 2)
+		&& player_pos_.z + player_radius_ >= block_pos_.z - (block_width_ / 2) && player_pos_.z - player_radius_ <= block_pos_.z + (block_width_ / 2))
 	{
 		return true;
 	}
