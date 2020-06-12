@@ -5,7 +5,6 @@
 
 MyBaseScene::BaseScene::BaseScene()
 {
-
 	m_scene_manager = SceneManager::Instance();
 
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneID = SceneId::Title;

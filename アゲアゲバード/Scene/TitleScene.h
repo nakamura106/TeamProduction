@@ -36,9 +36,7 @@ public:
 	const TitleSceneInfo* GetTitleSceneInfo()const { return &m_TitleSceneInfo; }
 
 private:
-
-	void UpdateSelect();
-	
+	void UpdateSelect();	
 };
 
 #endif

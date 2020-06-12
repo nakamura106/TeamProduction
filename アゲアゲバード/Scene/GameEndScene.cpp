@@ -8,7 +8,6 @@
 
 GameEndScene::GameEndScene()
 {
-
 	Init();
 }
 
@@ -18,7 +17,6 @@ GameEndScene::~GameEndScene()
 
 void GameEndScene::Init()
 {
-	
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 }
 
@@ -26,7 +24,7 @@ void GameEndScene::Init()
 
 void GameEndScene::Draw()
 {
-	DrawUITexture(&m_GameEndSceneInfo.m_end, m_GameEndSceneInfo.m_end_bg_pos);
+	DrawUITexture(&m_GameEndSceneInfo.m_bg, m_GameEndSceneInfo.m_bg_pos);
 	
 	if (m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == true&& m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
 	{
@@ -36,21 +34,21 @@ void GameEndScene::Draw()
 
 void GameEndScene::InitScene()
 {
-	m_GameEndSceneInfo.m_end_bg_pos.x = 0;
-	m_GameEndSceneInfo.m_end_bg_pos.y = 0;
+	m_GameEndSceneInfo.m_bg_pos.x = 0;
+	m_GameEndSceneInfo.m_bg_pos.y = 0;
 	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack&&m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == false)
 	{
 		m_ui_manager->Init(UIManager::Scene::end);
-		LoadTexture("Res/Tex/END.png", &m_GameEndSceneInfo.m_end);
+		LoadTexture("Res/Tex/END.png", &m_GameEndSceneInfo.m_bg);
 	}
 	else if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack&&m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == true)
 	{
 		m_ui_manager->Init(UIManager::Scene::end);
-		LoadTexture("Res/Tex/クリア.png", &m_GameEndSceneInfo.m_end);
+		LoadTexture("Res/Tex/クリア.png", &m_GameEndSceneInfo.m_bg);
 	}
 	else if(m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select==(int)TitleUI::Select::Freemode)
 	{
-		LoadTexture("Res/Tex/リザルト画面_フリープレイ.png", &m_GameEndSceneInfo.m_end);
+		LoadTexture("Res/Tex/リザルト画面_フリープレイ.png", &m_GameEndSceneInfo.m_bg);
 	}
 
 	m_sound_manager->RegisterEndSound();
@@ -68,9 +66,8 @@ void GameEndScene::MainScene()
 
 void GameEndScene::EndScene()
 {
-
 	m_sound_manager->ReleaseSelectSound();
-	ReleaseTexture(&m_GameEndSceneInfo.m_end);
+	ReleaseTexture(&m_GameEndSceneInfo.m_bg);
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::InitStep;
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneID=SceneId::Title;
 }

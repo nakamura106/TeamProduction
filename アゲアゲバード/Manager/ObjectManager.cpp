@@ -23,7 +23,6 @@ ObjectManager* ObjectManager::Instance()
 
 ObjectManager::ObjectManager()
 {
-
 }
 
 ObjectManager::~ObjectManager()
@@ -77,7 +76,6 @@ ObjectManager::~ObjectManager()
 			m_ItemBox[i] = nullptr;
 		}
 	}
-	
 }
 
 void ObjectManager::AllDeleteObject()
@@ -117,8 +115,8 @@ void ObjectManager::CreateObject()
  
 bool ObjectManager::CreateBlock()
 {
-
 	D3DXVECTOR3 eyepos;
+
 	eyepos = BlockInstallation(m_player["player1"]->GetPlayerData()->m_p_camera->GetCameraData()->m_EyePos , m_player["player1"]->GetPlayerData()->m_p_camera->GetCameraData()->m_Forward);
 
 	for (const auto& itr : m_Block)
@@ -149,7 +147,6 @@ void ObjectManager::CreateItemBox()
 void ObjectManager::CreatePlayer()
 {
 	m_player["player1"]=(new Character::Player(0.0f, 5.0f, 0.0f));
-	
 }
 
 void ObjectManager::Update()
@@ -176,7 +173,6 @@ void ObjectManager::Update()
 		{
 			m_Item.erase(m_Item.begin() + i);
 		}
-		
 	}
 	for (int i = 0; i < m_ItemBox.size(); i++)
 	{

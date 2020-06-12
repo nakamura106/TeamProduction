@@ -37,7 +37,6 @@ private:
 		float m_tenm_tu;
 		float m_tenm_tv;
 
-
 		char m_timefont[20];      //•¶Žš
 
 		float m_oneblock_tu;
@@ -53,11 +52,9 @@ private:
 		int m_onem;	//1•ª‚Ì’PˆÊ
 		int m_tenm;	//10•ª‚Ì’PˆÊ
 
-
 		D3DXVECTOR2 tex_pos;
 		D3DXVECTOR2 player_pos;
 		D3DXVECTOR2 playerbg_pos;
-
 
 		D3DXVECTOR2 timerbg_pos;
 		D3DXVECTOR2 one_s_timer_pos;
@@ -71,13 +68,11 @@ private:
 
 		D3DXVECTOR2 timer_pos;
 
-
 		TEXTURE_DATA m_position;
 		TEXTURE_DATA m_player_pos;
 		TEXTURE_DATA m_timer;
 		TEXTURE_DATA m_timerbg;
 		TEXTURE_DATA m_posbg;
-
 
 	}m_gameuiinfo;;
 
@@ -100,7 +95,6 @@ private:
 	ObjectManager* m_objectmanager = ObjectManager::Instance();
 	ProductionManager* m_productionmanager = ProductionManager::Instance();
 	SceneManager* m_scene_manager = SceneManager::Instance();
-
 };
 
 #endif

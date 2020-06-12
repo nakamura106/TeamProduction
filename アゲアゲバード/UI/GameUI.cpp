@@ -72,7 +72,6 @@ void GameUI::Draw()
 		
 		if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
 		{
-			//DrawFont(1000, 0, m_gameuiinfo.m_timefont, FontSize::Regular, FontColor::Red);
 			DrawUITexture(&m_gameuiinfo.m_timerbg, m_gameuiinfo.timerbg_pos);
 			DrawUIUVTexture(&m_gameuiinfo.m_timer, m_gameuiinfo.one_s_timer_pos, 50.0f, 67.0f, m_gameuiinfo.m_ones_tu, m_gameuiinfo.m_ones_tv);
 			DrawUIUVTexture(&m_gameuiinfo.m_timer, m_gameuiinfo.ten_s_timer_pos, 50.0f, 67.0f, m_gameuiinfo.m_tens_tu, m_gameuiinfo.m_tens_tv);
@@ -83,11 +82,8 @@ void GameUI::Draw()
 		}
 		DrawUIUVTexture(&m_gameuiinfo.m_timer, m_gameuiinfo.one_block_pos, 50.0f, 67.0f, m_gameuiinfo.m_oneblock_tu, m_gameuiinfo.m_oneblock_tv);
 		DrawUIUVTexture(&m_gameuiinfo.m_timer, m_gameuiinfo.ten_block_pos, 50.0f, 67.0f, m_gameuiinfo.m_tenblock_tu, m_gameuiinfo.m_tenblock_tv);
-		//DrawFont(10, 0, m_gameuiinfo.m_stockfont, FontSize::Regular, FontColor::Black);
-		//DrawUITexture(&m_gameuiinfo.m_posbg, m_gameuiinfo.playerbg_pos);
 		DrawUITexture(&m_gameuiinfo.m_position, m_gameuiinfo.tex_pos);
 		DrawUITexture(&m_gameuiinfo.m_player_pos, m_gameuiinfo.player_pos);
-
 	}
 }
 
@@ -186,20 +182,7 @@ void GameUI::UpDatePlayerPos()
 	{
 		m_gameuiinfo.player_pos.y = 254.0f;
 	}
-	////ƒvƒŒƒCƒ„[‚Ìoldpos‚Æpos‚ð”äŠr‚µ‚Ä+‚È‚ç+
-	//if (DataBank::Instance()->GetBeforePlayerPos().y < DataBank::Instance()->GetAfterPlayerPos().y)
-	//{
-	//	player_pos.y -= 1.0f;
-	//}
-	//else if (DataBank::Instance()->GetBeforePlayerPos().y > DataBank::Instance()->GetAfterPlayerPos().y)
-	//{
-	//	player_pos.y += 1.4f;
-	//}
-	//else
-	//{
-	//	player_pos.y += 0.0f;
-	//}
-
+	
 	if (m_gameuiinfo.player_pos.y >= 700.0f)
 	{
 		m_gameuiinfo.player_pos.y = 700.0f;
@@ -340,20 +323,6 @@ void GameUI::ConversionBlockStock()
 			m_gameuiinfo.m_oneblock_tu = 0.81f;
 		}
 	}
-	
-
-
-	/*if (m_objectmanager->GetPlayer("player1")->GetPlayerData()->m_blocset == true)
-	{
-		m_gameuiinfo.m_oneblock_tu -= 0.09f;
-	}
-	if (m_gameuiinfo.m_oneblock_tu < -0.01f)
-	{
-		m_gameuiinfo.m_tenblock_tu -= 0.09f;
-		m_gameuiinfo.m_oneblock_tu = 0.81f;
-	}*/
-
-
 }
 
 

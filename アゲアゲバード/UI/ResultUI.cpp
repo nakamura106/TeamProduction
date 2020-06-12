@@ -4,15 +4,14 @@
 void ResultUI::Init()
 {
 	m_csv->GetInstance()->LoadData("RankingData.txt");
-	// š ¼‚ª’Ç‰Á‚µ‚½‚â‚Â
+	
 	m_score_table = *m_csv->GetInstance()->GetParam("Ranking");
 
 	m_score_table.push_back(UIManager::Instance()->GetGameUI()->GetUIInfo()->m_timefont);
 	m_csv->GetInstance()->WriteData("RankingData.txt", m_score_table);
 
 	m_csv->GetInstance()->LoadData("RankingData.txt");
-	m_score_table = *m_csv->GetInstance()->GetParam("Ranking");
-	
+	m_score_table = *m_csv->GetInstance()->GetParam("Ranking");	
 
 	for (int j = 0; j < m_score_table[0].size(); j++)
 	{
@@ -31,5 +30,4 @@ void ResultUI::Draw()
 
 void ResultUI::ReleaseTex()
 {
-
 }

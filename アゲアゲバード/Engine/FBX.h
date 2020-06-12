@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 #include <fbxsdk.h>
-#include "Graphics.h"
 #include <map>
 #include <iostream>
+#include "Graphics.h"
 
 //’¸“_‚Ìî•ñ
 struct VERTEX_3D {

@@ -19,7 +19,6 @@ public:
 	virtual void UpDate()override;
 	virtual void ReleaseTex()override;
 
-
 	enum class Select :int
 	{
 		Solo,
@@ -43,7 +42,6 @@ private:
 	void DrawTitleUi(int page_);
 
 	void UpdateSelect();
-
 
 	TEXTURE_DATA	 m_Ui[(int)Select::SelectMax];
 	TEXTURE_DATA	 m_select;

@@ -19,10 +19,7 @@ void HelpScene::Init()
 
 void HelpScene::Draw()
 {
-	
 		DrawUITexture(&m_HelpSceneInfo.m_help, m_HelpSceneInfo.m_help_bg_pos);
-	
-
 }
 
 void HelpScene::InitScene()
@@ -49,5 +46,4 @@ void HelpScene::EndScene()
 
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::InitStep;
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneID=SceneId::Title;
-
 }

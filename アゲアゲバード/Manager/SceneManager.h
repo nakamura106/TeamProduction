@@ -47,7 +47,6 @@ private:
 		HelpScene* m_help;
 		OptionScene* m_option;
 	}m_SceneInstance;
-	
 
 public:
 	static SceneManager* Instance();
@@ -67,8 +66,6 @@ public:
 protected:
 	SceneManager();
 	~SceneManager();
-
-
 };
 
 

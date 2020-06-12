@@ -9,7 +9,6 @@ bool InitEngine(int width, int height, const char* title_name)
 	{
 		return false;
 	}
-
 	if (InitGraphics() == false)
 	{
 		return false;
@@ -18,14 +17,11 @@ bool InitEngine(int width, int height, const char* title_name)
 	{
 		return false;
 	}
-
-	//InitTexture();
-
+	
 	return true;
 }
 
 void EndEngine()
 {
 	ReleaseGraphics();
-
 }

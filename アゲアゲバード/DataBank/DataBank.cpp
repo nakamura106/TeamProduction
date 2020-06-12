@@ -8,6 +8,5 @@ DataBank* DataBank::Instance()
 	{
 		p_instance = new DataBank();
 	}
-
 	return p_instance;
 }

@@ -1,13 +1,11 @@
 #define DIRECTINPUT_VERSION 0x0800
-#include "Input.h"
-#include "../Utility/Vec.h"
-#include "Window.h"
-#include"../Manager/SceneManager.h"
-#include"../Scene/OptionScene.h"
-#include <Windows.h>
-#include <dinput.h>
 #include<d3dx9math.h>
 #include<math.h>
+#include "Input.h"
+#include "Window.h"
+#include"../Scene/OptionScene.h"
+#include"../Manager/SceneManager.h"
+
 //#include "DirectX.h"
 
 #pragma comment(lib, "dinput8.lib")

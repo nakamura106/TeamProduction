@@ -6,11 +6,11 @@
 #include <string>
 #include <vector>
 #include <fbxsdk.h>
+#include <Windows.h>
 
 #pragma comment(lib,"d3d9.lib")
 #pragma comment(lib,"d3dx9.lib")
 
-#include <Windows.h>
 
 // ‰ð•ú
 #define	SAFE_DESTROY(x)	{ if(x) { (x)->Destroy(); (x) = NULL; } }
@@ -29,9 +29,6 @@ struct TEXTURE_DATA
 	float Width;
 	float Height;
 };
-
-
-
 
 struct Size
 {
@@ -56,7 +53,6 @@ struct Size
 	float Width;
 	float Height;
 };
-
 
 struct CUSTOM_VERTEX
 {
@@ -113,7 +109,6 @@ void DrawUITexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos);
 void DrawUVTexture(TEXTURE_DATA* texture, D3DXVECTOR3 pos_, float sprite_width, float sprite_height, float tu, float tv, float Ttu, float Ttv, D3DXVECTOR3 angle, D3DXVECTOR3 scale);
 
 void DrawUIUVTexture(TEXTURE_DATA* texture, D3DXVECTOR2 pos_, float sprite_width, float sprite_height, float tu, float tv);
-//bool LoadTexture(const char*, TEXTURE_DATA*);
 
 bool LoadTexture(const char* file_name, TEXTURE_DATA* texture);
 

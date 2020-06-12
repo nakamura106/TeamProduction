@@ -12,8 +12,8 @@ class GameEndScene :public MyBaseScene::BaseScene
 private:
 	struct GameEndSceneInfo 
 	{
-		D3DXVECTOR2 m_end_bg_pos;
-		TEXTURE_DATA m_end;
+		D3DXVECTOR2 m_bg_pos;
+		TEXTURE_DATA m_bg;
 	}m_GameEndSceneInfo;
 
 	SceneManager* m_scene_manager=SceneManager::Instance();
@@ -32,7 +32,6 @@ public:
 	void EndScene();
 
 	const GameEndSceneInfo* GetGameEndSceneInfo()const { return &m_GameEndSceneInfo; }
-
 };
 
 #endif

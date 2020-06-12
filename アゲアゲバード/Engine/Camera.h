@@ -2,7 +2,6 @@
 #define CAMERA_H_
 
 #include <d3dx9.h>
-#include "../Utility/Gravity.h"
 
 class CAMERA
 {

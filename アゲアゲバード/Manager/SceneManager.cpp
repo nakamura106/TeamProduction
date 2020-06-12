@@ -1,16 +1,13 @@
 #include "SceneManager.h"
+#include"../Engine/Input.h"
 #include"../Scene/TitleScene.h"
 #include"../Scene/HelpScene.h"
 #include"../Scene/OptionScene.h"
 #include"../Scene/GameScene.h"
 #include"../Scene/GameEndScene.h"
-#include"../Engine/Input.h"
 #include"../Engine/Graphics.h"
-#include"../DataBank/DataBank.h"
-#include"../Manager/UIManager.h"
 
 SceneManager* SceneManager::p_instance = 0;
-
 
 SceneManager* SceneManager::Instance()
 {
@@ -18,7 +15,6 @@ SceneManager* SceneManager::Instance()
 	{
 		p_instance = new SceneManager;
 	}
-
 	return p_instance;
 }
 
@@ -125,5 +121,4 @@ SceneManager::~SceneManager()
 		delete m_SceneInstance.m_gameend;
 		m_SceneInstance.m_gameend = nullptr;
 	}
-	
 }

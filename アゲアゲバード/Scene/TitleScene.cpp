@@ -10,7 +10,6 @@
 
 TitleScene::TitleScene()
 {
-
 	Init();
 }
 
@@ -19,8 +18,7 @@ TitleScene::~TitleScene()
 }
 
 void TitleScene::Init()
-{
-	
+{	
 	m_TitleSceneInfo.m_now_select = (int)TitleUI::Select::Solo;
 	m_TitleSceneInfo.m_page = 0;
 	m_TitleSceneInfo.m_select_flag = 0;
@@ -32,7 +30,6 @@ void TitleScene::Init()
 void TitleScene::Draw()
 {
 	m_ui_manager->Draw(UIManager::Scene::title);
-
 }
 
 void TitleScene::InitScene()
@@ -54,12 +51,10 @@ void TitleScene::MainScene()
 	UpdateSelect();
 
 	m_ui_manager->UpDate(UIManager::Scene::title);
-
 }
 
 void TitleScene::EndScene()
-{
-	
+{	
 	SetCursorPos(960, 540);
 	m_ui_manager->Release(UIManager::Scene::title);
 	if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Option)
@@ -144,6 +139,7 @@ void TitleScene::UpdateSelect()
 		{
 			m_sound_manager->ResetSelectFlag();
 		}
+
 		if (GetKeyDown(UP_KEY) || IsButtonDown(L_UpStick))
 		{
 			if (m_TitleSceneInfo.m_now_select == (int)TitleUI::Select::Freemode)
@@ -162,6 +158,7 @@ void TitleScene::UpdateSelect()
 			m_sound_manager->ResetSelectFlag();
 		}
 	}
+
 	if (GetKeyDown(RETURN_KEY) || IsButtonDown(BButton))
 	{
 		m_sound_manager->SoundClickSE();

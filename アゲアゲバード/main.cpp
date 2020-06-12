@@ -1,20 +1,13 @@
 #include <fbxsdk.h>
 #include <Windows.h>
+#include <thread>
 #include "Engine/Window.h"
 #include "Engine/Graphics.h"
-#include <thread>
 #include "Engine/Engine.h"
-#include "Engine/FBX.h"
-#include "Manager/FbxManager.h"
 #include "Engine/Input.h"
 #include "Engine/Camera.h"
-#include"Object/Pot.h"
-#include"Manager/ObjectManager.h"
-#include"Manager/SoundManager.h"
 #include"Manager/UIManager.h"
 #include"Manager/SceneManager.h"
-#include"Utility/Collision.h"
-
 
 int WINAPI WinMain(HINSTANCE hinstance,
 	HINSTANCE hPrevInstance,
@@ -28,10 +21,7 @@ int WINAPI WinMain(HINSTANCE hinstance,
 	}
 
 	UIManager::Instance()->CreateUI();
-
 	SceneManager::Instance()->Init();
-
-	
 
 	while (true)
 	{

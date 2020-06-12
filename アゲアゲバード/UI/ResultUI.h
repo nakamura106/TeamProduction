@@ -18,7 +18,6 @@ public:
 	ResultUI(){}
 	~ResultUI(){}
 
-
 	virtual void LoadTex(){}
 	virtual void Init();
 	virtual void Draw();
@@ -35,7 +34,6 @@ private:
 	char m_no2[20];
 	char m_no3[20];
 
-	// š ¼‚ª’Ç‰Á‚µ‚½‚â‚Â
 	std::vector<std::string> m_score_table;
 
 	struct  Ranking
@@ -45,7 +43,6 @@ private:
 		char third[6];
 	};
 	Ranking m_ranking;
-
 
 };
 

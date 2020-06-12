@@ -57,8 +57,6 @@ void CAMERA::Update()
 		MouseRotate();
 		StickRotate();
 	}
-	
-
 
 	m_cameradata.m_Forward = m_cameradata.m_EyePos - m_cameradata.m_CameraPos;
 	D3DXVec3Normalize(&m_cameradata.m_Forward, &m_cameradata.m_Forward);
@@ -66,13 +64,8 @@ void CAMERA::Update()
 
 void CAMERA::Move()
 {
-	
-	
 	// カメラにプレイヤーの移動量を足す
 	m_cameradata.m_CameraPos += ObjectManager::Instance()->GetPlayer("player1")->Amountofmovement();
-	
-	
-
 }
 
 void CAMERA::ProductionMove()
@@ -85,7 +78,6 @@ void CAMERA::ProductionMove()
 	{
 		m_cameradata.m_startflag = true;
 	}
-
 }
 
 void CAMERA::MouseRotate()
@@ -96,11 +88,9 @@ void CAMERA::MouseRotate()
 	if (m_cameradata.m_Pitch > 90.0f) { m_cameradata.m_Pitch = 180.0f - m_cameradata.m_Pitch; }
 	if (m_cameradata.m_Pitch < -90.0f) { m_cameradata.m_Pitch = -180.0f - m_cameradata.m_Pitch; }
 
-
 	m_cameradata.m_EyePos.x = m_cameradata.m_CameraPos.x + sinf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
 	m_cameradata.m_EyePos.y = m_cameradata.m_CameraPos.y + sinf(D3DXToRadian(m_cameradata.m_Pitch));
-	m_cameradata.m_EyePos.z = m_cameradata.m_CameraPos.z + cosf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));
-	
+	m_cameradata.m_EyePos.z = m_cameradata.m_CameraPos.z + cosf(D3DXToRadian(m_cameradata.m_Yaw)) * cosf(D3DXToRadian(m_cameradata.m_Pitch));	
 }
 
 void CAMERA::StickRotate()

@@ -13,7 +13,6 @@ TitleUI::~TitleUI()
 
 void TitleUI::Init()
 {
-
 	m_select_pos = D3DXVECTOR2(145.0f, 594.0f);
 
 	m_Ui_pos[(int)Select::Solo] = D3DXVECTOR2(300.0f, 594.0f);
