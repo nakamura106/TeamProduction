@@ -9,7 +9,7 @@ void EndProduction::Init()
 	m_EndProductionInfo.m_finish_pos.y = -100.0f;
 
 	m_EndProductionInfo.m_fly_pos.x = 0.0f;
-	m_EndProductionInfo.m_fly_pos.y = 500.0f;
+	m_EndProductionInfo.m_fly_pos.y = 0.0f;
 
 	m_EndProductionInfo.m_oil_filter_pos = D3DXVECTOR2(0.0f, 0.0f);
 

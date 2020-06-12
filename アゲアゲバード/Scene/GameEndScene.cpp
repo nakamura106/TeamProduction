@@ -1,5 +1,6 @@
 #include "GameEndScene.h"
 #include"GameScene.h"
+#include"TitleScene.h"
 #include"OptionScene.h"
 #include"TitleScene.h"
 #include"../Engine/Input.h"
@@ -46,11 +47,21 @@ void GameEndScene::InitScene()
 		m_ui_manager->Init(UIManager::Scene::end);
 		LoadTexture("Res/Tex/クリア.png", &m_GameEndSceneInfo.m_bg);
 	}
-	else if(m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select==(int)TitleUI::Select::Freemode)
+	else
 	{
 		LoadTexture("Res/Tex/リザルト画面_フリープレイ.png", &m_GameEndSceneInfo.m_bg);
-	}
 
+		if (m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == false)
+		{
+			LoadTexture("Res/Tex/END.png", &m_GameEndSceneInfo.m_end);
+		}
+		if (m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == true)
+		{
+			LoadTexture("Res/Tex/クリア.png", &m_GameEndSceneInfo.m_end);
+		}
+	}
+	
+	m_ui_manager->Init(UIManager::Scene::end);
 	m_sound_manager->RegisterEndSound();
 	m_sound_manager->SoundBGM(SceneManager::Instance()->GetOptionScene()->GetOptionSceneInfo()->m_sound_volume);
 	m_scene_manager->SetSceneInfo()->m_CurrentSceneStep=SceneStep::MainStep;
