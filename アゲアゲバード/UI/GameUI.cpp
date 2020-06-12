@@ -9,22 +9,23 @@
 
 void GameUI::Init()
 {
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::NowPosBg] = D3DXVECTOR2(1725.0f, 160.0f);
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::NowPosBg2] = D3DXVECTOR2(1750.0f, 200.0f);
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::NowPosBg3] = D3DXVECTOR2(1750.0f, 200.0f);
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player] = D3DXVECTOR2(1750.0f, 620.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::NowPosBg] = D3DXVECTOR2(1725.0f, 160.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::NowPosBg2] = D3DXVECTOR2(1750.0f, 200.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::NowPosBg3] = D3DXVECTOR2(1750.0f, 200.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::Player] = D3DXVECTOR2(1750.0f, 620.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::Block] = D3DXVECTOR2(0.0f,0.0f);
 
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::TimerBg] = D3DXVECTOR2(750.0f, 50.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::TimerBg] = D3DXVECTOR2(750.0f, 50.0f);
 
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::One_S_Timer] = D3DXVECTOR2(1030.0f, 70.0f);
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::Ten_S_Timer] = D3DXVECTOR2(980.0f, 70.0f);
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::One_M_Timer] = D3DXVECTOR2(880.0f, 70.0f);
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::Ten_M_Timer] = D3DXVECTOR2(830.0f, 70.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::One_S_Timer] = D3DXVECTOR2(1030.0f, 70.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::Ten_S_Timer] = D3DXVECTOR2(980.0f, 70.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::One_M_Timer] = D3DXVECTOR2(880.0f, 70.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::Ten_M_Timer] = D3DXVECTOR2(830.0f, 70.0f);
 
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::Timer] = D3DXVECTOR2(930.0f, 70.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::Timer] = D3DXVECTOR2(930.0f, 70.0f);
 
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::One_Block] = D3DXVECTOR2(45.0f, 0.0f);
-	m_gameuiinfo.m_Ui_pos[(int)GameUINum::Ten_Block] = D3DXVECTOR2(0.0f, 0.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::One_Block] = D3DXVECTOR2(90.0f, 100.0f);
+	m_gameuiinfo.m_Ui_pos[GameUINum::Ten_Block] = D3DXVECTOR2(45.0f, 100.0f);
 
 	m_gameuiinfo.m_ones_tu = 0.0f;
 	m_gameuiinfo.m_ones_tv = 0.0f;
@@ -45,26 +46,25 @@ void GameUI::Init()
 	m_gameuiinfo.m_onem = 0;
 	m_gameuiinfo.m_tenm = 0;
 
-	sprintf_s(m_gameuiinfo.m_timefont, "%d%d:%d%d", m_gameuiinfo.m_tenm, m_gameuiinfo.m_onem, m_gameuiinfo.m_tens, m_gameuiinfo.m_ones);
-
 	m_gameuiinfo.m_oneblock_tu = 0.0f;
 	m_gameuiinfo.m_oneblock_tv = 0.0f;
 
 	m_gameuiinfo.m_tenblock_tu = 0.18f;
 	m_gameuiinfo.m_tenblock_tv = 0.0f;
+
+	sprintf_s(m_gameuiinfo.m_timefont, "%d%d:%d%d", m_gameuiinfo.m_tenm, m_gameuiinfo.m_onem, m_gameuiinfo.m_tens, m_gameuiinfo.m_ones);
 }
 
 void GameUI::LoadTex()
 {
-	LoadTexture("Res/Tex/位置情報UI(木枠).png", &m_gameuiinfo.m_Ui[(int)GameUINum::NowPosBg]);
-	LoadTexture("Res/Tex/位置情報UI(黒).png", &m_gameuiinfo.m_Ui[(int)GameUINum::NowPosBg2]);
-	LoadTexture("Res/Tex/位置情報UI(赤).png", &m_gameuiinfo.m_Ui[(int)GameUINum::NowPosBg3]);
-	LoadTexture("Res/Tex/位置情報UI(丸).png", &m_gameuiinfo.m_Ui[(int)GameUINum::Player]);
-	LoadTexture("Res/Tex/タイムUI_02.png", &m_gameuiinfo.m_Ui[(int)GameUINum::Timer]);
-	LoadTexture("Res/Tex/ブロック個数数字UI_修正.png", &m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont]);
-	LoadTexture("Res/Tex/タイム枠UI.png", &m_gameuiinfo.m_Ui[(int)GameUINum::TimerBg]);
-
-
+	LoadTexture("Res/Tex/位置情報UI(木枠).png", &m_gameuiinfo.m_Ui[GameUINum::NowPosBg]);
+	LoadTexture("Res/Tex/位置情報UI(黒).png", &m_gameuiinfo.m_Ui[GameUINum::NowPosBg2]);
+	LoadTexture("Res/Tex/位置情報UI(赤).png", &m_gameuiinfo.m_Ui[GameUINum::NowPosBg3]);
+	LoadTexture("Res/Tex/位置情報UI(丸).png", &m_gameuiinfo.m_Ui[GameUINum::Player]);
+	LoadTexture("Res/Tex/タイムUI_02.png", &m_gameuiinfo.m_Ui[GameUINum::Timer]);
+	LoadTexture("Res/Tex/ブロック個数数字UI_修正.png", &m_gameuiinfo.m_Ui[GameUINum::BlockCount]);
+	LoadTexture("Res/Tex/タイム枠UI.png", &m_gameuiinfo.m_Ui[GameUINum::TimerBg]);
+	LoadTexture("Res/Tex/唐揚げアイテムUI_A3.png", &m_gameuiinfo.m_Ui[GameUINum::Block]);
 }
 
 void GameUI::Draw()
@@ -72,25 +72,26 @@ void GameUI::Draw()
 	
 	if (m_productionmanager->GetStartProduction()->GetStartProductionInfo()->m_uistartflag == true)
 	{
-		
+
 		if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack)
 		{
-			DrawUITexture(&m_gameuiinfo.m_Ui[(int)GameUINum::TimerBg], m_gameuiinfo.m_Ui_pos[(int)GameUINum::TimerBg]);
-			DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::Timer], m_gameuiinfo.m_Ui_pos[(int)GameUINum::One_S_Timer], 50.0f, 67.0f, m_gameuiinfo.m_ones_tu, m_gameuiinfo.m_ones_tv);
-			DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::Timer], m_gameuiinfo.m_Ui_pos[(int)GameUINum::Ten_S_Timer], 50.0f, 67.0f, m_gameuiinfo.m_tens_tu, m_gameuiinfo.m_tens_tv);
-			DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::Timer], m_gameuiinfo.m_Ui_pos[(int)GameUINum::One_M_Timer], 50.0f, 67.0f, m_gameuiinfo.m_onem_tu, m_gameuiinfo.m_onem_tv);
-			DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::Timer], m_gameuiinfo.m_Ui_pos[(int)GameUINum::Ten_M_Timer], 50.0f, 67.0f, m_gameuiinfo.m_tenm_tu, m_gameuiinfo.m_tenm_tv);
-			DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::Timer], m_gameuiinfo.m_Ui_pos[(int)GameUINum::Timer], 50.0f, 67.0f, 0.88f,0.0f);
+			DrawUITexture(&m_gameuiinfo.m_Ui[GameUINum::TimerBg], m_gameuiinfo.m_Ui_pos[GameUINum::TimerBg]);
+			DrawUIUVTexture(&m_gameuiinfo.m_Ui[GameUINum::Timer], m_gameuiinfo.m_Ui_pos[GameUINum::One_S_Timer], 50.0f, 67.0f, m_gameuiinfo.m_ones_tu, m_gameuiinfo.m_ones_tv);
+			DrawUIUVTexture(&m_gameuiinfo.m_Ui[GameUINum::Timer], m_gameuiinfo.m_Ui_pos[GameUINum::Ten_S_Timer], 50.0f, 67.0f, m_gameuiinfo.m_tens_tu, m_gameuiinfo.m_tens_tv);
+			DrawUIUVTexture(&m_gameuiinfo.m_Ui[GameUINum::Timer], m_gameuiinfo.m_Ui_pos[GameUINum::One_M_Timer], 50.0f, 67.0f, m_gameuiinfo.m_onem_tu, m_gameuiinfo.m_onem_tv);
+			DrawUIUVTexture(&m_gameuiinfo.m_Ui[GameUINum::Timer], m_gameuiinfo.m_Ui_pos[GameUINum::Ten_M_Timer], 50.0f, 67.0f, m_gameuiinfo.m_tenm_tu, m_gameuiinfo.m_tenm_tv);
+			DrawUIUVTexture(&m_gameuiinfo.m_Ui[GameUINum::Timer], m_gameuiinfo.m_Ui_pos[GameUINum::Timer], 50.0f, 67.0f, 0.88f,0.0f);
 
 		}
-		DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont], m_gameuiinfo.m_Ui_pos[(int)GameUINum::One_Block], 70.0f, 74.0f, m_gameuiinfo.m_oneblock_tu, m_gameuiinfo.m_oneblock_tv);
-		DrawUIUVTexture(&m_gameuiinfo.m_Ui[(int)GameUINum::BlockCont], m_gameuiinfo.m_Ui_pos[(int)GameUINum::Ten_Block], 70.0f, 74.0f, m_gameuiinfo.m_tenblock_tu, m_gameuiinfo.m_tenblock_tv);
+		DrawUITexture(&m_gameuiinfo.m_Ui[GameUINum::Block], m_gameuiinfo.m_Ui_pos[GameUINum::Block]);
+		DrawUIUVTexture(&m_gameuiinfo.m_Ui[GameUINum::BlockCount], m_gameuiinfo.m_Ui_pos[GameUINum::One_Block], 70.0f, 74.0f, m_gameuiinfo.m_oneblock_tu, m_gameuiinfo.m_oneblock_tv);
+		DrawUIUVTexture(&m_gameuiinfo.m_Ui[GameUINum::BlockCount], m_gameuiinfo.m_Ui_pos[GameUINum::Ten_Block], 70.0f, 74.0f, m_gameuiinfo.m_tenblock_tu, m_gameuiinfo.m_tenblock_tv);
 		//DrawFont(10, 0, m_gameuiinfo.m_stockfont, FontSize::Regular, FontColor::Black);
 		//DrawUITexture(&m_gameuiinfo.m_posbg, m_gameuiinfo.playerbg_pos);
-		DrawUITexture(&m_gameuiinfo.m_Ui[(int)GameUINum::NowPosBg], m_gameuiinfo.m_Ui_pos[(int)GameUINum::NowPosBg]);
-		DrawUITexture(&m_gameuiinfo.m_Ui[(int)GameUINum::NowPosBg2], m_gameuiinfo.m_Ui_pos[(int)GameUINum::NowPosBg2]);
-		DrawUITexture(&m_gameuiinfo.m_Ui[(int)GameUINum::NowPosBg3], m_gameuiinfo.m_Ui_pos[(int)GameUINum::NowPosBg3]);
-		DrawUITexture(&m_gameuiinfo.m_Ui[(int)GameUINum::Player], m_gameuiinfo.m_Ui_pos[(int)GameUINum::Player]);
+		DrawUITexture(&m_gameuiinfo.m_Ui[GameUINum::NowPosBg], m_gameuiinfo.m_Ui_pos[GameUINum::NowPosBg]);
+		DrawUITexture(&m_gameuiinfo.m_Ui[GameUINum::NowPosBg2], m_gameuiinfo.m_Ui_pos[GameUINum::NowPosBg2]);
+		DrawUITexture(&m_gameuiinfo.m_Ui[GameUINum::NowPosBg3], m_gameuiinfo.m_Ui_pos[GameUINum::NowPosBg3]);
+		DrawUITexture(&m_gameuiinfo.m_Ui[GameUINum::Player], m_gameuiinfo.m_Ui_pos[GameUINum::Player]);
 	}
 }
 
