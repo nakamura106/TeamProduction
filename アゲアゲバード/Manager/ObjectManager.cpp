@@ -5,6 +5,7 @@
 #include"../Object/Item.h"
 #include"../Object/WorldBox.h"
 #include "../Player/Player.h"
+#include "../CSV/CSV.h"
 #include<time.h>
 
 
@@ -146,7 +147,12 @@ void ObjectManager::CreateItemBox()
 
 void ObjectManager::CreatePlayer()
 {
-	m_player["player1"]=(new Character::Player(0.0f, 5.0f, 0.0f));
+	CSV* p_csv = CSV::GetInstance();
+	p_csv->LoadData("object_parameter.csv");
+
+	p_csv->GetParam("player");
+
+	m_player["player1"]=(new Character::Player("player"));
 }
 
 void ObjectManager::Update()

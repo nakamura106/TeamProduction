@@ -18,9 +18,23 @@ class Block;
 
 namespace Character
 {
+	enum class PARAM
+	{
+		X,
+		Y,
+		Z,
+		RADIUS,
+		JAMP_POWER,
+		WALK_SPEED,
+		SPRINT_SPEED,
+		BLOCK_STOCK,
+
+		PARAM_MAX
+	};
+
 	class Player : public ObjectBase {
 	public:
-		Player(float pos_x_, float pos_y_, float pos_z_);
+		Player(std::string str_);
 		~Player() {}
 
 	private:
@@ -45,7 +59,6 @@ namespace Character
 			enum class PlayerStatus {
 				WAIT,		// 待機
 				WALK,		// 歩く
-				//SPRINT,	// 疾走
 				JAMP,		// ジャンプ
 				THROW,		// 投げる
 			}state;
@@ -65,14 +78,13 @@ namespace Character
 
 			Gravity m_grav;				// 重力
 
-			int m_blockstock;				//ブロックの所持数
+			int m_blockstock;			//ブロックの所持数
 			
-			float walk_speed;				// 歩いているときのスピード
-			float sprint_speed;				// 走っているときのスピード
-			float speed;					// 移動用のスピード
-			float jamp_power;				// ジャンプ力
+			float walk_speed;			// 歩いているときのスピード
+			float sprint_speed;			// 走っているときのスピード
+			float speed;				// 移動用のスピード
+			float jamp_power;			// ジャンプ力
 			float m_item_effect_time;	// アイテムの効果量をはかる
-			//float throw_power;			// 投げる力
 
 			bool m_jflag;				// ジャンプした時のフラグ
 			bool m_stand_flag;			// 立っている時のフラグ

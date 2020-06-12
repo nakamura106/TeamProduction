@@ -7,31 +7,29 @@
 #include "../Utility/Gravity.h"
 #include"../Manager/FbxManager.h"
 #include"../Manager/SoundManager.h"
+#include "../CSV/CSV.h"
 
-Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
+Character::Player::Player(std::string str_)
 {
-	m_pinfo.m_key = "player";	// アニメーション追加後は"player_wait"になる
+	std::vector<std::string> strvec = *CSV::GetInstance()->GetParam(str_);
+
+	m_pinfo.m_key = str_;			// アニメーション追加後は"player_wait"になる
 	m_pinfo.state = PlayerInfo::PlayerStatus::WAIT;
 
-	m_pinfo.m_pos.x = pos_x_;		// csvファイルからもらってこれるようにする
-	m_pinfo.m_pos.y = pos_y_;		// csvファイルからもらってこれるようにする
-	m_pinfo.m_pos.z = pos_z_;		// csvファイルからもらってこれるようにする
+	m_pinfo.m_pos.x = std::stof(strvec[static_cast<float>(PARAM::X)]);
+	m_pinfo.m_pos.y = std::stof(strvec[static_cast<float>(PARAM::Y)]);
+	m_pinfo.m_pos.z = std::stof(strvec[static_cast<float>(PARAM::Z)]);
+	m_pinfo.radius = std::stof(strvec[static_cast<float>(PARAM::RADIUS)]);
+	m_pinfo.jamp_power = std::stof(strvec[static_cast<float>(PARAM::JAMP_POWER)]);
+	m_pinfo.walk_speed = std::stof(strvec[static_cast<float>(PARAM::WALK_SPEED)]);
+	m_pinfo.sprint_speed = std::stof(strvec[static_cast<float>(PARAM::SPRINT_SPEED)]);
+	m_pinfo.m_blockstock = std::stof(strvec[static_cast<float>(PARAM::BLOCK_STOCK)]);
 
 	m_pinfo.m_camera_pos.x = 0.0f;
 	m_pinfo.m_camera_pos.y = 150.0f;
 	m_pinfo.m_camera_pos.z = 0.0f;
 
-
-	m_pinfo.walk_speed = 0.5f;		// csvファイルからもらってこれるようにする
-	m_pinfo.sprint_speed = 1.0f;	// csvファイルからもらってこれるようにする
 	m_pinfo.speed = m_pinfo.walk_speed;
-
-	m_pinfo.radius = 2.0f;			// csvファイルからもらってこれるようにする
-
-	m_pinfo.jamp_power = 2.0f;		// csvファイルからもらってこれるようにする
-
-	m_pinfo.m_blockstock = 20;		// csvファイルからもらってこれるようにする
-	
 	
 	m_pinfo.m_p_camera = new CAMERA(m_pinfo.m_camera_pos);
 
@@ -56,7 +54,6 @@ Character::Player::Player(float pos_x_, float pos_y_, float pos_z_)
 	m_pinfo.m_mat_world = m_pinfo.m_mat_scale * m_pinfo.m_mat_rot_y * m_pinfo.m_mat_move;
 	m_item = m_objectmanager->GetItem();
 	m_block = m_objectmanager->GetBlock();
-
 }
 
 void Character::Player::Update()
