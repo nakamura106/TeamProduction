@@ -39,12 +39,10 @@ void GameEndScene::InitScene()
 	m_GameEndSceneInfo.m_bg_pos.y = 0;
 	if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack&&m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == false)
 	{
-		m_ui_manager->Init(UIManager::Scene::end);
 		LoadTexture("Res/Tex/END.png", &m_GameEndSceneInfo.m_bg);
 	}
 	else if (m_scene_manager->GetTitleScene()->GetTitleSceneInfo()->m_now_select == (int)TitleUI::Select::Timeattack&&m_scene_manager->GetGameScene()->GetGameSceneInfo()->m_ClearFlag == true)
 	{
-		m_ui_manager->Init(UIManager::Scene::end);
 		LoadTexture("Res/Tex/ƒNƒŠƒA.png", &m_GameEndSceneInfo.m_bg);
 	}
 	else

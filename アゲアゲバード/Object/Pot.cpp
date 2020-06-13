@@ -10,7 +10,7 @@ Pot::Pot()
 	m_mapdata.m_map_bottom=D3DXVECTOR3(0.0f,0.0f,0.0f);
 	m_mapdata.m_map_centerpos=D3DXVECTOR3(0.0f,50.0f,0.0f);
 
-	m_mapdata.radius = 30.0f;
+	m_mapdata.radius = 29.0f;
 	
 	m_mapdata.m_key = "pot";
 	

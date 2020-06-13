@@ -107,10 +107,10 @@ void GameScene::TimeattackUpdate()
 		m_GameSceneInfo.m_ClearFlag = true;
 		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
 	}
-	if (GetKeyDown(F_KEY))
+	/*if (GetKeyDown(F_KEY))
 	{
 		m_scene_manager->SetSceneInfo()->m_CurrentSceneStep = SceneStep::EndStep;
-	}
+	}*/
 }
 
 void GameScene::FreemodeUpdate()
